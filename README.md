@@ -1,7 +1,7 @@
 # Book Store
-Website is using ExpressJS
-MoongoDB is database
-VSCode is editor
+* Website is using ExpressJS
+* MoongoDB is database
+* VSCode is editor
 
 ## Member
 ### 1512174 - Hồ Văn Hoàng
