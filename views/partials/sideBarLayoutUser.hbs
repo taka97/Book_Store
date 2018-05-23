@@ -1,0 +1,72 @@
+<div class="side-bar">
+    <div class="box-left-wrap visible-lg-block" id="boxleft-wrap">
+        <div class="panel-group box-left" id="boxleft" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-info">
+                <div class="panel-heading" role="tab" id="heading-author">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#boxleft" href="#collapse-author" aria-expanded="true" aria-controls="collapse-author">
+                            Thể loại </a>
+                    </h4>
+                </div>
+                <div id="collapse-author" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-author">
+                    <div class="list-group">
+
+                        {{# each listGenres}}
+                        <div class="list-group-item">
+                            <a href={{url}} class="list-group-item">{{name}}
+                            </a>
+                        </div>
+                        {{/each}}
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading" role="tab" id="heading-author">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#boxleft" href="#collapse-author" aria-expanded="true" aria-controls="collapse-author">
+                            Tác giả </a>
+                    </h4>
+                </div>
+                <div id="collapse-author" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-author">
+                    <div class="list-group">
+
+                        {{# each listAuthors}}
+                        <div class="list-group-item">
+                            <a rel="" href={{url}} class="list-group-item">{{name}}
+                            </a>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading" role="tab" id="heading-publisher_vn">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#boxleft" href="#collapse-publisher_vn" aria-expanded="true"
+                            aria-controls="collapse-publisher_vn">
+                            Nhà xuất bản </a>
+                    </h4>
+                </div>
+                <div id="collapse-publisher_vn" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-publisher_vn">
+                    <div class="list-group">
+
+                        {{# each listPublishers}}
+                        <div class="list-group-item">
+                            <a rel="" href={{url}} class="list-group-item">{{name}}
+                            </a>
+                        </div>
+                        {{/each}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-button">
+            <button type="button" class="btn btn-default js-cancel">Quay Lại</button>
+            <button type="button" class="btn btn-default js-ok">Chọn</button>
+        </div>
+    </div>
+</div>
