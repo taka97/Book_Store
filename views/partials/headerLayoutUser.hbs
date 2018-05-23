@@ -1,0 +1,185 @@
+<header id="header" class="nav-collapse">
+    <div class="header-form-container">
+        <div class="container">
+            <a href="https://tiki.vn/" class="logo">
+                <i class="tikicon icon-logo-tiki"></i>
+            </a>
+            <div class="form-search">
+                <form id="search_form"> {{!action="https://tiki.vn/search" method="get">}}
+                    <div class="search-wrap">
+                        <div class="input">
+                            <div class="flex">
+                                <input name="q" autocomplete="off" placeholder="Tìm sản phẩm, danh mục hay thương hiệu mong muốn ..." type="text">
+                            </div>
+                        </div>
+                        <button type="submit">
+                            <i class="tikicon icon-search"></i>
+                            <span>Tìm kiếm</span>
+                        </button>
+                    </div>
+                </form>
+                <div id="search-suggestion" style="display: none">
+                    <div data-reactroot="" class="search-suggestion" style="display: none;">
+                        <!-- react-text: 2 -->
+                        <!-- /react-text -->
+                        <!-- react-text: 3 -->
+                        <!-- /react-text -->
+                    </div>
+                </div>
+                <div id="search-autocomplete" style="display: none">
+                    <div data-reactroot="" class="keyword-remember" style="display: none;"></div>
+                </div>
+            </div>
+            <div class="header-link">
+                <a rel="nofollow" href="https://tiki.vn/kiem-tra-don-hang" title="Kiểm tra trạng thái Đơn hàng của bạn" class="tracking-order item">
+                    <i class="icon-style-1 tikicon icon-tracking"></i>
+                    Theo dõi
+                    <br>đơn hàng
+                </a>
+                <div class="noti-item tracking-noti item" id="header-noti">
+                    <div data-reactroot="">
+                        <div>
+                            <span class="number-notification user"></span>
+                            <i class="icon-style-1 tikicon icon-notification"></i>
+                            <!-- react-text: 4 -->Thông báo
+                            <!-- /react-text -->
+                            <br>
+                            <!-- react-text: 6 -->của tôi
+                            <!-- /react-text -->
+                        </div>
+                        <div class="box-noti">
+                            <ul class="list-noti">
+                                <li>
+                                    <a href="https://tiki.vn/lp/locknlock" data-id="189" title="Lock&amp;Lock BÙNG NỔ SALE NGÀY HÈ" class="">
+                                        <img src="Nh%C3%A0%20S%C3%A1ch%20Tiki_files/icon-giamgia.png">
+                                        <span class="text">Lock&amp;Lock BÙNG NỔ SALE NGÀY HÈ. Giảm giá đến 50% ++. XEM NGAY!</span>
+                                        <span class="detail">Chi tiết</span>
+                                        <br>
+                                        <span class="date">15/05/2018</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://tiki.vn/lp/chinsufoods" data-id="188" title="CHIN-SU FOODS tặng bạn 1 Chảo Không Dính SUNHOUSE" class="">
+                                        <img src="Nh%C3%A0%20S%C3%A1ch%20Tiki_files/icon-giamgia.png">
+                                        <span class="text">CHIN-SU FOODS tặng bạn 1 Chảo Không Dính SUNHOUSE chất lượng khi mua 2 chai nước
+                                            mắm CHIN-SU...</span>
+                                        <span class="detail">Chi tiết</span>
+                                        <br>
+                                        <span class="date">10/05/2018</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://tiki.vn/but-mau-but-sap/c2538?order=top_seller" data-id="187" title="THỎA SỨC SÁNG TẠO SẮC MÀU " class="">
+                                        <img src="Nh%C3%A0%20S%C3%A1ch%20Tiki_files/icon-giamgia.png">
+                                        <span class="text">Nhập Mã SACMAU10 - Giảm thêm 10% Khi mua đơn hàng Sáp - Chì Màu Từ 300,000 đ...</span>
+                                        <span class="detail">Chi tiết</span>
+                                        <br>
+                                        <span class="date">03/05/2018</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://tiki.vn/thuong-hieu/unidry.html" data-id="181" title="Nhập mã Coupon UNINB50 giảm thêm 50K cho đơn hàng 5 gói tã Newborn sơ sinh Unidry"
+                                        class="">
+                                        <img src="Nh%C3%A0%20S%C3%A1ch%20Tiki_files/icon-giamgia.png">
+                                        <span class="text">Nhập mã Coupon UNINB50 giảm thêm 50K cho đơn hàng 5 gói tã Newborn sơ sinh Unidry</span>
+                                        <span class="detail">Chi tiết</span>
+                                        <br>
+                                        <span class="date">27/03/2018</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://tiki.vn/customer/notification" title="" class="view_more">Xem tất cả thông báo</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-profile item" id="header-user">
+                    <div data-reactroot="">
+                        <div>
+                            <i class="icon-style-1 tikicon icon-user"></i>
+                            <b>Đăng nhập</b>
+                            <br>
+                            <small>Tài khoản</small>
+                        </div>
+                        <div class="box">
+                            <ul class="user-ajax-guest">
+                                <li id="login_link">
+                                    <a href="#" title="Đăng Nhập" class="user-name-login">
+                                        <span class="text">Đăng nhập</span>
+                                    </a>
+                                </li>
+                                <li class="user-name-register">
+                                    <a href="#" title="Tạo tài khoản mới">
+                                        <span class="text">Tạo tài khoản</span>
+                                    </a>
+                                </li>
+                                <li id="login_fb_link">
+                                    <a class="user-name-loginfb" title="Đăng nhập bằng Facebook" href="javascript:%20void(0)" data-url="/customer/account/loginFacebook">
+                                        <span class="icon">
+                                            <i class="ico ico-facebook"></i>
+                                        </span>
+                                        <span class="text">Đăng nhập bằng Facebook</span>
+                                    </a>
+                                </li>
+                                <li id="login_google_link">
+                                    <a class="user-name-login-google" title="Đăng nhập bằng Google" href="javascript:%20void(0)" data-url="/customer/account/login_google">
+                                        <span class="icon">
+                                            <i class="ico ico-google"></i>
+                                        </span>
+                                        <span class="text">Đăng nhập bằng Google</span>
+                                    </a>
+                                </li>
+                                <li id="login_zalo_link">
+                                    <a class="user-name-login-zalo" title="Đăng nhập bằng Zalo" href="javascript:%20void(0)" data-url="/customer/account/loginZalo">
+                                        <span class="icon-wrap">
+                                            <span class="tikicon icon-zalo"></span>
+                                        </span>
+                                        <span class="text">Đăng nhập bằng Zalo</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="header-cart">
+                    <a data-reactroot="" rel="nofollow" href="https://tiki.vn/checkout/cart" class="header-cart item">
+                        <i class="tikicon icon-cart"></i>
+                        <!-- react-text: 3 -->Giỏ hàng
+                        <!-- /react-text -->
+                        <span class="cart-count">0</span>
+                        <div class="add-to-cart-success">
+                            <span class="close">
+                                <i class="tikicon icon-circle-close"></i>
+                            </span>
+                            <p class="text">
+                                <i class="tikicon icon-circle-tick"></i>
+                                <!-- react-text: 10 -->Thêm vào giỏ hàng thành công!
+                                <!-- /react-text -->
+                            </p>
+                            <button class="btn">Xem giỏ hàng và thanh toán</button>
+                        </div>
+                    </a>
+                </div>
+                <!-- Tooltip Link social -->
+                <div class="box-social">
+                    <div class="popup-social">
+                        <span>
+                            Kết nối tài khoản mạng xã hội để đăng nhập nhanh chóng, dễ dàng hơn.
+                        </span>
+                        <i class="tikicon icon-facebook-small"></i>
+                        <i class="tikicon icon-google-small"></i>
+                        <i class="tikicon icon-zalo-small"></i>
+
+                        <a class="btn-link-now" href="https://tiki.vn/customer/account/edit" title="Liên kết ngay">Liên kết ngay</a>
+                        <a class="close" href="" title="Đóng"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-ajax-recentlyviewed" data-impress-list-title="Header | Sản phẩm bạn đã xem">
+        <div data-reactroot="" class="product-recently-content swiper-carousel-wrapper"></div>
+    </div>
+</header>
