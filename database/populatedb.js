@@ -90,49 +90,49 @@ function bookCreate(title, author, publisher, publishDate, price, genre, imageCo
 function createGenreAuthors(cb) {
     async.parallel([
         function(callback) {
-          authorCreate('Eiichiro Oda','1973-06-06', 'Nam','English', callback);
+          authorCreate('Eiichiro Oda','1973/06/06', 'Nam','English', callback);
         },
         function(callback) {
-            authorCreate('Rosie Nguyễn','1988-01-06', 'Nữ','Việt Nam', callback);
+            authorCreate('Rosie Nguyễn','1988/01/06', 'Nữ','Việt Nam', callback);
         },
         function(callback) {
-            authorCreate('Robin Sharma','1978-01-06', 'Nam','USA', callback);
+            authorCreate('Robin Sharma','1978/01/06', 'Nam','USA', callback);
         },
         function(callback) {
-            authorCreate('Dale Carnegie','1987-01-12', 'Nam','Đức', callback);
+            authorCreate('Dale Carnegie','1987/01/12', 'Nam','Đức', callback);
         },
         function(callback) {
-            authorCreate('Camilo Cruz','1987-01-12', 'Nam','Pháp', callback);
+            authorCreate('Camilo Cruz','1987/01/12', 'Nam','Pháp', callback);
         },
         function(callback) {
-            authorCreate('Tony Buối Sáng','1987-01-12', 'Nam','Việt Nam', callback);
+            authorCreate('Tony Buối Sáng','1987/01/12', 'Nam','Việt Nam', callback);
         },
         function(callback) {
-            authorCreate('Dale Carnegie','1989-01-12', 'Nữ','Nga', callback);
+            authorCreate('Dale Carnegie','1989/01/12', 'Nữ','Nga', callback);
         },
         function(callback) {
-            authorCreate('Trác Nhã','1977-01-12', 'Nam','Việt Nam', callback);
+            authorCreate('Trác Nhã','1977/01/12', 'Nam','Việt Nam', callback);
         },
         function(callback) {
-            authorCreate('Hector Malot','1990-01-12', 'Nam','Anh', callback);
+            authorCreate('Hector Malot','1990/01/12', 'Nam','Anh', callback);
         },
         function(callback) {
-            authorCreate('Shinkai Makoto','1987-01-12', 'Nữ','Nhật Bản', callback);
+            authorCreate('Shinkai Makoto','1987/01/12', 'Nữ','Nhật Bản', callback);
         },
         function(callback) {
-            authorCreate('David J.Pollay','1987-01-11', 'Nam','Nhật Bản', callback);
+            authorCreate('David J.Pollay','1987/01/11', 'Nam','Nhật Bản', callback);
         },
         function(callback) {
-            authorCreate('Ngô Đức Hùng','1987-02-17', 'Nữ','Việt Nam', callback);
+            authorCreate('Ngô Đức Hùng','1987/02/17', 'Nữ','Việt Nam', callback);
         },
         function(callback) {
-            authorCreate('Trần Thề San','1987-05-24', 'Nữ','Việt Nam', callback);
+            authorCreate('Trần Thề San','1987/05/24', 'Nữ','Việt Nam', callback);
         },
         function(callback) {
-            authorCreate('Trần Nhật Hóa','1982-01-12', 'Nam','Việt Nam', callback);
+            authorCreate('Trần Nhật Hóa','1982/01/12', 'Nam','Việt Nam', callback);
         },
         function(callback) {
-            authorCreate('Luis Sepulveda','1987-09-12', 'Nam','Anh', callback);
+            authorCreate('Luis Sepulveda','1987/09/12', 'Nam','Anh', callback);
         },
         
         function(callback) {
