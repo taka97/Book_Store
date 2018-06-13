@@ -2,7 +2,7 @@
 
 exports.getHomepage = function (req, res, next) {
   // Successful, so render.
-  res.render('admin/index', {
+  res.render('account/adminHomepage', {
     layout: 'layoutAdmin',
     title: 'Quản trị viên'
   })
