@@ -1,3 +1,7 @@
-<h1>{{message}}</h1>
-<h2>{{error.status}}</h2>
-<pre>{{error.stack}}</pre>
+<div class="error-page">
+  <div>
+    <h1 data-h1="{{ error.status }}">{{ error.status }}</h1>
+    <p data-p="NOT FOUND">{{ message }}</p>
+  </div>
+</div>
+<div id="particles-js"></div>

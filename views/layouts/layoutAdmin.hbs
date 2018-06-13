@@ -5,7 +5,15 @@
 </head>
 
 <body class="nav-md">
-    {{{ body }}}
+    <div class="container body">
+        <div class="main_container">
+            {{> sidebarLayoutAdmin }}
+            {{> headerLayoutAdmin }}
+            {{{ body }}}
+            {{> footerLayoutAdmin }}
+        </div>
+    </div>
+    {{> tailLayoutAdmin }}
 </body>
 
 </html>
