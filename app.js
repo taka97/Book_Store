@@ -60,7 +60,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500)
-  res.render('error', {layout: 'layoutError'})
+  res.render('error', {layout: 'layoutError', status: '404', message: 'Not Found'})
 })
 
 module.exports = app
