@@ -9,7 +9,7 @@ var favicon = require('express-favicon')
 var indexRouter = require('./routes/index')
 var loginRouter = require('./routes/login')
 var adminRouter = require('./routes/admin')
-var usersRouter = require('./routes/users')
+var userRouter = require('./routes/user')
 var bookRouter = require('./routes/book')
 var genreRouter = require('./routes/genre')
 var authorRouter = require('./routes/author')
@@ -41,7 +41,7 @@ app.use(favicon(path.join(__dirname, '/public/icons/favicon.png')))
 app.use('/', indexRouter)
 app.use('/login', loginRouter)
 app.use('/admin', adminRouter)
-app.use('/users', usersRouter)
+app.use('/user', userRouter)
 app.use('/book', bookRouter)
 app.use('/genre', genreRouter)
 app.use('/author', authorRouter)
@@ -59,8 +59,9 @@ app.use(function (err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {}
 
   // render the error page
-  res.status(err.status || 500)
-  res.render('error', {layout: 'layoutError', status: '404', message: 'Not Found'})
+  err.status = err.status || 500
+  res.status(200)
+  res.render('error', {layout: 'layoutError', status: err.status, message: err.message})
 })
 
 module.exports = app
