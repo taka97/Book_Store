@@ -8,12 +8,14 @@ var favicon = require('express-favicon')
 
 var indexRouter = require('./routes/index')
 var loginRouter = require('./routes/login')
-var adminRouter = require('./routes/admin')
-var userRouter = require('./routes/user')
 var bookRouter = require('./routes/book')
 var genreRouter = require('./routes/genre')
 var authorRouter = require('./routes/author')
 var publisherRouter = require('./routes/publisher')
+var accountRouter = require('./routes/account')
+// for develop
+var adminRouter = require('./routes/admin')
+var userRouter = require('./routes/user')
 
 var app = express()
 
@@ -40,12 +42,14 @@ app.use(favicon(path.join(__dirname, '/public/icons/favicon.png')))
 
 app.use('/', indexRouter)
 app.use('/login', loginRouter)
-app.use('/admin', adminRouter)
-app.use('/user', userRouter)
+app.use('/account', accountRouter)
 app.use('/book', bookRouter)
 app.use('/genre', genreRouter)
 app.use('/author', authorRouter)
 app.use('/publisher', publisherRouter)
+// for developer
+app.use('/admin', adminRouter)
+app.use('/user', userRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
