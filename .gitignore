@@ -61,4 +61,4 @@ typings/
 .next
 
 # Editor configuration
-.vs/
+.vscode/
