@@ -63,8 +63,7 @@ app.use(function (err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {}
 
   // render the error page
-  err.status = err.status || 500
-  res.status(200)
+  res.status(err.status = err.status || 500)
   res.render('error', {layout: 'layoutError', status: err.status, message: err.message})
 })
 
