@@ -136,7 +136,6 @@ function createGenreAuthors (cb) {
     function (callback) {
       genreCreate('Kỹ năng - sống đẹp', callback)
     },
-
     function (callback) {
       genreCreate('Tư duy - kỹ năng sống', callback)
     },
@@ -155,23 +154,18 @@ function createGenreAuthors (cb) {
     function (callback) {
       genreCreate('Kinh tế', callback)
     },
-
     function (callback) {
       publisherCreate('Văn Hoá Nghệ Thuật', callback)
     },
-
     function (callback) {
       publisherCreate('Hội Nhà Văn', callback)
     },
-
     function (callback) {
       publisherCreate('Thế Giới', callback)
     },
-
     function (callback) {
       publisherCreate('Tổng Hợp', callback)
     },
-
     function (callback) {
       publisherCreate('Trẻ', callback)
     },
@@ -221,7 +215,6 @@ function createBooks (cb) {
     function (callback) {
       bookCreate('Mình nói gì khi nói về hạnh phúc', authors[3], publishers[1], '2017/1/20', '45000', genres[5], 'https://vcdn.tikicdn.com/media/bookpreview/df/83/1627925/files/OEBPS/Images/IMG_20180406_0001.gif', callback)
     },
-
     function (callback) {
       bookCreate('Khéo ăn nói sẽ có được thiên hạ', authors[5], publishers[1], '2017/1/20', '45000', genres[5], 'https://vcdn.tikicdn.com/media/bookpreview/7e/97/413656/files/OEBPS/Images/IMG_20170804_0040.gif', callback)
     },
@@ -234,7 +227,6 @@ function createBooks (cb) {
     function (callback) {
       bookCreate('Bài học diệu kỳ từ chiếc xe rác', authors[3], publishers[2], '2017/2/20', '45000', genres[1], 'https://vcdn.tikicdn.com/media/bookpreview/4f/4d/353337/files/OEBPS/Images/IMG_20170803_0001.gif', callback)
     },
-
     function (callback) {
       bookCreate('Để yên cho bác sẽ "Hiền"', authors[3], publishers[0], '2017/2/20', '45000', genres[1], 'https://vcdn.tikicdn.com/cache/w1200/ts/product/79/a5/d2/1c8953a4d605bfc15ba1138176c17135.jpg', callback)
     },
@@ -265,7 +257,7 @@ async.series([
   createGenreAuthors,
   createBooks
 ],
-// Optional callback
+  // Optional callback
 function (err, results) {
   if (err) {
     console.log('FINAL ERR: ' + err)
