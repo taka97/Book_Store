@@ -1,0 +1,59 @@
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2> Quản lý sách
+              <small> Thêm, sửa, xóa, tìm kiếm </small>
+            </h2>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+
+{{!-- title: {type: String, required: true, maxlength: 200},
+    author: {type: Schema.Types.ObjectId, ref: 'Author', required: true},
+    publisher: {type: Schema.Types.ObjectId, ref: 'Publisher', required: true},
+    publishDate: {type: Date, required: true},
+    price: {type: Number, required: true},
+    genre: {type: Schema.Types.ObjectId, ref: 'Genre', required: true},
+    imageCover: {type: String, required: true} --}}
+                  <th> STT </th>
+                  <th> Tên sách </th>
+                  <th> Nhà xuất bản </th>
+                  <th> Ngày xuất bản </th>
+                  <th> Giá </th>
+                  <th> Ảnh bìa </th>
+                  <th> Hành động </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th> 1 </th>
+                  <th> Nhập môn lập trình </th>
+                  <th> Đại học Khoa học Tự nhiên TP.HCM </th>
+                  <th> 10/06/2018 </th>
+                  <th> 1200000 </th>
+                  <th> <img class="thumbnail image" src="http://gralib.hcmuns.edu.vn/sachmoi/2015/05-15/ktlaptrinh.jpg" alt=""> </th>
+                  <td>
+                    <a href="/author/ho-van-hoang" class="btn btn-primary btn-xs">
+                      <i class="fa fa-folder"></i> Xem </a>
+                    <a href="/author/ho-van-hoang" class="btn btn-info btn-xs">
+                      <i class="fa fa-pencil"></i> Sửa </a>
+                    <a href="/author/ho-van-hoang" class="btn btn-danger btn-xs">
+                      <i class="fa fa-trash-o"></i> Xóa </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /page content -->
