@@ -3,6 +3,6 @@ exports.getHomepage = function (req, res, next) {
   // Successful, so render.
   res.render('account/authorHomepage', {
     layout: 'layoutAdmin',
-    title: 'Quản trị viên'
+    title: 'Quản lý tác giả'
   })
 }
