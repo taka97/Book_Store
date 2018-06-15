@@ -1,72 +1,72 @@
-<div class="side-bar">
-    <div class="box-left-wrap visible-lg-block" id="boxleft-wrap">
-        <div class="panel-group box-left" id="boxleft" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-info">
-                <div class="panel-heading" role="tab" id="heading-author">
-                    <h4 class="panel-title">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#boxleft" href="#collapse-author" aria-expanded="true" aria-controls="collapse-author">
-                            Thể loại </a>
-                    </h4>
-                </div>
-                <div id="collapse-author" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-author">
-                    <div class="list-group">
+<div class="col-md-3 left_col">
+    <div class="left_col scroll-view">
+        <div class="navbar nav_title" style="border: 0;">
+            <a class="site_title" href="index.html">
+                <i class="fa fa-fort-awesome"></i>
+                <span> Hồ Sơ </span>
+            </a>
+        </div>
 
-                        {{# each listGenres}}
-                        <div class="list-group-item">
-                            <a href={{url}} class="list-group-item">{{name}}
-                            </a>
-                        </div>
-                        {{/each}}
+        <div class="clearfix"></div>
 
-                    </div>
-                </div>
+        <!-- menu profile quick info -->
+        <div class="profile clearfix">
+            <div class="profile_pic">
+                <img class="img-circle profile_img" alt="..." src="https://colorlib.com/polygon/gentelella/images/img.jpg">
             </div>
-
-            <div class="panel panel-info">
-                <div class="panel-heading" role="tab" id="heading-author">
-                    <h4 class="panel-title">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#boxleft" href="#collapse-author" aria-expanded="true" aria-controls="collapse-author">
-                            Tác giả </a>
-                    </h4>
-                </div>
-                <div id="collapse-author" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-author">
-                    <div class="list-group">
-
-                        {{# each listAuthors}}
-                        <div class="list-group-item">
-                            <a rel="" href={{url}} class="list-group-item">{{name}}
-                            </a>
-                        </div>
-                        {{/each}}
-                    </div>
-                </div>
-            </div>
-
-            <div class="panel panel-info">
-                <div class="panel-heading" role="tab" id="heading-publisher_vn">
-                    <h4 class="panel-title">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#boxleft" href="#collapse-publisher_vn" aria-expanded="true"
-                            aria-controls="collapse-publisher_vn">
-                            Nhà xuất bản </a>
-                    </h4>
-                </div>
-                <div id="collapse-publisher_vn" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-publisher_vn">
-                    <div class="list-group">
-
-                        {{# each listPublishers}}
-                        <div class="list-group-item">
-                            <a rel="" href={{url}} class="list-group-item">{{name}}
-                            </a>
-                        </div>
-                        {{/each}}
-
-                    </div>
-                </div>
+            <div class="profile_info">
+                <span>Chào mừng,</span>
+                <h2>John Doe</h2>
             </div>
         </div>
-        <div class="mobile-button">
-            <button type="button" class="btn btn-default js-cancel">Quay Lại</button>
-            <button type="button" class="btn btn-default js-ok">Chọn</button>
+        <!-- /menu profile quick info -->
+
+        <br>
+
+        <!-- sidebar menu -->
+        <div class="main_menu_side hidden-print main_menu" id="sidebar-menu">
+            <div class="menu_section">
+                {{!--
+                <h3>Thông tin tài khoản</h3> --}}
+                <ul class="nav side-menu">
+                    <li class="active">
+                        <a>
+                            <i class="fa fa-user-circle"></i> Thông tin tài khoản
+                            <span class="fa fa-chevron-down"></span>
+                        </a>
+                        <ul class="nav child_menu" style="display: block;">
+                            <li>
+                                <a href="thay-doi-thong-tin.html"> Thay đổi thông tin cá nhân </a>
+                            </li>
+                            <li>
+                                <a href="change-password.html"> Thay đổi mật khẩu </a>
+                            </li>
+                            <li>
+                                <a href="don-hang.html"> Quản lý đơn hàng </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
         </div>
+        <!-- /sidebar menu -->
+
+        <!-- /menu footer buttons -->
+        <div class="sidebar-footer hidden-small">
+            <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            </a>
+            <a title="" data-original-title="FullScreen" data-toggle="tooltip" data-placement="top">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+            </a>
+            <a title="" data-original-title="Lock" data-toggle="tooltip" data-placement="top">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+            </a>
+            <a title="" href="logout.html" data-original-title="Logout" data-toggle="tooltip" data-placement="top">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+            </a>
+        </div>
+        <!-- /menu footer buttons -->
     </div>
 </div>
