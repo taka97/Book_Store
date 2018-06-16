@@ -1,0 +1,176 @@
+<div class="main_content ">
+    <div class="template_cart">
+        <div class="container">
+            <h1 class="page_heading">Your Shopping Cart</h1>
+
+
+            <form action="/cart" method="post" novalidate="" class="cart">
+                <table class="table table-bordered cart_items">
+                    <thead>
+                        <tr>
+                            <th class="column_product" colspan="2">Product</th>
+                            <th class="column_price">Price</th>
+                            <th class="column_quantity">Quantity</th>
+                            <th class="column_total">Total</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td class="column_product_img">
+                                <a href="/products/the-complete-sherlock-holmes?variant=50971221451">
+                                    <img class="cart__image" src="//cdn.shopify.com/s/files/1/2323/3807/products/the_complete_sherlock_holmes_1_200x.png?v=1504250218"
+                                        alt="The Complete Sherlock Holmes - L">
+                                </a>
+                            </td>
+
+                            <td class="column_product_info">
+                                <p class="cart_item__name product_name">
+                                    <a href="/products/the-complete-sherlock-holmes?variant=50971221451">The Complete Sherlock Holmes</a>
+                                </p>
+
+
+                                <p class="cart_item__variant">
+
+                                    <span>
+                                        <b>Size</b>: L</span>
+
+                                </p>
+
+
+                                <div class="cart_item__details">
+                                    <p class="item_type">
+                                        <b>Product type:</b> School Books</p>
+                                    <p class="item_vendor">
+                                        <b>Vendor:</b> Bookstore</p>
+                                    <p class="item_weight">
+                                        <b>Weight:</b> 0.7 kg</p>
+                                </div>
+
+                                <a class="btn cart_item__remove" href="/cart/change?line=1&amp;quantity=0">Remove</a>
+                            </td>
+
+                            <td class="column_price">
+                                <span class="money" data-currency-usd="$80.00">$80.00</span>
+                            </td>
+
+                            <td class="column_quantity">
+                                <div class="quantity_box">
+                                    <input id="updates_50971221451:f4994a78668a2461f5efb59efde8d420" name="updates[]" value="3" class="quantity_input" type="text">
+
+                                    <span class="quantity_down">
+                                        <i class="fa fa-minus" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="quantity_up">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </span>
+
+                                    <button type="submit" name="update" class="btn">Update</button>
+                                </div>
+                            </td>
+
+                            <td class="column_total">
+                                <span class="money" data-currency-usd="$240.00">$240.00</span>
+                            </td>
+                        </tr>
+                        {{# each listBooks}}
+                        <tr>
+                            <td class="column_product_img">
+                                <a href={{url}}>
+                                    <img class="cart__image" src={{imageCover}}
+                                        alt={{tittle}}>
+                                </a>
+                            </td>
+
+                            <td class="column_product_info ">
+                                <p class="cart_item__name product_name ">
+                                    <a href={{url}}>{{tittle}}</a>
+                                </p>
+
+
+
+                                <div class="cart_item__details ">
+                                    <p class="item_type ">
+                                        <b>Product type:</b> New Arrivals</p>
+                                    <p class="item_vendor ">
+                                        <b>Vendor:</b> {{publisher}}</p>
+                                    <p class="item_weight ">
+                                        <b>Weight:</b> 0.0 kg</p>
+                                </div>
+
+                                <a class="btn cart_item__remove " href="/cart/change?line=2&amp;quantity=0 ">Remove</a>
+                            </td>
+
+                            <td class="column_price ">
+                                <span class="money " data-currency-usd="$50.00 ">$50.00</span>
+                            </td>
+
+                            <td class="column_quantity ">
+                                <div class="quantity_box ">
+                                    <input id="updates_50971280395:05719a5c5bd3f87f0913d9aa460e68f8 " name="updates[]
+                                        " value="1 " class="quantity_input " type="text ">
+
+                                    <span class="quantity_down ">
+                                        <i class="fa fa-minus " aria-hidden="true "></i>
+                                    </span>
+                                    <span class="quantity_up ">
+                                        <i class="fa fa-plus " aria-hidden="true "></i>
+                                    </span>
+
+                                    <button type="submit " name="update " class="btn ">Update</button>
+                                </div>
+                            </td>
+
+                            <td class="column_total ">
+                                <span class="money " data-currency-usd="${{price}} ">${{price}}</span>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <td colspan="5 ">
+                                <p class="cart_total ">Total weight
+                                    <span>4.63 lb</span>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="5 ">
+                                <p class="cart_total ">Total price
+                                    <span class="money " data-currency-usd="$290.00 ">$290.00</span>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="5 ">
+                                <label for="cart_note ">Add a note to your order</label>
+                                <textarea name="note " id="cart_note "></textarea>
+
+
+                                <p class="alert alert-warning ">Bookstore process all orders in USD. Shipping &amp; taxes calculated at checkout.</p>
+                            </td>
+                        </tr>
+
+
+
+
+
+                        <tr>
+                            <td colspan="5 ">
+                                <a class="btn " href="/collections ">Continue shopping</a>
+                                <button type="submit " name="checkout " class="btn btn_alt ">Proceed to checkout</button>
+                                <div class="clearfix "></div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </form>
+
+        </div>
+    </div>
+</div>
