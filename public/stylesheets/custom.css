@@ -4657,3 +4657,10 @@ ul.notifications {
 .dataTables_wrapper>.row {
     overflow: auto!important
 }
+
+.changeAvatar{
+    color: #fff;   
+    background: #26B99A;
+    border: 1px solid #169F85;
+    margin-bottom: -140px;
+}
