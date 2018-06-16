@@ -3,7 +3,7 @@ exports.getHomepage = function (req, res, next) {
   // Successful, so render.
   res.render('account/viewProfile', {
     layout: 'layoutAdmin',
-    title: 'Quản trị viên'
+    title: 'Hồ sơ cá nhân'
   })
 }
 

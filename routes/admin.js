@@ -12,7 +12,7 @@ const bookAdminRouter = require('../routes/bookAdmin')
 router.get('/', adminController.getHomepage)
 
 /* GET change profile page. */
-router.get('/profile', adminController.getChangeProfile)
+router.get('/profile', adminController.getViewProfile)
 
 /* GET change password page. */
 router.get('/change-profile', adminController.getChangeProfile)
