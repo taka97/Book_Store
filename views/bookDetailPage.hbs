@@ -15,48 +15,22 @@
                                 <img id="primary_img_template-product" src="//cdn.shopify.com/s/files/1/2323/3807/products/the_complete_sherlock_holmes_1_570x570_crop_top.png?v=1504250218"
                                     alt="The Complete Sherlock Holmes">
                             </div>
+                            {{# each listimageCover}}
                             <div class="swiper-slide swiper-slide-next" style="width: 470px;">
-                                <img src="//cdn.shopify.com/s/files/1/2323/3807/products/the_complete_sherlock_holmes_2_570x570_crop_top.png?v=1504250218"
-                                    alt="">
+                                <img src={{url}} alt="">
                             </div>
-                            <div class="swiper-slide" style="width: 470px;">
-                                <img src="//cdn.shopify.com/s/files/1/2323/3807/products/the_complete_sherlock_holmes_3_570x570_crop_top.png?v=1504250218"
-                                    alt="">
-                            </div>
-                            <div class="swiper-slide" style="width: 470px;">
-                                <img src="//cdn.shopify.com/s/files/1/2323/3807/products/the_complete_sherlock_holmes_4_570x570_crop_top.png?v=1504250218"
-                                    alt="">
-                            </div>
-                            <div class="swiper-slide" style="width: 470px;">
-                                <img src="//cdn.shopify.com/s/files/1/2323/3807/products/the_complete_sherlock_holmes_5_570x570_crop_top.png?v=1504250218"
-                                    alt="">
-                            </div>
+                            {{/each}}
                         </div>
                         <div id="prev_template-product" class="swiper_btn swiper_btn__prev swiper-button-disabled"></div>
                         <div id="next_template-product" class="swiper_btn swiper_btn__next"></div>
                     </div>
                     <div id="gallery_thumbs-template-product" class="gallery_thumbs gallery_thumbs__medium swiper-container swiper-container-horizontal">
                         <div class="swiper-wrapper" style="transform: translate3d(196px, 0px, 0px); transition-duration: 0ms;">
+                            {{# each listimageCover}}
                             <div class="swiper-slide swiper-slide-active" style="width: 78px; margin-right: 20px;">
-                                <img src="//cdn.shopify.com/s/files/1/2323/3807/products/the_complete_sherlock_holmes_1_98x98_crop_top.png?v=1504250218"
-                                    alt="">
+                                <img src={{url}} alt="">
                             </div>
-                            <div class="swiper-slide swiper-slide-next" style="width: 78px; margin-right: 20px;">
-                                <img src="//cdn.shopify.com/s/files/1/2323/3807/products/the_complete_sherlock_holmes_2_98x98_crop_top.png?v=1504250218"
-                                    alt="">
-                            </div>
-                            <div class="swiper-slide" style="width: 78px; margin-right: 20px;">
-                                <img src="//cdn.shopify.com/s/files/1/2323/3807/products/the_complete_sherlock_holmes_3_98x98_crop_top.png?v=1504250218"
-                                    alt="">
-                            </div>
-                            <div class="swiper-slide" style="width: 78px; margin-right: 20px;">
-                                <img src="//cdn.shopify.com/s/files/1/2323/3807/products/the_complete_sherlock_holmes_4_98x98_crop_top.png?v=1504250218"
-                                    alt="">
-                            </div>
-                            <div class="swiper-slide" style="width: 78px; margin-right: 20px;">
-                                <img src="//cdn.shopify.com/s/files/1/2323/3807/products/the_complete_sherlock_holmes_5_98x98_crop_top.png?v=1504250218"
-                                    alt="">
-                            </div>
+                            {{/each}}
                         </div>
                     </div>
                 </div>
@@ -84,15 +58,15 @@
                                 <div class="details_left">
                                     <p class="single_product__weight">
                                         <b>Weight:</b>
-                                        <span id="single_product__weight-template-product">—</span>
+                                        <span id="single_product__weight-template-product">{{weight}}</span>
                                     </p>
                                     <p class="single_product__sku">
                                         <b>SKU:</b>
-                                        <span id="single_product__sku-template-product">327AE-6</span>
+                                        <span id="single_product__sku-template-product">{{SKU}}</span>
                                     </p>
                                     <p class="single_product__barcode">
                                         <b>Barcode:</b>
-                                        <span id="single_product__barcode-template-product">327038522</span>
+                                        <span id="single_product__barcode-template-product">{{barcode}}</span>
                                     </p>
                                     <p class="single_product__collections">
                                         <b>Collections:</b>
@@ -102,12 +76,12 @@
                                     <p class="single_product__type">
                                         <b>Product type:</b>
                                         <span>
-                                            School Books
+                                           {{genre}}
                                         </span>
                                     </p>
                                     <p class="single_product__vendor">
                                         <b>Vendor:</b>
-                                        <span>Bookstore</span>
+                                        <span>{{publisher}}</span>
                                     </p>
                                     <p class="single_product__tags">
                                         <b>Tags:</b>
@@ -121,7 +95,7 @@
                                     </p>
                                     <p class="single_product__price">
                                         <span id="single_product__price-template-product">
-                                            <span class="money" data-currency-usd="$80.00" data-currency="USD">$80.00</span>
+                                            <span class="money" data-currency-usd="${{price}}" data-currency="USD">${{price}}</span>
                                         </span>
                                     </p>
                                     <div class="single_product__quantity">
