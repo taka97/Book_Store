@@ -33,3 +33,9 @@ exports.getOrderPage = function (req, res, next) {
     title: 'Quản lý đơn hàng'
   })
 }
+
+/* Get logout request */
+exports.logout = function (req, res, next) {
+  // Successful, so render.
+  res.redirect('/login')
+}

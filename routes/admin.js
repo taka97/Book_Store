@@ -20,6 +20,9 @@ router.get('/change-profile', adminController.getChangeProfile)
 /* GET order page. */
 router.get('/order', adminController.getOrderPage)
 
+/* GET logout request */
+router.get('/logout', adminController.logout)
+
 /* Make middleware for /admin/author */
 router.use('/author', authorAdminRouter)
 
