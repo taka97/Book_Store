@@ -1,17 +1,3 @@
-<script>
-    preloaderBg = document.getElementById('page_preloader__bg');
-    preloaderImg = document.getElementById('page_preloader__img');
-
-    window.addEventListener('load', function () {
-        preloaderBg.className += " off";
-        preloaderImg.className += " off";
-    });
-
-    window.addEventListener('beforeunload', function () {
-        preloaderBg.className -= " off";
-        preloaderImg.className -= " off";
-    });
-</script>
 <script src="//cdn.shopify.com/s/files/1/2323/3807/t/2/assets/assets.js?111211030896101798" defer=""></script>
 <script src="//cdn.shopify.com/s/files/1/2323/3807/t/2/assets/shop.js?111211030896101798" defer=""></script>
 <link href="//cdn.shopify.com/s/files/1/2323/3807/t/2/assets/style.scss.css?111211030896101798" rel="stylesheet" type="text/css"
@@ -29,8 +15,10 @@
     if (raf) raf(function () { window.setTimeout(loadDeferredStyles, 0); });
     else window.addEventListener('load', loadDeferredStyles);
 </script>
+
 <script id="shopify-features" type="application/json">{"accessToken":"8842f28cdcb38a345c426e199215435a","betas":["smart-payment-buttons-experiment-mpo-clarity"],"domain":"theme356-books.myshopify.com","shopId":23233807,"smart_payment_buttons_url":"https:\/\/cdn.shopifycloud.com\/payment-sheet\/assets\/latest\/spb.js"}</script>
-<script>var Shopify = Shopify || {};
+<script>
+    var Shopify = Shopify || {};
     Shopify.shop = "theme356-books.myshopify.com";
     Shopify.theme = { "name": "theme356", "id": 195723787, "theme_store_id": null, "role": "main" };
     Shopify.theme.handle = "null";
@@ -38,7 +26,8 @@
 </script>
 <script id="__st">var __st = { "a": 23233807, "offset": -14400, "reqid": "d198dd4b-3ac3-49ca-b303-a0587d4b4ce3", "pageurl": "theme356-books.myshopify.com\/", "u": "88eb212ad25e", "p": "home" };</script>
 <script>window.ShopifyPaypalV4VisibilityTracking = true;</script>
-<script>window.Shopify = window.Shopify || {};
+<script>
+    window.Shopify = window.Shopify || {};
     window.Shopify.Checkout = window.Shopify.Checkout || {};
     window.Shopify.Checkout.apiHost = "theme356-books.myshopify.com";
     window.ShopifyPay = window.ShopifyPay || {};
@@ -62,8 +51,6 @@
     };
 </script>
 <script class="analytics">
-
-
     (function () {
         var customDocumentWrite = function (content) {
             var jquery = null;
@@ -222,7 +209,7 @@
     }
 </style>
 
-<iframe src="/23233807/digital_wallets/dialog" scrolling="no" tabindex="-1" aria-hidden="true" style="position: fixed; top: 0px; left: 0px; z-index: 99999; height: 0px; width: 0px; border: 0px;"></iframe>
+{{!-- <iframe src="/23233807/digital_wallets/dialog" scrolling="no" tabindex="-1" aria-hidden="true" style="position: fixed; top: 0px; left: 0px; z-index: 99999; height: 0px; width: 0px; border: 0px;"></iframe> --}}
 <div>
     <link href="//cdn.shopify.com/s/files/1/2323/3807/t/2/assets/responsive.scss.css?111211030896101798" rel="stylesheet" type="text/css"
         media="all">
