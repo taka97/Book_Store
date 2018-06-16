@@ -1,9 +1,10 @@
 console.log('Import models')
-var async = require('async')
-var Book = require('./models/book')
-var Author = require('./models/author')
-var Genre = require('./models/genre')
-var Publisher = require('./models/publisher')
+const async = require('async')
+const Book = require('./models/book')
+const Author = require('./models/author')
+const Genre = require('./models/genre')
+const Publisher = require('./models/publisher')
+const Account = require('./models/account')
 
 console.log('Connect db')
 var mongoose = require('mongoose')
@@ -18,6 +19,32 @@ var authors = []
 var genres = []
 var books = []
 var publishers = []
+var accounts = []
+
+function accountCreate (email, password, avatarPath, name, birthDate, gender, address, typeAccount, cb) {
+  var account = new Account({
+    email: email,
+    verifyEmail: true,
+    password: password,
+    avatarPath: avatarPath,
+    name: name,
+    birthDate: birthDate,
+    gender: gender,
+    address: address,
+    typeAccount: typeAccount
+  })
+
+  account.save(function (err) {
+    if (err) {
+      cb(err, null)
+      return
+    }
+
+    console.log('New Account: ' + account)
+    accounts.push(account)
+    cb(null, account)
+  })
+}
 
 function authorCreate (name, birthDay, gender, nationality, cb) {
   var author = new Author({ name: name, birthDate: birthDay, gender: gender, nationality: nationality })
@@ -82,112 +109,120 @@ function bookCreate (title, author, publisher, publishDate, price, genre, imageC
   })
 }
 
+function createAcount (cb) {
+  async.parallel([
+    callback => {
+      accountCreate('vanhoang0609@gmail.com', '123', '/images/user.png', 'Hồ Văn Hoàng', '1997/10/06', 'Nam', 'Bình Định', 'Admin', callback)
+    },
+    callback => {
+      accountCreate('vosonhiepa@gmail.com', '123', '/images/user.png', 'Võ Sơn Hiệp', '1997/01/01', 'Nam', 'An Giang', 'Admin', callback)
+    },
+    callback => {
+      accountCreate('vanhoang0609@gmail.com', '123', '/images/user.png', 'Đinh Xuân Hiệp', '1997/01/01', 'Nam', 'Đắk Lắk', 'Admin', callback)
+    }
+  ], cb)
+}
+
 function createGenreAuthors (cb) {
   async.parallel([
-    function (callback) {
+    callback => {
       authorCreate('Eiichiro Oda', '1973/06/06', 'Nam', 'English', callback)
     },
-    function (callback) {
+    callback => {
       authorCreate('Rosie Nguyễn', '1988/01/06', 'Nữ', 'Việt Nam', callback)
     },
-    function (callback) {
+    callback => {
       authorCreate('Robin Sharma', '1978/01/06', 'Nam', 'USA', callback)
     },
-    function (callback) {
+    callback => {
       authorCreate('Dale Carnegie', '1987/01/12', 'Nam', 'Đức', callback)
     },
-    function (callback) {
+    callback => {
       authorCreate('Camilo Cruz', '1987/01/12', 'Nam', 'Pháp', callback)
     },
-    function (callback) {
+    callback => {
       authorCreate('Tony Buối Sáng', '1987/01/12', 'Nam', 'Việt Nam', callback)
     },
-    function (callback) {
+    callback => {
       authorCreate('Dale Carnegie', '1989/01/12', 'Nữ', 'Nga', callback)
     },
-    function (callback) {
+    callback => {
       authorCreate('Trác Nhã', '1977/01/12', 'Nam', 'Việt Nam', callback)
     },
-    function (callback) {
+    callback => {
       authorCreate('Hector Malot', '1990/01/12', 'Nam', 'Anh', callback)
     },
-    function (callback) {
+    callback => {
       authorCreate('Shinkai Makoto', '1987/01/12', 'Nữ', 'Nhật Bản', callback)
     },
-    function (callback) {
+    callback => {
       authorCreate('David J.Pollay', '1987/01/11', 'Nam', 'Nhật Bản', callback)
     },
-    function (callback) {
+    callback => {
       authorCreate('Ngô Đức Hùng', '1987/02/17', 'Nữ', 'Việt Nam', callback)
     },
-    function (callback) {
+    callback => {
       authorCreate('Trần Thề San', '1987/05/24', 'Nữ', 'Việt Nam', callback)
     },
-    function (callback) {
+    callback => {
       authorCreate('Trần Nhật Hóa', '1982/01/12', 'Nam', 'Việt Nam', callback)
     },
-    function (callback) {
+    callback => {
       authorCreate('Luis Sepulveda', '1987/09/12', 'Nam', 'Anh', callback)
     },
 
-    function (callback) {
+    callback => {
       genreCreate('Văn học nước ngoài', callback)
     },
-    function (callback) {
+    callback => {
       genreCreate('Kỹ năng - sống đẹp', callback)
     },
-
-    function (callback) {
+    callback => {
       genreCreate('Tư duy - kỹ năng sống', callback)
     },
-    function (callback) {
+    callback => {
       genreCreate('Ký sự lập trình', callback)
     },
-    function (callback) {
+    callback => {
       genreCreate('Khoa học - kỹ thuật', callback)
     },
-    function (callback) {
+    callback => {
       genreCreate('Văn Học thiếu nhi', callback)
     },
-    function (callback) {
+    callback => {
       genreCreate('Văn Học Việt Nam', callback)
     },
-    function (callback) {
+    callback => {
       genreCreate('Kinh tế', callback)
     },
-
-    function (callback) {
+    callback => {
       publisherCreate('Văn Hoá Nghệ Thuật', callback)
     },
-
-    function (callback) {
+    callback => {
       publisherCreate('Hội Nhà Văn', callback)
     },
-
-    function (callback) {
+    callback => {
       publisherCreate('Thế Giới', callback)
     },
-
-    function (callback) {
+    callback => {
       publisherCreate('Tổng Hợp', callback)
     },
-
-    function (callback) {
+    callback => {
       publisherCreate('Trẻ', callback)
     },
-    function (callback) {
+    callback => {
       publisherCreate('Văn Học', callback)
     },
-    function (callback) {
+    callback => {
       publisherCreate('Khoa học & kỹ thuật', callback)
     },
-    function (callback) {
+    callback => {
       publisherCreate('Thanh niên', callback)
     },
-    function (callback) {
+    callback => {
       publisherCreate('Kim Đồng', callback)
     },
-    function (callback) {
+    callback => {
       publisherCreate('Phụ Nữ', callback)
     }
   ],
@@ -221,7 +256,6 @@ function createBooks (cb) {
     function (callback) {
       bookCreate('Mình nói gì khi nói về hạnh phúc', authors[3], publishers[1], '2017/1/20', '45000', genres[5], 'https://vcdn.tikicdn.com/media/bookpreview/df/83/1627925/files/OEBPS/Images/IMG_20180406_0001.gif', callback)
     },
-
     function (callback) {
       bookCreate('Khéo ăn nói sẽ có được thiên hạ', authors[5], publishers[1], '2017/1/20', '45000', genres[5], 'https://vcdn.tikicdn.com/media/bookpreview/7e/97/413656/files/OEBPS/Images/IMG_20170804_0040.gif', callback)
     },
@@ -234,7 +268,6 @@ function createBooks (cb) {
     function (callback) {
       bookCreate('Bài học diệu kỳ từ chiếc xe rác', authors[3], publishers[2], '2017/2/20', '45000', genres[1], 'https://vcdn.tikicdn.com/media/bookpreview/4f/4d/353337/files/OEBPS/Images/IMG_20170803_0001.gif', callback)
     },
-
     function (callback) {
       bookCreate('Để yên cho bác sẽ "Hiền"', authors[3], publishers[0], '2017/2/20', '45000', genres[1], 'https://vcdn.tikicdn.com/cache/w1200/ts/product/79/a5/d2/1c8953a4d605bfc15ba1138176c17135.jpg', callback)
     },
@@ -262,10 +295,11 @@ function createBooks (cb) {
 }
 
 async.series([
+  createAcount,
   createGenreAuthors,
   createBooks
 ],
-// Optional callback
+  // Optional callback
 function (err, results) {
   if (err) {
     console.log('FINAL ERR: ' + err)

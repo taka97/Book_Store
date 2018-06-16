@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a class="site_title" href="index.html">
+            <a class="site_title" href="/admin">
                 <i class="fa fa-fort-awesome"></i>
                 <span> Hồ Sơ </span>
             </a>
@@ -15,8 +15,8 @@
                 <img class="img-circle profile_img" alt="..." src="https://colorlib.com/polygon/gentelella/images/img.jpg">
             </div>
             <div class="profile_info">
-                <span>Chào mừng,</span>
-                <h2>John Doe</h2>
+                <span> Chào mừng, </span>
+                <h2> John Doe </h2>
             </div>
         </div>
         <!-- /menu profile quick info -->
@@ -29,40 +29,43 @@
                 {{!--
                 <h3>Thông tin tài khoản</h3> --}}
                 <ul class="nav side-menu">
-                    <li class="active">
+                    <li>
                         <a>
                             <i class="fa fa-user-circle"></i> Thông tin tài khoản
                             <span class="fa fa-chevron-down"></span>
                         </a>
-                        <ul class="nav child_menu" style="display: block;">
+                        <ul class="nav child_menu">
                             <li>
-                                <a href="thay-doi-thong-tin.html"> Thay đổi thông tin cá nhân </a>
+                                <a href="/admin/profile"> Xem thông tin cá nhân </a>
                             </li>
                             <li>
-                                <a href="change-password.html"> Thay đổi mật khẩu </a>
+                                <a href="/admin/change-profile"> Thay đổi thông tin cá nhân </a>
                             </li>
                             <li>
-                                <a href="don-hang.html"> Quản lý đơn hàng </a>
+                                <a href="/admin/order"> Quản lý đơn hàng </a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a>
-                            <i class="fa fa-edit"></i> Quản lý nhà sách
+                            <i class="fa fa-edit"></i> Quản lý
                             <span class="fa fa-chevron-down"></span>
                         </a>
                         <ul class="nav child_menu">
                             <li>
-                                <a href="admin/author.html"> Quản lý tác giả </a>
+                                <a href="/admin/author"> Quản lý tác giả </a>
                             </li>
                             <li>
-                                <a href="admin/publisher.html"> Quản lý nhà xuất bản </a>
+                                <a href="/admin/publisher"> Quản lý nhà xuất bản </a>
                             </li>
                             <li>
-                                <a href="admin/genre.html"> Quản lý thể loại sách </a>
+                                <a href="/admin/genre"> Quản lý thể loại sách </a>
                             </li>
                             <li>
-                                <a href="admin/book.html"> Quản lý sách </a>
+                                <a href="/admin/book"> Quản lý sách </a>
+                            </li>
+                            <li>
+                                <a href="/admin/account"> Quản lý tài khoản </a>
                             </li>
                         </ul>
                     </li>
@@ -83,7 +86,7 @@
             <a title="" data-original-title="Lock" data-toggle="tooltip" data-placement="top">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
             </a>
-            <a title="" href="logout.html" data-original-title="Logout" data-toggle="tooltip" data-placement="top">
+            <a title="" href="/admin/logout" data-original-title="Logout" data-toggle="tooltip" data-placement="top">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
             </a>
         </div>

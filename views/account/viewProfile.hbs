@@ -10,7 +10,7 @@
             <div class="clearfix"></div>
           </div>
           <div class="x_content">
-            <form class="form-horizontal form-label-left" novalidate="">
+            <form class="form-horizontal form-label-left" novalidate="">              
               <span class="section">Thông tin</span>
               <div class="item form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Avatar
@@ -23,13 +23,13 @@
                         </div>
                       </div>
                 </div>
-              </div>           
+              </div>
               <div class="item form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Họ tên
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input name="name" class="form-control col-md-7 col-xs-12" id="name" type="text" placeholder="Read-Only Input" readonly="readonly"
-                    data-validate-words="2" data-validate-length-range="6">
+                  <input name="name" class="form-control col-md-7 col-xs-12" id="name" type="text" placeholder="Read-Only Input"
+                    readonly="readonly" data-validate-words="2" data-validate-length-range="6">
                 </div>
               </div>
               <div class="item form-group">
@@ -43,7 +43,7 @@
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender">Giới tính
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input name="gender" class="form-control col-md-7 col-xs-12" id="gender" type="email" readonly="readonly">
+                  <input name="gender" class="form-control col-md-7 col-xs-12" id="gender" type="gender" readonly="readonly">
                 </div>
               </div>
               <div class="item form-group">
@@ -52,22 +52,23 @@
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <input class="date-picker form-control col-md-7 col-xs-12" id="birthday" type="text" readonly="readonly">
                 </div>
-              </div>
+              </div>         
               <div class="item form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Địa chỉ
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <textarea name="address" class="form-control col-md-7 col-xs-12" id="textarea" readonly="readonly"></textarea>
+                  <textarea name="address" class="form-control col-md-7 col-xs-12" id="textarea"  readonly="readonly"></textarea>
                 </div>
               </div>
+
               
               <div class="ln_solid"></div>
               <div class="form-group">
                 <div class="col-md-6 col-md-offset-3">
                   <button class="btn btn-primary" type="submit">Đổi mật khẩu</button>
-                  <button class="btn btn-success" id="send" type="submit"><a href="/user/change-profile">Đổi thông tin</a></button>
+                  <button class="btn btn-success" id="send" type="submit"><a href ="/admin/change-profile">Đổi thông tin</a></button>
                 </div>
-              </div>             
+              </div>
             </form>
           </div>
         </div>
