@@ -11,6 +11,15 @@ const bookAdminRouter = require('../routes/bookAdmin')
 /* GET admin homepage. */
 router.get('/', adminController.getHomepage)
 
+/* GET change profile page. */
+router.get('/', adminController.getHomepage)
+
+/* GET change password page. */
+router.get('/change-profile', adminController.getChangeProfile)
+
+/* GET order page. */
+router.get('/', adminController.getHomepage)
+
 /* Make middleware for /admin/author */
 router.use('/author', authorAdminRouter)
 
