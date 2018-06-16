@@ -1,22 +1,18 @@
 <script>
     preloaderBg = document.getElementById('page_preloader__bg');
     preloaderImg = document.getElementById('page_preloader__img');
-
     window.addEventListener('load', function () {
         preloaderBg.className += " off";
         preloaderImg.className += " off";
     });
-
     window.addEventListener('beforeunload', function () {
         preloaderBg.className -= " off";
         preloaderImg.className -= " off";
     });
 </script>
-<script src="//cdn.shopify.com/s/files/1/2323/3807/t/2/assets/assets.js?111211030896101798" defer=""></script>
-<script src="//cdn.shopify.com/s/files/1/2323/3807/t/2/assets/shop.js?111211030896101798" defer=""></script>
-<link href="//cdn.shopify.com/s/files/1/2323/3807/t/2/assets/style.scss.css?111211030896101798" rel="stylesheet" type="text/css"
-    media="all">
-
+<script src="/javascripts/shop.js"></script>
+<script src="/javascripts/assets.js"></script>
+<link rel="stylesheet" href="/stylesheets/style.scss.css">
 <script>
     var loadDeferredStyles = function () {
         var addStylesNode = document.getElementById('deferred_styles');
@@ -58,27 +54,21 @@
     }
 </script>
 <script>window.ShopifyAnalytics.merchantGoogleAnalytics = function () {
-
     };
 </script>
 <script class="analytics">
-
-
     (function () {
         var customDocumentWrite = function (content) {
             var jquery = null;
-
             if (window.jQuery) {
                 jquery = window.jQuery;
             } else if (window.Checkout && window.Checkout.$) {
                 jquery = window.Checkout.$;
             }
-
             if (jquery) {
                 jquery('body').append(content);
             }
         };
-
         var trekkie = window.ShopifyAnalytics.lib = window.trekkie = window.trekkie || [];
         if (trekkie.integrations) {
             return;
@@ -118,114 +108,33 @@
         trekkie.load(
             { "Trekkie": { "appName": "storefront", "development": false, "defaultAttributes": { "shopId": 23233807, "isMerchantRequest": null, "themeId": 195723787, "themeCityHash": 5855831490552317750 } }, "Performance": { "navigationTimingApiMeasurementsEnabled": true, "navigationTimingApiMeasurementsSampleRate": 1.0 }, "Session Attribution": {} }
         );
-
         var loaded = false;
         trekkie.ready(function () {
             if (loaded) return;
             loaded = true;
-
             window.ShopifyAnalytics.lib = window.trekkie;
-
-
             var originalDocumentWrite = document.write;
             document.write = customDocumentWrite;
             try { window.ShopifyAnalytics.merchantGoogleAnalytics.call(this); } catch (error) { };
             document.write = originalDocumentWrite;
-
-
             window.ShopifyAnalytics.lib.page(
                 null,
                 { "pageType": "home" }
             );
-
-
         });
-
-
         var eventsListenerScript = document.createElement('script');
         eventsListenerScript.async = true;
         eventsListenerScript.src = "//cdn.shopify.com/s/assets/shop_events_listener-f2c5800305098f0ebebdfa7d980c9abf56514c46d5305e97a7c476f7c9116163.js";
         document.getElementsByTagName('head')[0].appendChild(eventsListenerScript);
-
     })();
 </script>
 <script defer="defer" integrity="sha256-4/UdRw/SLz+8D9iLds5Z5TQVROs+leoIGgk7CSiitoM=" crossorigin="anonymous" src="//cdn.shopify.com/s/assets/storefront/express_buttons-e3f51d470fd22f3fbc0fd88b76ce59e5341544eb3e95ea081a093b0928a2b683.js"></script>
 <script defer="defer" integrity="sha256-NfqRkSQwKw0JfNupCky6Zxtoijw8YUA8km/3gYu7kY8=" crossorigin="anonymous" src="//cdn.shopify.com/s/assets/storefront/features-35fa919124302b0d097cdba90a4cba671b688a3c3c61403c926ff7818bbb918f.js"></script>
 <script id="sections-script" defer="defer" data-sections="index-image-with-text-overlay,header" src="//cdn.shopify.com/s/files/1/2323/3807/t/2/compiled_assets/scripts.js?111211030896101798"></script>
 <meta id="shopify-digital-wallet" name="shopify-digital-wallet" content="/23233807/digital_wallets/dialog">
-<style>
-    .shopify-payment-button__button--hidden {
-        visibility: hidden;
-    }
-
-    .shopify-payment-button__button {
-        border-radius: 4px;
-        border: none;
-        box-shadow: 0 0 0 0 transparent;
-        color: white;
-        cursor: pointer;
-        display: block;
-        font-size: 1em;
-        font-weight: 500;
-        line-height: 1;
-        text-align: center;
-        width: 100%;
-        transition: background 0.2s ease-in-out;
-    }
-
-    .shopify-payment-button__button[disabled] {
-        opacity: 0.6;
-        cursor: default;
-    }
-
-    .shopify-payment-button__button--unbranded {
-        background-color: #1990c6;
-        padding: 1em 2em;
-    }
-
-    .shopify-payment-button__button--unbranded:hover:not([disabled]) {
-        background-color: #136f99;
-    }
-
-    .shopify-payment-button__more-options {
-        background: transparent;
-        border: 0 none;
-        cursor: pointer;
-        display: block;
-        font-size: 1em;
-        margin-top: 1em;
-        text-align: center;
-        width: 100%;
-    }
-
-    .shopify-payment-button__more-options:hover:not([disabled]) {
-        text-decoration: underline;
-    }
-
-    .shopify-payment-button__more-options[disabled] {
-        opacity: 0.6;
-        cursor: default;
-    }
-
-    .shopify-payment-button__button--branded {
-        display: flex;
-        flex-direction: column;
-        min-height: 44px;
-        position: relative;
-        z-index: 1;
-    }
-
-    .shopify-payment-button__button--branded .shopify-cleanslate {
-        flex: 1 !important;
-        display: flex !important;
-        flex-direction: column !important;
-    }
-</style>
-
 <iframe src="/23233807/digital_wallets/dialog" scrolling="no" tabindex="-1" aria-hidden="true" style="position: fixed; top: 0px; left: 0px; z-index: 99999; height: 0px; width: 0px; border: 0px;"></iframe>
 <div>
-    <link href="//cdn.shopify.com/s/files/1/2323/3807/t/2/assets/responsive.scss.css?111211030896101798" rel="stylesheet" type="text/css"
-        media="all">
+    <link rel="stylesheet" href="/stylesheets/responsive.scss.css">
     <link href="//fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&amp;subset=cyrillic" rel="stylesheet"
         type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
