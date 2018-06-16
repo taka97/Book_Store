@@ -1,0 +1,19 @@
+<div id="page_preloader__bg" class=" off off">
+    <img id="page_preloader__img" src="//cdn.shopify.com/s/files/1/2323/3807/t/2/assets/shopify_logo.gif?111211030896101798"
+        alt="" class=" off off">
+</div>
+
+<script>
+    preloaderBg = document.getElementById('page_preloader__bg');
+    preloaderImg = document.getElementById('page_preloader__img');
+
+    window.addEventListener('load', function () {
+        preloaderBg.className += " off";
+        preloaderImg.className += " off";
+    });
+
+    window.addEventListener('beforeunload', function () {
+        preloaderBg.className -= " off";
+        preloaderImg.className -= " off";
+    });
+</script>
