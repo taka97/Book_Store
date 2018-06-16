@@ -1,142 +1,120 @@
 <!-- page content -->
-<div class="right_col" role="main">
-    <div class="">
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2> Thay đổi hồ sơ cá nhân </h2>  
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                         <form class="form-horizontal form-label-left" novalidate="">
-                            <span class="section"> Thay đổi mật khẩu </span>      
-                            <div class="item form-group">
-                                <label for="currentPassword" class="control-label col-md-3"> Mật khẩu hiện tại 
-                                     <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="currentPassword" type="password" name="currentPassword" data-validate-length="6,8" class="form-control col-md-7 col-xs-12" required="required">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label for="newPassword" class="control-label col-md-3"> Mật khẩu mới
-                                     <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="newPassword" type="password" name="newPassword" data-validate-length="6,8" class="form-control col-md-7 col-xs-12" required="required">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label for="renewPassword" class="control-label col-md-3 col-sm-3 col-xs-12"> Nhập lại mật khẩu mới
-                                     <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="renewPassword" type="password" name="renewPassword" data-validate-linked="password" class="form-control col-md-7 col-xs-12"
-                                        required="required">
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <div class="col-md-6 col-md-offset-3">
-                                    <button id="send" type="submit" class="btn btn-success"> Thay đổi mật khẩu </button>
-                                    <button type="submit" class="btn btn-primary"> Hủy </button>
-                                </div>
-                            </div>
-                            <div class="ln_solid"></div>
-                        </form>
-                        <form class="form-horizontal form-label-left" novalidate="">
-                            <span class="section"> Thay đổi thông tin </span>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name"
-                                        placeholder="both name(s) e.g Jon Doe" required="required" type="text">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Confirm Email
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="email" id="email2" name="confirm_email" data-validate-linked="email" required="required" class="form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Number
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="number" id="number" name="number" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">Website URL
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="url" id="website" name="website" required="required" placeholder="www.website.com" class="form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Occupation
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label for="password" class="control-label col-md-3">Password</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="password" type="password" name="password" data-validate-length="6,8" class="form-control col-md-7 col-xs-12" required="required">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label for="password2" class="control-label col-md-3 col-sm-3 col-xs-12">Repeat Password</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="password2" type="password" name="password2" data-validate-linked="password" class="form-control col-md-7 col-xs-12"
-                                        required="required">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telephone
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="tel" id="telephone" name="phone" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Textarea
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <textarea id="textarea" required="required" name="textarea" class="form-control col-md-7 col-xs-12"></textarea>
-                                </div>
-                            </div>
-                            <div class="ln_solid"></div>
-                            <div class="form-group">
-                                <div class="col-md-6 col-md-offset-3">
-                                    <button type="submit" class="btn btn-primary">Cancel</button>
-                                    <button id="send" type="submit" class="btn btn-success">Submit</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+    <div class="right_col" role="main" style="min-height: 821px;">
+          <div>
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Form Validation</h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for...">
+                    <span class="input-group-btn">
+                              <button class="btn btn-default" type="button">Go!</button>
+                          </span>
+                  </div>
                 </div>
+              </div>
             </div>
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Form validation <small>sub title</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <form class="form-horizontal form-label-left" novalidate="">
+
+                      <p>For alternative validation library <code>parsleyJS</code> check out in the <a href="form.html">form page</a>
+                      </p>
+                      <span class="section">Personal Info</span>
+
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input name="name" class="form-control col-md-7 col-xs-12" id="name" required="required" type="text" placeholder="both name(s) e.g Jon Doe" data-validate-length-range="6" data-validate-words="2">
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input name="email" class="form-control col-md-7 col-xs-12" id="email" required="required" type="email">
+                        </div>
+                      </div>
+                      
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender">Gender <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <div class="btn-group" id="gender" data-toggle="buttons">
+                            <label class="btn btn-default" data-toggle-passive-class="btn-default" data-toggle-class="btn-primary">
+                              <input name="gender" type="radio" value="male" data-parsley-multiple="gender"> &nbsp; Male &nbsp;
+                            </label>
+                            <label class="btn btn-primary" data-toggle-passive-class="btn-default" data-toggle-class="btn-primary">
+                              <input name="gender" type="radio" value="female" data-parsley-multiple="gender"> Female
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      
+                      
+                      
+                      <div class="item form-group">
+                        <label class="control-label col-md-3" for="password">Password</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input name="password" class="form-control col-md-7 col-xs-12" id="password" required="required" type="password" data-validate-length="6,8">
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password2">Repeat Password</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input name="password2" class="form-control col-md-7 col-xs-12" id="password2" required="required" type="password" data-validate-linked="password">
+                        </div>
+                      </div>
+                      
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Address <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <textarea name="address" class="form-control col-md-7 col-xs-12" id="textarea" required="required"></textarea>
+                        </div>
+                      </div>
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+                          <button class="btn btn-primary" type="submit">Cancel</button>
+                          <button class="btn btn-success" id="send" type="submit">Submit</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
     </div>
-</div>
 <!-- /page content -->
