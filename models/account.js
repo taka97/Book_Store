@@ -19,7 +19,7 @@ var AccountSchema = new Schema(
 AccountSchema
   .virtual('url')
   .get(function () {
-    return '/author/' + this._id
+    return '/account/' + this._id
   })
 
 // Export model
