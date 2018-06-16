@@ -7,6 +7,7 @@ const authorAdminRouter = require('../routes/authorAdmin')
 const publisherAdminRouter = require('../routes/publisherAdmin')
 const genreAdminRouter = require('../routes/genreAdmin')
 const bookAdminRouter = require('../routes/bookAdmin')
+const accountAdminRouter = require('../routes/accountAdmin')
 
 /* GET admin homepage. */
 router.get('/', adminController.getHomepage)
@@ -34,5 +35,8 @@ router.use('/genre', genreAdminRouter)
 
 /* Make middleware for /admin/book */
 router.use('/book', bookAdminRouter)
+
+/* Make middleware for /admin/account */
+router.use('/account', accountAdminRouter)
 
 module.exports = router
