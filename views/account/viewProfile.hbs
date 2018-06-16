@@ -7,7 +7,7 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Form validation
+            <h2>Hồ sơ cá nhân
             </h2>
             <div class="clearfix"></div>
           </div>
@@ -16,10 +16,10 @@
             <form class="form-horizontal form-label-left" novalidate="">
 
               
-              <span class="section">Personal Info</span>
+              <span class="section">Thông tin</span>
 
               <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Họ tên
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <input name="name" class="form-control col-md-7 col-xs-12" id="name" type="text" placeholder="Read-Only Input"
@@ -35,7 +35,7 @@
               </div>
 
               <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender">Gender
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender">Giới tính
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <input name="gender" class="form-control col-md-7 col-xs-12" id="gender" type="gender" readonly="readonly">
@@ -44,34 +44,43 @@
 
 
               <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày sinh
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <input class="date-picker form-control col-md-7 col-xs-12" id="birthday" type="text" readonly="readonly">
                 </div>
               </div>
 
-              <div class="item form-group">
-                <label class="control-label col-md-3" for="password">Password</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input name="password" class="form-control col-md-7 col-xs-12" id="password"  readonly="readonly" type="password"
-                    data-validate-length="6,8" value="passwordnotetwo">
-                </div>
-              </div>
+              
 
 
               <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Address
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Địa chỉ
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <textarea name="address" class="form-control col-md-7 col-xs-12" id="textarea"  readonly="readonly"></textarea>
                 </div>
               </div>
+
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Avatar
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                      <div class="profile_img">
+                        <div id="crop-avatar">
+                          <!-- Current avatar -->
+                          <img title="Change the avatar" class="img-responsive avatar-view" alt="Avatar" src="/images/user.png">
+                        </div>
+                      </div>
+                </div>
+              </div>
+              
+
               <div class="ln_solid"></div>
               <div class="form-group">
                 <div class="col-md-6 col-md-offset-3">
-                  <button class="btn btn-primary" type="submit">Cancel</button>
-                  <button class="btn btn-success" id="send" type="submit">Submit</button>
+                  <button class="btn btn-primary" type="submit">Đổi mật khẩu</button>
+                  <button class="btn btn-success" id="send" type="submit"><a href ="/admin/change-profile">Đổi thông tin</a></button>
                 </div>
               </div>
             </form>
