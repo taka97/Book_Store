@@ -12,13 +12,13 @@ const bookAdminRouter = require('../routes/bookAdmin')
 router.get('/', adminController.getHomepage)
 
 /* GET change profile page. */
-router.get('/', adminController.getHomepage)
+router.get('/profile', adminController.getChangeProfile)
 
 /* GET change password page. */
 router.get('/change-profile', adminController.getChangeProfile)
 
 /* GET order page. */
-router.get('/', adminController.getHomepage)
+router.get('/order', adminController.getOrderPage)
 
 /* Make middleware for /admin/author */
 router.use('/author', authorAdminRouter)
