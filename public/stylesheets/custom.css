@@ -1009,6 +1009,14 @@ footer {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
 
+.avatar-view {
+    height: 100px;
+}
+
+.changeAvatar {
+    margin-top: 66px;
+}
+
 .degrees:after, .x_content, .x_panel {
     position: relative
 }
@@ -4676,12 +4684,4 @@ ul.notifications {
 
 .dataTables_wrapper>.row {
     overflow: auto!important
-}
-
-.changeAvatar {
-    color: #fff;
-    background: #26B99A;
-    border: 1px solid #169F85;
-    margin-bottom: -200px;
-    margin-left: -30px;
 }
