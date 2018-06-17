@@ -13,7 +13,7 @@ exports.getViewPage = function (req, res, next) {
   // Successful, so render.
   res.render('account/bookView', {
     layout: 'layoutAdmin',
-    title: 'Quản lý sách'
+    title: 'Xem thông tin sách'
   })
 }
 
@@ -22,7 +22,7 @@ exports.getAddPage = function (req, res, next) {
   // Successful, so render.
   res.render('account/bookAdd', {
     layout: 'layoutAdmin',
-    title: 'Quản lý sách'
+    title: 'Thêm sách'
   })
 }
 
@@ -31,7 +31,7 @@ exports.getEditPage = function (req, res, next) {
   // Successful, so render.
   res.render('account/bookEdit', {
     layout: 'layoutAdmin',
-    title: 'Quản lý sách'
+    title: 'Chỉnh sửa sách'
   })
 }
 
@@ -40,6 +40,6 @@ exports.getDeletePage = function (req, res, next) {
   // Successful, so render.
   res.render('account/bookDelete', {
     layout: 'layoutAdmin',
-    title: 'Quản lý sách'
+    title: 'Xóa sách'
   })
 }
