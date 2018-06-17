@@ -1,15 +1,21 @@
-var express = require('express')
-var router = express.Router()
-var indexController = require('../controllers/indexController')
+const express = require('express')
+const router = express.Router()
+const loginRouter = require('./login')
+
+const indexController = require('../controllers/indexController')
 
 /* GET homepage. */
 router.get('/', indexController.getHomepage)
 
+router.use('/login', loginRouter)
+
+/* GET cart */
 router.get('/cart', indexController.getCart)
 
+/* GET genre list */
 router.get('/genre', indexController.getGenre)
 
-// for developer
+/* GET book detail */
 router.get('/bookdetail', (req, res, next) => {
   res.render('bookDetailPage', {
     layout: 'layoutHomepage',
