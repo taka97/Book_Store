@@ -4682,5 +4682,6 @@ ul.notifications {
     color: #fff;
     background: #26B99A;
     border: 1px solid #169F85;
-    margin-bottom: -140px;
+    margin-bottom: -200px;
+    margin-left: -30px;
 }
