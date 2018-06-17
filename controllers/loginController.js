@@ -2,6 +2,7 @@
 exports.login = function (req, res, next) {
   res.render('login/login', {
     layout: 'layoutLogin',
-    title: 'Đăng nhập hoặc Đăng ký tài khoản'
+    title: 'Đăng nhập hoặc Đăng ký tài khoản',
+    csrfToken: req.csrfToken()
   })
 }

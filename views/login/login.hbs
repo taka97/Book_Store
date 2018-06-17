@@ -5,7 +5,7 @@
   <div class="login_wrapper">
     <div class="animate form login_form">
       <section class="login_content">
-        <form>
+        <form action="/login/signin" method="POST">
           <h1> Đăng nhập </h1>
           <div>
             <input type="text" class="form-control" placeholder="Email" required="" />
@@ -17,7 +17,8 @@
             <a class="reset_pass" href="#"> Quên mật khẩu? </a>
           </div>
           <div class="clearfix"></div>
-          <div class="btn btn-primary submit" href="#"> Đăng nhập </div>
+          <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+          <button class="btn btn-primary submit" type="submit"> Đăng nhập </button>
 
           <div class="clearfix"></div>
 
@@ -41,7 +42,7 @@
 
     <div id="register" class="animate form registration_form">
       <section class="login_content">
-        <form>
+        <form action="/login/signup" method="POST">
           <h1> Tạo tài khoản </h1>
           <div>
             <input type="email" class="form-control" placeholder="Email" required="" />
@@ -49,11 +50,18 @@
           <div>
             <input type="password" class="form-control" placeholder="Mật khẩu" required="" />
           </div>
-           <div>
+          <div>
             <input type="password" class="form-control" placeholder="Nhập lại mật khẩu" required="" />
           </div>
           <div>
             <input type="text" class="form-control" placeholder="Họ và tên" required="" />
+          </div>
+          <div>
+            <select name="gender" class="form-control">
+              <option selected disabled> Chọn giới tính... </option>
+              <option value="Male"> Nam </option>
+              <option value="Female"> Nữ </option>
+            </select>
           </div>
           <div>
             <input type="text" class="form-control" placeholder="Ngày sinh">
@@ -61,13 +69,8 @@
           <div>
             <input type="text" class="form-control" placeholder="Địa chỉ">
           </div>
-          <div style="text-align: left">
-            Giới tính:
-            <input type="radio" name="gender" id="nam"> Nam
-            <input type="radio" name="gender" id="nu"> Nữ
-          </div>
-
-          <div class="btn btn-primary submit" href="#">Đăng ký tài khoản</div>
+          <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+          <button class="btn btn-primary submit" type="submit">Đăng ký tài khoản</button>
 
           <div class="clearfix"></div>
 
