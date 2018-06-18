@@ -17,7 +17,7 @@ router.get('/genre', indexController.getGenre)
 
 /* GET book detail */
 router.get('/bookdetail', (req, res, next) => {
-  res.render('bookdetail', {
+  res.render('bookDetailPage', {
     layout: 'layoutHomepage',
     title: 'Chi tiết sách'})
 })
