@@ -5,10 +5,10 @@ exports.getHomepage = function (req, res, next) {
 
 /* GET cart page */
 exports.getCart = function (req, res, next) {
-  res.render('cartPage', {title: 'Giỏ hàng', layout: 'layoutHomepage'})
+  res.render('cart', {title: 'Giỏ hàng', layout: 'layoutHomepage'})
 }
 
 /* GET genre page */
 exports.getGenre = function (req, res, next) {
-  res.render('genrePage', {title: 'Thể loại sách', layout: 'layoutHomepage'})
+  res.render('genre', {title: 'Thể loại sách', layout: 'layoutHomepage'})
 }
