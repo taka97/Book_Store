@@ -8,10 +8,10 @@
         <form action="/login/signin" method="POST">
           <h1> Đăng nhập </h1>
           <div>
-            <input type="text" class="form-control" placeholder="Email" required="" />
+            <input name="email" type="email" class="form-control" placeholder="Email" required="" />
           </div>
           <div>
-            <input type="password" class="form-control" placeholder="Mật khẩu" required="" />
+            <input name="password" type="password" class="form-control" placeholder="Mật khẩu" required="" />
           </div>
           <div>
             <a class="reset_pass" href="#"> Quên mật khẩu? </a>
@@ -42,32 +42,39 @@
 
     <div id="register" class="animate form registration_form">
       <section class="login_content">
-        <form action="/login/signup" method="POST">
+        <form name="register_form" onsubmit="return validateRegisterForm()" action="/login/signup" method="POST">
           <h1> Tạo tài khoản </h1>
-          <div>
-            <input type="email" class="form-control" placeholder="Email" required="" />
+          <div class="form-group register">
+            <label> Email </label>
+            <input name="email" type="email" class="form-control" placeholder="Email" required="" />
           </div>
-          <div>
-            <input type="password" class="form-control" placeholder="Mật khẩu" required="" />
+          <div class="form-group register">
+            <label> Mật khẩu </label>
+            <input name="password" type="password" class="form-control" placeholder="Mật khẩu" required="" />
           </div>
-          <div>
-            <input type="password" class="form-control" placeholder="Nhập lại mật khẩu" required="" />
+          <div class="form-group register">
+            <label> Nhập lại mật khẩu </label>
+            <input name="repassword" type="password" class="form-control" placeholder="Nhập lại mật khẩu" required="" />
           </div>
-          <div>
-            <input type="text" class="form-control" placeholder="Họ và tên" required="" />
+          <div class="form-group register">
+            <label> Họ và tên </label>
+            <input name="name" type="text" class="form-control" placeholder="Họ và tên" required="" />
           </div>
-          <div>
+          <div class="form-group register">
+            <label> Giới tính </label>
             <select name="gender" class="form-control">
               <option selected disabled> Chọn giới tính... </option>
-              <option value="Male"> Nam </option>
-              <option value="Female"> Nữ </option>
+              <option value="male"> Nam </option>
+              <option value="female"> Nữ </option>
             </select>
           </div>
-          <div>
-            <input type="text" class="form-control" placeholder="Ngày sinh">
+          <div class="form-group register">
+            <label> Ngày sinh </label>
+            <input name="birthDate" type="date" class="form-control" placeholder="Ngày sinh (Ngày/tháng/năm)">
           </div>
-          <div>
-            <input type="text" class="form-control" placeholder="Địa chỉ">
+          <div class="form-group register">
+            <label> Địa chỉ </label>
+            <input name="address" type="text" class="form-control" placeholder="Địa chỉ">
           </div>
           <input type="hidden" name="_csrf" value="{{ csrfToken }}">
           <button class="btn btn-primary submit" type="submit">Đăng ký tài khoản</button>
