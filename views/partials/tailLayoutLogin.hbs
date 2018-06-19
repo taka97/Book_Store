@@ -1,0 +1,20 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+<!-- PNotify -->
+<script src="/javascripts/vendors/pnotify.js"></script>
+<script src="/javascripts/vendors/pnotify.buttons.js"></script>
+<script src="/javascripts/vendors/pnotify.nonblock.js"></script>
+
+<script>
+    function validateRegisterForm() {
+        if (document.forms["register_form"]["password"].value == document.forms["register_form"]["repassword"].value) {
+            new PNotify({
+                title: 'Mật khẩu không khớp',
+                text: 'Mật khẩu bản nhập không trùng khớp nhau! Vui lòng nhập lại',
+                type: 'error',
+                styling: 'bootstrap3'
+            })
+            return false
+        }
+    }
+</script>
