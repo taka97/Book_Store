@@ -12,7 +12,8 @@ var AccountSchema = new Schema(
     birthDate: {type: Date, require: true},
     gender: {type: String, enum: ['Nam', 'Nữ'], require: true},
     address: {type: String, require: true},
-    typeAccount: {type: String, enum: ['Admin', 'User'], require: true}
+    typeAccount: {type: String, enum: ['Admin', 'User'], require: true},
+    isBlock: {type: Boolean, require: true}
   }
 )
 
