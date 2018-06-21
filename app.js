@@ -28,6 +28,7 @@ mongoose.connect(mongoDB)
 mongoose.Promise = global.Promise
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+require('./config/passport')
 
 // view engine setup
 app.engine('.hbs', exphbs({defaultLayout: 'layoutUser', extname: '.hbs'}))
@@ -67,7 +68,11 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status = err.status || 500)
-  res.render('error', {layout: 'layoutError', status: err.status, message: err.message})
+  res.render('error', {
+    layout: 'layoutError',
+    status: err.status,
+    message: err.message
+  })
 })
 
 module.exports = app
