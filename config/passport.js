@@ -80,3 +80,43 @@ passport.use('signup', new LocalStratery({
       })
     })
 }))
+
+passport.use('signin', new LocalStratery({
+  usernameField: 'email',
+  passwordField: 'password',
+  passReqToCallback: true
+}, function (req, email, password, done) {
+  req.checkBody('email')
+    .notEmpty()
+    .isEmail().withMessage('Email không hợp lệ')
+  req.checkBody('password')
+    .notEmpty()
+    .withMessage('Mật khẩu không hợp lệ')
+
+  // Store error message
+  var errors = req.validationErrors()
+  if (errors) {
+    var messages = []
+    errors.forEach(error => {
+      console.log('Error message: ' + error.msg)
+      messages.push(error.msg)
+    })
+    return done(null, false, req.flash('error', messages))
+  }
+
+  // Process request after validation and sanitization.
+  Account.findOne({ email: email })
+    .exec(function (err, account) {
+      if (err) {
+        return done(err)
+      }
+      if (!account) {
+        return done(null, false, { message: 'Không tìm thấy người dùng' })
+      }
+      if (!account.validPassword(password)) {
+        return done(null, false, { message: 'Mật khẩu không chính xác' })
+      }
+
+      return done(null, account)
+    })
+}))
