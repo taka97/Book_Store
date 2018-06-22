@@ -3854,6 +3854,10 @@ a.hiddenanchor {
     position: relative
 }
 
+.register {
+    text-align: left;
+}
+
 .cropper .docs-cropped .modal-body>canvas, .cropper .docs-cropped .modal-body>img, .cropper .img-container>img, .cropper .img-preview>img {
     max-width: 100%
 }
@@ -4705,6 +4709,6 @@ ul.notifications {
     border-width: 1px 0;
 }
 
-.register {
+.alert-danger p {
     text-align: left;
 }
