@@ -6,12 +6,12 @@ const csrfProtection = csrf()
 router.use(csrfProtection)
 
 // GET Login page
-router.get('/', loginController.getLoginPage)
+router.get('/login', loginController.getLoginPage)
 
-router.get('/register', loginController.getSignuppage)
+router.get('/register', loginController.getRegisterPage)
 
-router.post('/register', loginController.postSignup)
+router.post('/login', loginController.postLogin)
 
-router.post('/signin', loginController.postSignin)
+router.post('/register', loginController.postRegister)
 
 module.exports = router

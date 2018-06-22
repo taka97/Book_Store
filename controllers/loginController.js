@@ -13,7 +13,7 @@ exports.getLoginPage = function (req, res, next) {
 }
 
 // GET Register page
-exports.getSignuppage = function (req, res, next) {
+exports.getRegisterPage = function (req, res, next) {
   var messages = req.flash('error')
   res.render('login/register', {
     layout: 'layoutLogin',
@@ -25,13 +25,15 @@ exports.getSignuppage = function (req, res, next) {
 }
 
 // POST signup
-exports.postSignup = passport.authenticate('signup', {
+exports.postRegister = passport.authenticate('signup', {
   successRedirect: '/user/profile',
   failureRedirect: '/login/register',
   failureFlash: true
 })
 
 // POST signin
-exports.postSignin = function (req, res, next) {
-
-}
+exports.postLogin = passport.authenticate('signin', {
+  successRedirect: '/user/profile',
+  failureRedirect: '/login/login',
+  failureFlash: true
+})
