@@ -4,6 +4,7 @@ const loginRouter = require('./login')
 
 const indexController = require('../controllers/indexController')
 
+/* GET login and register page */
 router.use('/', loginRouter)
 
 /* GET homepage. */
