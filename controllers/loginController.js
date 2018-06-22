@@ -24,14 +24,14 @@ exports.getRegisterPage = function (req, res, next) {
   })
 }
 
-// POST signup
+// Handle POST register
 exports.postRegister = passport.authenticate('signup', {
   successRedirect: '/user/profile',
   failureRedirect: '/login/register',
   failureFlash: true
 })
 
-// POST signin
+// Handle POST login
 exports.postLogin = passport.authenticate('signin', {
   successRedirect: '/user/profile',
   failureRedirect: '/login/login',
