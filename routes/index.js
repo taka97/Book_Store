@@ -4,10 +4,10 @@ const loginRouter = require('./login')
 
 const indexController = require('../controllers/indexController')
 
+router.use('/', loginRouter)
+
 /* GET homepage. */
 router.get('/', indexController.getHomepage)
-
-router.use('/login', loginRouter)
 
 /* GET cart */
 router.get('/cart', indexController.getCart)
