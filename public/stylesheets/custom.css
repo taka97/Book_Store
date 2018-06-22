@@ -3847,6 +3847,13 @@ a.hiddenanchor {
     position: relative
 }
 
+.register_wrapper {
+    right: 0;
+    margin: 1% auto 0;
+    max-width: 350px;
+    position: relative
+}
+
 .cropper .docs-cropped .modal-body>canvas, .cropper .docs-cropped .modal-body>img, .cropper .img-container>img, .cropper .img-preview>img {
     max-width: 100%
 }
@@ -3855,16 +3862,6 @@ a.hiddenanchor {
     position: absolute;
     top: 0;
     width: 100%
-}
-
-.registration_form {
-    z-index: 21;
-    opacity: 0;
-    width: 100%
-}
-
-.login_form {
-    z-index: 22
 }
 
 #signin:target~.login_wrapper .login_form, #signup:target~.login_wrapper .registration_form {
