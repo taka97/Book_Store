@@ -8,7 +8,9 @@ router.use(csrfProtection)
 // GET Login page
 router.get('/', loginController.getLoginPage)
 
-router.post('/signup', loginController.postSignup)
+router.get('/register', loginController.getSignuppage)
+
+router.post('/register', loginController.postSignup)
 
 router.post('/signin', loginController.postSignin)
 
