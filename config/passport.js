@@ -18,15 +18,45 @@ passport.use('signup', new LocalStratery({
   passwordField: 'password',
   passReqToCallback: true
 }, function (req, email, password, done) {
+  // Validate fields.
+  req.checkBody('email')
+    .notEmpty()
+    .isEmail().withMessage('Email không hợp lệ')
+    .trim()
+    .normalizeEmail()
+  req.checkBody('password')
+    .notEmpty()
+    .withMessage('Mật khẩu không hợp lệ')
+  req.checkBody('repassword')
+    .notEmpty()
+    .custom(value => value === req.body.password).withMessage('Mật khẩu xác nhập không hợp lệ')
+  req.checkBody('name')
+    .notEmpty()
+    .trim()
+    .isAlphanumeric().withMessage('Tên chỉ có thể chứa các ký tự chữ cái')
+
+  // Sanitize fields.
+  // req.sanitizeBody('email').trim().excape()
+  // req.sanitizeBody('password').trim().excape()
+
+  // Store error message
+  var errors = req.validationErrors()
+  if (errors) {
+    var messages = []
+    errors.forEach(error => {
+      console.log('Error message: ' + error.msg)
+      messages.push(error.msg)
+    })
+    return done(null, false, req.flash('error', messages))
+  }
+  // Process request after validation and sanitization.
   Account.findOne({ email: email })
     .exec(function (err, account) {
       if (err) {
-        console.log('findOne. Error: ' + err)
         return done(err)
       }
       if (account) {
-        console.log('Email is duplicate: ' + account)
-        return done(null, false, { message: 'Email đang được sử dụng trong 1 tài khoản khác' })
+        return done(null, false, { message: 'Email đang được sử dụng cho 1 tài khoản khác' })
       }
 
       var newAccount = new Account()
