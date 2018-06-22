@@ -34,6 +34,10 @@ passport.use('signup', new LocalStratery({
     .notEmpty()
     .trim()
     .isAlphanumeric().withMessage('Tên chỉ có thể chứa các ký tự chữ cái')
+  req.checkBody('birthDate')
+    .optional({ checkFalsy: true })
+    .isISO8601()
+    .withMessage('Ngày sinh không hợp lệ')
 
   // Sanitize fields.
   // req.sanitizeBody('email').trim().excape()
