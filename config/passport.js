@@ -25,9 +25,10 @@ passport.use('signup', new LocalStratery({
         return done(err)
       }
       if (account) {
-        console.log('Email is duplicate: ' + err)
+        console.log('Email is duplicate: ' + account)
         return done(null, false, { message: 'Email đang được sử dụng trong 1 tài khoản khác' })
       }
+
       var newAccount = new Account()
       newAccount.email = email
       newAccount.password = newAccount.encryptPassword(password)
