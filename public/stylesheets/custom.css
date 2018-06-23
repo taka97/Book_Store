@@ -3847,6 +3847,17 @@ a.hiddenanchor {
     position: relative
 }
 
+.register_wrapper {
+    right: 0;
+    margin: 1% auto 0;
+    max-width: 350px;
+    position: relative
+}
+
+.register {
+    text-align: left;
+}
+
 .cropper .docs-cropped .modal-body>canvas, .cropper .docs-cropped .modal-body>img, .cropper .img-container>img, .cropper .img-preview>img {
     max-width: 100%
 }
@@ -3855,16 +3866,6 @@ a.hiddenanchor {
     position: absolute;
     top: 0;
     width: 100%
-}
-
-.registration_form {
-    z-index: 21;
-    opacity: 0;
-    width: 100%
-}
-
-.login_form {
-    z-index: 22
 }
 
 #signin:target~.login_wrapper .login_form, #signup:target~.login_wrapper .registration_form {
@@ -3962,7 +3963,7 @@ a.hiddenanchor {
     position: relative
 }
 
-.login_content form input[type=text], .login_content form input[type=email], .login_content form input[type=password] {
+.login_content form input[type=text], .login_content form input[type=email], .login_content form input[type=password], .login_content form input[type=date] {
     border-radius: 3px;
     -ms-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0, 0, 0, .08) inset;
     -o-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0, 0, 0, .08) inset;
@@ -3973,7 +3974,7 @@ a.hiddenanchor {
     width: 100%
 }
 
-.login_content form input[type=text]:focus, .login_content form input[type=email]:focus, .login_content form input[type=password]:focus {
+.login_content form input[type=text]:focus, .login_content form input[type=email]:focus, .login_content form input[type=password]:focus, , .login_content form input[type=date]:focus {
     -ms-box-shadow: 0 0 2px #ed1c24 inset;
     -o-box-shadow: 0 0 2px #ed1c24 inset;
     box-shadow: 0 0 2px #A97AAD inset;
@@ -4706,6 +4707,10 @@ ul.notifications {
     background-color: transparent;
     border: solid transparent;
     border-width: 1px 0;
+}
+
+.alert-danger p {
+    text-align: left;
 }
 
 .text{

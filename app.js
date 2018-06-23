@@ -8,6 +8,7 @@ const favicon = require('express-favicon')
 const session = require('express-session')
 const passport = require('passport')
 const flash = require('connect-flash')
+const validator = require('express-validator')
 
 const indexRouter = require('./routes/index')
 const bookRouter = require('./routes/book')
@@ -28,6 +29,7 @@ mongoose.connect(mongoDB)
 mongoose.Promise = global.Promise
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+require('./config/passport')
 
 // view engine setup
 app.engine('.hbs', exphbs({defaultLayout: 'layoutUser', extname: '.hbs'}))
@@ -38,6 +40,7 @@ app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
+app.use(validator())
 app.use(session({secret: 'mysupersecret', resave: 'false', saveUninitialized: true}))
 app.use(flash())
 app.use(passport.initialize())
@@ -67,7 +70,11 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status = err.status || 500)
-  res.render('error', {layout: 'layoutError', status: err.status, message: err.message})
+  res.render('error', {
+    layout: 'layoutError',
+    status: err.status,
+    message: err.message
+  })
 })
 
 module.exports = app
