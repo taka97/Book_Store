@@ -18,4 +18,7 @@ router.post('/login', loginProtected.notLoggedIn, loginController.postLogin)
 // POST request to register
 router.post('/register', loginProtected.notLoggedIn, loginController.postRegister)
 
+// GET Logout page
+router.get('/logout', loginProtected.isLoggedIn, loginController.getLogoutRequest)
+
 module.exports = router
