@@ -48,6 +48,11 @@ app.use(passport.session())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(favicon(path.join(__dirname, '/public/icons/favicon.png')))
 
+app.use(function (req, res, next) {
+  res.locals.isLogin = req.isAuthenticated()
+  next()
+})
+
 app.use('/', indexRouter)
 app.use('/book', bookRouter)
 app.use('/genre', genreRouter)

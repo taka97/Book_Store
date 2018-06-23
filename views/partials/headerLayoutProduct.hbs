@@ -1,9 +1,15 @@
 <div id="shopify-section-header" class="shopify-section">
     <header id="page_header">
         <div class="top_wrapper container">
+            {{#if isLogin }}
             <div class="account_wrap">
                 <a href="/account">Tài khoản</a>
             </div>
+            {{ else }}
+            <div class="account_wrap">
+                <a href="/login"> Đăng nhập </a>
+            </div>
+            {{/if}}
             <div class="wishlist_wrap">
                 <a href="/pages/wishlist">Yêu thích</a>
             </div>
@@ -215,7 +221,7 @@
                         </ul>
                     </nav>
                     <div>
-                        
+
                         <div class="cart_wrap">
                             <a href="/cart" title="Giỏ hàng">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
