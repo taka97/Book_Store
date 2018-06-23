@@ -9,6 +9,7 @@ const session = require('express-session')
 const passport = require('passport')
 const flash = require('connect-flash')
 const validator = require('express-validator')
+const MongoStore = require('connect-mongo')(session)
 
 const indexRouter = require('./routes/index')
 const bookRouter = require('./routes/book')
@@ -32,7 +33,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 require('./config/passport')
 
 // view engine setup
-app.engine('.hbs', exphbs({defaultLayout: 'layoutUser', extname: '.hbs'}))
+app.engine('.hbs', exphbs({ defaultLayout: 'layoutUser', extname: '.hbs' }))
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'hbs')
 
@@ -41,7 +42,13 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(validator())
-app.use(session({secret: 'mysupersecret', resave: 'false', saveUninitialized: true}))
+app.use(session({
+  secret: 'mysupersecret',
+  resave: 'false', // don't save session if unmodified
+  saveUninitialized: true, // don't create session until something stored
+  store: new MongoStore({ mongooseConnection: mongoose.connect }),
+  cookie: { maxAge: 3 * 60 * 60 * 1000 } // time period in milliseconds: 3 hours
+}))
 app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session())
@@ -50,6 +57,7 @@ app.use(favicon(path.join(__dirname, '/public/icons/favicon.png')))
 
 app.use(function (req, res, next) {
   res.locals.isLogin = req.isAuthenticated()
+  res.locals.session = req.session
   next()
 })
 
