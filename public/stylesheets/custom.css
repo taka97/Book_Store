@@ -4712,3 +4712,7 @@ ul.notifications {
 .alert-danger p {
     text-align: left;
 }
+
+.text{
+    text-align: center;
+}
