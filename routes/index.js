@@ -17,10 +17,6 @@ router.get('/cart', indexController.getCart)
 router.get('/genre', indexController.getGenre)
 
 /* GET book detail */
-router.get('/bookdetail', (req, res, next) => {
-  res.render('bookDetailPage', {
-    layout: 'layoutHomepage',
-    title: 'Chi tiết sách'})
-})
+router.get('/bookdetail', indexController.getBookDetail)
 
 module.exports = router

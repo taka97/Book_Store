@@ -24,6 +24,11 @@ exports.getRegisterPage = function (req, res, next) {
   })
 }
 
+exports.getLogoutRequest = function (req, res, next) {
+  req.logout()
+  res.redirect('/')
+}
+
 // Handle POST register
 exports.postRegister = passport.authenticate('signup', {
   successRedirect: '/user/profile',
