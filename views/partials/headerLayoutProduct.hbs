@@ -3,15 +3,17 @@
         <div class="top_wrapper container">
             {{#if isLogin }}
             <div class="account_wrap">
-                <a href="/account">Tài khoản</a>
+                <a href="/user/profile"> Tài khoản </a>
+                <a href="/logout"> Đăng xuất</a>
             </div>
             {{ else }}
             <div class="account_wrap">
                 <a href="/login"> Đăng nhập </a>
+                <a href="/register"> Đăng ký </a>
             </div>
             {{/if}}
             <div class="wishlist_wrap">
-                <a href="/pages/wishlist">Yêu thích</a>
+                <a href="/pages/wishlist"> Yêu thích </a>
             </div>
             <script>
                 theme.shopCurrency = "USD";
