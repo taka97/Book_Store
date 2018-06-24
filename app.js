@@ -12,9 +12,6 @@ const validator = require('express-validator')
 const MongoStore = require('connect-mongo')(session)
 
 const indexRouter = require('./routes/index')
-const genreRouter = require('./routes/genre')
-const authorRouter = require('./routes/author')
-const publisherRouter = require('./routes/publisher')
 // for develop
 const adminRouter = require('./routes/admin')
 const userRouter = require('./routes/user')
@@ -61,9 +58,6 @@ app.use(function (req, res, next) {
 })
 
 app.use('/', indexRouter)
-app.use('/genre', genreRouter)
-app.use('/author', authorRouter)
-app.use('/publisher', publisherRouter)
 // for developer
 app.use('/admin', adminRouter)
 app.use('/user', userRouter)

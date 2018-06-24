@@ -17,18 +17,15 @@ exports.listGenres = function (req, res, next) {
     res.render('genre', {
       layout: 'layoutHomepage',
       title: 'Book Store',
-      listGenres: results.listGenres,
-      listAuthors: results.listAuthors,
-      listPublishers: results.listPublisher,
-      listBooks: results.listBooks
+      listGenres: results.listGenres
     })
 
-    console.log(results.listBooks)
+    console.log(results.listGenres)
   })
 }
 
 // Get list all book in database
-exports.genreDetail = function (req, res, next) {
+exports.bookOfGenre = function (req, res, next) {
   async.parallel({
     listGenres: (callback) => {
       Genre.find({})
@@ -43,17 +40,12 @@ exports.genreDetail = function (req, res, next) {
         .exec(callback)
     },
     listBooks: (callback) => {
-      Book.find({'genre': req.params.id})
+      Book.find({ 'genre': req.params.id })
         .populate('author')
         .exec(callback)
     }
   }, (err, results) => {
     if (err) { return next(err) }
-    if (results.listGenres == null) { // No results.
-      err = new Error('Genre not found')
-      err.status = 404
-      return next(err)
-    }
     // Successful, so render.
     res.render('book', {
       layout: 'layoutHomepage',
