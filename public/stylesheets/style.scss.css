@@ -824,7 +824,7 @@ h1,h2,h3,h4,h5,h6,p {
   }
   
   html,body {
-    font: 11px/1.5em Poppins;
+    font: 11px/1.5em inherit;
     color: #4d555c;
   }
   
@@ -853,7 +853,7 @@ h1,h2,h3,h4,h5,h6,p {
   }
   
   h1,h2,h3,h4,h5,h6 {
-    font: 18px/1.1em Poppins;
+    font: 18px/1.1em inherit;
     color: #000;
   }
   
@@ -957,7 +957,7 @@ h1,h2,h3,h4,h5,h6,p {
     -webkit-transition: background 0.2s ease-in-out,border-color 0.2s ease-in-out,color 0.2s ease-in-out;
     -moz-transition: background 0.2s ease-in-out,border-color 0.2s ease-in-out,color 0.2s ease-in-out;
     transition: background 0.2s ease-in-out,border-color 0.2s ease-in-out,color 0.2s ease-in-out;
-    font-family: 'Poppins';
+    /* font-family: 'Poppins'; */
   }
   
   .btn:active,.btn:focus,.btn:hover {
@@ -6820,7 +6820,7 @@ h1,h2,h3,h4,h5,h6,p {
   
   footer .footer_item__newsletter input {
     font-size: 11px;
-    font-family: 'Poppins';
+    /* font-family: 'Poppins'; */
     color: #4d555c;
     padding-right: 10px;
     width: 238px;
@@ -8953,7 +8953,7 @@ h1,h2,h3,h4,h5,h6,p {
   }
   
   .wishlist_page .product_name {
-    font-family: Poppins;
+    /* font-family: Poppins; */
     font-size: 16px;
     margin-bottom: 10px;
     margin-top: 10px;
