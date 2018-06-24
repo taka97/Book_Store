@@ -46,7 +46,7 @@ app.use(session({
   secret: 'mysupersecret',
   resave: 'false', // don't save session if unmodified
   saveUninitialized: true, // don't create session until something stored
-  store: new MongoStore({ mongooseConnection: mongoose.connect }),
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
   cookie: { maxAge: 3 * 60 * 60 * 1000 } // time period in milliseconds: 3 hours
 }))
 app.use(flash())
