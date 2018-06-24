@@ -6,11 +6,14 @@ const cartRouter = require('./cart')
 const bookRouter = require('./book')
 const genreRouter = require('./genre')
 const authorRouter = require('./author')
+const publisherRouter = require('./publisher')
 
 const indexController = require('../controllers/indexController')
 
 /* GET homepage. */
 router.get('/', indexController.getHomepage)
+
+router.get('/digital_wallets/dialog', indexController.getDigitalWallets)
 
 /* GET login and register page */
 router.use('/', loginRouter)
@@ -27,6 +30,7 @@ router.use('/genre', genreRouter)
 /* GET AUTHOR Router */
 router.use('/author', authorRouter)
 
-router.get('/digital_wallets/dialog', indexController.getDigitalWallets)
+/* GET publisher Router */
+router.use('/publisher', publisherRouter)
 
 module.exports = router

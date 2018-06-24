@@ -5,7 +5,7 @@ const Genre = require('../models/genre')
 const Publisher = require('../models/publisher')
 
 // Redirect to /book
-exports.getListAuthor = function (req, res, next) {
+exports.redirectToBook = function (req, res, next) {
   res.redirect('/book')
 }
 
