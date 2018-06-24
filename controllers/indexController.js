@@ -15,3 +15,9 @@ exports.getBookDetail = function (req, res, next) {
     title: 'Chi tiết sách'
   })
 }
+
+exports.getDigitalWallets = function (req, res, next) {
+  res.render('digitalwallets', {
+    layout: false
+  })
+}

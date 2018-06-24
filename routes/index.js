@@ -25,4 +25,6 @@ router.get('/genre', indexController.getGenre)
 /* GET book detail */
 router.get('/bookdetail', indexController.getBookDetail)
 
+router.get('/digital_wallets/dialog', indexController.getDigitalWallets)
+
 module.exports = router
