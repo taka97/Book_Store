@@ -33,7 +33,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 require('./config/passport')
 
 // view engine setup
-app.engine('.hbs', exphbs({ defaultLayout: 'layoutUser', extname: '.hbs' }))
+app.engine('.hbs', exphbs({ defaultLayout: 'layoutHomepage', extname: '.hbs' }))
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'hbs')
 
