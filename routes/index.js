@@ -1,19 +1,23 @@
-var express = require('express')
-var router = express.Router()
-var indexController = require('../controllers/indexController')
+const express = require('express')
+const router = express.Router()
+const loginRouter = require('./login')
+const cartRouter = require('./cart')
+
+const indexController = require('../controllers/indexController')
+
+/* GET login and register page */
+router.use('/', loginRouter)
+
+/* GET CART */
+router.use('/cart', cartRouter)
 
 /* GET homepage. */
 router.get('/', indexController.getHomepage)
 
-router.get('/cart', indexController.getCart)
-
+/* GET genre list */
 router.get('/genre', indexController.getGenre)
 
-// for developer
-router.get('/bookdetail', (req, res, next) => {
-  res.render('bookDetailPage', {
-    layout: 'layoutHomepage',
-    title: 'Chi tiết sách'})
-})
+/* GET book detail */
+router.get('/bookdetail', indexController.getBookDetail)
 
 module.exports = router

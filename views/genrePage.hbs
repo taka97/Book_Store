@@ -167,18 +167,17 @@
 						</div>
 					</div>
 					<div class="sidebar_widget sidebar_widget__types">
-						<h3 class="widget_header">Product types</h3>
+						<h3 class="widget_header">Authors</h3>
 						<div class="widget_content">
 							<ul class="list_links">
 								<li>
 									<a href="/collections/types?q=New%20Arrivals">New Arrivals</a>
 								</li>
+								{{# each listAuthors}}
 								<li>
-									<a href="/collections/types?q=School%20Books">School Books</a>
+									<a class="active" href={{url}}>{{name}}</a>
 								</li>
-								<li>
-									<a href="/collections/types?q=Used%20Books">Used Books</a>
-								</li>
+								{{/each}}
 							</ul>
 						</div>
 					</div>
@@ -189,17 +188,13 @@
 								<li>
 									<a href="/collections/vendors?q=Bookstore">Bookstore</a>
 								</li>
-							</ul>
-						</div>
-						{{# each listGenres}}
-						<div class="widget_content">
-							<ul class="list_links">
+								{{# each listPublishers}}
 								<li>
-									<a href={{url}}>{{name}}</a>
+									<a class="active" href={{url}}>{{name}}</a>
 								</li>
+								{{/each}}
 							</ul>
 						</div>
-						{{/each}}
 					</div>
 					<div class="sidebar_widget sidebar_widget__products">
 						<h3 class="widget_header">Products</h3>

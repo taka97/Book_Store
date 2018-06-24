@@ -1,4 +1,4 @@
-console.log('Import models')
+console.log('Importing models......')
 const async = require('async')
 const Book = require('./models/book')
 const Author = require('./models/author')
@@ -6,7 +6,8 @@ const Genre = require('./models/genre')
 const Publisher = require('./models/publisher')
 const Account = require('./models/account')
 
-console.log('Connect db')
+console.log('Imported models')
+console.log('Connecting db......')
 var mongoose = require('mongoose')
 var mongoDB = 'mongodb://admin:123456@ds231740.mlab.com:31740/book-store'
 mongoose.connect(mongoDB)
@@ -14,7 +15,8 @@ mongoose.Promise = global.Promise
 var db = mongoose.connection
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
-console.log('Gerenate data')
+console.log('Connected db')
+console.log('Gerenating data......')
 var authors = []
 var genres = []
 var books = []
@@ -31,7 +33,8 @@ function accountCreate (email, password, avatarPath, name, birthDate, gender, ad
     birthDate: birthDate,
     gender: gender,
     address: address,
-    typeAccount: typeAccount
+    typeAccount: typeAccount,
+    isBlock: false
   })
 
   account.save(function (err) {
@@ -40,7 +43,7 @@ function accountCreate (email, password, avatarPath, name, birthDate, gender, ad
       return
     }
 
-    console.log('New Account: ' + account)
+    // console.log('New Account: ' + account)
     accounts.push(account)
     cb(null, account)
   })
@@ -54,7 +57,7 @@ function authorCreate (name, birthDay, gender, nationality, cb) {
       cb(err, null)
       return
     }
-    console.log('New Author: ' + author)
+    // console.log('New Author: ' + author)
     authors.push(author)
     cb(null, author)
   })
@@ -68,7 +71,7 @@ function genreCreate (name, cb) {
       cb(err, null)
       return
     }
-    console.log('New Genre: ' + genre)
+    // console.log('New Genre: ' + genre)
     genres.push(genre)
     cb(null, genre)
   })
@@ -82,7 +85,7 @@ function publisherCreate (name, cb) {
       cb(err, null)
       return
     }
-    console.log('New Genre: ' + publisher)
+    // console.log('New Genre: ' + publisher)
     publishers.push(publisher)
     cb(null, publisher)
   })
@@ -103,7 +106,7 @@ function bookCreate (title, author, publisher, publishDate, price, genre, imageC
       cb(err, null)
       return
     }
-    console.log('New Book: ' + book)
+    // console.log('New Book: ' + book)
     books.push(book)
     cb(null, book)
   })
@@ -304,6 +307,7 @@ function (err, results) {
   if (err) {
     console.log('FINAL ERR: ' + err)
   }
+  console.log('Gerenated data completed')
   // All done, disconnect from database
   mongoose.connection.close()
 })

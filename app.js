@@ -5,9 +5,13 @@ const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const exphbs = require('express-handlebars')
 const favicon = require('express-favicon')
+const session = require('express-session')
+const passport = require('passport')
+const flash = require('connect-flash')
+const validator = require('express-validator')
+const MongoStore = require('connect-mongo')(session)
 
 const indexRouter = require('./routes/index')
-const loginRouter = require('./routes/login')
 const bookRouter = require('./routes/book')
 const genreRouter = require('./routes/genre')
 const authorRouter = require('./routes/author')
@@ -26,9 +30,10 @@ mongoose.connect(mongoDB)
 mongoose.Promise = global.Promise
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+require('./config/passport')
 
 // view engine setup
-app.engine('.hbs', exphbs({defaultLayout: 'layoutUser', extname: '.hbs'}))
+app.engine('.hbs', exphbs({ defaultLayout: 'layoutUser', extname: '.hbs' }))
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'hbs')
 
@@ -36,11 +41,27 @@ app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
+app.use(validator())
+app.use(session({
+  secret: 'mysupersecret',
+  resave: 'false', // don't save session if unmodified
+  saveUninitialized: true, // don't create session until something stored
+  store: new MongoStore({ mongooseConnection: mongoose.connect }),
+  cookie: { maxAge: 3 * 60 * 60 * 1000 } // time period in milliseconds: 3 hours
+}))
+app.use(flash())
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(favicon(path.join(__dirname, '/public/icons/favicon.png')))
 
+app.use(function (req, res, next) {
+  res.locals.isLogin = req.isAuthenticated()
+  res.locals.session = req.session
+  next()
+})
+
 app.use('/', indexRouter)
-app.use('/login', loginRouter)
 app.use('/book', bookRouter)
 app.use('/genre', genreRouter)
 app.use('/author', authorRouter)
@@ -62,7 +83,11 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status = err.status || 500)
-  res.render('error', {layout: 'layoutError', status: err.status, message: err.message})
+  res.render('error', {
+    layout: 'layoutError',
+    status: err.status,
+    message: err.message
+  })
 })
 
 module.exports = app

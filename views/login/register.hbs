@@ -1,0 +1,78 @@
+<div>
+  <div class="register_wrapper">
+    <div class="animate form registration_form">
+      <div class="login_content">
+        <form action="" method="POST">
+          <h1> Tạo tài khoản </h1>
+
+          {{#if hasErrors }}
+          <div class="alert alert-danger">
+            {{#each messages }}
+            <p> {{ this }} </p>
+            {{/each}}
+          </div>
+          {{/if}}
+
+          <div class="form-group register">
+            <label> Email </label>
+            <input name="email" type="email" class="form-control" placeholder="Email" required="" oninput="this.setCustomValidity('')"
+              oninvalid="this.setCustomValidity('Vui lòng nhập địa chỉ email')"/>
+          </div>
+          <div class="form-group register">
+            <label> Mật khẩu </label>
+            <input name="password" type="password" class="form-control" placeholder="Mật khẩu" required="" oninput="this.setCustomValidity('')"
+              oninvalid="this.setCustomValidity('Vui lòng nhập mật khẩu')"/>
+          </div>
+          <div class="form-group register">
+            <label> Nhập lại mật khẩu </label>
+            <input name="repassword" type="password" class="form-control" placeholder="Nhập lại mật khẩu" required="" oninput="this.setCustomValidity('')"
+              oninvalid="this.setCustomValidity('Vui lòng nhập lại mật khẩu')"/>
+          </div>
+          <div class="form-group register">
+            <label> Họ và tên </label>
+            <input name="name" type="text" class="form-control" placeholder="Họ và tên" required="" oninput="this.setCustomValidity('')"
+              oninvalid="this.setCustomValidity('Vui lòng nhập họ tên')"/>
+          </div>
+          <div class="form-group register">
+            <label> Giới tính </label>
+            <select name="gender" class="form-control" required=""  oninput="this.setCustomValidity('')"
+              oninvalid="this.setCustomValidity('Chọn giới tính')">
+              <option selected disabled> Chọn giới tính... </option>
+              <option value="male"> Nam </option>
+              <option value="female"> Nữ </option>
+            </select>
+          </div>
+          <div class="form-group register">
+            <label> Ngày sinh </label>
+            <input name="birthDate" type="date" class="form-control" required="" oninput="this.setCustomValidity('')"
+              oninvalid="this.setCustomValidity('Vui lòng nhập ngày tháng năm sinh')">
+          </div>
+          <div class="form-group register">
+            <label> Địa chỉ </label>
+            <input name="address" type="text" class="form-control" placeholder="Địa chỉ" required="" oninput="this.setCustomValidity('')"
+              oninvalid="this.setCustomValidity('Vui lòng nhập địa chỉ')">
+          </div>
+          <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+          <button class="btn btn-primary submit" type="submit">Đăng ký tài khoản</button>
+
+          <div class="clearfix"></div>
+
+          <div class="separator">
+            <p class="change_link">Bạn đã có tài khoản?
+              <a href="/login" class="to_register"> Đăng nhập </a>
+            </p>
+
+            <div class="clearfix"></div>
+            <br />
+
+            <div>
+              <h1>
+                <i class="fa fa-paw"></i> Gentelella Alela! </h1>
+              <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
