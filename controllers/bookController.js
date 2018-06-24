@@ -29,6 +29,7 @@ exports.listBooks = function (req, res, next) {
 
     // Successful, so render.
     res.render('book', {
+      layout: 'layoutHomepage',
       title: 'Book Store',
       listGenres: results.listGenres,
       listAuthors: results.listAuthors,
@@ -53,6 +54,7 @@ exports.bookDetail = function (req, res, next) {
     if (err) { return next(err) }
     // Successful, so render.
     res.render('bookDetail', {
+      layout: 'layoutHomepage',
       title: 'Book Detail',
       bookDetail: results.bookDetail
     })
