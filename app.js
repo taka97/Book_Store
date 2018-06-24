@@ -62,7 +62,6 @@ app.use(function (req, res, next) {
 })
 
 app.use('/', indexRouter)
-app.use('/book', bookRouter)
 app.use('/genre', genreRouter)
 app.use('/author', authorRouter)
 app.use('/publisher', publisherRouter)
