@@ -7,40 +7,36 @@ const Publisher = require('../models/publisher')
 // Get list all book in database
 exports.listBooks = function (req, res, next) {
   async.parallel({
+    listBooks: (callback) => {
+      Book.find({}, 'title author price imageCover')
+        .populate('author')
+        .exec(callback)
+    },
     listGenres: (callback) => {
-      Genre.find({})
+      Genre.find()
         .exec(callback)
     },
     listAuthors: (callback) => {
-      Author.find({})
+      Author.find()
         .exec(callback)
     },
-    listPublisher: (callback) => {
-      Publisher.find({})
-        .exec(callback)
-    },
-    listBooks: (callback) => {
-      Book.find({})
-        .populate('author')
+    listPublishers: (callback) => {
+      Publisher.find()
         .exec(callback)
     }
   }, (err, results) => {
     if (err) { return next(err) }
-    if (results.listGenres == null) { // No results.
-      err = new Error('Genre not found')
-      err.status = 404
-      return next(err)
-    }
+
     // Successful, so render.
     res.render('book', {
       title: 'Book Store',
       listGenres: results.listGenres,
       listAuthors: results.listAuthors,
-      listPublishers: results.listPublisher,
+      listPublishers: results.listPublishers,
       listBooks: results.listBooks
     })
 
-    console.log(results.listBooks)
+    // console.log(results.listAuthors)
   })
 }
 
@@ -53,14 +49,6 @@ exports.bookDetail = function (req, res, next) {
         .populate('genre')
         .populate('publisher')
         .exec(callback)
-    // },
-    // genrebooks: function (callback) {
-    //   book.find({ 'genre': req.params.id })
-    //     .exec(callback)
-    // },
-    // listGenres: (callback) => {
-    //   Genre.find({})
-    //     .exec(callback)
     }
   }, (err, results) => {
     if (err) { return next(err) }
@@ -68,6 +56,10 @@ exports.bookDetail = function (req, res, next) {
     console.log(results.bookDetail)
     // console.log(result.bookRelative)
     // Successful, so render.
-    res.render('bookdetail', {title: 'Book Detail', BookDetail: results.bookDetail, layout: 'layoutUserWithoutSideBar'})
+    res.render('bookDetail', {
+      // layout: 'layoutUserWithoutSideBar',
+      title: 'Book Detail',
+      BookDetail: results.bookDetail
+    })
   })
 }
