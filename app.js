@@ -12,7 +12,6 @@ const validator = require('express-validator')
 const MongoStore = require('connect-mongo')(session)
 
 const indexRouter = require('./routes/index')
-const bookRouter = require('./routes/book')
 const genreRouter = require('./routes/genre')
 const authorRouter = require('./routes/author')
 const publisherRouter = require('./routes/publisher')
