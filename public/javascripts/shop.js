@@ -191,7 +191,7 @@ jQuery(function($) {
                             prevButton: "#img_gallery__prev",
                             nextButton: "#img_gallery__next"
                         }), function(i, a) {
-                            if (i && i.available ? (jQuery("#quick_view__add").removeAttr("disabled").removeClass("disabled"), i.price < i.compare_at_price ? jQuery("#quick_view__price").html('<span class="money">' + Shopify.formatMoney(i.price, "") + '</span><span class="money compare-at-price money_sale">' + Shopify.formatMoney(i.compare_at_price, "") + '</span><span class="money_sale_percent">â€“ ' + parseInt(100 - 100 * i.price / i.compare_at_price) + "%</span>") : jQuery("#quick_view__price").html('<span class="money">' + Shopify.formatMoney(i.price, "") + "</span>"), null != i.inventory_management ? jQuery("#quick_view__availability span").removeClass("notify_danger").addClass("notify_success").html("Available") : jQuery("#quick_view__availability span").removeClass("notify_danger").addClass("notify_success").html("Available")) : (jQuery("#quick_view__add").addClass("disabled").attr("disabled", "disabled"), jQuery("#quick_view__availability span").removeClass("notify_success").addClass("notify_danger").html("Unavailable"), jQuery("#quick_view__price").html('<span class="money">' + Shopify.formatMoney(i.price, "") + "</span>")), i && i.featured_image) {
+                            if (i && i.available ? (jQuery("#quick_view__add").removeAttr("disabled").removeClass("disabled"), i.price < i.compare_at_price ? jQuery("#quick_view__price").html('<span class="money">' + Shopify.formatMoney(i.price, "") + '</span><span class="money compare-at-price money_sale">' + Shopify.formatMoney(i.compare_at_price, "") + '</span><span class="money_sale_percent">– ' + parseInt(100 - 100 * i.price / i.compare_at_price) + "%</span>") : jQuery("#quick_view__price").html('<span class="money">' + Shopify.formatMoney(i.price, "") + "</span>"), null != i.inventory_management ? jQuery("#quick_view__availability span").removeClass("notify_danger").addClass("notify_success").html("Available") : jQuery("#quick_view__availability span").removeClass("notify_danger").addClass("notify_success").html("Available")) : (jQuery("#quick_view__add").addClass("disabled").attr("disabled", "disabled"), jQuery("#quick_view__availability span").removeClass("notify_success").addClass("notify_danger").html("Unavailable"), jQuery("#quick_view__price").html('<span class="money">' + Shopify.formatMoney(i.price, "") + "</span>")), i && i.featured_image) {
                                 var t = e("#img_big img"),
                                     n = i.featured_image,
                                     s = t[0];
@@ -520,5 +520,6 @@ jQuery(function($) {
             $.fancybox.close();
         });
     });
+
 
 });
