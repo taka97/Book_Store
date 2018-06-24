@@ -35,30 +35,16 @@
                     </div>
                 </div>
                 <div class="single_product__info col-xs-6 medium">
-                    <h2 class="single_product__title">The Complete Sherlock Holmes</h2>
+                    {{#with bookDetail}}
+                    <h2 class="single_product__title">{{ title }}</h2>
                     <div class="single_product__details">
                         <form action="/cart/add" method="post" enctype="multipart/form-data" data-section="template-product">
-                            <div class="single_product__options ">
-                                <div class="selector-wrapper">
-                                    <select class="single-option-selector" data-option="option1" id="product_select_template-product-option-0">
-                                        <option value="L">L</option>
-                                        <option value="XL">XL</option>
-                                        <option value="XXL">XXL</option>
-                                    </select>
-                                </div>
-                                <select name="id" id="product_select_template-product" style="display: none;">
-                                    <option value="50971221451">L</option>
-                                    <option value="50971221515">XL</option>
-                                    <option value="50971221579">XXL</option>
-                                </select>
-                            </div>
-                            <div class="clearfix"></div>
                             <div class="details_separator"></div>
                             <div class="details_wrapper">
                                 <div class="details_left">
                                     <p class="single_product__weight">
-                                        <b>Cân nặng:</b>
-                                        <span id="single_product__weight-template-product">{{weight}}</span>
+                                        <b>Tác giả:</b>
+                                        <span id="single_product__weight-template-product">{{ author.name }}</span>
                                     </p>
                                     <p class="single_product__sku">
                                         <b>SKU:</b>
@@ -70,22 +56,21 @@
                                     </p>
                                     <p class="single_product__collections">
                                         <b>Thể loại:</b>
-                                        <a href="/collections/childrens-books">Childrens books</a>,
-                                        <a href="/collections/poetry">Poetry</a>
+                                        <a href="{{ genre.url }}">{{ genre.name }}</a>,
                                     </p>
                                     <p class="single_product__type">
                                         <b>Product type:</b>
                                         <span>
-                                            {{genre}}
+                                            -
                                         </span>
                                     </p>
                                     <p class="single_product__vendor">
                                         <b>Nhà xuất bản:</b>
-                                        <span>{{publisher}}</span>
+                                        <span>{{ publisher.name }}</span>
                                     </p>
                                     <p class="single_product__tags">
-                                        <b>Tags:</b>
-                                        —
+                                        <b>Ngày xuất bản</b>
+                                        <span>{{ publishDate }}</span>
                                     </p>
                                 </div>
                                 <div class="details_right">
@@ -95,7 +80,7 @@
                                     </p>
                                     <p class="single_product__price">
                                         <span id="single_product__price-template-product">
-                                            <span class="money" data-currency-usd="${{price}}" data-currency="USD">${{price}}</span>
+                                            <span class="money" data-currency-usd="${{ price }}" data-currency="USD">{{ price }}</span>
                                         </span>
                                     </p>
                                     <div class="single_product__quantity">
@@ -115,29 +100,12 @@
                                         <a href="/pages/wishlist" class="wishlist_form">
                                             <i class="fa fa-heart" aria-hidden="true"></i> Thêm vào yêu thích</a>
                                     </p>
-                                    <div class="social_sharing_block">
-                                        <a target="_blank" href="//www.facebook.com/sharer.php?u=https://theme356-books.myshopify.com/products/the-complete-sherlock-holmes"
-                                            title="Share">
-                                            <i class="fa fa-facebook" aria-hidden="true"></i>
-                                        </a>
-                                        <a target="_blank" href="//twitter.com/share?text=The%20Complete%20Sherlock%20Holmes&amp;url=https://theme356-books.myshopify.com/products/the-complete-sherlock-holmes"
-                                            title="Share">
-                                            <i class="fa fa-twitter" aria-hidden="true"></i>
-                                        </a>
-                                        <a target="_blank" href="//plus.google.com/share?url=https://theme356-books.myshopify.com/products/the-complete-sherlock-holmes"
-                                            title="Share">
-                                            <i class="fa fa-google-plus" aria-hidden="true"></i>
-                                        </a>
-                                        <a target="_blank" href="//pinterest.com/pin/create/button/?url=https://theme356-books.myshopify.com/products/the-complete-sherlock-holmes&amp;media=//cdn.shopify.com/s/assets/no-image-2048-5e88c1b20e087fb7bbe9a3771824e743c244f437e4f8ba93bbf7b11b53f7824c_1024x1024.gif&amp;description=The%20Complete%20Sherlock%20Holmes"
-                                            title="Share">
-                                            <i class="fa fa-pinterest" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
+                {{/with}}
             </div>
             <form accept-charset="UTF-8" action="/contact" id="wishlist_form" method="post">
                 <input name="form_type" type="hidden" value="customer">

@@ -43,7 +43,6 @@ exports.listBooks = function (req, res, next) {
 exports.bookDetail = function (req, res, next) {
   async.parallel({
     bookDetail: (callback) => {
-      // console.log(req.params.id)
       Book.findById(req.params.id)
         .populate('author')
         .populate('genre')
@@ -52,14 +51,11 @@ exports.bookDetail = function (req, res, next) {
     }
   }, (err, results) => {
     if (err) { return next(err) }
-    // console.log(results.listGenres)
-    console.log(results.bookDetail)
-    // console.log(result.bookRelative)
     // Successful, so render.
     res.render('bookDetail', {
-      // layout: 'layoutUserWithoutSideBar',
       title: 'Book Detail',
-      BookDetail: results.bookDetail
+      bookDetail: results.bookDetail
     })
+    // console.log(results.bookDetail)
   })
 }
