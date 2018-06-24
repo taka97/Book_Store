@@ -4,6 +4,11 @@ const Author = require('../models/author')
 const Genre = require('../models/genre')
 const Publisher = require('../models/publisher')
 
+// Redirect to /book
+exports.redirectToBook = function (req, res, next) {
+  res.redirect('/book')
+}
+
 // Get list all book of author
 exports.listBookPublisher = function (req, res, next) {
   async.parallel({
@@ -20,7 +25,7 @@ exports.listBookPublisher = function (req, res, next) {
         .exec(callback)
     },
     listBooks: (callback) => {
-      Book.find({'publisher': req.params.id})
+      Book.find({ 'publisher': req.params.id })
         .populate('author')
         .exec(callback)
     }
@@ -33,6 +38,7 @@ exports.listBookPublisher = function (req, res, next) {
     }
     // Successful, so render.
     res.render('book', {
+      layout: 'layoutHomepage',
       title: 'Book Store',
       listGenres: results.listGenres,
       listAuthors: results.listAuthors,

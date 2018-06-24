@@ -3,9 +3,10 @@ var router = express.Router()
 
 var publisherController = require('../controllers/publisherController')
 
-/* GET home page. */
-// router.get('/', publisherController.listBooks)
+// Redirect to /book
+router.get('/', publisherController.redirectToBook)
 
+// Get list all book of publisher
 router.get('/:id', publisherController.listBookPublisher)
 
 module.exports = router
