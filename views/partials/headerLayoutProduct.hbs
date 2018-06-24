@@ -6,15 +6,16 @@
                 <a href="/user/profile"> Tài khoản </a>
                 <a href="/logout"> Đăng xuất</a>
             </div>
+            <div class="wishlist_wrap">
+                <a href="/pages/wishlist"> Yêu thích </a>
+            </div>
             {{ else }}
             <div class="account_wrap">
                 <a href="/login"> Đăng nhập </a>
                 <a href="/register"> Đăng ký </a>
             </div>
             {{/if}}
-            <div class="wishlist_wrap">
-                <a href="/pages/wishlist"> Yêu thích </a>
-            </div>
+
             <script>
                 theme.shopCurrency = "USD";
                 theme.moneyFormat = "${{amount}}";
