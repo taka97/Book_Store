@@ -3,8 +3,8 @@ var router = express.Router()
 
 var genreController = require('../controllers/genreController')
 
-/* GET home page. */
-// router.get('/', bookController.listBooks)
+/* GET genre homepage. */
+router.get('/', genreController.listGenres)
 
 router.get('/:id', genreController.genreDetail)
 

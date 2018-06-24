@@ -4,6 +4,7 @@ const router = express.Router()
 const loginRouter = require('./login')
 const cartRouter = require('./cart')
 const bookRouter = require('./book')
+const genreRouter = require('./genre')
 
 const indexController = require('../controllers/indexController')
 
@@ -19,11 +20,7 @@ router.use('/cart', cartRouter)
 /* GET BOOK Router */
 router.use('/book', bookRouter)
 
-/* GET genre list */
-router.get('/genre', indexController.getGenre)
-
-/* GET book detail */
-router.get('/bookdetail', indexController.getBookDetail)
+router.use('/genre', genreRouter)
 
 router.get('/digital_wallets/dialog', indexController.getDigitalWallets)
 
