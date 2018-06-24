@@ -5,6 +5,7 @@ const loginRouter = require('./login')
 const cartRouter = require('./cart')
 const bookRouter = require('./book')
 const genreRouter = require('./genre')
+const authorRouter = require('./author')
 
 const indexController = require('../controllers/indexController')
 
@@ -20,7 +21,11 @@ router.use('/cart', cartRouter)
 /* GET BOOK Router */
 router.use('/book', bookRouter)
 
+/* GET GENRE Router */
 router.use('/genre', genreRouter)
+
+/* GET AUTHOR Router */
+router.use('/author', authorRouter)
 
 router.get('/digital_wallets/dialog', indexController.getDigitalWallets)
 

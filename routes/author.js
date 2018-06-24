@@ -3,8 +3,8 @@ var router = express.Router()
 
 var authorController = require('../controllers/authorController')
 
-/* GET home page. */
-// router.get('/', authorController.author)
+/* GET author page. -> redirect to /book */
+router.get('/', authorController.getListAuthor)
 
 router.get('/:id', authorController.listBooksAuthor)
 
