@@ -254,10 +254,10 @@ function createBooks (cb) {
       bookCreate('Cafe cùng Tony', authors[5], publishers[4], '2017/1/20', '52000', genres[5], 'https://vcdn.tikicdn.com/media/bookpreview/b7/ed/810227/files/OEBPS/Images/img281.gif', callback)
     },
     function (callback) {
-      bookCreate('Quẳng gánh lo đi và vui sống', authors[1], publishers[3], '2017/1/20', '40000', genres[5], 'https://vcdn.tikicdn.com/media/bookpreview/eb/86/513788/files/OEBPS/Images/IMG_20170809_0001.gif', callback)
+      bookCreate('Quẳng gánh lo đi và vui sống', authors[1], publishers[3], '2017/1/20', '40000', genres[5], 'https://vcdn.tikicdn.com/cache/550x550/ts/product/00/e2/54/0129da67c6f845afa99f05fcf77e6952.jpg', callback)
     },
     function (callback) {
-      bookCreate('Mình nói gì khi nói về hạnh phúc', authors[3], publishers[1], '2017/1/20', '45000', genres[5], 'https://vcdn.tikicdn.com/media/bookpreview/df/83/1627925/files/OEBPS/Images/IMG_20180406_0001.gif', callback)
+      bookCreate('Mình nói gì khi nói về hạnh phúc', authors[3], publishers[1], '2017/1/20', '45000', genres[5], 'https://vcdn.tikicdn.com/cache/550x550/ts/product/5a/63/29/c805950c434394a8f9df3223af604e40.jpg', callback)
     },
     function (callback) {
       bookCreate('Khéo ăn nói sẽ có được thiên hạ', authors[5], publishers[1], '2017/1/20', '45000', genres[5], 'https://vcdn.tikicdn.com/media/bookpreview/7e/97/413656/files/OEBPS/Images/IMG_20170804_0040.gif', callback)
