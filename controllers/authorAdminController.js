@@ -21,14 +21,6 @@ exports.getHomepage = function (req, res, next) {
 }
 
 // for developer
-// GET view author (admin) page
-exports.getViewPage = function (req, res, next) {
-  // Successful, so render.
-  res.render('account/authorView', {
-    layout: 'layoutAdmin',
-    title: 'Xem thông tin tác giả'
-  })
-}
 
 // GET add author (admin) page
 exports.getAddPage = function (req, res, next) {

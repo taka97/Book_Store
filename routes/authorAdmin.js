@@ -7,8 +7,6 @@ const authorAdminController = require('../controllers/authorAdminController')
 router.get('/', authorAdminController.getHomepage)
 
 // for developer
-// GET view author (admin) page
-router.get('/view', authorAdminController.getViewPage)
 
 // GET add author (admin) page
 router.get('/add', authorAdminController.getAddPage)
