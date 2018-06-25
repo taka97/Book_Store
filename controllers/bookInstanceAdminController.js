@@ -25,10 +25,21 @@ exports.getHomepage = function (req, res, next) {
 // for developer
 // GET view bookInstance (admin) page
 exports.getViewPage = function (req, res, next) {
-  // Successful, so render.
-  res.render('account/bookInstanceView', {
-    layout: 'layoutAdmin',
-    title: 'Xem thông tin sách'
+  async.parallel({
+    bookinstanceDetail: (callback) => {
+      BookInstance.findById(req.params.id)
+        .populate({path: 'book', populate: {path: 'author publisher genre'}})
+        .exec(callback)
+    }
+  }, (err, results) => {
+    if (err) { return next(err) }
+    // Successful, so render.
+    res.render('account/bookInstanceView', {
+      layout: 'layoutAdmin',
+      title: 'Xem thông tin sách',
+      bookinstance: results.bookinstanceDetail
+    })
+    console.log('bookinstance: ' + results.bookinstanceDetail)
   })
 }
 

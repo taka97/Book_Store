@@ -8,7 +8,7 @@ router.get('/', bookInstanceAdminController.getHomepage)
 
 // for developer
 // GET view genre (admin) page
-router.get('/view', bookInstanceAdminController.getViewPage)
+router.get('/view/:id', bookInstanceAdminController.getViewPage)
 
 // GET add genre (admin) page
 router.get('/add', bookInstanceAdminController.getAddPage)
