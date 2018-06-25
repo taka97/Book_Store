@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
 
 var Schema = mongoose.Schema
 
-var BookInstantSchema = new Schema(
+var BookInstanceSchema = new Schema(
   {
     book: { type: Schema.ObjectId, ref: 'Book', required: true }, // reference to the associated book
     currentPrice: { type: Number, required: true },
@@ -14,11 +14,11 @@ var BookInstantSchema = new Schema(
   }
 )
 
-BookInstantSchema
+BookInstanceSchema
   .virtual('url')
   .get(function () {
-    return '/bookinstant/' + this._id
+    return '/bookinstance/' + this._id
   })
 
 // Export model
-module.exports = mongoose.model('BookInstant', BookInstantSchema)
+module.exports = mongoose.model('BookInstance', BookInstanceSchema)
