@@ -29,7 +29,7 @@
                                 </li>
                                 <li>
                                     <a href="/collections/romance">Khuyến mãi</a>
-                                </li>                                                              
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -37,17 +37,16 @@
                         <div class="footer_item footer_item__links">
                             <h3>Tài khoản</h3>
                             <ul>
+                                {{#if isLogin}}
                                 <li>
-                                    <a href="/account">Tài khoản</a>
-                                </li>
-                                <li>
-                                    <a href="/account/addresses">Địa chỉ của tôi</a>
-                                </li>
-                                <li>
-                                    <a href="/cart">Giỏ hàng</a>
+                                    <a href="/user/profile">Tài khoản</a>
                                 </li>
                                 <li>
                                     <a href="/pages/wishlist">Yêu thích</a>
+                                </li>
+                                {{/if}}
+                                <li>
+                                    <a href="/cart">Giỏ hàng</a>
                                 </li>
                             </ul>
                         </div>

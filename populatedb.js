@@ -5,6 +5,7 @@ const Author = require('./models/author')
 const Genre = require('./models/genre')
 const Publisher = require('./models/publisher')
 const Account = require('./models/account')
+const BookInstance = require('./model/bookInstant')
 
 console.log('Imported models')
 console.log('Connecting db......')
@@ -20,6 +21,7 @@ console.log('Gerenating data......')
 var authors = []
 var genres = []
 var books = []
+var bookInstants = []
 var publishers = []
 var accounts = []
 
@@ -63,6 +65,48 @@ function authorCreate (name, birthDay, gender, nationality, cb) {
   })
 }
 
+function bookCreate (title, author, publisher, publishDate, price, genre, imageCover, cb) {
+  var book = new Book({
+    title: title,
+    author: author,
+    publisher: publisher,
+    publishDate: publishDate,
+    price: price,
+    genre: genre,
+    imageCover: imageCover
+  })
+  book.save(function (err) {
+    if (err) {
+      cb(err, null)
+      return
+    }
+    // console.log('New Book: ' + book)
+    books.push(book)
+    cb(null, book)
+  })
+}
+
+function bookInstanceCreate (book, currentPrice, currentTotalQuantity, size, coverType, status, cb) {
+  var bookInstant = new BookInstant({
+    book: book,
+    currentPrice: currentPrice,
+    currentTotalQuantity: currentTotalQuantity,
+    size: coverType,
+    coverType: coverType,
+    status: status,
+  })
+  bookInstant.save(function (err) {
+    if (err) {
+      cb(err, null)
+      return
+    }
+    // console.log('New Book: ' + book)
+    bookInstants.push(bookInstant)
+    cb(null, bookInstant)
+  })
+}
+
+
 function genreCreate (name, cb) {
   var genre = new Genre({ name: name })
 
@@ -91,26 +135,6 @@ function publisherCreate (name, cb) {
   })
 }
 
-function bookCreate (title, author, publisher, publishDate, price, genre, imageCover, cb) {
-  var book = new Book({
-    title: title,
-    author: author,
-    publisher: publisher,
-    publishDate: publishDate,
-    price: price,
-    genre: genre,
-    imageCover: imageCover
-  })
-  book.save(function (err) {
-    if (err) {
-      cb(err, null)
-      return
-    }
-    // console.log('New Book: ' + book)
-    books.push(book)
-    cb(null, book)
-  })
-}
 
 function createAcount (cb) {
   async.parallel([
@@ -292,6 +316,104 @@ function createBooks (cb) {
     function (callback) {
       bookCreate('Giáo trình nhập môn trí tuệ nhân tạo', authors[3], publishers[1], '2017/2/20', '70000', genres[1], 'https://vcdn.tikicdn.com/media/bookpreview/8c/a4/643022/files/OEBPS/Images/img091.gif', callback)
     }
+  ],
+    // optional callback
+  cb)
+}
+
+function createBookInstants (cb) {
+  async.parallel([
+    function (callback) {
+      bookInstantCreate(book[0], '40000', 5, [15,21], 'Bìa mềm', 'Còn hàng', callback)
+    },
+    function (callback) {
+      bookInstantCreate(book[1], '44000', 3, [15,21], 'Bìa cứng', 'Còn hàng', callback)
+    },
+    function (callback) {
+      bookInstantCreate(book[2], '35000', 5, [15,21], 'Bìa mềm', 'Còn hàng', callback)
+    },
+    function (callback) {
+      bookInstantCreate(book[4], '31000', 4, [15,20], 'Bìa mềm', 'Hết hàng', callback)
+    },
+    function (callback) {
+      bookInstantCreate(book[5], '40000', 5, [15,21], 'Bìa mềm', 'Còn hàng', callback)
+    },
+    function (callback) {
+      bookInstantCreate(book[6], '55000', 3, [15,21], 'Bìa cứng', 'Còn hàng', callback)
+    },
+    function (callback) {
+      bookInstantCreate(book[7], '50000', 5, [15,21], 'Bìa cứng', 'Còn hàng', callback)
+    },
+    function (callback) {
+      bookInstantCreate(book[8], '45000', 5, [15,19], 'Bìa cứng', 'Hết hàng', callback)
+    },
+    function (callback) {
+      bookInstantCreate(book[9], '45500', 5, [15,20], 'Bìa mềm', 'Còn hàng', callback)
+    },
+    function (callback) {
+      bookInstantCreate(book[10], '24500', 3, [15,21], 'Bìa mềm', 'Còn hàng', callback)
+    },
+    function (callback) {
+      bookInstantCreate(book[11], '20000', 5, [15,21], 'Bìa mềm', 'Còn hàng', callback)
+    },
+    function (callback) {
+      bookInstantCreate(book[12], '42700', 5, [15,21], 'Bìa cứng', 'Hết hàng', callback)
+    },
+    function (callback) {
+      bookInstantCreate(book[13], '86000', 5, [15,21], 'Bìa cứng', 'Còn hàng', callback)
+    },
+    function (callback) {
+      bookInstantCreate(book[14], '55000', 5, [15,21], 'Bìa cứng', 'Còn hàng', callback)
+    },
+    function (callback) {
+      bookInstantCreate(book[15], '34500', 3, [15,21], 'Bìa mềm', 'Còn hàng', callback)
+    },
+    function (callback) {
+      bookInstantCreate(book[16], '41400', 5, [15,20], 'Bìa cứng', 'Hết hàng', callback)
+    },
+    function (callback) {
+      bookInstantCreate(book[17], '40500', 5, [15,21], 'Bìa cứng', 'Còn hàng', callback)
+    },
+    function (callback) {
+      bookInstantCreate(book[18], '76000', 5, [15,21], 'Bìa cứng', 'Hết hàng', callback)
+    },
+    function (callback) {
+      bookInstantCreate(book[19], '40000', 5, [15,21], 'Bìa mềm', 'Còn hàng', callback)
+    },
+  ],
+    // optional callback
+  cb)
+}
+
+function createPublisher (cb) {
+  async.parallel([
+    function (callback) {
+      publisherCreate("Kim Đồng", callback)
+    },
+    function (callback) {
+      publisherCreate("Hội Nhà Văn", callback)
+    },
+    function (callback) {
+      publisherCreate("Thế Giới", callback)
+    },
+    function (callback) {
+      publisherCreate("Tổng Hợp", callback)
+    },
+    function (callback) {
+      publisherCreate("Trẻ", callback)
+    },
+    function (callback) {
+      publisherCreate("Văn Học", callback)
+    },
+    function (callback) {
+      publisherCreate("Dân Trí", callback)
+    },
+    function (callback) {
+      publisherCreate("Khoa học và kỹ thuật", callback)
+    },
+    function (callback) {
+      publisherCreate("Phụ nữ", callback)
+    },
   ],
     // optional callback
   cb)
