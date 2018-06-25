@@ -1,9 +1,23 @@
+const async = require('async')
+const Publisher = require('../models/publisher')
+
 // GET publisher (admin) homepage
 exports.getHomepage = function (req, res, next) {
-  // Successful, so render.
-  res.render('account/publisherHomepage', {
-    layout: 'layoutAdmin',
-    title: 'Quản lý nhà xuất bản'
+  async.parallel({
+    listPublishers: (callback) => {
+      Publisher.find()
+        .exec(callback)
+    }
+  }, (err, results) => {
+    if (err) { return next(err) }
+    // Successful, so render.
+    res.render('account/publisherHomepage', {
+      layout: 'layoutAdmin',
+      title: 'Quản lý nhà xuất bản',
+      listPublishers: results.listPublishers
+    })
+
+    console.log('List Publisher: ' + results.listPublishers)
   })
 }
 
