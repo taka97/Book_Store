@@ -41,6 +41,7 @@ exports.getEditPage = function (req, res, next) {
   }, (err, results) => {
     if (err) { return next(err) }
     // Successful, so render.
+    console.log(results.authorDetail)
     res.render('account/authorEdit', {
       layout: 'layoutAdmin',
       title: 'Chỉnh sửa tác giả',
@@ -54,6 +55,10 @@ exports.getEditPage = function (req, res, next) {
 // GET delete author (admin) page
 exports.getDeletePage = function (req, res, next) {
   async.parallel({
+    authorDetail: (callback) => {
+      Author.findById(req.params.id)
+        .exec(callback)
+    },
     listBooksAuthor: (callback) => {
       Book.find({ author: req.params.id })
         .exec(callback)
@@ -64,9 +69,12 @@ exports.getDeletePage = function (req, res, next) {
     res.render('account/authorDelete', {
       layout: 'layoutAdmin',
       title: 'Xóa tác giả',
-      listBooksAuthor: results.listBooksAuthor
+      listBooksAuthor: results.listBooksAuthor,
+      author: results.authorDetail,
+      length: result.listBooksAuthor.length
     })
 
     console.log('listBooksAuthor:' + results.listBooksAuthor)
+    console.log('listBooksAuthor:' + results.length)
   })
 }
