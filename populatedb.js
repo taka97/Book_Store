@@ -45,7 +45,7 @@ function accountCreate (email, password, avatarPath, name, birthDate, gender, ad
       return
     }
 
-    console.log('New Account: ' + account)
+    // console.log('New Account: ' + account)
     accounts.push(account)
     cb(null, account)
   })
@@ -59,7 +59,7 @@ function authorCreate (name, birthDay, gender, nationality, cb) {
       cb(err, null)
       return
     }
-    console.log('New Author: ' + author)
+    // console.log('New Author: ' + author)
     authors.push(author)
     cb(null, author)
   })
@@ -80,7 +80,7 @@ function bookCreate (title, author, publisher, publishDate, price, genre, descri
       cb(err, null)
       return
     }
-    console.log('New Book: ' + book)
+    // console.log('New Book: ' + book)
     books.push(book)
     cb(null, book)
   })
@@ -101,7 +101,7 @@ function bookInstanceCreate (book, currentPrice, currentTotalQuantity, size, cov
       cb(err, null)
       return
     }
-    console.log('New Book: ' + book)
+    // console.log('New Book: ' + book)
     bookInstants.push(bookInstant)
     cb(null, bookInstant)
   })
@@ -116,7 +116,7 @@ function genreCreate (name, cb) {
       cb(err, null)
       return
     }
-    console.log('New Genre: ' + genre)
+    // console.log('New Genre: ' + genre)
     genres.push(genre)
     cb(null, genre)
   })
@@ -130,7 +130,7 @@ function publisherCreate (name, cb) {
       cb(err, null)
       return
     }
-    console.log('New publisher: ' + publisher)
+    // console.log('New publisher: ' + publisher)
     publishers.push(publisher)
     cb(null, publisher)
   })
@@ -421,11 +421,11 @@ function createPublisher (cb) {
 
 async.series([
   // createAcount,
-  // console.log('a'),
+  // // console.log('a'),
   createGenreAuthors,
-  // console.log('a'),
+  // // console.log('a'),
   createBooks
-  // console.log('a')
+  // // console.log('a')
 ],
   // Optional callback
 function (err, results) {
