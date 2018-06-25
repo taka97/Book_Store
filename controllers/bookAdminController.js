@@ -1,9 +1,22 @@
+const async = require('async')
+const Book = require('../models/book')
+
 // GET book (admin) homepage
 exports.getHomepage = function (req, res, next) {
-  // Successful, so render.
-  res.render('account/bookHomepage', {
-    layout: 'layoutAdmin',
-    title: 'Quản lý sách'
+  async.parallel({
+    listBooks: (callback) => {
+      Book.find()
+        .exec(callback)
+    }
+  }, (err, results) => {
+    if (err) { return next(err) }
+    // Successful, so render.
+    res.render('account/bookHomepage', {
+      layout: 'layoutAdmin',
+      title: 'Quản lý sách',
+      listBooks: results.listBooks
+    })
+    console.log('listBooks: ' + results.listBooks)
   })
 }
 
