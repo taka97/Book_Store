@@ -17,7 +17,7 @@ exports.getHomepage = function (req, res, next) {
       title: 'Quản lý tác giả',
       listAuthors: results.listAuthors
     })
-    console.log('listAuthor:' + results.listAuthors)
+    console.log('listAuthors:' + results.listAuthors)
   })
 }
 
@@ -47,7 +47,7 @@ exports.getEditPage = function (req, res, next) {
       author: results.authorDetail
     })
 
-    console.log('Author Detail: ' + results.authorDetail)
+    console.log('author: ' + results.authorDetail)
   })
 }
 
@@ -67,6 +67,6 @@ exports.getDeletePage = function (req, res, next) {
       listBooksAuthor: results.listBooksAuthor
     })
 
-    console.log('List Books of Author:' + results.listBooksAuthor)
+    console.log('listBooksAuthor:' + results.listBooksAuthor)
   })
 }
