@@ -7,16 +7,7 @@ exports.getHomepage = function (req, res, next) {
   })
 }
 
-// for developer
-// GET view genre (admin) page
-exports.getViewPage = function (req, res, next) {
-  // Successful, so render.
-  res.render('account/genreView', {
-    layout: 'layoutAdmin',
-    title: 'Xem thông tin thể loại'
-  })
-}
-
+// for develop
 // GET add genre (admin) page
 exports.getAddPage = function (req, res, next) {
   // Successful, so render.

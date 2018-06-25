@@ -6,9 +6,7 @@ const genreAdminController = require('../controllers/genreAdminController')
 /* GET admin/genre homepage. */
 router.get('/', genreAdminController.getHomepage)
 
-// for developer
-// GET view genre (admin) page
-router.get('/view', genreAdminController.getViewPage)
+// for develop
 
 // GET add genre (admin) page
 router.get('/add', genreAdminController.getAddPage)
