@@ -6,10 +6,7 @@ const publisherAdminController = require('../controllers/publisherAdminControlle
 /* GET admin/publisher homepage. */
 router.get('/', publisherAdminController.getHomepage)
 
-// for developer
-// GET view publisher (admin) page
-router.get('/view', publisherAdminController.getViewPage)
-
+// for develop
 // GET add publisher (admin) page
 router.get('/add', publisherAdminController.getAddPage)
 

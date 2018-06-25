@@ -7,16 +7,7 @@ exports.getHomepage = function (req, res, next) {
   })
 }
 
-// for developer
-// GET view publisher (admin) page
-exports.getViewPage = function (req, res, next) {
-  // Successful, so render.
-  res.render('account/publisherView', {
-    layout: 'layoutAdmin',
-    title: 'Xem thông tin sách'
-  })
-}
-
+// for develop
 // GET add publisher (admin) page
 exports.getAddPage = function (req, res, next) {
   // Successful, so render.
