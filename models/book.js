@@ -10,7 +10,6 @@ var BookSchema = new Schema(
     publishDate: { type: Date, required: true },
     price: { type: Number, required: true },
     genre: { type: Schema.Types.ObjectId, ref: 'Genre', required: true },
-    imageCover: { type: String, required: true },
     description: { type: String, required: true }
   }
 )
