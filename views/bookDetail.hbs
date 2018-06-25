@@ -42,33 +42,28 @@
                             <div class="details_separator"></div>
                             <div class="details_wrapper">
                                 <div class="details_left">
-                                    <p class="single_product__weight">
+                                    <p class="single_product__author">
                                         <b>Tác giả:</b>
-                                        <span id="single_product__weight-template-product">{{ author.name }}</span>
-                                    </p>
-                                    <p class="single_product__sku">
-                                        <b>SKU:</b>
-                                        <span id="single_product__sku-template-product">{{SKU}}</span>
-                                    </p>
-                                    <p class="single_product__barcode">
-                                        <b>Mã vạch:</b>
-                                        <span id="single_product__barcode-template-product">{{barcode}}</span>
+                                        <span id="single_product__author-template-product">{{ author.name }}</span>
                                     </p>
                                     <p class="single_product__collections">
                                         <b>Thể loại:</b>
                                         <a href="{{ genre.url }}">{{ genre.name }}</a>,
                                     </p>
+                                    <p class="single_product__size">
+                                        <b>kích thước</b>
+                                        <span>{{ publishDate }}</span>
+                                    </p>
                                     <p class="single_product__type">
-                                        <b>Product type:</b>
+                                        <b>Kiểu bìa:</b>
                                         <span>
-                                            -
                                         </span>
                                     </p>
                                     <p class="single_product__vendor">
                                         <b>Nhà xuất bản:</b>
                                         <span>{{ publisher.name }}</span>
                                     </p>
-                                    <p class="single_product__tags">
+                                    <p class="single_product__date">
                                         <b>Ngày xuất bản</b>
                                         <span>{{ publishDate }}</span>
                                     </p>
