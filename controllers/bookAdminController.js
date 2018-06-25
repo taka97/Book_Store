@@ -7,16 +7,7 @@ exports.getHomepage = function (req, res, next) {
   })
 }
 
-// for developer
-// GET view book (admin) page
-exports.getViewPage = function (req, res, next) {
-  // Successful, so render.
-  res.render('account/bookView', {
-    layout: 'layoutAdmin',
-    title: 'Xem thông tin sách'
-  })
-}
-
+// for develop
 // GET add book (admin) page
 exports.getAddPage = function (req, res, next) {
   // Successful, so render.

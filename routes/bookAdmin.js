@@ -6,10 +6,7 @@ const bookAdminController = require('../controllers/bookAdminController')
 /* GET admin/book homepage. */
 router.get('/', bookAdminController.getHomepage)
 
-// for developer
-// GET view book (admin) page
-router.get('/view', bookAdminController.getViewPage)
-
+// for develop
 // GET add book (admin) page
 router.get('/add', bookAdminController.getAddPage)
 
