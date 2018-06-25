@@ -52,19 +52,21 @@
                                 </a>
                                 <ul class="level_2" id="menu_1505916634232">
                                     <li class="container">
+                                        {{#each GenreChucks}}
                                         <div class="megamenu_col__item">
                                             <h3>Collections #1
                                                 <i class="level_2__trigger megamenu_trigger" data-submenu="menu_1505916634232-1"></i>
                                             </h3>
+
                                             <ul class="level_3" id="menu_1505916634232-1">
-                                                {{#each listGenres}}
+                                                {{#each this}}
                                                 <li class="level_3__item">
                                                     <a class="level_3__link" href={{url}}>{{name}}</a>
                                                 </li>
                                                 {{/each}}
                                             </ul>
                                         </div>
-
+                                        {{/each}}
 
                                         <div class="megamenu_col__item megamenu_banner">
                                             <div class="img_placeholder__wrap img_placeholder__" style="background-image: url( //cdn.shopify.com/s/files/1/2323/3807/files/menu-banner_03_569x200_crop_center.jpg?v=1505980834 );"></div>
