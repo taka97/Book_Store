@@ -9,7 +9,7 @@ var BookInstanceSchema = new Schema(
     currentTotalQuantity: { type: Number, required: true },
     size: { type: [Number, Number] },
     coverType: { type: String, required: true },
-    imageCover: { type: [String, String], required: true },
+    imageCover: { type: [String], required: true },
     status: { type: String, enum: ['Còn hàng', 'Hết hàng'], required: true }
   }
 )
