@@ -32,10 +32,20 @@ exports.getAddPage = function (req, res, next) {
 
 // GET edit book (admin) page
 exports.getEditPage = function (req, res, next) {
-  // Successful, so render.
-  res.render('account/bookEdit', {
-    layout: 'layoutAdmin',
-    title: 'Chỉnh sửa sách'
+  async.parallel({
+    bookDetail: (callback) => {
+      Book.findById(req.params.id)
+        .exec(callback)
+    }
+  }, (err, results) => {
+    if (err) { return next(err) }
+    // Successful, so render.
+    res.render('account/bookEdit', {
+      layout: 'layoutAdmin',
+      title: 'Chỉnh sửa sách',
+      book: results.bookDetail
+    })
+    console.log('book: ' + results.bookDetail)
   })
 }
 

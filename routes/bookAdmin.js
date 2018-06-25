@@ -11,7 +11,7 @@ router.get('/', bookAdminController.getHomepage)
 router.get('/add', bookAdminController.getAddPage)
 
 // GET edit book (admin) page
-router.get('/edit', bookAdminController.getEditPage)
+router.get('/edit/:id', bookAdminController.getEditPage)
 
 // GET delete book (admin) page
 router.get('/delete', bookAdminController.getDeletePage)
