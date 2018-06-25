@@ -14,6 +14,6 @@ router.get('/add', bookAdminController.getAddPage)
 router.get('/edit/:id', bookAdminController.getEditPage)
 
 // GET delete book (admin) page
-router.get('/delete', bookAdminController.getDeletePage)
+router.get('/delete/:id', bookAdminController.getDeletePage)
 
 module.exports = router

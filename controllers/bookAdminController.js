@@ -1,5 +1,6 @@
 const async = require('async')
 const Book = require('../models/book')
+const BookInstance = require('../models/bookInstant')
 
 // GET book (admin) homepage
 exports.getHomepage = function (req, res, next) {
@@ -51,9 +52,19 @@ exports.getEditPage = function (req, res, next) {
 
 // GET delete book (admin) page
 exports.getDeletePage = function (req, res, next) {
-  // Successful, so render.
-  res.render('account/bookDelete', {
-    layout: 'layoutAdmin',
-    title: 'Xóa sách'
+  async.parallel({
+    listBookInstance: (callback) => {
+      BookInstance.find({ book: req.params.id })
+        .exec(callback)
+    }
+  }, (err, results) => {
+    if (err) { return next(err) }
+    // Successful, so render.
+    res.render('account/bookDelete', {
+      layout: 'layoutAdmin',
+      title: 'Xóa sách',
+      listBookInstance: results.listBookInstance
+    })
+    console.log('listBookInstance: ' + results.listBookInstance)
   })
 }
