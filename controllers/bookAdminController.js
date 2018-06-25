@@ -1,6 +1,6 @@
 const async = require('async')
 const Book = require('../models/book')
-const BookInstance = require('../models/bookInstant')
+const BookInstance = require('../models/bookInstance')
 
 // GET book (admin) homepage
 exports.getHomepage = function (req, res, next) {
