@@ -7,14 +7,14 @@ const bookInstanceAdminController = require('../controllers/bookInstanceAdminCon
 router.get('/', bookInstanceAdminController.getHomepage)
 
 // for developer
-// GET view genre (admin) page
-router.get('/view/:id', bookInstanceAdminController.getViewPage)
-
 // GET add genre (admin) page
 router.get('/add', bookInstanceAdminController.getAddPage)
 
+// GET view genre (admin) page
+router.get('/view/:id', bookInstanceAdminController.getViewPage)
+
 // GET edit genre (admin) page
-router.get('/edit', bookInstanceAdminController.getEditPage)
+router.get('/edit/:id', bookInstanceAdminController.getEditPage)
 
 // GET delete genre (admin) page
 router.get('/delete', bookInstanceAdminController.getDeletePage)

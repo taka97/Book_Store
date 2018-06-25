@@ -15,7 +15,7 @@ exports.getHomepage = function (req, res, next) {
     // Successful, so render.
     res.render('account/bookInstanceHomepage', {
       layout: 'layoutAdmin',
-      title: 'Quản lý sách',
+      title: 'Quản lý sản phẩm',
       listBooks: results.listBooks
     })
     console.log('listBooks: ' + results.listBooks)
@@ -28,7 +28,7 @@ exports.getViewPage = function (req, res, next) {
   async.parallel({
     bookinstanceDetail: (callback) => {
       BookInstance.findById(req.params.id)
-        .populate({path: 'book', populate: {path: 'author publisher genre'}})
+        .populate({ path: 'book', populate: { path: 'author publisher genre' } })
         .exec(callback)
     }
   }, (err, results) => {
@@ -36,7 +36,7 @@ exports.getViewPage = function (req, res, next) {
     // Successful, so render.
     res.render('account/bookInstanceView', {
       layout: 'layoutAdmin',
-      title: 'Xem thông tin sách',
+      title: 'Xem thông tin sản phẩm',
       bookinstance: results.bookinstanceDetail
     })
     console.log('bookinstance: ' + results.bookinstanceDetail)
@@ -48,16 +48,27 @@ exports.getAddPage = function (req, res, next) {
   // Successful, so render.
   res.render('account/bookInstanceAdd', {
     layout: 'layoutAdmin',
-    title: 'Thêm sách'
+    title: 'Thêm sản phẩm'
   })
 }
 
 // GET edit bookInstance (admin) page
 exports.getEditPage = function (req, res, next) {
-  // Successful, so render.
-  res.render('account/bookInstanceEdit', {
-    layout: 'layoutAdmin',
-    title: 'Chỉnh sửa sách'
+  async.parallel({
+    bookinstanceDetail: (callback) => {
+      BookInstance.findById(req.params.id)
+        .populate({ path: 'book', populate: { path: 'author publisher genre' } })
+        .exec(callback)
+    }
+  }, (err, results) => {
+    if (err) { return next(err) }
+    // Successful, so render.
+    res.render('account/bookInstanceEdit', {
+      layout: 'layoutAdmin',
+      title: 'Chỉnh sửa sản phẩm',
+      bookinstance: results.bookinstanceDetail
+    })
+    console.log('bookinstance: ' + results.bookinstanceDetail)
   })
 }
 
@@ -66,6 +77,6 @@ exports.getDeletePage = function (req, res, next) {
   // Successful, so render.
   res.render('account/bookInstanceDelete', {
     layout: 'layoutAdmin',
-    title: 'Xóa sách'
+    title: 'Xóa sản phẩm'
   })
 }
