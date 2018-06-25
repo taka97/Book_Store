@@ -12,8 +12,10 @@ exports.getViewProfile = function (req, res, next) {
   // Successful, so render.
   res.render('account/viewProfile', {
     layout: 'layoutUser',
-    title: 'Hồ sơ cá nhân'
+    title: 'Hồ sơ cá nhân',
+    user: req.user
   })
+  console.log(req.user)
 }
 
 // GET change profile page
