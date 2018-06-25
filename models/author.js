@@ -14,7 +14,7 @@ var AuthorSchema = new Schema(
 AuthorSchema
   .virtual('url')
   .get(function () {
-    return '/author/edit/:id'
+    return '/author/' + this._id
   })
 
 // Export model
