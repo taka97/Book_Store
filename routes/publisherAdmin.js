@@ -11,7 +11,7 @@ router.get('/', publisherAdminController.getHomepage)
 router.get('/add', publisherAdminController.getAddPage)
 
 // GET edit publisher (admin) page
-router.get('/edit', publisherAdminController.getEditPage)
+router.get('/edit/:id', publisherAdminController.getEditPage)
 
 // GET delete publisher (admin) page
 router.get('/delete', publisherAdminController.getDeletePage)

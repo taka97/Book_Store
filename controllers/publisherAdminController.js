@@ -17,7 +17,7 @@ exports.getHomepage = function (req, res, next) {
       listPublishers: results.listPublishers
     })
 
-    console.log('List Publisher: ' + results.listPublishers)
+    console.log('listPublishers: ' + results.listPublishers)
   })
 }
 
@@ -27,16 +27,27 @@ exports.getAddPage = function (req, res, next) {
   // Successful, so render.
   res.render('account/publisherAdd', {
     layout: 'layoutAdmin',
-    title: 'Thêm sách'
+    title: 'Thêm nhà xuất bản'
   })
 }
 
 // GET edit publisher (admin) page
 exports.getEditPage = function (req, res, next) {
-  // Successful, so render.
-  res.render('account/publisherEdit', {
-    layout: 'layoutAdmin',
-    title: 'Chỉnh sửa sách'
+  async.parallel({
+    publisherDetail: (callback) => {
+      Publisher.findById(req.params.id)
+        .exec(callback)
+    }
+  }, (err, results) => {
+    if (err) { return next(err) }
+    // Successful, so render.
+    res.render('account/publisherEdit', {
+      layout: 'layoutAdmin',
+      title: 'Chỉnh sửa nhà xuất bản',
+      publisher: results.publisherDetail
+    })
+
+    console.log('publisher:' + results.publisherDetail)
   })
 }
 
