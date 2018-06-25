@@ -6051,6 +6051,11 @@ h1,h2,h3,h4,h5,h6,p {
     top: -3px;
   }
   
+  .currency {
+    font-size:18px;
+    line-height: 22px;
+  }
+
   .currency_selector {
     display: inline-block;
     margin-left: 16px;

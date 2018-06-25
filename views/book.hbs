@@ -46,8 +46,7 @@
             <div class="product_item">
               <div class="product_img">
                 <a class="img_change" href="{{ url }}">
-                  <img class="img" src="{{ imageCover }}"
-                    alt="{{ title }}">
+                  <img class="img" src="{{ imageCover }}" alt="{{ title }}">
                   <span class="product_badge new">New!</span>
                   <span class="product_badge sale">–23%</span>
                 </a>
@@ -62,9 +61,10 @@
                 <p class="product_desc product_desc__short"> {{ description }} </p>
                 <p class="product_desc product_desc__long"> {{ description }} </p>
                 <p class="product_price">
-                  <span class="money"> {{ price }} </span>
-                  <span class="money_like">–</span>
-                  <span class="money"> {{ price }} </span>   
+                  <span class="money"> {{ price }}</span>
+                   <span class="currency"> ₫</span>
+                  <span class="money money_sale">{{ price }}</span>
+                  <span class="currency"> ₫</span>
                 </p>
                 <div class="product_links">
                   <form method="post" action="/cart/add-to-cart">
