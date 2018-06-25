@@ -1,9 +1,22 @@
+const async = require('async')
+const Genre = require('../models/genre')
+
 // GET genre (admin) homepage
 exports.getHomepage = function (req, res, next) {
-  // Successful, so render.
-  res.render('account/genreHomepage', {
-    layout: 'layoutAdmin',
-    title: 'Quản lý thể loại'
+  async.parallel({
+    listGenres: (callback) => {
+      Genre.find()
+        .exec(callback)
+    }
+  }, (err, results) => {
+    if (err) { return next(err) }
+    // Successful, so render.
+    res.render('account/genreHomepage', {
+      layout: 'layoutAdmin',
+      title: 'Quản lý thể loại',
+      listGenres: results.listGenres
+    })
+    console.log('listGenres: ' + results.listGenres)
   })
 }
 
