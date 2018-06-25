@@ -12,7 +12,7 @@ exports.getHomepage = function (req, res, next) {
   }, (err, results) => {
     if (err) { return next(err) }
     // Successful, so render.
-    res.render('account/publisherHomepage', {
+    res.render('management/publisherHomepage', {
       layout: 'layoutAdmin',
       title: 'Quản lý nhà xuất bản',
       listPublishers: results.listPublishers
@@ -26,7 +26,7 @@ exports.getHomepage = function (req, res, next) {
 // GET add publisher (admin) page
 exports.getAddPage = function (req, res, next) {
   // Successful, so render.
-  res.render('account/publisherAdd', {
+  res.render('management/publisherAdd', {
     layout: 'layoutAdmin',
     title: 'Thêm nhà xuất bản'
   })
@@ -42,7 +42,7 @@ exports.getEditPage = function (req, res, next) {
   }, (err, results) => {
     if (err) { return next(err) }
     // Successful, so render.
-    res.render('account/publisherEdit', {
+    res.render('management/publisherEdit', {
       layout: 'layoutAdmin',
       title: 'Chỉnh sửa nhà xuất bản',
       publisher: results.publisherDetail
@@ -62,7 +62,7 @@ exports.getDeletePage = function (req, res, next) {
   }, (err, results) => {
     if (err) { return next(err) }
     // Successful, so render.
-    res.render('account/publisherDelete', {
+    res.render('management/publisherDelete', {
       layout: 'layoutAdmin',
       title: 'Xóa sách',
       listBooksAuthor: results.listBooksAuthor

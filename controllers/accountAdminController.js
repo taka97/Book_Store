@@ -1,7 +1,7 @@
 // GET account homepage
 exports.getHomepage = function (req, res, next) {
   // Successful, so render.
-  res.render('account/accountHomepage', {
+  res.render('managenent/accountHomepage', {
     layout: 'layoutAdmin',
     title: 'Quản lý tài khoản'
   })
@@ -11,7 +11,7 @@ exports.getHomepage = function (req, res, next) {
 // GET view account (admin) page
 exports.getViewPage = function (req, res, next) {
   // Successful, so render.
-  res.render('account/accountView', {
+  res.render('managenent/accountView', {
     layout: 'layoutAdmin',
     title: 'Xem thông tin tài khoản'
   })
@@ -20,7 +20,7 @@ exports.getViewPage = function (req, res, next) {
 // GET upgrade account (admin) page
 exports.getUpgradePage = function (req, res, next) {
   // Successful, so render.
-  res.render('account/accountUpgrade', {
+  res.render('managenent/accountUpgrade', {
     layout: 'layoutAdmin',
     title: 'Nâng cấp tài khoản'
   })
@@ -29,7 +29,7 @@ exports.getUpgradePage = function (req, res, next) {
 // GET delete account (admin) page
 exports.getDeletePage = function (req, res, next) {
   // Successful, so render.
-  res.render('account/accountDelete', {
+  res.render('managenent/accountDelete', {
     layout: 'layoutAdmin',
     title: 'Xóa tài khoản'
   })
@@ -38,7 +38,7 @@ exports.getDeletePage = function (req, res, next) {
 // GET block account (admin) page
 exports.getBlockPage = function (req, res, next) {
   // Successful, so render.
-  res.render('account/accountBlock', {
+  res.render('managenent/accountBlock', {
     layout: 'layoutAdmin',
     title: 'Khóa tài khoản'
   })

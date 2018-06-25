@@ -13,7 +13,7 @@ exports.getHomepage = function (req, res, next) {
   }, (err, results) => {
     if (err) { return next(err) }
     // Successful, so render.
-    res.render('account/bookInstanceHomepage', {
+    res.render('management/bookInstanceHomepage', {
       layout: 'layoutAdmin',
       title: 'Quản lý sản phẩm',
       listBooks: results.listBooks
@@ -34,7 +34,7 @@ exports.getViewPage = function (req, res, next) {
   }, (err, results) => {
     if (err) { return next(err) }
     // Successful, so render.
-    res.render('account/bookInstanceView', {
+    res.render('management/bookInstanceView', {
       layout: 'layoutAdmin',
       title: 'Xem thông tin sản phẩm',
       bookinstance: results.bookinstanceDetail
@@ -46,7 +46,7 @@ exports.getViewPage = function (req, res, next) {
 // GET add bookInstance (admin) page
 exports.getAddPage = function (req, res, next) {
   // Successful, so render.
-  res.render('account/bookInstanceAdd', {
+  res.render('management/bookInstanceAdd', {
     layout: 'layoutAdmin',
     title: 'Thêm sản phẩm'
   })
@@ -63,7 +63,7 @@ exports.getEditPage = function (req, res, next) {
   }, (err, results) => {
     if (err) { return next(err) }
     // Successful, so render.
-    res.render('account/bookInstanceEdit', {
+    res.render('management/bookInstanceEdit', {
       layout: 'layoutAdmin',
       title: 'Chỉnh sửa sản phẩm',
       bookinstance: results.bookinstanceDetail
@@ -75,7 +75,7 @@ exports.getEditPage = function (req, res, next) {
 // GET delete bookInstance (admin) page
 exports.getDeletePage = function (req, res, next) {
   // Successful, so render.
-  res.render('account/bookInstanceDelete', {
+  res.render('management/bookInstanceDelete', {
     layout: 'layoutAdmin',
     title: 'Xóa sản phẩm'
   })

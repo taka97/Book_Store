@@ -12,7 +12,7 @@ exports.getHomepage = function (req, res, next) {
   }, (err, results) => {
     if (err) { return next(err) }
     // Successful, so render.
-    res.render('account/authorHomepage', {
+    res.render('management/authorHomepage', {
       layout: 'layoutAdmin',
       title: 'Quản lý tác giả',
       listAuthors: results.listAuthors
@@ -25,7 +25,7 @@ exports.getHomepage = function (req, res, next) {
 // GET add author (admin) page
 exports.getAddPage = function (req, res, next) {
   // Successful, so render.
-  res.render('account/authorAdd', {
+  res.render('management/authorAdd', {
     layout: 'layoutAdmin',
     title: 'Thêm tác giả'
   })
@@ -42,7 +42,7 @@ exports.getEditPage = function (req, res, next) {
     if (err) { return next(err) }
     // Successful, so render.
     console.log(results.authorDetail)
-    res.render('account/authorEdit', {
+    res.render('management/authorEdit', {
       layout: 'layoutAdmin',
       title: 'Chỉnh sửa tác giả',
       author: results.authorDetail
@@ -66,7 +66,7 @@ exports.getDeletePage = function (req, res, next) {
   }, (err, results) => {
     if (err) { return next(err) }
     // Successful, so render.
-    res.render('account/authorDelete', {
+    res.render('management/authorDelete', {
       layout: 'layoutAdmin',
       title: 'Xóa tác giả',
       listBooksAuthor: results.listBooksAuthor,

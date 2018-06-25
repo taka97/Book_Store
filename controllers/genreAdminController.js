@@ -12,7 +12,7 @@ exports.getHomepage = function (req, res, next) {
   }, (err, results) => {
     if (err) { return next(err) }
     // Successful, so render.
-    res.render('account/genreHomepage', {
+    res.render('management/genreHomepage', {
       layout: 'layoutAdmin',
       title: 'Quản lý thể loại',
       listGenres: results.listGenres
@@ -25,7 +25,7 @@ exports.getHomepage = function (req, res, next) {
 // GET add genre (admin) page
 exports.getAddPage = function (req, res, next) {
   // Successful, so render.
-  res.render('account/genreAdd', {
+  res.render('management/genreAdd', {
     layout: 'layoutAdmin',
     title: 'Thêm thể loại'
   })
@@ -41,7 +41,7 @@ exports.getEditPage = function (req, res, next) {
   }, (err, results) => {
     if (err) { return next(err) }
     // Successful, so render.
-    res.render('account/genreEdit', {
+    res.render('management/genreEdit', {
       layout: 'layoutAdmin',
       title: 'Chỉnh sửa thể loại',
       genre: results.genreDetail
@@ -60,7 +60,7 @@ exports.getDeletePage = function (req, res, next) {
   }, (err, results) => {
     if (err) { return next(err) }
     // Successful, so render.
-    res.render('account/genreDelete', {
+    res.render('management/genreDelete', {
       layout: 'layoutAdmin',
       title: 'Xóa thể loại',
       listBooksGenre: results.listBooksGenre
