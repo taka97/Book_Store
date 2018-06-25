@@ -1,15 +1,15 @@
 <div class="main_content ">
     <div class="template_cart">
         <div class="container">
-            <h1 class="page_heading">Your Shopping Cart</h1>
+            <h1 class="page_heading">Giỏ hàng của bạn</h1>
             <form action="/cart" method="post" novalidate="" class="cart">
                 <table class="table table-bordered cart_items">
                     <thead>
                         <tr>
-                            <th class="column_product" colspan="2">Product</th>
-                            <th class="column_price">Price</th>
-                            <th class="column_quantity">Quantity</th>
-                            <th class="column_total">Total</th>
+                            <th class="column_product" colspan="2">Sản phẩm</th>
+                            <th class="column_price">Giá</th>
+                            <th class="column_quantity">Số lượng</th>
+                            <th class="column_total">Tổng</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -24,17 +24,17 @@
                                 <p class="cart_item__name product_name">
                                     <a href="/products/the-complete-sherlock-holmes?variant=50971221451">The Complete Sherlock Holmes</a>
                                 </p>
-                                <p class="cart_item__variant">
+                                <p class="cart_item__size">
                                     <span>
-                                        <b>Size</b>: L</span>
+                                        <b>Kích thước</b>: L</span>
                                 </p>
                                 <div class="cart_item__details">
                                     <p class="item_type">
-                                        <b>Product type:</b> School Books</p>
+                                        <b>Thể loại:</b> School Books</p>
                                     <p class="item_vendor">
-                                        <b>Vendor:</b> Bookstore</p>
+                                        <b>Tác giả:</b> Bookstore</p>
                                     <p class="item_weight">
-                                        <b>Weight:</b> 0.7 kg</p>
+                                        <b>Nhà xuất bản:</b> 0.7 kg</p>
                                 </div>
                                 <a class="btn cart_item__remove" href="/cart/change?line=1&amp;quantity=0">Remove</a>
                             </td>
@@ -50,7 +50,7 @@
                                     <span class="quantity_up">
                                         <i class="fa fa-plus" aria-hidden="true"></i>
                                     </span>
-                                    <button type="submit" name="update" class="btn">Update</button>
+                                    <button type="submit" name="update" class="btn">Cập nhật</button>
                                 </div>
                             </td>
                             <td class="column_total">
@@ -69,12 +69,12 @@
                                     <a href={{url}}>{{tittle}}</a>
                                 </p>
                                 <div class="cart_item__details ">
-                                    <p class="item_type ">
-                                        <b>Product type:</b> New Arrivals</p>
-                                    <p class="item_vendor ">
-                                        <b>Vendor:</b> {{publisher}}</p>
-                                    <p class="item_weight ">
-                                        <b>Weight:</b> 0.0 kg</p>
+                                   <p class="item_type">
+                                        <b>Thể loại:</b> School Books</p>
+                                    <p class="item_vendor">
+                                        <b>Tác giả:</b> Bookstore</p>
+                                    <p class="item_weight">
+                                        <b>Nhà xuất bản:</b> 0.7 kg</p>
                                 </div>
                                 <a class="btn cart_item__remove " href="/cart/change?line=2&amp;quantity=0 ">Remove</a>
                             </td>
@@ -91,7 +91,7 @@
                                     <span class="quantity_up ">
                                         <i class="fa fa-plus " aria-hidden="true "></i>
                                     </span>
-                                    <button type="submit " name="update " class="btn ">Update</button>
+                                    <button type="submit " name="update " class="btn ">Cập nhật</button>
                                 </div>
                             </td>
                             <td class="column_total ">
@@ -103,29 +103,22 @@
                     <tfoot>
                         <tr>
                             <td colspan="5 ">
-                                <p class="cart_total ">Total weight
-                                    <span>4.63 lb</span>
-                                </p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="5 ">
-                                <p class="cart_total ">Total price
+                                <p class="cart_total ">Tổng giá tiền
                                     <span class="money " data-currency-usd="$290.00 ">$290.00</span>
                                 </p>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="5 ">
-                                <label for="cart_note ">Add a note to your order</label>
+                                <label for="cart_note ">Thêm ghi chú cho đơn hàng</label>
                                 <textarea name="note " id="cart_note "></textarea>
                                 <p class="alert alert-warning ">Bookstore process all orders in USD. Shipping &amp; taxes calculated at checkout.</p>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="5 ">
-                                <a class="btn " href="/collections ">Continue shopping</a>
-                                <button type="submit " name="checkout " class="btn btn_alt ">Proceed to checkout</button>
+                                <a class="btn " href="/collections ">Tiếp tục mua hàng</a>
+                                <button type="submit " name="checkout " class="btn btn_alt ">Tiến hành thanh toán</button>
                                 <div class="clearfix "></div>
                             </td>
                         </tr>
