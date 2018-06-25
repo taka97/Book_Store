@@ -37,9 +37,11 @@
                         <div class="footer_item footer_item__links">
                             <h3>Tài khoản</h3>
                             <ul>
+                                {{#if isLogin}}
                                 <li>
-                                    <a href="/account">Tài khoản</a>
+                                    <a href="/user/profile">Tài khoản</a>
                                 </li>
+                                {{/if}}
                                 <li>
                                     <a href="/account/addresses">Địa chỉ của tôi</a>
                                 </li>
