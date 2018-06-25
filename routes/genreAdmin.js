@@ -12,7 +12,7 @@ router.get('/', genreAdminController.getHomepage)
 router.get('/add', genreAdminController.getAddPage)
 
 // GET edit genre (admin) page
-router.get('/edit', genreAdminController.getEditPage)
+router.get('/edit/:id', genreAdminController.getEditPage)
 
 // GET delete genre (admin) page
 router.get('/delete', genreAdminController.getDeletePage)

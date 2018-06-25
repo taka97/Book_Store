@@ -32,10 +32,20 @@ exports.getAddPage = function (req, res, next) {
 
 // GET edit genre (admin) page
 exports.getEditPage = function (req, res, next) {
-  // Successful, so render.
-  res.render('account/genreEdit', {
-    layout: 'layoutAdmin',
-    title: 'Chỉnh sửa thể loại'
+  async.parallel({
+    genreDetail: (callback) => {
+      Genre.findById(req.params.id)
+        .exec(callback)
+    }
+  }, (err, results) => {
+    if (err) { return next(err) }
+    // Successful, so render.
+    res.render('account/genreEdit', {
+      layout: 'layoutAdmin',
+      title: 'Chỉnh sửa thể loại',
+      genre: results.genreDetail
+    })
+    console.log('genre: ' + results.genreDetail)
   })
 }
 
