@@ -31,6 +31,26 @@ exports.getAddPage = function (req, res, next) {
   })
 }
 
+// GET view book (admin) page
+exports.getViewPage = function (req, res, next) {
+  async.parallel({
+    bookDetail: (callback) => {
+      Book.findById(req.params.id)
+        .exec(callback)
+    }
+  }, (err, results) => {
+    if (err) { return next(err) }
+    // Successful, so render.
+    res.render('account/bookView', {
+      layout: 'layoutAdmin',
+      title: 'Xem sách',
+      book: results.bookDetail
+    })
+    console.log('book: ' + results.bookDetail)
+  })
+
+}
+
 // GET edit book (admin) page
 exports.getEditPage = function (req, res, next) {
   async.parallel({

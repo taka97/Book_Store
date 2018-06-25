@@ -10,6 +10,9 @@ router.get('/', bookAdminController.getHomepage)
 // GET add book (admin) page
 router.get('/add', bookAdminController.getAddPage)
 
+// GET view book (admin) page
+router.get('/view/:id', bookAdminController.getViewPage)
+
 // GET edit book (admin) page
 router.get('/edit/:id', bookAdminController.getEditPage)
 
