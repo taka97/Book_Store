@@ -21,7 +21,7 @@ console.log('Gerenating data......')
 var authors = []
 var genres = []
 var books = []
-var bookInstants = []
+var bookInstances = []
 var publishers = []
 var accounts = []
 
@@ -86,8 +86,8 @@ function bookCreate (title, author, publisher, publishDate, price, genre, descri
   })
 }
 
-function bookInstanceCreate (book, currentPrice, currentTotalQuantity, size, coverType,imageCover, status, cb) {
-  var bookInstant = new BookInstant({
+function bookInstanceCreate (book, currentPrice, currentTotalQuantity, size, coverType, imageCover, status, cb) {
+  var bookInstance = new BookInstant({
     book: book,
     currentPrice: currentPrice,
     currentTotalQuantity: currentTotalQuantity,
@@ -96,17 +96,16 @@ function bookInstanceCreate (book, currentPrice, currentTotalQuantity, size, cov
     imageCover: imageCover,
     status: status
   })
-  bookInstant.save(function (err) {
+  bookInstance.save(function (err) {
     if (err) {
       cb(err, null)
       return
     }
-    // console.log('New Book: ' + book)
-    bookInstants.push(bookInstant)
-    cb(null, bookInstant)
+    // console.log('New Book Instance: ' + bookInstance)
+    bookInstances.push(bookInstance)
+    cb(null, bookInstance)
   })
 }
-
 
 function genreCreate (name, cb) {
   var genre = new Genre({ name: name })
@@ -150,7 +149,7 @@ function createAcount (cb) {
   ], cb)
 }
 
-function createGenreAuthors (cb) {
+function createGenreAuthorsPublishers (cb) {
   async.parallel([
     callback => {
       authorCreate('Eiichiro Oda', '1973/06/06', 'Nam', 'English', callback)
@@ -260,10 +259,10 @@ function createGenreAuthors (cb) {
 function createBooks (cb) {
   async.parallel([
     function (callback) {
-      bookCreate('One Piece - Tập 1 (Tái Bản 2015)', authors[0], publishers[0], '2017/5/17', '44000', genres[0],'One Piece (Vua hải tặc) bộ thuộc thể loại truyện tranh Hành động kể về một cậu bé tên Monkey D. Luffy, giong buồm ra khơi trên chuyến hành trình tìm kho báu huyền thoại One Piece và trở thành Vua hải tặc. Để làm được điều này, cậu phải đến được tận cùng của vùng biển nguy hiểm và chết chóc nhất thế giới: Grand Line (Đại Hải Trình). Luffy đội trên đầu chiếc mũ rơm như một nhân chứng lịch sử vì chiếc mũ rơm đó đã từng thuộc về hải tặc hùng mạnh: Hải tặc vương Gol. D. Roger và tứ hoàng Shank "tóc đỏ". Luffy lãnh đạo nhóm hải tặc Mũ Rơm qua East Blue (Biển Đông) và rồi tiến đến Grand Line. Cậu theo dấu chân của vị vua hải tặc quá cố, Gol. D. Roger, chu du từ đảo này sang đảo khác để đến với kho báu vĩ đại.', callback)
+      bookCreate('One Piece - Tập 1 (Tái Bản 2015)', authors[0], publishers[0], '2017/5/17', '44000', genres[0], 'One Piece (Vua hải tặc) bộ thuộc thể loại truyện tranh Hành động kể về một cậu bé tên Monkey D. Luffy, giong buồm ra khơi trên chuyến hành trình tìm kho báu huyền thoại One Piece và trở thành Vua hải tặc. Để làm được điều này, cậu phải đến được tận cùng của vùng biển nguy hiểm và chết chóc nhất thế giới: Grand Line (Đại Hải Trình). Luffy đội trên đầu chiếc mũ rơm như một nhân chứng lịch sử vì chiếc mũ rơm đó đã từng thuộc về hải tặc hùng mạnh: Hải tặc vương Gol. D. Roger và tứ hoàng Shank "tóc đỏ". Luffy lãnh đạo nhóm hải tặc Mũ Rơm qua East Blue (Biển Đông) và rồi tiến đến Grand Line. Cậu theo dấu chân của vị vua hải tặc quá cố, Gol. D. Roger, chu du từ đảo này sang đảo khác để đến với kho báu vĩ đại.', callback)
     },
     function (callback) {
-      bookCreate('Tuổi trẻ đáng giá bao nhiêu?', authors[1], publishers[1], '2017/5/24', '50000', genres[1],'Bạn hối tiếc vì không nắm bắt lấy một cơ hội nào đó, chẳng có ai phải mất ngủ. Bạn trải qua những ngày tháng nhạt nhẽo với công việc bạn căm ghét, người ta chẳng hề bận lòng. Bạn có chết mòn nơi xó tường với những ước mơ dang dở, đó không phải là việc của họ. Suy cho cùng, quyết định là ở bạn. Muốn có điều gì hay không là tùy bạn.Nên hãy làm những điều bạn thích. Hãy đi theo tiếng nói trái tim. Hãy sống theo cách bạn cho là mình nên sống. Vì sau tất cả, chẳng ai quan tâm.', callback)
+      bookCreate('Tuổi trẻ đáng giá bao nhiêu?', authors[1], publishers[1], '2017/5/24', '50000', genres[1], 'Bạn hối tiếc vì không nắm bắt lấy một cơ hội nào đó, chẳng có ai phải mất ngủ. Bạn trải qua những ngày tháng nhạt nhẽo với công việc bạn căm ghét, người ta chẳng hề bận lòng. Bạn có chết mòn nơi xó tường với những ước mơ dang dở, đó không phải là việc của họ. Suy cho cùng, quyết định là ở bạn. Muốn có điều gì hay không là tùy bạn.Nên hãy làm những điều bạn thích. Hãy đi theo tiếng nói trái tim. Hãy sống theo cách bạn cho là mình nên sống. Vì sau tất cả, chẳng ai quan tâm.', callback)
     },
     function (callback) {
       bookCreate('Đời ngắn đừng ngủ dài', authors[2], publishers[2], '2017/5/20', '70000', genres[2], 'Mọi lựa chọn đều giá trị. Mọi bước đi đều quan trọng. Cuộc sống vẫn diễn ra theo cách của nó, không phải theo cách của ta. Hãy kiên nhẫn. Tin tưởng. Hãy giống như người thợ cắt đá, đều đặn từng nhịp, ngày qua ngày. Cuối cùng, một nhát cắt duy nhất sẽ phá vỡ tảng đá và lộ ra viên kim cương. Người tràn đầy nhiệt huyết và tận tâm với việc mình làm không bao giờ bị chối bỏ. Sự thật là thế.', callback)
@@ -272,7 +271,7 @@ function createBooks (cb) {
       bookCreate('Đắc nhân tâm', authors[3], publishers[3], '2017/8/20', '40000', genres[3], 'Hiện nay có một sự hiểu nhầm đã xảy ra. Tuy Đắc Nhân Tâm là tựa sách hầu hết mọi người đều biết đến, vì những danh tiếng và mức độ phổ biến, nhưng một số người lại “ngại” đọc. Lý do vì họ tưởng đây là cuốn sách “dạy làm người” nên có tâm lý e ngại. Có lẽ là do khi giới thiệu về cuốn sách, người ta luôn gắn với miêu tả đây là “nghệ thuật đối nhân xử thế”, “nghệ thuật thu phục lòng người”… Những cụm từ này đã không còn hợp với hiện nay nữa, gây cảm giác xa lạ và không thực tế.', callback)
     },
     function (callback) {
-      bookCreate('Ngày xưa có một con bò', authors[4], publishers[4], '2017/8/20', '52000', genres[2],'Nhiều khi ta nghĩ ta đã làm tốt rồi, học giỏi rồi, xinh đẹp rồi nên cứ dựa vào thành quả đó để ỷ lại, không cố gắng nữa và sa vào bẫy hài lòng với suy nghĩ rằng mình ít nhất đang có cái gì đó: Một học sinh giỏi luôn ỷ lại rằng ta giỏi rồi, không cần cố gắng nữa; một cô giáo từ năm này qua năm khác không chịu thay đổi, cập nhật giáo án của mình vì cho rằng kiến thức trong giáo án đó đã quá chuẩn; cô gái luôn tự hào hớp hồn bạn trai mình ngay từ cái nhìn đầu tiên cứ tự tin rằng mình đủ hoàn hảo để bạn trai yêu mà không bao giờ muốn tự làm mới mình, một nhân viên tự cho rằng ta làm dự án vừa rồi quá thành công và sếp đã thấy được năng lực của ta rồi, ta không cần thể hiện nữa; một nhà văn viết được 1 cuốn sách best-sellers nhưng không chịu đổi mới ngòi bút vì cho rằng ta đã viết hay rồi, cuốn sách của ta được mọi người khen ngợi đó thôi…', callback)
+      bookCreate('Ngày xưa có một con bò', authors[4], publishers[4], '2017/8/20', '52000', genres[2], 'Nhiều khi ta nghĩ ta đã làm tốt rồi, học giỏi rồi, xinh đẹp rồi nên cứ dựa vào thành quả đó để ỷ lại, không cố gắng nữa và sa vào bẫy hài lòng với suy nghĩ rằng mình ít nhất đang có cái gì đó: Một học sinh giỏi luôn ỷ lại rằng ta giỏi rồi, không cần cố gắng nữa; một cô giáo từ năm này qua năm khác không chịu thay đổi, cập nhật giáo án của mình vì cho rằng kiến thức trong giáo án đó đã quá chuẩn; cô gái luôn tự hào hớp hồn bạn trai mình ngay từ cái nhìn đầu tiên cứ tự tin rằng mình đủ hoàn hảo để bạn trai yêu mà không bao giờ muốn tự làm mới mình, một nhân viên tự cho rằng ta làm dự án vừa rồi quá thành công và sếp đã thấy được năng lực của ta rồi, ta không cần thể hiện nữa; một nhà văn viết được 1 cuốn sách best-sellers nhưng không chịu đổi mới ngòi bút vì cho rằng ta đã viết hay rồi, cuốn sách của ta được mọi người khen ngợi đó thôi…', callback)
     },
     function (callback) {
       bookCreate('Cafe cùng Tony', authors[5], publishers[4], '2017/1/20', '52000', genres[5], 'Có đôi khi vào những tháng năm bắt đầu vào đời, giữa vô vàn ngả rẽ và lời khuyên, khi rất nhiều dự định mà thiếu đôi phần định hướng, thì CẢM HỨNG là điều quan trọng để bạn trẻ bắt đầu bước chân đầu tiên trên con đường theo đuổi giấc mơ của mình. Cà Phê Cùng Tony là tập hợp những bài viết của tác giả Tony Buổi Sáng. Đúng như tên gọi, mỗi bài nhẹ nhàng như một tách cà phê, mà bạn trẻ có thể nhận ra một chút gì của chính mình hay bạn bè mình trong đó: Từ chuyện lớn như định vị bản thân giữa bạn bè quốc tế, cho đến chuyện nhỏ như nên chú ý những phép tắc xã giao thông thường.', callback)
@@ -290,10 +289,10 @@ function createBooks (cb) {
       bookCreate('Không gia đình', authors[2], publishers[0], '2017/1/20', '45000', genres[3], 'Không Gia Đình là tiểu thuyết nổi tiếng nhất trong sự nghiệp văn chương của Hector Malot. Hơn một trăm năm nay, tác phẩm giành giải thưởng của Viện Hàn Lâm Văn học Pháp này đã trở thành người bạn thân thiết của thiếu nhi và tất cả những người yêu mến trẻ khắp thế giới. Không Gia Đình kể về chuyện đời Rémi, một cậu bé không cha mẹ, họ hàng thân thích. Sau khi phải rời khỏi vòng tay của người má nuôi, em đã đi theo đoàn xiếc thú của cụ già Vitalis tốt bụng. Kể từ đó, em lưu lạc khắp nơi, ban đầu dưới sự che chở của cụ Vitalis, sau đó thì tự lập và còn lo cả công việc biểu diễn và sinh sống cho cả một gánh hát rong. Đã có lúc em và cả đoàn lang thang cả mấy ngày đói khát rồi còn suýt chết rét. Có bận em bị lụt ngầm chôn trong giếng mỏ hàng tuần. Rồi có lần em còn mắc oan  bị giải ra tòa và phải ở tù. Nhưng cũng có khi em được nuôi nấng đàng hoàng, no ấm. Song dù trong hoàn cảnh nào, Rémi vẫn giữ được sự gan dạ, ngay thẳng, lòng tự trọng, tính thương người, ham lao động chứ không hạ mình hay gian dối. Cuối cùng, sau bao gian nan khổ cực, em đã đoàn tụ được với gia đình của mình. Tác phẩm đã ca ngợi sự lao động bền bỉ, tinh thần tự lập, chịu đựng gian khó, khích lệ tình bạn chân chính. Ca ngợi lòng nhân ái, tình yêu cuộc sống, ý chí vươn lên không ngừng…Không Gia Đình vì thế đã vượt qua biên giới nước Pháp và tồn tại lâu dài với thời gian.', callback)
     },
     function (callback) {
-      bookCreate('5 Centimet trên giây', authors[0], publishers[3], '2017/4/20', '45000', genres[2],'5cm/s không chỉ là vận tốc của những cánh anh đào rơi, mà còn là vận tốc khi chúng ta lặng lẽ bước qua đời nhau, đánh mất bao cảm xúc thiết tha nhất của tình yêu. Bằng giọng văn tinh tế, truyền cảm, 5 centimet trên giây mang đến những khắc họa mới về tâm hồn và khả năng tồn tại của cảm xúc, bắt đầu từ tình yêu trong sáng, ngọt ngào của một cô bé và cậu bé. Ba giai đoạn, ba mảnh ghép, ba ngôi kể chuyện khác nhau nhưng đều xoay quanh nhân vật nam chính, người luôn bị ám ảnh bởi kí ức và những điều đã qua… Khác với những câu chuyện cuốn bạn chạy một mạch, truyện này khó mà đọc nhanh. Ngón tay bạn hẳn sẽ ngừng lại cả trăm lần trên mỗi trang sách. Chỉ vì một cử động rất khẽ, một câu thoại, hay một xúc cảm bất chợt có thể sẽ đánh thức những điều tưởng chừng đã ngủ quên trong tiềm thức, như ngọn đèn vừa được bật sáng trong tâm trí bạn. Và rồi có lúc nó vượt quá giới hạn chịu đựng, bạn quyết định gấp cuốn sách lại chỉ để tận hưởng chút ánh sáng từ ngọn đèn, hay đơn giản là để vết thương trong lòng mình có thời gian tự tìm xoa dịu.',  callback)
+      bookCreate('5 Centimet trên giây', authors[0], publishers[3], '2017/4/20', '45000', genres[2], '5cm/s không chỉ là vận tốc của những cánh anh đào rơi, mà còn là vận tốc khi chúng ta lặng lẽ bước qua đời nhau, đánh mất bao cảm xúc thiết tha nhất của tình yêu. Bằng giọng văn tinh tế, truyền cảm, 5 centimet trên giây mang đến những khắc họa mới về tâm hồn và khả năng tồn tại của cảm xúc, bắt đầu từ tình yêu trong sáng, ngọt ngào của một cô bé và cậu bé. Ba giai đoạn, ba mảnh ghép, ba ngôi kể chuyện khác nhau nhưng đều xoay quanh nhân vật nam chính, người luôn bị ám ảnh bởi kí ức và những điều đã qua… Khác với những câu chuyện cuốn bạn chạy một mạch, truyện này khó mà đọc nhanh. Ngón tay bạn hẳn sẽ ngừng lại cả trăm lần trên mỗi trang sách. Chỉ vì một cử động rất khẽ, một câu thoại, hay một xúc cảm bất chợt có thể sẽ đánh thức những điều tưởng chừng đã ngủ quên trong tiềm thức, như ngọn đèn vừa được bật sáng trong tâm trí bạn. Và rồi có lúc nó vượt quá giới hạn chịu đựng, bạn quyết định gấp cuốn sách lại chỉ để tận hưởng chút ánh sáng từ ngọn đèn, hay đơn giản là để vết thương trong lòng mình có thời gian tự tìm xoa dịu.', callback)
     },
     function (callback) {
-      bookCreate('Điều Kỳ Diệu Của Tiệm Tạp Hóa', authors[3], publishers[2], '2017/2/20', '45000', genres[1], 'Một đêm vội vã lẩn trốn sau phi vụ khoắng đồ nhà người, Atsuya, Shota và Kouhei đã rẽ vào lánh tạm trong một căn nhà hoang bên con dốc vắng người qua lại. Căn nhà có vẻ khi xưa là một tiệm tạp hóa với biển hiệu cũ kỹ bám đầy bồ hóng, khiến người ta khó lòng đọc được trên đó viết gì. Định bụng nghỉ tạm một đêm rồi sáng hôm sau chuồn sớm, cả ba không ngờ chờ đợi cả bọn sẽ là một đêm không ngủ, với bao điều kỳ bí bắt đầu từ một phong thư bất ngờ gửi đến…',  callback)
+      bookCreate('Điều Kỳ Diệu Của Tiệm Tạp Hóa', authors[3], publishers[2], '2017/2/20', '45000', genres[1], 'Một đêm vội vã lẩn trốn sau phi vụ khoắng đồ nhà người, Atsuya, Shota và Kouhei đã rẽ vào lánh tạm trong một căn nhà hoang bên con dốc vắng người qua lại. Căn nhà có vẻ khi xưa là một tiệm tạp hóa với biển hiệu cũ kỹ bám đầy bồ hóng, khiến người ta khó lòng đọc được trên đó viết gì. Định bụng nghỉ tạm một đêm rồi sáng hôm sau chuồn sớm, cả ba không ngờ chờ đợi cả bọn sẽ là một đêm không ngủ, với bao điều kỳ bí bắt đầu từ một phong thư bất ngờ gửi đến…', callback)
     },
     function (callback) {
       bookCreate('Để yên cho bác sĩ "Hiền"', authors[3], publishers[0], '2017/2/20', '45000', genres[1], 'Hắn tuổi GÀ, người bé như con CHUỘT. Suốt ngày hùng hục như TRÂU.Chạy loăng quăng khắp nơi như con NGỰA. Thế mà vẫn bị mắng mỏ như một con CHÓ. Cái loại tưng tửng sống không uốn éo được như RẮN, lủi thủi làm việc. Đồng nghiệp bảo đồ MÈO đội lốt HỔ, tinh tướng nói như RỒNG leo rồi làm culi bán sức. Thế nên mặt hắn lúc nào cũng nhăn như con KHỈ. ', callback)
@@ -324,96 +323,62 @@ function createBooks (cb) {
 function createBookInstants (cb) {
   async.parallel([
     function (callback) {
-      bookInstantCreate(book[0], '17500', 5, [15,21], 'Bìa mềm', ['https://vcdn.tikicdn.com/cache/1200x1200/ts/product/d0/b0/76/b40b0181fc08fa785f784a508952b3ba.jpg', 'https://vcdn.tikicdn.com/media/bookpreview/b2/63/449339/files/OEBPS/Images/img067.gif'], 'Còn hàng', callback)
+      bookInstanceCreate(books[0], '17500', 5, [15, 21], 'Bìa mềm', ['https://vcdn.tikicdn.com/cache/1200x1200/ts/product/d0/b0/76/b40b0181fc08fa785f784a508952b3ba.jpg', 'https://vcdn.tikicdn.com/media/bookpreview/b2/63/449339/files/OEBPS/Images/img067.gif'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstantCreate(book[1], '44000', 3, [15,21], 'Bìa cứng', ['https://vcdn.tikicdn.com/cache/550x550/media/catalog/product/t/u/tuoi-tre-dang-gia-bao-nhieu-u547-d20161012-t113832-888179.u3059.d20170616.t095744.390222.jpg','https://vcdn.tikicdn.com/media/bookpreview/3d/06/551563/files/OEBPS/Images/img896.gif'],'Còn hàng', callback)
+      bookInstanceCreate(books[1], '44000', 3, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/cache/550x550/media/catalog/product/t/u/tuoi-tre-dang-gia-bao-nhieu-u547-d20161012-t113832-888179.u3059.d20170616.t095744.390222.jpg', 'https://vcdn.tikicdn.com/media/bookpreview/3d/06/551563/files/OEBPS/Images/img896.gif'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstantCreate(book[2], '35000', 5, [15,21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/2a/ef/398558/files/OEBPS/Images/img254.gif','https://vcdn.tikicdn.com/media/bookpreview/2a/ef/398558/files/OEBPS/Images/img255.gif'], 'Còn hàng', callback)
+      bookInstanceCreate(books[2], '35000', 5, [15, 21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/2a/ef/398558/files/OEBPS/Images/img254.gif', 'https://vcdn.tikicdn.com/media/bookpreview/2a/ef/398558/files/OEBPS/Images/img255.gif'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstantCreate(book[3], '31000', 4, [15,20], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/9c/c7/480040/files/OEBPS/Images/img592.gif','https://vcdn.tikicdn.com/media/bookpreview/9c/c7/480040/files/OEBPS/Images/img593.gif'],'Hết hàng', callback)
+      bookInstanceCreate(books[3], '31000', 4, [15, 20], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/9c/c7/480040/files/OEBPS/Images/img592.gif', 'https://vcdn.tikicdn.com/media/bookpreview/9c/c7/480040/files/OEBPS/Images/img593.gif'], 'Hết hàng', callback)
     },
     function (callback) {
-      bookInstantCreate(book[4], '40000', 5, [15,21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/ad/e9/567066/files/OEBPS/Images/IMG_20170923_0098.gif','https://vcdn.tikicdn.com/media/bookpreview/ad/e9/567066/files/OEBPS/Images/IMG_20170923_0099.gif'],'Còn hàng', callback)
+      bookInstanceCreate(books[4], '40000', 5, [15, 21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/ad/e9/567066/files/OEBPS/Images/IMG_20170923_0098.gif', 'https://vcdn.tikicdn.com/media/bookpreview/ad/e9/567066/files/OEBPS/Images/IMG_20170923_0099.gif'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstantCreate(book[5], '50000', 5, [15,21], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/b7/ed/810227/files/OEBPS/Images/img281.gif','https://vcdn.tikicdn.com/media/bookpreview/b7/ed/810227/files/OEBPS/Images/img282.gif'], 'Còn hàng', callback)
+      bookInstanceCreate(books[5], '50000', 5, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/b7/ed/810227/files/OEBPS/Images/img281.gif', 'https://vcdn.tikicdn.com/media/bookpreview/b7/ed/810227/files/OEBPS/Images/img282.gif'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstantCreate(book[6], '65000', 5, [15,19], 'Bìa cứng',['https://vcdn.tikicdn.com/cache/550x550/ts/product/00/e2/54/0129da67c6f845afa99f05fcf77e6952.jpg','https://vcdn.tikicdn.com/media/bookpreview/d0/c6/601553/files/OEBPS/Images/img043.gif'], 'Hết hàng', callback)
+      bookInstanceCreate(books[6], '65000', 5, [15, 19], 'Bìa cứng', ['https://vcdn.tikicdn.com/cache/550x550/ts/product/00/e2/54/0129da67c6f845afa99f05fcf77e6952.jpg', 'https://vcdn.tikicdn.com/media/bookpreview/d0/c6/601553/files/OEBPS/Images/img043.gif'], 'Hết hàng', callback)
     },
     function (callback) {
-      bookInstantCreate(book[7], '45500', 5, [15,20], 'Bìa mềm', ['https://vcdn.tikicdn.com/cache/550x550/ts/product/5a/63/29/c805950c434394a8f9df3223af604e40.jpg','https://vcdn.tikicdn.com/media/bookpreview/df/83/1627925/files/OEBPS/Images/img694.gif'],'Còn hàng', callback)
+      bookInstanceCreate(books[7], '45500', 5, [15, 20], 'Bìa mềm', ['https://vcdn.tikicdn.com/cache/550x550/ts/product/5a/63/29/c805950c434394a8f9df3223af604e40.jpg', 'https://vcdn.tikicdn.com/media/bookpreview/df/83/1627925/files/OEBPS/Images/img694.gif'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstantCreate(book[8], '24500', 3, [15,21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/7e/97/413656/files/OEBPS/Images/IMG_20170804_0040.gif','https://vcdn.tikicdn.com/media/bookpreview/7e/97/413656/files/OEBPS/Images/IMG_20170804_0041.gif'], 'Còn hàng', callback)
+      bookInstanceCreate(books[8], '24500', 3, [15, 21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/7e/97/413656/files/OEBPS/Images/IMG_20170804_0040.gif', 'https://vcdn.tikicdn.com/media/bookpreview/7e/97/413656/files/OEBPS/Images/IMG_20170804_0041.gif'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstantCreate(book[9], '20000', 5, [15,21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/34/bb/1074094/files/OEBPS/Images/img348.gif','https://vcdn.tikicdn.com/media/bookpreview/34/bb/1074094/files/OEBPS/Images/img349.gif'], 'Còn hàng', callback)
+      bookInstanceCreate(books[9], '20000', 5, [15, 21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/34/bb/1074094/files/OEBPS/Images/img348.gif', 'https://vcdn.tikicdn.com/media/bookpreview/34/bb/1074094/files/OEBPS/Images/img349.gif'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstantCreate(book[10], '42700', 5, [15,21], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/ff/06/418676/files/OEBPS/Images/img894.gif','https://vcdn.tikicdn.com/media/bookpreview/ff/06/418676/files/OEBPS/Images/img895.gif'], 'Hết hàng', callback)
+      bookInstanceCreate(books[10], '42700', 5, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/ff/06/418676/files/OEBPS/Images/img894.gif', 'https://vcdn.tikicdn.com/media/bookpreview/ff/06/418676/files/OEBPS/Images/img895.gif'], 'Hết hàng', callback)
     },
     function (callback) {
-      bookInstantCreate(book[11], '86000', 5, [15,21], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/f0/d2/532016/files/OEBPS/Images/img019.jpg','https://vcdn.tikicdn.com/media/bookpreview/f0/d2/532016/files/OEBPS/Images/img020.jpg'], 'Còn hàng', callback)
+      bookInstanceCreate(books[11], '86000', 5, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/f0/d2/532016/files/OEBPS/Images/img019.jpg', 'https://vcdn.tikicdn.com/media/bookpreview/f0/d2/532016/files/OEBPS/Images/img020.jpg'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstantCreate(book[12], '55000', 5, [15,21], 'Bìa cứng', ['https://vcdn.tikicdn.com/cache/w1200/ts/product/79/a5/d2/1c8953a4d605bfc15ba1138176c17135.jpg', 'https://vcdn.tikicdn.com/media/bookpreview/2c/15/1715891/files/OEBPS/Images/IMG_20180529_0002.gif'], 'Còn hàng', callback)
+      bookInstanceCreate(books[12], '55000', 5, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/cache/w1200/ts/product/79/a5/d2/1c8953a4d605bfc15ba1138176c17135.jpg', 'https://vcdn.tikicdn.com/media/bookpreview/2c/15/1715891/files/OEBPS/Images/IMG_20180529_0002.gif'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstantCreate(book[13], '34500', 3, [15,21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/04/86/580509/files/OEBPS/Images/IMG_20170803_0001.gif', 'https://vcdn.tikicdn.com/media/bookpreview/04/86/580509/files/OEBPS/Images/IMG_20170803_0002.gif'],'Còn hàng', callback)
+      bookInstanceCreate(books[13], '34500', 3, [15, 21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/04/86/580509/files/OEBPS/Images/IMG_20170803_0001.gif', 'https://vcdn.tikicdn.com/media/bookpreview/04/86/580509/files/OEBPS/Images/IMG_20170803_0002.gif'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstantCreate(book[14], '41400', 5, [15,20], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/70/b5/723372/files/OEBPS/Images/img098.gif', 'https://vcdn.tikicdn.com/media/bookpreview/70/b5/723372/files/OEBPS/Images/img099.gif'], 'Hết hàng', callback)
+      bookInstanceCreate(books[14], '41400', 5, [15, 20], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/70/b5/723372/files/OEBPS/Images/img098.gif', 'https://vcdn.tikicdn.com/media/bookpreview/70/b5/723372/files/OEBPS/Images/img099.gif'], 'Hết hàng', callback)
     },
     function (callback) {
-      bookInstantCreate(book[15], '40500', 5, [15,21], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/82/da/592335/files/OEBPS/Images/img359.gif','https://vcdn.tikicdn.com/media/bookpreview/82/da/592335/files/OEBPS/Images/img360.gif' ],'Còn hàng', callback)
+      bookInstanceCreate(books[15], '40500', 5, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/82/da/592335/files/OEBPS/Images/img359.gif', 'https://vcdn.tikicdn.com/media/bookpreview/82/da/592335/files/OEBPS/Images/img360.gif' ], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstantCreate(book[16], '76000', 5, [15,21], 'Bìa cứng', [ 'https://vcdn.tikicdn.com/media/bookpreview/5e/ec/576266/files/OEBPS/Images/IMG_20171102_0622.gif', 'https://vcdn.tikicdn.com/media/bookpreview/5e/ec/576266/files/OEBPS/Images/IMG_20171102_0623.gif'], 'Hết hàng', callback)
+      bookInstanceCreate(books[16], '76000', 5, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/5e/ec/576266/files/OEBPS/Images/IMG_20171102_0622.gif', 'https://vcdn.tikicdn.com/media/bookpreview/5e/ec/576266/files/OEBPS/Images/IMG_20171102_0623.gif'], 'Hết hàng', callback)
     },
     function (callback) {
-      bookInstantCreate(book[17], '40000', 5, [15,21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/22/5c/722034/files/OEBPS/Images/img024.gif', 'https://vcdn.tikicdn.com/media/bookpreview/22/5c/722034/files/OEBPS/Images/img025.gif'],'Còn hàng', callback)
+      bookInstanceCreate(books[17], '40000', 5, [15, 21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/22/5c/722034/files/OEBPS/Images/img024.gif', 'https://vcdn.tikicdn.com/media/bookpreview/22/5c/722034/files/OEBPS/Images/img025.gif'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstantCreate(book[18], '85500', 5, [15,21], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/8c/a4/643022/files/OEBPS/Images/img091.gif', 'https://vcdn.tikicdn.com/media/bookpreview/8c/a4/643022/files/OEBPS/Images/img092.gif'],'Còn hàng', callback)
-    },
-  ],
-    // optional callback
-  cb)
-}
-
-function createPublisher (cb) {
-  async.parallel([
-    function (callback) {
-      publisherCreate("Kim Đồng", callback)
-    },
-    function (callback) {
-      publisherCreate("Hội Nhà Văn", callback)
-    },
-    function (callback) {
-      publisherCreate("Thế Giới", callback)
-    },
-    function (callback) {
-      publisherCreate("Tổng Hợp", callback)
-    },
-    function (callback) {
-      publisherCreate("Trẻ", callback)
-    },
-    function (callback) {
-      publisherCreate("Văn Học", callback)
-    },
-    function (callback) {
-      publisherCreate("Dân Trí", callback)
-    },
-    function (callback) {
-      publisherCreate("Khoa học và kỹ thuật", callback)
-    },
-    function (callback) {
-      publisherCreate("Phụ nữ", callback)
-    },
+      bookInstanceCreate(books[18], '85500', 5, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/8c/a4/643022/files/OEBPS/Images/img091.gif', 'https://vcdn.tikicdn.com/media/bookpreview/8c/a4/643022/files/OEBPS/Images/img092.gif'], 'Còn hàng', callback)
+    }
   ],
     // optional callback
   cb)
@@ -421,11 +386,9 @@ function createPublisher (cb) {
 
 async.series([
   // createAcount,
-  // // console.log('a'),
-  createGenreAuthors,
-  // // console.log('a'),
-  createBooks
-  // // console.log('a')
+  createGenreAuthorsPublishers,
+  createBooks,
+  createBookInstants
 ],
   // Optional callback
 function (err, results) {
