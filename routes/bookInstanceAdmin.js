@@ -17,6 +17,6 @@ router.get('/view/:id', bookInstanceAdminController.getViewPage)
 router.get('/edit/:id', bookInstanceAdminController.getEditPage)
 
 // GET delete genre (admin) page
-router.get('/delete', bookInstanceAdminController.getDeletePage)
+router.get('/delete/:id', bookInstanceAdminController.getDeletePage)
 
 module.exports = router
