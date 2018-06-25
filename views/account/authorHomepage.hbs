@@ -16,29 +16,29 @@
                 <tr>
                   <th> STT </th>
                   <th> Tên tác giả </th>
-                  <th> Sinh nhật </th>
+                  <th> Ngày sinh </th>
                   <th> Giới tính </th>
                   <th> Quốc tịch </th>
                   <th> Hành động </th>
                 </tr>
               </thead>
+              {{# each listAuthors }}
               <tbody>
                 <tr>
                   <td> 1 </td>
-                  <td> Hồ Văn Hoàng </td>
-                  <td> 06/10/1997 </td>
-                  <td> Nam </td>
-                  <td> Việt Nam </td>
+                  <td> {{name}} </td>
+                  <td> {{birthDate}} </td>
+                  <td> {{gender}} </td>
+                  <td> {{nationality}} </td>
                   <td>
-                    <a href="/author/ho-van-hoang" class="btn btn-primary btn-xs">
-                      <i class="fa fa-folder"></i> Xem </a>
-                    <a href="/author/ho-van-hoang" class="btn btn-info btn-xs">
+                    <a href="/admin/author/edit/{{_id}}" class="btn btn-info btn-xs">
                       <i class="fa fa-pencil"></i> Sửa </a>
-                    <a href="/author/ho-van-hoang" class="btn btn-danger btn-xs">
+                    <a href="/admin/author/delete/{{_id}}" class="btn btn-danger btn-xs">
                       <i class="fa fa-trash-o"></i> Xóa </a>
                   </td>
                 </tr>
               </tbody>
+              {{/each}}
             </table>
           </div>
         </div>

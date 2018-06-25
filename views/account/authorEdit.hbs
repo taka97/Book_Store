@@ -17,27 +17,29 @@
             </div>
         </div>
         <div class="clearfix"></div>
+
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_content">
                         <form class="form-horizontal form-label-left" novalidate="">
                             <span class="section">Thông tin tác giả</span>
+                            {{#author}}
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tên tác giả
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="name" class="form-control col-md-7 col-xs-12" id="name" required="required" type="text" placeholder="both name(s) e.g Jon Doe"
-                                        data-validate-words="2" data-validate-length-range="6">
-                                </div>
+                                    <input name="name" class="form-control col-md-7 col-xs-12" id="name" required="required" type="text" value="{{name}}" data-validate-words="2"
+                                        data-validate-length-range="6">
+                                </div>                                
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">Ngày sinh
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="date" class="optional form-control col-md-7 col-xs-12" id="date" type="date" data-validate-length-range="5,20">
+                                    <input name="date" class="optional form-control col-md-7 col-xs-12" id="date" type="datetime" value="{{birthDate}}" data-validate-length-range="5,20">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -45,15 +47,15 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="genre" class="form-control col-md-7 col-xs-12" id="genre" required="required" type="text" data-validate-linked="email">
+                                    <input name="genre" class="form-control col-md-7 col-xs-12" id="genre" required="required" type="text" value="{{gender}}" data-validate-linked="email">
                                 </div>
-                            </div>                            
+                            </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="national">Quốc tịch
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="national" class="form-control col-md-7 col-xs-12" id="national" required="required" type="text" placeholder="Việt Nam">
+                                    <input name="national" class="form-control col-md-7 col-xs-12" id="national" required="required" type="text" value="{{nationality}}" placeholder="Việt Nam">
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
@@ -63,11 +65,13 @@
                                     <button class="btn btn-success" id="send" type="submit">Submit</button>
                                 </div>
                             </div>
+                            {{/author}}
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 <!-- page content -->
