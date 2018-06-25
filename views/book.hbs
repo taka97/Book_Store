@@ -41,7 +41,7 @@
           theme.productNumber = 6;
         </script>
         <div class="row product_listing__main" id="product_listing__sorted">
-          {{#each listBooks}}
+          {{#if listBooks}} {{#each listBooks}}
           <div class="col-sm-4 max-height-470">
             <div class="product_item">
               <div class="product_img">
@@ -62,7 +62,7 @@
                 <p class="product_desc product_desc__long"> {{ description }} </p>
                 <p class="product_price">
                   <span class="money"> {{ price }}</span>
-                   <span class="currency"> ₫</span>
+                  <span class="currency"> ₫</span>
                   <span class="money money_sale">{{ price }}</span>
                   <span class="currency"> ₫</span>
                 </p>
@@ -79,7 +79,9 @@
               <div class="clearfix"></div>
             </div>
           </div>
-          {{/each}}
+          {{/each}} {{else}}
+          <h2>Không có dữ liệu!</h2>
+          {{/if}}
         </div>
         <div class="pagination">
           <p>1 – 6 product(s) of 10</p>
