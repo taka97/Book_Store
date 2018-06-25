@@ -1,9 +1,22 @@
+const async = require('async')
+const Author = require('../models/author')
+
 // GET author (admin) homepage
 exports.getHomepage = function (req, res, next) {
-  // Successful, so render.
-  res.render('account/authorHomepage', {
-    layout: 'layoutAdmin',
-    title: 'Quản lý tác giả'
+  async.parallel({
+    listAuthors: (callback) => {
+      Author.find()
+        .exec(callback)
+    }
+  }, (err, results) => {
+    if (err) { return next(err) }
+    // Successful, so render.
+    res.render('account/authorHomepage', {
+      layout: 'layoutAdmin',
+      title: 'Quản lý tác giả',
+      listAuthors: results.listAuthors
+    })
+    console.log('listAuthor:' + results.listAuthors)
   })
 }
 
