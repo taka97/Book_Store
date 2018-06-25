@@ -6,15 +6,14 @@ const authorAdminController = require('../controllers/authorAdminController')
 /* GET admin/author homepage. */
 router.get('/', authorAdminController.getHomepage)
 
-// for developer
-
+// for develop
 // GET add author (admin) page
 router.get('/add', authorAdminController.getAddPage)
 
 // GET edit author (admin) page
-router.get('/edit', authorAdminController.getEditPage)
+router.get('/edit/:id', authorAdminController.getEditPage)
 
 // GET delete author (admin) page
-router.get('/delete', authorAdminController.getDeletePage)
+router.get('/delete/:id', authorAdminController.getDeletePage)
 
 module.exports = router
