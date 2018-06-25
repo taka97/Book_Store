@@ -13,7 +13,8 @@ exports.getHomepage = function (req, res, next) {
     // Successful, so render.
     res.render('homepage', {
       layout: 'layoutHomepage',
-      title: 'Nhà sách - Trang chủ'
+      title: 'Nhà sách - Trang chủ',
+      listGenres: results.listGenres
     })
     console.log(results.listGenres)
   })
