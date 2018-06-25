@@ -323,61 +323,61 @@ function createBooks (cb) {
 function createBookInstants (cb) {
   async.parallel([
     function (callback) {
-      bookInstanceCreate(books[0], '17500', 5, [15, 21], 'Bìa mềm', ['https://vcdn.tikicdn.com/cache/1200x1200/ts/product/d0/b0/76/b40b0181fc08fa785f784a508952b3ba.jpg', 'https://vcdn.tikicdn.com/media/bookpreview/b2/63/449339/files/OEBPS/Images/img067.gif'], 'Còn hàng', callback)
+      bookInstanceCreate(books[0], '17500', 5, [15, 21], 'Bìa mềm', ['https://vcdn.tikicdn.com/cache/1200x1200/ts/product/d0/b0/76/b40b0181fc08fa785f784a508952b3ba.jpg', 'https://vcdn.tikicdn.com/media/bookpreview/b2/63/449339/files/OEBPS/Images/img067.gif'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstanceCreate(books[1], '44000', 3, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/cache/550x550/media/catalog/product/t/u/tuoi-tre-dang-gia-bao-nhieu-u547-d20161012-t113832-888179.u3059.d20170616.t095744.390222.jpg', 'https://vcdn.tikicdn.com/media/bookpreview/3d/06/551563/files/OEBPS/Images/img896.gif'], 'Còn hàng', callback)
+      bookInstanceCreate(books[1], '44000', 3, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/cache/550x550/media/catalog/product/t/u/tuoi-tre-dang-gia-bao-nhieu-u547-d20161012-t113832-888179.u3059.d20170616.t095744.390222.jpg', 'https://vcdn.tikicdn.com/media/bookpreview/3d/06/551563/files/OEBPS/Images/img896.gif'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstanceCreate(books[2], '35000', 5, [15, 21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/2a/ef/398558/files/OEBPS/Images/img254.gif', 'https://vcdn.tikicdn.com/media/bookpreview/2a/ef/398558/files/OEBPS/Images/img255.gif'], 'Còn hàng', callback)
+      bookInstanceCreate(books[2], '35000', 5, [15, 21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/2a/ef/398558/files/OEBPS/Images/img254.gif', 'https://vcdn.tikicdn.com/media/bookpreview/2a/ef/398558/files/OEBPS/Images/img255.gif'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstanceCreate(books[3], '31000', 4, [15, 20], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/9c/c7/480040/files/OEBPS/Images/img592.gif', 'https://vcdn.tikicdn.com/media/bookpreview/9c/c7/480040/files/OEBPS/Images/img593.gif'], 'Hết hàng', callback)
+      bookInstanceCreate(books[3], '31000', 4, [15, 20], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/9c/c7/480040/files/OEBPS/Images/img592.gif', 'https://vcdn.tikicdn.com/media/bookpreview/9c/c7/480040/files/OEBPS/Images/img593.gif'], 'Hết hàng', callback)
     },
     function (callback) {
-      bookInstanceCreate(books[4], '40000', 5, [15, 21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/ad/e9/567066/files/OEBPS/Images/IMG_20170923_0098.gif', 'https://vcdn.tikicdn.com/media/bookpreview/ad/e9/567066/files/OEBPS/Images/IMG_20170923_0099.gif'], 'Còn hàng', callback)
+      bookInstanceCreate(books[4], '40000', 5, [15, 21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/ad/e9/567066/files/OEBPS/Images/IMG_20170923_0098.gif', 'https://vcdn.tikicdn.com/media/bookpreview/ad/e9/567066/files/OEBPS/Images/IMG_20170923_0099.gif'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstanceCreate(books[5], '50000', 5, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/b7/ed/810227/files/OEBPS/Images/img281.gif', 'https://vcdn.tikicdn.com/media/bookpreview/b7/ed/810227/files/OEBPS/Images/img282.gif'], 'Còn hàng', callback)
+      bookInstanceCreate(books[5], '50000', 5, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/b7/ed/810227/files/OEBPS/Images/img281.gif', 'https://vcdn.tikicdn.com/media/bookpreview/b7/ed/810227/files/OEBPS/Images/img282.gif'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstanceCreate(books[6], '65000', 5, [15, 19], 'Bìa cứng', ['https://vcdn.tikicdn.com/cache/550x550/ts/product/00/e2/54/0129da67c6f845afa99f05fcf77e6952.jpg', 'https://vcdn.tikicdn.com/media/bookpreview/d0/c6/601553/files/OEBPS/Images/img043.gif'], 'Hết hàng', callback)
+      bookInstanceCreate(books[6], '65000', 5, [15, 19], 'Bìa cứng', ['https://vcdn.tikicdn.com/cache/550x550/ts/product/00/e2/54/0129da67c6f845afa99f05fcf77e6952.jpg', 'https://vcdn.tikicdn.com/media/bookpreview/d0/c6/601553/files/OEBPS/Images/img043.gif'], 'Hết hàng', callback)
     },
     function (callback) {
-      bookInstanceCreate(books[7], '45500', 5, [15, 20], 'Bìa mềm', ['https://vcdn.tikicdn.com/cache/550x550/ts/product/5a/63/29/c805950c434394a8f9df3223af604e40.jpg', 'https://vcdn.tikicdn.com/media/bookpreview/df/83/1627925/files/OEBPS/Images/img694.gif'], 'Còn hàng', callback)
+      bookInstanceCreate(books[7], '45500', 5, [15, 20], 'Bìa mềm', ['https://vcdn.tikicdn.com/cache/550x550/ts/product/5a/63/29/c805950c434394a8f9df3223af604e40.jpg', 'https://vcdn.tikicdn.com/media/bookpreview/df/83/1627925/files/OEBPS/Images/img694.gif'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstanceCreate(books[8], '24500', 3, [15, 21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/7e/97/413656/files/OEBPS/Images/IMG_20170804_0040.gif', 'https://vcdn.tikicdn.com/media/bookpreview/7e/97/413656/files/OEBPS/Images/IMG_20170804_0041.gif'], 'Còn hàng', callback)
+      bookInstanceCreate(books[8], '24500', 3, [15, 21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/7e/97/413656/files/OEBPS/Images/IMG_20170804_0040.gif', 'https://vcdn.tikicdn.com/media/bookpreview/7e/97/413656/files/OEBPS/Images/IMG_20170804_0041.gif'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstanceCreate(books[9], '20000', 5, [15, 21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/34/bb/1074094/files/OEBPS/Images/img348.gif', 'https://vcdn.tikicdn.com/media/bookpreview/34/bb/1074094/files/OEBPS/Images/img349.gif'], 'Còn hàng', callback)
+      bookInstanceCreate(books[9], '20000', 5, [15, 21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/34/bb/1074094/files/OEBPS/Images/img348.gif', 'https://vcdn.tikicdn.com/media/bookpreview/34/bb/1074094/files/OEBPS/Images/img349.gif'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstanceCreate(books[10], '42700', 5, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/ff/06/418676/files/OEBPS/Images/img894.gif', 'https://vcdn.tikicdn.com/media/bookpreview/ff/06/418676/files/OEBPS/Images/img895.gif'], 'Hết hàng', callback)
+      bookInstanceCreate(books[10], '42700', 5, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/ff/06/418676/files/OEBPS/Images/img894.gif', 'https://vcdn.tikicdn.com/media/bookpreview/ff/06/418676/files/OEBPS/Images/img895.gif'], 'Hết hàng', callback)
     },
     function (callback) {
-      bookInstanceCreate(books[11], '86000', 5, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/f0/d2/532016/files/OEBPS/Images/img019.jpg', 'https://vcdn.tikicdn.com/media/bookpreview/f0/d2/532016/files/OEBPS/Images/img020.jpg'], 'Còn hàng', callback)
+      bookInstanceCreate(books[11], '86000', 5, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/f0/d2/532016/files/OEBPS/Images/img019.jpg', 'https://vcdn.tikicdn.com/media/bookpreview/f0/d2/532016/files/OEBPS/Images/img020.jpg'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstanceCreate(books[12], '55000', 5, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/cache/w1200/ts/product/79/a5/d2/1c8953a4d605bfc15ba1138176c17135.jpg', 'https://vcdn.tikicdn.com/media/bookpreview/2c/15/1715891/files/OEBPS/Images/IMG_20180529_0002.gif'], 'Còn hàng', callback)
+      bookInstanceCreate(books[12], '55000', 5, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/cache/w1200/ts/product/79/a5/d2/1c8953a4d605bfc15ba1138176c17135.jpg', 'https://vcdn.tikicdn.com/media/bookpreview/2c/15/1715891/files/OEBPS/Images/IMG_20180529_0002.gif'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstanceCreate(books[13], '34500', 3, [15, 21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/04/86/580509/files/OEBPS/Images/IMG_20170803_0001.gif', 'https://vcdn.tikicdn.com/media/bookpreview/04/86/580509/files/OEBPS/Images/IMG_20170803_0002.gif'], 'Còn hàng', callback)
+      bookInstanceCreate(books[13], '34500', 3, [15, 21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/04/86/580509/files/OEBPS/Images/IMG_20170803_0001.gif', 'https://vcdn.tikicdn.com/media/bookpreview/04/86/580509/files/OEBPS/Images/IMG_20170803_0002.gif'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstanceCreate(books[14], '41400', 5, [15, 20], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/70/b5/723372/files/OEBPS/Images/img098.gif', 'https://vcdn.tikicdn.com/media/bookpreview/70/b5/723372/files/OEBPS/Images/img099.gif'], 'Hết hàng', callback)
+      bookInstanceCreate(books[14], '41400', 5, [15, 20], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/70/b5/723372/files/OEBPS/Images/img098.gif', 'https://vcdn.tikicdn.com/media/bookpreview/70/b5/723372/files/OEBPS/Images/img099.gif'], 'Hết hàng', callback)
     },
     function (callback) {
-      bookInstanceCreate(books[15], '40500', 5, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/82/da/592335/files/OEBPS/Images/img359.gif', 'https://vcdn.tikicdn.com/media/bookpreview/82/da/592335/files/OEBPS/Images/img360.gif'], 'Còn hàng', callback)
+      bookInstanceCreate(books[15], '40500', 5, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/82/da/592335/files/OEBPS/Images/img359.gif', 'https://vcdn.tikicdn.com/media/bookpreview/82/da/592335/files/OEBPS/Images/img360.gif'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstanceCreate(books[16], '76000', 5, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/5e/ec/576266/files/OEBPS/Images/IMG_20171102_0622.gif', 'https://vcdn.tikicdn.com/media/bookpreview/5e/ec/576266/files/OEBPS/Images/IMG_20171102_0623.gif'], 'Hết hàng', callback)
+      bookInstanceCreate(books[16], '76000', 5, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/5e/ec/576266/files/OEBPS/Images/IMG_20171102_0622.gif', 'https://vcdn.tikicdn.com/media/bookpreview/5e/ec/576266/files/OEBPS/Images/IMG_20171102_0623.gif'], 'Hết hàng', callback)
     },
     function (callback) {
-      bookInstanceCreate(books[17], '40000', 5, [15, 21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/22/5c/722034/files/OEBPS/Images/img024.gif', 'https://vcdn.tikicdn.com/media/bookpreview/22/5c/722034/files/OEBPS/Images/img025.gif'], 'Còn hàng', callback)
+      bookInstanceCreate(books[17], '40000', 5, [15, 21], 'Bìa mềm', ['https://vcdn.tikicdn.com/media/bookpreview/22/5c/722034/files/OEBPS/Images/img024.gif', 'https://vcdn.tikicdn.com/media/bookpreview/22/5c/722034/files/OEBPS/Images/img025.gif'], 'Còn hàng', callback)
     },
     function (callback) {
-      bookInstanceCreate(books[18], '85500', 5, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/8c/a4/643022/files/OEBPS/Images/img091.gif', 'https://vcdn.tikicdn.com/media/bookpreview/8c/a4/643022/files/OEBPS/Images/img092.gif'], 'Còn hàng', callback)
+      bookInstanceCreate(books[18], '85500', 5, [15, 21], 'Bìa cứng', ['https://vcdn.tikicdn.com/media/bookpreview/8c/a4/643022/files/OEBPS/Images/img091.gif', 'https://vcdn.tikicdn.com/media/bookpreview/8c/a4/643022/files/OEBPS/Images/img092.gif'], 'Còn hàng', callback)
     }
   ],
     // optional callback
