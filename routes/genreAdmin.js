@@ -15,6 +15,6 @@ router.get('/add', genreAdminController.getAddPage)
 router.get('/edit/:id', genreAdminController.getEditPage)
 
 // GET delete genre (admin) page
-router.get('/delete', genreAdminController.getDeletePage)
+router.get('/delete/:id', genreAdminController.getDeletePage)
 
 module.exports = router

@@ -1,5 +1,6 @@
 const async = require('async')
 const Genre = require('../models/genre')
+const Book = require('../models/book')
 
 // GET genre (admin) homepage
 exports.getHomepage = function (req, res, next) {
@@ -51,9 +52,19 @@ exports.getEditPage = function (req, res, next) {
 
 // GET delete genre (admin) page
 exports.getDeletePage = function (req, res, next) {
-  // Successful, so render.
-  res.render('account/genreDelete', {
-    layout: 'layoutAdmin',
-    title: 'Xóa thể loại'
+  async.parallel({
+    listBooksGenre: (callback) => {
+      Book.find({ genre: req.params.id })
+        .exec(callback)
+    }
+  }, (err, results) => {
+    if (err) { return next(err) }
+    // Successful, so render.
+    res.render('account/genreDelete', {
+      layout: 'layoutAdmin',
+      title: 'Xóa thể loại',
+      listBooksGenre: results.listBooksGenre
+    })
+    console.log('listBooksGenre: ' + results.listBooksGenre)
   })
 }
