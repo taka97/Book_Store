@@ -1,5 +1,6 @@
 const async = require('async')
 const Publisher = require('../models/publisher')
+const Book = require('../models/book')
 
 // GET publisher (admin) homepage
 exports.getHomepage = function (req, res, next) {
@@ -53,9 +54,20 @@ exports.getEditPage = function (req, res, next) {
 
 // GET delete publisher (admin) page
 exports.getDeletePage = function (req, res, next) {
-  // Successful, so render.
-  res.render('account/publisherDelete', {
-    layout: 'layoutAdmin',
-    title: 'Xóa sách'
+  async.parallel({
+    listBooksAuthor: (callback) => {
+      Book.find({ publisher: req.params.id })
+        .exec(callback)
+    }
+  }, (err, results) => {
+    if (err) { return next(err) }
+    // Successful, so render.
+    res.render('account/publisherDelete', {
+      layout: 'layoutAdmin',
+      title: 'Xóa sách',
+      listBooksAuthor: results.listBooksAuthor
+    })
+
+    console.log('listBooksAuthor: ' + results.listBooksAuthor)
   })
 }

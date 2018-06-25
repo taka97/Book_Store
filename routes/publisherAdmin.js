@@ -14,6 +14,6 @@ router.get('/add', publisherAdminController.getAddPage)
 router.get('/edit/:id', publisherAdminController.getEditPage)
 
 // GET delete publisher (admin) page
-router.get('/delete', publisherAdminController.getDeletePage)
+router.get('/delete/:id', publisherAdminController.getDeletePage)
 
 module.exports = router
