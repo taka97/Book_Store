@@ -22,10 +22,10 @@
                   <th> Hành động </th>
                 </tr>
               </thead>
-              {{# each listAuthors }}
               <tbody>
+                {{#each listAuthors }}
                 <tr>
-                  <td> 1 </td>
+                  <td> {{@index}} </td>
                   <td> {{name}} </td>
                   <td> {{birthDate}} </td>
                   <td> {{gender}} </td>
@@ -37,8 +37,8 @@
                       <i class="fa fa-trash-o"></i> Xóa </a>
                   </td>
                 </tr>
+                {{/each}}
               </tbody>
-              {{/each}}
             </table>
           </div>
         </div>
@@ -49,7 +49,8 @@
 <!-- /page content -->
 
 <!-- add button -->
-<a id="add_button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Thêm tác giả" href="/admin/author/add">
+<a id="add_button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Thêm tác giả"
+  href="/admin/author/add">
   <i class="fa fa-plus" aria-hidden="true" style="line-height: inherit;"></i>
 </a>
 <!-- /add content -->
