@@ -19,4 +19,12 @@ router.get('/edit/:id', bookAdminController.getEditPage)
 // GET delete book (admin) page
 router.get('/delete/:id', bookAdminController.getDeletePage)
 
+//POST add book (admin) page
+router.post('/add', bookAdminController.postAdd)
+
+//POST edit book (admin) page
+router.post('/edit/:id', bookAdminController.postEdit)
+
+// POST delete book (admin) page
+router.post('/delete/:id', bookAdminController.postDelete)
 module.exports = router

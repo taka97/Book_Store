@@ -16,7 +16,8 @@ exports.getHomepage = function (req, res, next) {
     res.render('management/bookHomepage', {
       layout: 'layoutAdmin',
       title: 'Quản lý sách',
-      listBooks: results.listBooks
+      listBooks: results.listBooks,
+      csrfToken: req.csrfToken() // send token to client, it is neccessary when send post request
     })
     console.log('listBooks: ' + results.listBooks)
   })
@@ -38,7 +39,8 @@ exports.getAddPage = function (req, res, next) {
   // Successful, so render.
   res.render('management/bookAdd', {
     layout: 'layoutAdmin',
-    title: 'Thêm sách'
+    title: 'Thêm sách',
+    csrfToken: req.csrfToken() // send token to client, it is neccessary when send post request
   })
 }
 
@@ -63,7 +65,8 @@ exports.getViewPage = function (req, res, next) {
       layout: 'layoutAdmin',
       title: 'Xem sách',
       book: results.bookDetail,
-      bookIns: results.listBookInstance
+      bookIns: results.listBookInstance,
+      csrfToken: req.csrfToken() // send token to client, it is neccessary when send post request
     })
     console.log('book: ' + results.bookDetail)
     console.log('bookInstance: ' + results.listBookInstance)
@@ -87,7 +90,8 @@ exports.getEditPage = function (req, res, next) {
     res.render('management/bookEdit', {
       layout: 'layoutAdmin',
       title: 'Chỉnh sửa sách',
-      book: results.bookDetail
+      book: results.bookDetail,
+      csrfToken: req.csrfToken() // send token to client, it is neccessary when send post request
     })
     console.log('book: ' + results.bookDetail)
   })
@@ -109,8 +113,54 @@ exports.getDeletePage = function (req, res, next) {
     res.render('management/bookDelete', {
       layout: 'layoutAdmin',
       title: 'Xóa sách',
-      listBookInstance: results.listBookInstance
+      listBookInstance: results.listBookInstance,
+      csrfToken: req.csrfToken() // send token to client, it is neccessary when send post request
     })
     console.log('listBookInstance: ' + results.listBookInstance)
+  })
+}
+
+// POST add book
+exports.postAdd = function (req, res, next) {
+  var newBook = new Book({
+    title: req.body.name,
+    author: req.body.nameAuthor,
+    publisher: req.body.namePublisher,
+    publishDate: req.body.date,
+    price: req.body.price,
+    genre: req.body.gender,
+    desciption: req.body.desciption
+  })
+  newBook.save(function (err) {
+    if (err) throw err
+    else {
+      res.redirect('/admin/book')
+    }
+  })
+}
+
+// POST edit author
+exports.postEdit = function (req, res, next) {
+  var editAuthor = new Author({
+    _id: req.params.id,
+    name: req.body.name,
+    birthDate: req.body.date,
+    gender: req.body.gender,
+    nationality: req.body.national
+  })
+  Author.findByIdAndUpdate(req.params.id, editAuthor, function (err) {
+    if (err) throw err
+    else {
+      res.redirect('/admin/author')
+    }
+  })
+}
+
+// POST delete author
+exports.postDelete = function(req,res,next){
+  Author.findByIdAndRemove(req.params.id, function(err){
+    if(err) throw err;
+    else
+        res.redirect('/admin/author');
   })
 }
