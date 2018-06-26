@@ -1,9 +1,9 @@
 const async = require('async')
-const Book = require('../models/book')
 const Author = require('../models/author')
 const Genre = require('../models/genre')
 const Publisher = require('../models/publisher')
 const BookInstance = require('../models/bookInstance')
+require('../models/book')
 
 // Get list all book in database
 exports.listBooks = function (req, res, next) {
@@ -36,18 +36,15 @@ exports.listBooks = function (req, res, next) {
       listPublishers: results.listPublishers,
       listBookInstances: results.listBookInstances
     })
-
-    console.log(results.listBookInstances)
+    // console.log(results.listBookInstances)
   })
 }
 
 exports.bookDetail = function (req, res, next) {
   async.parallel({
-    bookDetail: (callback) => {
-      Book.findById(req.params.id)
-        .populate('author')
-        .populate('genre')
-        .populate('publisher')
+    BookInstance: (callback) => {
+      BookInstance.findById(req.params.id)
+        .populate({path: 'book', populate: {path: 'author publisher genre'}})
         .exec(callback)
     }
   }, (err, results) => {
@@ -56,8 +53,8 @@ exports.bookDetail = function (req, res, next) {
     res.render('bookDetail', {
       layout: 'layoutHomepage',
       title: 'Book Detail',
-      bookDetail: results.bookDetail
+      bookDetail: results.BookInstance
     })
-    // console.log(results.bookDetail)
+    console.log(results.BookInstance)
   })
 }

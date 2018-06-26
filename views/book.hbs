@@ -46,7 +46,7 @@
           <div class="col-sm-4 max-height-470">
             <div class="product_item">
               <div class="product_img">
-                <a class="img_change" href="{{ book.url }}">
+                <a class="img_change" href="{{ url }}">
                   <img class="img" src="{{ imageCover.[0] }}" alt="{{ book.title }}">
                   {{!-- <span class="product_badge new">New!</span> --}}
                   {{!-- <span class="product_badge sale">–23%</span> --}}
@@ -57,7 +57,7 @@
               </div>
               <div class="product_info">
                 <p class="product_name">
-                  <a href="{{ book.url }}"> {{ book.title }} </a>
+                  <a href="{{ url }}"> {{ book.title }} </a>
                 </p>
                 <p class="product_desc product_desc__long"> {{ book.description }} </p>
                 <p class="product_price">

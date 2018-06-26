@@ -11,24 +11,20 @@
                 <div class="single_product__img col-xs-6">
                     <div id="gallery_big-template-product" class="gallery_big swiper-container swiper-container-horizontal">
                         <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
-                            <div class="swiper-slide swiper-slide-active" style="width: 470px;">
-                                <img id="primary_img_template-product" src="//cdn.shopify.com/s/files/1/2323/3807/products/the_complete_sherlock_holmes_1_570x570_crop_top.png?v=1504250218"
-                                    alt="The Complete Sherlock Holmes">
-                            </div>
-                            {{#each listimageCover}}
+                            {{!-- {{#each bookDetail.imageCover}} --}}
                             <div class="swiper-slide swiper-slide-next" style="width: 470px;">
-                                <img src={{url}} alt="">
+                                <img src={{ bookDetail.imageCover.[0] }} alt="">
                             </div>
-                            {{/each}}
+                            {{!-- {{/each}} --}}
                         </div>
                         <div id="prev_template-product" class="swiper_btn swiper_btn__prev swiper-button-disabled"></div>
                         <div id="next_template-product" class="swiper_btn swiper_btn__next"></div>
                     </div>
                     <div id="gallery_thumbs-template-product" class="gallery_thumbs gallery_thumbs__medium swiper-container swiper-container-horizontal">
                         <div class="swiper-wrapper" style="transform: translate3d(196px, 0px, 0px); transition-duration: 0ms;">
-                            {{#each listimageCover}}
+                            {{#each bookDetail.imageCover}}
                             <div class="swiper-slide swiper-slide-active" style="width: 78px; margin-right: 20px;">
-                                <img src={{url}} alt="">
+                                <img src={{ this }} alt="">
                             </div>
                             {{/each}}
                         </div>
@@ -36,7 +32,7 @@
                 </div>
                 <div class="single_product__info col-xs-6 medium">
                     {{#with bookDetail}}
-                    <h2 class="single_product__title">{{ title }}</h2>
+                    <h2 class="single_product__title">{{ book.title }}</h2>
                     <div class="single_product__details">
                         <form action="/cart/add" method="post" enctype="multipart/form-data" data-section="template-product">
                             <div class="details_separator"></div>
@@ -44,38 +40,37 @@
                                 <div class="details_left">
                                     <p class="single_product__author">
                                         <b>Tác giả:</b>
-                                        <span id="single_product__author-template-product">{{ author.name }}</span>
+                                        <span id="single_product__author-template-product">{{ book.author.name }}</span>
                                     </p>
                                     <p class="single_product__collections">
                                         <b>Thể loại:</b>
-                                        <a href="{{ genre.url }}">{{ genre.name }}</a>,
+                                        <a href="{{ book.genre.url }}">{{ book.genre.name }}</a>,
                                     </p>
                                     <p class="single_product__size">
-                                        <b>kích thước</b>
-                                        <span>{{ publishDate }}</span>
+                                        <b>Kích thước:</b>
+                                        <span>{{ size.[0] }} x {{ size.[1] }} cm </span>
                                     </p>
                                     <p class="single_product__type">
                                         <b>Kiểu bìa:</b>
-                                        <span>
-                                        </span>
+                                        <span> {{ coverType }} </span>
                                     </p>
                                     <p class="single_product__vendor">
                                         <b>Nhà xuất bản:</b>
-                                        <span>{{ publisher.name }}</span>
+                                        <span>{{ book.publisher.name }}</span>
                                     </p>
                                     <p class="single_product__date">
-                                        <b>Ngày xuất bản</b>
-                                        <span>{{ publishDate }}</span>
+                                        <b>Ngày xuất bản:</b>
+                                        <span formatdate>{{ book.publishDate }}</span>
                                     </p>
                                 </div>
                                 <div class="details_right">
                                     <p class="single_product__availability">
                                         <b>Tình trạng:</b>
-                                        <span id="single_product__availability-template-product" class="notify_success">Còn hàng</span>
+                                        <span id="single_product__availability-template-product" class="notify_success">{{ status }}</span>
                                     </p>
                                     <p class="single_product__price">
                                         <span id="single_product__price-template-product">
-                                            <span class="money" data-currency-usd="${{ price }}" data-currency="USD">{{ price }}</span>
+                                            <span class="money" data-currency-usd="${{ currentPrice }}" data-currency="USD">{{ currentPrice }}</span>
                                         </span>
                                     </p>
                                     <div class="single_product__quantity">
@@ -93,7 +88,7 @@
                                     </div>
                                     <p class="wishlist_section">
                                         <a href="/pages/wishlist" class="wishlist_form">
-                                            <i class="fa fa-heart" aria-hidden="true"></i> Thêm vào yêu thích</a>
+                                            <i class="fa fa-heart" aria-hidden="true"></i> Thêm vào yêu thích </a>
                                     </p>
                                 </div>
                             </div>
@@ -110,31 +105,8 @@
             </form>
             <div class="product_description rte">
                 <div>
-                    <h3>Our business is very noble and it has many traditions</h3>
-                    <p>Just remember that special atmosphere of solitude in the library or in the old book-store, it seemed
-                        that imponderable scent of rational identity is in the air... The unique smell of old and new pages,
-                        soft cover and so on. Yeah, they are worth our admiring. But those times are long gone and we live
-                        in 21st century, and the most revolutionary thing that had happened is that books have lost their
-                        natural view. Books became more available.</p>
-                    <p>
-                        <strong></strong>The diversity of our products is unbelievable because we have a vast book collection -
-                        <strong>all genres and styles</strong>!</p>
-                    <ul>
-                        <li>
-                            <span>Our company guarantees the quality of our goods because we care about our clients.</span>
-                        </li>
-                        <li>
-                            <span>If you have some questions about our products, terms and other features, you can address our
-                                superb 24/7 support system.</span>
-                        </li>
-                    </ul>
-                    <p>Books became more available. On-line book stores can
-                        <a target="_blank" href="https://www.youtube.com/watch?v=SKVcQnyEIT8">offer you a great assortment of books</a>. Can you imagine a world of knowledge without limits? You
-                        can get everything you want and all you have to do is just visit our store. We have tremendous variety
-                        of products; here you can find the world famous bestsellers and the books of unknown authors. Actually
-                        we do understand that our activity is very important for many of you and we will never let you down.</p>
-                    <p>Just remember that special atmosphere of solitude in the library or in the old book-store, it seemed
-                        that imponderable scent of rational identity is in the air...</p>
+                    <h3>Mô tả</h3>
+                    <p>{{ bookDetail.book.description }}</p>
                 </div>
             </div>
             <div class="article_comments__list">

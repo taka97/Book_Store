@@ -7560,7 +7560,7 @@ h1,h2,h3,h4,h5,h6,p {
   }
   
   .section_single-product .details_left b {
-    font-weight: normal !important;
+    font-weight: bold !important;
     color: #3d4851;
   }
   
