@@ -10,6 +10,22 @@ exports.redirectToBook = function (req, res, next) {
   res.redirect('/book')
 }
 
+exports.postAddPage = function(req,res,next){
+  console.log("áhdjkáhdkjahsdjkáhdkjahgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg")
+  var newAuthor = new Author({
+    name: req.body.name,
+    birthDate: req.body.date,
+    gender: req.body.gender,
+    nationality: req.body.national
+  });
+  newAuthor.save(function(err){
+    console.log("áhdjkáhdkjahsdjkáhdkjahgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg")
+    if(err) throw err;
+    else
+        res.redirect('/admin/author/add')
+  })
+}
+
 // Get list all book of author
 exports.listBooksAuthor = function (req, res, next) {
   async.parallel({
