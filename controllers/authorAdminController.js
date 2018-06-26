@@ -70,9 +70,9 @@ exports.getDeletePage = function (req, res, next) {
     res.render('management/authorDelete', {
       layout: 'layoutAdmin',
       title: 'Xóa tác giả',
-      listBooksAuthor: results.listBooksAuthor,
       author: results.authorDetail,
-      length: results.listBooksAuthor.length
+      listBooksAuthor: results.listBooksAuthor,
+      hasBook: results.listBooksAuthor.length > 0
     })
 
     console.log('listBooksAuthor:' + results.listBooksAuthor)
