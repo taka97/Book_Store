@@ -15,6 +15,7 @@ exports.getHomepage = function (req, res, next) {
     res.render('management/authorHomepage', {
       layout: 'layoutAdmin',
       title: 'Quản lý tác giả',
+      csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
       listAuthors: results.listAuthors
     })
     console.log('listAuthors:' + results.listAuthors)
