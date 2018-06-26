@@ -74,9 +74,20 @@ exports.getEditPage = function (req, res, next) {
 
 // GET delete bookInstance (admin) page
 exports.getDeletePage = function (req, res, next) {
+  async.parallel({
+    bookinstanceDetail: (callback) => {
+      BookInstance.findById(req.params.id)
+        .populate({ path: 'book', populate: { path: 'author publisher genre' } })
+        .exec(callback)
+    }
+  }, (err, results) => {
+    if (err) { return next(err) }
   // Successful, so render.
-  res.render('management/bookInstanceDelete', {
-    layout: 'layoutAdmin',
-    title: 'Xóa sản phẩm'
+    res.render('management/bookInstanceDelete', {
+      layout: 'layoutAdmin',
+      title: 'Xóa sản phẩm',
+      bookinstance: results.bookinstanceDetail
+    })
+    console.log('bookinstance: ' + results.bookinstanceDetail)
   })
 }

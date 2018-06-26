@@ -22,20 +22,22 @@
                 </tr>
               </thead>
               <tbody>
+                {{#each listBooks}}
                 <tr>
                   <th> 1 </th>
-                  <th> Nhập môn lập trình </th>
-                  <th> 40000 vnđ</th>
-                  <th> 5 </th>
+                  <th> {{book.title}} </th>
+                  <th> {{currentPrice}}</th>
+                  <th> {{currentTotalQuantity}} </th>
                   <td>
-                    <a href="/author/ho-van-hoang" class="btn btn-primary btn-xs">
+                    <a href="/admin/bookinstance/view/{{_id}}" class="btn btn-primary btn-xs">
                       <i class="fa fa-folder"></i> Xem </a>
-                    <a href="/author/ho-van-hoang" class="btn btn-info btn-xs">
+                    <a href="/admin/bookinstance/edit/{{_id}}" class="btn btn-info btn-xs">
                       <i class="fa fa-pencil"></i> Sửa </a>
-                    <a href="/author/ho-van-hoang" class="btn btn-danger btn-xs">
+                    <a href="/admin/bookinstance/delete/{{_id}}" class="btn btn-danger btn-xs">
                       <i class="fa fa-trash-o"></i> Xóa </a>
                   </td>
                 </tr>
+                {{/each}}
               </tbody>
             </table>
           </div>
