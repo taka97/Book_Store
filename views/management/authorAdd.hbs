@@ -11,7 +11,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_content">
-                        <form class="form-horizontal form-label-left" novalidate="">
+                        <form  method="POST" action="" class="form-horizontal form-label-left" novalidate="">
                             <span class="section">Thông tin tác giả</span>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tên tác giả
@@ -35,9 +35,12 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="genre" class="form-control col-md-7 col-xs-12" id="genre" required="required" type="text" data-validate-linked="email">
-                                </div>
-                            </div>                            
+                                    <select name="gender" class="form-control" required="" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Chọn loại bìa')">
+                                        <option selected disabled> Giới tính </option>
+                                        <option value="male"> Nam </option>
+                                        <option value="female"> Nữ</option>
+                                    </select></div>
+                            </div>                       
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="national">Quốc tịch
                                     <span class="required">*</span>

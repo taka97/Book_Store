@@ -80,3 +80,19 @@ exports.getDeletePage = function (req, res, next) {
     console.log('listBooksAuthor:' + results.listBooksAuthor.length)
   })
 }
+
+// insert author
+exports.postAdd = function(req,res,next){
+  var newAuthor = new Author({
+    name: req.body.name,
+    birthDate: req.body.date,
+    gender: req.body.gender,
+    nationality: req.body.national
+  });
+  newAuthor.save(function(err){
+    console.log("áhdjkáhdkjahsdjkáhdkjahgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg")
+    if(err) throw err;
+    else
+        res.redirect('/admin/author/add')
+  })
+}
