@@ -43,6 +43,7 @@ exports.listBooks = function (req, res, next) {
       listPublishers: results.listPublishers,
       listBooks: results.listBookInstances
     })
+    // console.log(req.session.cart)
     // console.log(results.listBookInstances)
   })
 }

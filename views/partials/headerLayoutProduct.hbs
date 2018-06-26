@@ -95,7 +95,11 @@
                         <div class="cart_wrap">
                             <a href="/cart" title="Giỏ hàng">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                {{#if session.cart }}
+                                <span id="cart_items">{{ session.cart.totalQty }}</span>
+                                {{else }}
                                 <span id="cart_items">0</span>
+                                {{/if}}
                             </a>
                         </div>
                     </div>
