@@ -14,11 +14,11 @@ var BookSchema = new Schema(
   }
 )
 
-BookSchema
-  .virtual('url')
-  .get(function () {
-    return '/book/' + this._id
-  })
+// BookSchema
+//   .virtual('url')
+//   .get(function () {
+//     return '/book/' + this._id
+//   })
 
 // Export model
 module.exports = mongoose.model('Book', BookSchema)

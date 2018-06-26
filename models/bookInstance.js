@@ -17,7 +17,7 @@ var BookInstanceSchema = new Schema(
 BookInstanceSchema
   .virtual('url')
   .get(function () {
-    return '/bookinstance/' + this._id
+    return '/book/' + this._id
   })
 
 // Export model
