@@ -68,7 +68,8 @@
                 <div class="product_links">
                   <form method="post" action="/cart/add-to-cart">
                     <input type="hidden" name="product_id" value="{{ _id }}">
-                    <button class="btn btn_options"> Thêm vào giỏ hàng </button>
+                    <input type="hidden" name="_csrf" value="{{ ../csrfToken }}">
+                    <button class="btn btn_options" type="submit"> Thêm vào giỏ hàng </button>
                   </form>
                   <a class="btn wishlist_add_login" href="/pages/wishlist" title="Add to the wishlist">
                     <i class="fa fa-heart-o" aria-hidden="true"></i>

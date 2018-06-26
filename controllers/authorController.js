@@ -41,13 +41,13 @@ exports.listBooksAuthor = function (req, res, next) {
     res.render('book', {
       layout: 'layoutHomepage',
       title: 'Book Store',
+      csrfToken: req.csrfToken(),
       GenreChucks: GenreChucks,
       listGenres: results.listGenres,
       listAuthors: results.listAuthors,
       listPublishers: results.listPublisher,
       listBooks: results.listBookInstances
     })
-
     // console.log(results.listBookInstances)
   })
 }

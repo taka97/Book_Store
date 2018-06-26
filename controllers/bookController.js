@@ -36,6 +36,7 @@ exports.listBooks = function (req, res, next) {
     res.render('book', {
       layout: 'layoutHomepage',
       title: 'Book Store',
+      csrfToken: req.csrfToken(),
       GenreChucks: GenreChucks,
       listGenres: results.listGenres,
       listAuthors: results.listAuthors,
@@ -50,7 +51,7 @@ exports.bookDetail = function (req, res, next) {
   async.parallel({
     BookInstance: (callback) => {
       BookInstance.findById(req.params.id)
-        .populate({path: 'book', populate: {path: 'author publisher genre'}})
+        .populate({ path: 'book', populate: { path: 'author publisher genre' } })
         .exec(callback)
     },
     listGenres: (callback) => {
@@ -68,6 +69,7 @@ exports.bookDetail = function (req, res, next) {
     res.render('bookDetail', {
       layout: 'layoutHomepage',
       title: 'Book Detail',
+      csrfToken: req.csrfToken(),
       GenreChucks: GenreChucks,
       bookDetail: results.BookInstance
     })

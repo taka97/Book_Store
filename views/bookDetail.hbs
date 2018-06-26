@@ -92,6 +92,7 @@
                                     </p>
                                 </div>
                             </div>
+                            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
                         </form>
                     </div>
                 </div>
@@ -102,6 +103,7 @@
                 <input name="utf8" type="hidden" value="✓">
                 <input type="hidden" name="contact[email]" value="">
                 <input id="update-me" type="hidden" name="contact[tags]" value="">
+                <input type="hidden" name="_csrf" value="{{ csrfToken }}">
             </form>
             <div class="product_description rte">
                 <div>
