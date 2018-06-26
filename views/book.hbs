@@ -4,35 +4,34 @@
       <div id="shopify-section-template-collection" class="shopify-section section_template section_template__collection">
 
         <div class="product_options">
-          <ul class="product_view">
-            <li id="view_grid" data-view="grid" class="active">
-              <i class="fa fa-th" aria-hidden="true"></i>
-            </li>
-            <li id="view_list" data-view="list">
-              <i class="fa fa-th-list" aria-hidden="true"></i>
-            </li>
-          </ul>
-          <div class="product_options__sort">
-            <label for="sort_by_select">Sort products:</label>
-            <select id="sort_by_select">
-              <option value="manual">Featured</option>
-              <option value="best-selling">Best Selling</option>
-              <option value="title-ascending">Name: A – Z</option>
-              <option value="title-descending">Name: Z – A</option>
-              <option value="price-ascending">Price: low to high</option>
-              <option value="price-descending">Price: high to low</option>
-              <option value="created-ascending">Oldest to newest</option>
-              <option value="created-descending">Newest to oldest</option>
+          <div class="product_options__genre">
+            <label for="products_genre_select">Thể loại:</label>
+            <select id="products_genre_select">
+              {{#each listGenres}}
+              <option value={{name}}>{{name}}</option>
+              {{/each}}
             </select>
           </div>
-          <div class="product_options__number">
-            <label for="products_number_select">Show:</label>
-            <select id="products_number_select">
-              <option value="3">3</option>
-              <option value="6">6</option>
-              <option value="9">9</option>
-              <option value="12">12</option>
+          <div class="product_options__price">
+            <label for="products_price_select">Giá:</label>
+            <select id="products_price_select">
+              <option value="1">Dưới 100.000 đ</option>
+              <option value="2">100.000 đ - 200.000 đ</option>
+              <option value="3">200.000 đ - 500.000 đ</option>
+              <option value="3">Trên 500.000 đ</option>
             </select>
+          </div>
+          <div class="product_options__publisher">
+            <label for="products_publisher_select">Nhà xuất bản:</label>
+            <select id="products_publisher_select">
+               {{#each listPublishers}}
+              <option value={{name}}>{{name}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="product_options__name">
+            <label for="products_name">Tên sản phẩm:</label>
+              <input type="search" name="q" placeholder="Tên sản phẩm" aria-label="Search store">
           </div>
           <div class="clearfix"></div>
         </div>
