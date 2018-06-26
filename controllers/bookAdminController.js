@@ -22,6 +22,16 @@ exports.getHomepage = function (req, res, next) {
   })
 }
 
+// exports.postAddPage = function(req,res){
+//   var newBook = new Book({
+//     title: req.body.name,
+//     author: req.body.nameAuthor,
+//     genre: req.body.genre,
+//     price: req.body.price,
+//     publisher: req.body.namePublisher,
+//     publishDate: req.body.date
+//   })
+// }
 // for develop
 // GET add book (admin) page
 exports.getAddPage = function (req, res, next) {
