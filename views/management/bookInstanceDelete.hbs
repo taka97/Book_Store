@@ -15,41 +15,66 @@
                         <div class="clearfix"></div>
                     </div>
                     <form class="form-horizontal form-label-left">
+                        {{# bookinstance}}
                         <div class="form-group row">
                             <label for="description" class="col-sm-2 control-label"> Tên sản phẩm </label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="description" value="Tuổi trẻ đáng giá bao nhiêu?">
+                                <input type="text" readonly class="form-control-plaintext" id="description" value="{{book.title}}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="description" class="col-sm-2 control-label"> Giá
                             </label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="description" value="50000vnđ">
+                                <input type="text" readonly class="form-control-plaintext" id="description" value="{{currentPrice}}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="author" class="col-sm-2 control-label"> Tổng số lượng </label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="author" value="5">
+                                <input type="text" readonly class="form-control-plaintext" id="author" value="{{currentTotalQuantity}}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="publisher" class="col-sm-2 control-label"> Kích thước </label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="publisher" value="15,21 cm">
+                                <input type="text" readonly class="form-control-plaintext" id="publisher" value="{{size.[0]}},{{size.[1]}} cm">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="price" class="col-sm-2 control-label"> Loại bìa </label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="price" value="Bìa cứng">
+                                <input type="text" readonly class="form-control-plaintext" id="price" value="{{coverType}}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="genre" class="col-sm-2 control-label"> Tình trạng </label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="genre" value="Còn hàng">
+                                <input type="text" readonly class="form-control-plaintext" id="genre" value="{{status}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="price" class="col-sm-2 control-label">Ảnh trước
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="profile_img">
+                                    <div id="crop-avatar">
+                                        <!-- Current avatar -->
+                                        <img title="imange" class="img-responsive image-view" alt="Image" src="{{imageCover.[0]}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="price" class="col-sm-2 control-label">Ảnh sau
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="profile_img">
+                                    <div id="crop-avatar">
+                                        <!-- Current avatar -->
+                                        <img title="imange" class="img-responsive image-view" alt="Image" src="{{imageCover.[1]}}">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="ln_solid"></div>
@@ -58,6 +83,7 @@
                                 <button type="submit" class="btn btn-success"> Xóa sản phẩm </button>
                             </div>
                         </div>
+                        {{/bookinstance}}
                     </form>
                 </div>
             </div>
