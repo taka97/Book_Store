@@ -1,0 +1,94 @@
+<div class="container">
+    <div class="template_search">
+        <div>
+            <h1 class="page_heading">Tìm kiếm: "book" — 22 results</h1>
+            <div class="section_template__collection .product_options">
+                <div class="product_options">
+                    <div class="product_options__name">
+                        <form action="/search" method="get" role="search" class="search_form">
+                            <input type="search" name="q" placeholder="Tìm kiếm" aria-label="Search store">
+                            <button type="submit">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="product_options__publisher">
+                        <label for="products_publisher_select">Nhà xuất bản:</label>
+                        <select id="products_publisher_select">
+                            <option value="all">Tất cả</option>
+                            {{#each listPublishers}}
+                            <option value={{name}}>{{name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="product_options__price">
+                        <label for="products_price_select">Giá:</label>
+                        <select id="products_price_select">
+                            <option value="all">Tất cả</option>
+                            <option value="1">Dưới 100.000 đ</option>
+                            <option value="2">100.000 đ - 200.000 đ</option>
+                            <option value="3">200.000 đ - 500.000 đ</option>
+                            <option value="3">Trên 500.000 đ</option>
+                        </select>
+                    </div>
+                    <div class="product_options__genre">
+                        <label for="products_genre_select">Thể loại:</label>
+                        <select id="products_genre_select">
+                            <option value="all">Tất cả</option>
+                            {{#each listGenres}}
+                            <option value={{name}}>{{name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <ul class="search_results">
+                <li>
+                    <a class="search_results__img" href="/products/the-hunger-games-trilogy-3-book-set">
+                        <img src="//cdn.shopify.com/s/files/1/2323/3807/products/the_hunger_games_trilogy_3_book_set_1_200x200.png?v=1504250259"
+                            alt="The Hunger Games Trilogy 3 Book Set">
+                    </a>
+                    <div>
+                        <p class="search_results__name">
+                            <a href="/products/the-hunger-games-trilogy-3-book-set">The Hunger Games Trilogy 3
+                                <strong class="highlight">Book</strong> Set</a>
+                        </p>
+                        <p class="search_results__desc">Our business is very noble and it has many traditions Just remember that special atmosphere of solitude
+                            in the library or in the old
+                            <strong class="highlight">book</strong>-store, it seemed that imponderable scent of rational identity is in the air...
+                            The unique smell of old and new pages, soft cover and so on. Yeah, they are worth our admiring.
+                            But those times are long gone and we live in 21st century, and the most revolutionary thing that
+                            had...
+                        </p>
+                        <p class="search_results__price">
+                            <span class="money" data-currency-usd="$50.00">$50.00</span>
+                            <span class="money money_sale" data-currency-usd="$58.00">$58.00</span>
+                        </p>
+                    </div>
+                </li>
+                {{#each listBooks}}
+                <li>
+                    <a class="search_results__img" href="{{url}}">
+                        <img src="{{imageCover.[0]}}" alt="{{ book.title}}">
+                    </a>
+                    <div>
+                        <p class="search_results__name ">
+                            <a href="{{url}}">{{ book.tittle }} </a>
+                        </p>
+                        <p class="search_results__desc "> {{ book.description }}
+                        </p>
+                        <p class="search_results__price ">
+                            <span class="money"> {{ currentPrice }}</span>
+                            <span class="currency"> ₫</span>
+                            <span class="money money_sale">{{ book.price }}</span>
+                            <span class="currency"> ₫</span>
+                        </p>
+                    </div>
+                </li>
+                {{/each}}T
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
