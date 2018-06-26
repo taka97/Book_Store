@@ -893,6 +893,15 @@ html, body {
     flex-direction: column !important;
 }
 
+.product_item {
+    padding-bottom: 10px;
+    border-radius: 2%;
+}
+
+.product_item:hover {
+    box-shadow:  0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
+}
+
 .product_item .img_change {
     text-align: center;
 }
@@ -903,4 +912,16 @@ html, body {
 
 .max-height-470 {
     max-height: 470px;
+}
+
+.product_info {
+    text-align: left !important;
+}
+
+.product_name, .product_price {
+    padding-left: 15px !important;
+}
+
+.product_info .product_links {
+    text-align: center !important;
 }

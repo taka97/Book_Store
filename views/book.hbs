@@ -2,9 +2,43 @@
   <div class="row">
     <div class="main_content sidebar_on col-sm-9 col-sm-push-3">
       <div id="shopify-section-template-collection" class="shopify-section section_template section_template__collection">
-        <div class="pagination">
-          <p>Danh sách sản phẩm</p>
+
+        <div class="product_options">
+          <div class="product_options__genre">
+            <label for="products_genre_select">Thể loại:</label>
+            <select id="products_genre_select">
+              {{#each listGenres}}
+              <option value={{name}}>{{name}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="product_options__price">
+            <label for="products_price_select">Giá:</label>
+            <select id="products_price_select">
+              <option value="1">Dưới 100.000 đ</option>
+              <option value="2">100.000 đ - 200.000 đ</option>
+              <option value="3">200.000 đ - 500.000 đ</option>
+              <option value="3">Trên 500.000 đ</option>
+            </select>
+          </div>
+          <div class="product_options__publisher">
+            <label for="products_publisher_select">Nhà xuất bản:</label>
+            <select id="products_publisher_select">
+              {{#each listPublishers}}
+              <option value={{name}}>{{name}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="product_options__name">
+            <label for="products_name">Tên sản phẩm:</label>
+            <input type="search" name="q" placeholder="Tên sản phẩm" aria-label="Search store">
+          </div>
+          <div class="clearfix"></div>
         </div>
+        <script>
+          // theme.paginationCurrent = 1
+          theme.productNumber = 6;
+        </script>
         <div class="row product_listing__main" id="product_listing__sorted">
           {{#if listBooks}} {{#each listBooks}}
           <div class="col-sm-4 max-height-470">
@@ -14,9 +48,6 @@
                   <img class="img" src="{{ imageCover.[0] }}" alt="{{ book.title }}"> {{!--
                   <span class="product_badge new">New!</span> --}} {{!--
                   <span class="product_badge sale">–23%</span> --}}
-                </a>
-                <a class="quick_view_btn" title="Quick view">
-                  <i class="fa fa-eye" aria-hidden="true"></i>
                 </a>
               </div>
               <div class="product_info">
@@ -34,7 +65,7 @@
                   <form method="post" action="/cart/add-to-cart">
                     <input type="hidden" name="product_id" value="{{ _id }}">
                     <input type="hidden" name="_csrf" value="{{ ../csrfToken }}">
-                    <button class="btn btn_options" type="submit"> Thêm vào giỏ hàng </button>
+                    <button class="btn" type="submit"> Thêm vào giỏ hàng </button>
                   </form>
                   <a class="btn wishlist_add_login" href="/pages/wishlist" title="Add to the wishlist">
                     <i class="fa fa-heart-o" aria-hidden="true"></i>
@@ -49,10 +80,11 @@
           {{/if}}
         </div>
         <div class="pagination">
+          <p>1 – 6 product(s) of 10</p>
           <ul>
             <li class="pagination_prev">
               <span>
-                <i class="fa fa-angle-left" aria-hidden="true"></i>Trang trước</span>
+                <i class="fa fa-angle-left" aria-hidden="true"></i>Previous</span>
             </li>
             <li class="pagination_current">
               <span>1</span>
@@ -61,7 +93,7 @@
               <a href="/collections/belles-lettres?page=2">2</a>
             </li>
             <li class="pagination_next">
-              <a href="/collections/belles-lettres?page=2">Trang sau
+              <a href="/collections/belles-lettres?page=2">Next
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             </li>
