@@ -51,8 +51,8 @@
                                         <a href="{{ genre.url }}">{{ genre.name }}</a>,
                                     </p>
                                     <p class="single_product__size">
-                                        <b>kích thước</b>
-                                        <span>{{ publishDate }}</span>
+                                        <b>Kích thước</b>
+                                        <span>{{ size }}</span>
                                     </p>
                                     <p class="single_product__type">
                                         <b>Kiểu bìa:</b>
@@ -63,9 +63,9 @@
                                         <b>Nhà xuất bản:</b>
                                         <span>{{ publisher.name }}</span>
                                     </p>
-                                    <p class="single_product__date">
+                                    <p class="single_product__date" >
                                         <b>Ngày xuất bản</b>
-                                        <span>{{ publishDate }}</span>
+                                        <span>formatdate {{ publishDate }}</span>
                                     </p>
                                 </div>
                                 <div class="details_right">
