@@ -7,7 +7,8 @@ exports.getHomepage = function (req, res, next) {
   async.parallel({
     listBooks: (callback) => {
       Book.find()
-        .exec(callback)
+      .populate('publisher')
+      .exec(callback)
     }
   }, (err, results) => {
     if (err) { return next(err) }
@@ -36,6 +37,13 @@ exports.getViewPage = function (req, res, next) {
   async.parallel({
     bookDetail: (callback) => {
       Book.findById(req.params.id)
+        .populate('publisher')
+        .populate('author')
+        .populate('genre')
+        .exec(callback)
+    },
+    listBookInstance: (callback) => {
+      BookInstance.find({ book: req.params.id })
         .exec(callback)
     }
   }, (err, results) => {
@@ -44,9 +52,11 @@ exports.getViewPage = function (req, res, next) {
     res.render('management/bookView', {
       layout: 'layoutAdmin',
       title: 'Xem sách',
-      book: results.bookDetail
+      book: results.bookDetail,
+      bookIns: results.listBookInstance
     })
     console.log('book: ' + results.bookDetail)
+    console.log('bookInstance: ' + results.listBookInstance)
   })
 
 }
@@ -56,6 +66,9 @@ exports.getEditPage = function (req, res, next) {
   async.parallel({
     bookDetail: (callback) => {
       Book.findById(req.params.id)
+        .populate('publisher')
+        .populate('author')
+        .populate('genre')
         .exec(callback)
     }
   }, (err, results) => {
@@ -75,6 +88,9 @@ exports.getDeletePage = function (req, res, next) {
   async.parallel({
     listBookInstance: (callback) => {
       BookInstance.find({ book: req.params.id })
+        .populate('publisher')
+        .populate('author')
+        .populate('genre')
         .exec(callback)
     }
   }, (err, results) => {
