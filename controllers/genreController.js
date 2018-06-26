@@ -1,8 +1,9 @@
 const async = require('async')
-const Book = require('../models/book')
 const Author = require('../models/author')
 const Genre = require('../models/genre')
 const Publisher = require('../models/publisher')
+const BookInstance = require('../models/bookInstance')
+require('../models/book')
 
 // Get list all genre in database
 exports.listGenres = function (req, res, next) {
@@ -39,23 +40,28 @@ exports.bookOfGenre = function (req, res, next) {
       Publisher.find({})
         .exec(callback)
     },
-    listBooks: (callback) => {
-      Book.find({ 'genre': req.params.id })
-        .populate('author')
+    listBookInstances: (callback) => {
+      BookInstance.find({})
+        .populate('book')
         .exec(callback)
     }
   }, (err, results) => {
     if (err) { return next(err) }
+    var GenreChucks = []
+    var chunkSize = 3
+    for (var i = 0; i <= results.listGenres.length; i += chunkSize) {
+      GenreChucks.push(results.listGenres.slice(i, i + chunkSize))
+    }
     // Successful, so render.
     res.render('book', {
       layout: 'layoutHomepage',
       title: 'Book Store',
+      GenreChucks: GenreChucks,
       listGenres: results.listGenres,
       listAuthors: results.listAuthors,
       listPublishers: results.listPublisher,
-      listBooks: results.listBooks
+      listBooks: results.listBookInstances
     })
-
-    console.log(results.listBooks)
+    // console.log(results.listBooks)
   })
 }
