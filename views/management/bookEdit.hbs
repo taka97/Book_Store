@@ -4,17 +4,7 @@
         <div class="page-title">
             <div class="title_left">
                 <h3>Sửa sách</h3>
-            </div>
-            <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                    <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Search for...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Go!</button>
-                        </span>
-                    </div>
-                </div>
-            </div>
+            </div>            
         </div>
         <div class="clearfix"></div>
         <div class="row">
@@ -23,13 +13,14 @@
                     <div class="x_content">
 
                         <form class="form-horizontal form-label-left" novalidate="">
+                            {{# book}}
                             <span class="section">Thông tin sách</span>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tên sách
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="name" class="form-control col-md-7 col-xs-12" id="name" required="required" type="text" placeholder="Tôi đi code dạo"
+                                    <input name="name" class="form-control col-md-7 col-xs-12" id="name" required="required" type="text" value="{{title}}"
                                         data-validate-words="2" data-validate-length-range="6">
                                 </div>
                             </div>
@@ -38,7 +29,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="name" class="form-control col-md-7 col-xs-12" id="name" required="required" type="text">
+                                    <input name="name" class="form-control col-md-7 col-xs-12" id="name" required="required" type="text" value="{{author.name}}">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -46,7 +37,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="genre" class="form-control col-md-7 col-xs-12" id="genre" required="required" type="text" data-validate-linked="email">
+                                    <input name="genre" class="form-control col-md-7 col-xs-12" id="genre" required="required" type="text" data-validate-linked="email" value="{{genre.name}}">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -54,7 +45,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="number" class="form-control col-md-7 col-xs-12" id="number" required="required" type="number" data-validate-minmax="20000,1000000">
+                                    <input name="number" class="form-control col-md-7 col-xs-12" id="number" required="required" type="number" value="{{price}}" data-validate-minmax="20000,1000000">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -62,7 +53,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="name" class="form-control col-md-7 col-xs-12" id="name" required="required" type="text" placeholder="Nhà sản xuất">
+                                    <input name="name" class="form-control col-md-7 col-xs-12" id="name" required="required" type="text" value="{{publisher.name}}">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -70,10 +61,10 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="date" class="optional form-control col-md-7 col-xs-12" id="occupation" type="date" data-validate-length-range="5,20">
+                                    <input name="date" class="optional form-control col-md-7 col-xs-12" id="occupation" type="datetime" value="{{publishDate}}" data-validate-length-range="5,20">
                                 </div>
                             </div>
-                            <div class="item form-group">
+                            {{!-- <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Ảnh
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -81,8 +72,7 @@
                                         <div class="profile_img">
                                             <div id="crop-avatar">
                                                 <!-- Current avatar -->
-                                                <img title="Change the avatar" class="img-responsive avatar-view" alt="Avatar" src="/images/user.png">
-
+                                                <img title="Change the avatar" class="img-responsive avatar-view" alt="image" src="{{}}">
                                             </div>
                                         </div>
                                     </div>
@@ -90,7 +80,7 @@
                                         <button class="changeAvatar" class="btn btn-success btn btn-primary" type="submit">Đổi ảnh </button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
@@ -98,6 +88,7 @@
                                     <button class="btn btn-success" id="send" type="submit">Submit</button>
                                 </div>
                             </div>
+                            {{/book}}
                         </form>
                     </div>
                 </div>
