@@ -11,9 +11,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_content">
-
-                        <form class="form-horizontal form-label-left" novalidate="">
-                            {{# book}}
+                        {{# book}}
+                        <form action="" class="form-horizontal form-label-left" novalidate="" method="POST">                            
                             <span class="section">Thông tin sách</span>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tên sách
@@ -25,11 +24,11 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tác giả
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nameAuthor">Tác giả
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="name" class="form-control col-md-7 col-xs-12" id="name" required="required" type="text" value="{{author.name}}">
+                                    <input name="nameAuthor" class="form-control col-md-7 col-xs-12" id="nameAuthor" required="required" type="text" value="{{author.name}}">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -41,19 +40,19 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Giá
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="price">Giá
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="number" class="form-control col-md-7 col-xs-12" id="number" required="required" type="number" value="{{price}}" data-validate-minmax="20000,1000000">
+                                    <input name="price" class="form-control col-md-7 col-xs-12" id="price" required="required" type="number" value="{{price}}" data-validate-minmax="20000,1000000">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nhà sản xuất
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="namePublisher">Nhà sản xuất
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="name" class="form-control col-md-7 col-xs-12" id="name" required="required" type="text" value="{{publisher.name}}">
+                                    <input name="namePublisher" class="form-control col-md-7 col-xs-12" id="namePublisher" required="required" type="text" value="{{publisher.name}}">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -62,6 +61,14 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input name="date" class="optional form-control col-md-7 col-xs-12" id="occupation" type="datetime" value="{{publishDate}}" data-validate-length-range="5,20">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Giới thiệu
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input name="description" class="form-control col-md-7 col-xs-12" id="description" required="required" type="text" data-validate-linked="email" value="{{description}}">
                                 </div>
                             </div>
                             {{!-- <div class="item form-group">
@@ -82,14 +89,15 @@
                                 </div>
                             </div> --}}
                             <div class="ln_solid"></div>
+                            <input type="hidden" name="_csrf" value="{{ ../csrfToken }}">
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
                                     <button class="btn btn-primary" type="submit">Cancel</button>
                                     <button class="btn btn-success" id="send" type="submit">Submit</button>
                                 </div>
-                            </div>
-                            {{/book}}
+                            </div>                            
                         </form>
+                        {{/book}}
                     </div>
                 </div>
             </div>
