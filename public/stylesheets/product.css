@@ -899,7 +899,7 @@ html, body {
 }
 
 .product_item:hover {
-    box-shadow:  0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
+    box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
 }
 
 .product_item .img_change {
@@ -918,10 +918,18 @@ html, body {
     text-align: left !important;
 }
 
-.product_name, .product_price {
+.product_info .product_name, .product_info .product_price {
     padding-left: 15px !important;
 }
-
 .product_info .product_links {
-    text-align: center !important;
+    text-align: center !important;    
+}
+
+.cnt_wrap {
+    line-height: 1.25 !important;
+    padding: 10px 50px !important;
+}
+
+.cnt_wrap h3, .cnt_wrap h5 {
+    margin-top: 30px !important;
 }

@@ -2,45 +2,9 @@
   <div class="row">
     <div class="main_content sidebar_on col-sm-9 col-sm-push-3">
       <div id="shopify-section-template-collection" class="shopify-section section_template section_template__collection">
-
-        <div class="product_options">
-          <div class="product_options__genre">
-            <label for="products_genre_select">Thể loại:</label>
-            <select id="products_genre_select">
-              {{#each listGenres}}
-              <option value={{name}}>{{name}}</option>
-              {{/each}}
-            </select>
-          </div>
-          <div class="product_options__price">
-            <label for="products_price_select">Giá:</label>
-            <select id="products_price_select">
-              <option value="1">Dưới 100.000 đ</option>
-              <option value="2">100.000 đ - 200.000 đ</option>
-              <option value="3">200.000 đ - 500.000 đ</option>
-              <option value="3">Trên 500.000 đ</option>
-            </select>
-          </div>
-          <div class="product_options__publisher">
-            <label for="products_publisher_select">Nhà xuất bản:</label>
-            <select id="products_publisher_select">
-              {{#each listPublishers}}
-              <option value={{name}}>{{name}}</option>
-              {{/each}}
-            </select>
-          </div>
-          <div class="product_options__name">
-            <label for="products_name">Tên sản phẩm:</label>
-            <input type="search" name="q" placeholder="Tên sản phẩm" aria-label="Search store">
-          </div>
-          <div class="clearfix"></div>
-        </div>
-        <script>
-          // theme.paginationCurrent = 1
-          theme.productNumber = 6;
-        </script>
         <div class="row product_listing__main" id="product_listing__sorted">
-          {{#if listBooks}} {{#each listBooks}}
+          {{#if listBooks}} 
+          {{#each listBooks}}
           <div class="col-sm-4 max-height-470">
             <div class="product_item">
               <div class="product_img">
@@ -75,7 +39,8 @@
               <div class="clearfix"></div>
             </div>
           </div>
-          {{/each}} {{else}}
+          {{/each}} 
+          {{else}}
           <h2>Không có dữ liệu!</h2>
           {{/if}}
         </div>
