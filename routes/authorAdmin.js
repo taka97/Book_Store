@@ -22,4 +22,6 @@ router.post('/add', authorAdminController.postAdd)
 //POST edit author (admin) page
 router.post('/edit/:id', authorAdminController.postEdit)
 
+// POST delete author (admin) page
+router.post('/delete/:id', authorAdminController.postDelete)
 module.exports = router
