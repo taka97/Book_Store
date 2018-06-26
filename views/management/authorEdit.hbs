@@ -17,12 +17,11 @@
             </div>
         </div>
         <div class="clearfix"></div>
-
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_content">
-                        <form class="form-horizontal form-label-left" novalidate="">
+                        <form method="POST" action="{{_id}}" class="form-horizontal form-label-left" novalidate="">
                             <span class="section">Thông tin tác giả</span>
                             {{#author}}
                             <div class="item form-group">
@@ -47,7 +46,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="genre" class="form-control col-md-7 col-xs-12" id="genre" required="required" type="text" value="{{gender}}" data-validate-linked="email">
+                                    <input name="gender" class="form-control col-md-7 col-xs-12" id="genre" required="required" type="text" value="{{gender}}" data-validate-linked="email">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -55,17 +54,18 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="national" class="form-control col-md-7 col-xs-12" id="national" required="required" type="text" value="{{nationality}}" placeholder="Việt Nam">
+                                    <input name="national" class="form-control col-md-7 col-xs-12" id="national" required="required" type="text" value="{{nationality}}">
                                 </div>
                             </div>
+                            {{/author}}
                             <div class="ln_solid"></div>
+                             {{!-- <input type="hidden" name="_csrf" value="{{ csrfToken }}"> --}}
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
                                     <button class="btn btn-primary" type="submit">Cancel</button>
                                     <button class="btn btn-success" id="send" type="submit">Submit</button>
                                 </div>
-                            </div>
-                            {{/author}}
+                            </div>                            
                         </form>
                     </div>
                 </div>
