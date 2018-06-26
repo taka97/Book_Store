@@ -139,19 +139,22 @@ exports.postAdd = function (req, res, next) {
   })
 }
 
-// POST edit author
+// POST edit book
 exports.postEdit = function (req, res, next) {
-  var editAuthor = new Author({
+  var editBook = new Book({
     _id: req.params.id,
-    name: req.body.name,
-    birthDate: req.body.date,
-    gender: req.body.gender,
-    nationality: req.body.national
+    title: req.body.name,
+    author: req.body.nameAuthor,
+    publisher: req.body.namePublisher,
+    publishDate: req.body.date,
+    price: req.body.price,
+    genre: req.body.gender,
+    desciption: req.body.desciption
   })
-  Author.findByIdAndUpdate(req.params.id, editAuthor, function (err) {
+  Book.findByIdAndUpdate(req.params.id, editBook, function (err) {
     if (err) throw err
     else {
-      res.redirect('/admin/author')
+      res.redirect('/admin/book')
     }
   })
 }
