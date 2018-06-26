@@ -1586,24 +1586,24 @@
     }
     r.event = {
         global: {},
-        // add: function(a, b, c, d, e) {
-        //     var f, g, h, i, j, k, l, m, n, o, p, q = V.get(a);
-        //     if (q) {
-        //         c.handler && (f = c, c = f.handler, e = f.selector), e && r.find.matchesSelector(qa, e), c.guid || (c.guid = r.guid++), (i = q.events) || (i = q.events = {}), (g = q.handle) || (g = q.handle = function(b) {
-        //             return "undefined" != typeof r && r.event.triggered !== b.type ? r.event.dispatch.apply(a, arguments) : void 0
-        //         }), b = (b || "").match(K) || [""], j = b.length;
-        //         while (j--) h = ta.exec(b[j]) || [], n = p = h[1], o = (h[2] || "").split(".").sort(), n && (l = r.event.special[n] || {}, n = (e ? l.delegateType : l.bindType) || n, l = r.event.special[n] || {}, k = r.extend({
-        //             type: n,
-        //             origType: p,
-        //             data: d,
-        //             handler: c,
-        //             guid: c.guid,
-        //             selector: e,
-        //             needsContext: e && r.expr.match.needsContext.test(e),
-        //             namespace: o.join(".")
-        //         }, f), (m = i[n]) || (m = i[n] = [], m.delegateCount = 0, l.setup && l.setup.call(a, d, o, g) !== !1 || a.addEventListener && a.addEventListener(n, g)), l.add && (l.add.call(a, k), k.handler.guid || (k.handler.guid = c.guid)), e ? m.splice(m.delegateCount++, 0, k) : m.push(k), r.event.global[n] = !0)
-        //     }
-        // },
+        add: function(a, b, c, d, e) {
+            var f, g, h, i, j, k, l, m, n, o, p, q = V.get(a);
+            if (q) {
+                c.handler && (f = c, c = f.handler, e = f.selector), e && r.find.matchesSelector(qa, e), c.guid || (c.guid = r.guid++), (i = q.events) || (i = q.events = {}), (g = q.handle) || (g = q.handle = function(b) {
+                    return "undefined" != typeof r && r.event.triggered !== b.type ? r.event.dispatch.apply(a, arguments) : void 0
+                }), b = (b || "").match(K) || [""], j = b.length;
+                while (j--) h = ta.exec(b[j]) || [], n = p = h[1], o = (h[2] || "").split(".").sort(), n && (l = r.event.special[n] || {}, n = (e ? l.delegateType : l.bindType) || n, l = r.event.special[n] || {}, k = r.extend({
+                    type: n,
+                    origType: p,
+                    data: d,
+                    handler: c,
+                    guid: c.guid,
+                    selector: e,
+                    needsContext: e && r.expr.match.needsContext.test(e),
+                    namespace: o.join(".")
+                }, f), (m = i[n]) || (m = i[n] = [], m.delegateCount = 0, l.setup && l.setup.call(a, d, o, g) !== !1 || a.addEventListener && a.addEventListener(n, g)), l.add && (l.add.call(a, k), k.handler.guid || (k.handler.guid = c.guid)), e ? m.splice(m.delegateCount++, 0, k) : m.push(k), r.event.global[n] = !0)
+            }
+        },
         remove: function (a, b, c, d, e) {
             var f, g, h, i, j, k, l, m, n, o, p, q = V.hasData(a) && V.get(a);
             if (q && (i = q.events)) {

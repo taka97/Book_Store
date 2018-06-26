@@ -8123,22 +8123,22 @@ h1,h2,h3,h4,h5,h6,p {
   }
   
   .section_template__collection .product_options .product_options__name {
-    float: right;
+    float: left;
     margin: 10px 0 0 10px;
   }
   
   .section_template__collection .product_options .product_options__publisher {
-    float: right;
+    float: left;
     margin: 10px 0 0 10px;
   }
 
   .section_template__collection .product_options .product_options__genre {
-    float: right;
+    float: left;
     margin: 10px 0 0 10px;
   }
 
   .section_template__collection .product_options .product_options__price {
-    float: right;
+    float: left;
     margin: 10px 0 0 10px;
   }
   
@@ -8611,7 +8611,6 @@ h1,h2,h3,h4,h5,h6,p {
   }
   
   .template_search .search_form {
-    margin: 30px 0 0 0;
     position: relative;
   }
   
