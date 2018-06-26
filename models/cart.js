@@ -23,8 +23,8 @@ module.exports = function Cart (oldCart) {
 
   this.generateArray = function () {
     var arr = []
-    for (var id in this.items) {
-      arr.push(this.items[id])
+    for (let index = 0; index < this.items.length; index++) {
+      arr.push(this.items[index])
     }
 
     return arr
