@@ -29,7 +29,7 @@ exports.getAddPage = function (req, res, next) {
   res.render('management/authorAdd', {
     layout: 'layoutAdmin',
     title: 'Thêm tác giả',
-    csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
+    csrfToken: req.csrfToken() // send token to client, it is neccessary when send post request
   })
 }
 
@@ -47,11 +47,10 @@ exports.getEditPage = function (req, res, next) {
     res.render('management/authorEdit', {
       layout: 'layoutAdmin',
       title: 'Chỉnh sửa tác giả',
-      author: results.authorDetail,
-      // csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
+      csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
+      author: results.authorDetail
     })
-
-    // console.log('author: ' + results.authorDetail)
+    console.log('author: ' + req.csrfToken())
   })
 }
 
@@ -76,7 +75,7 @@ exports.getDeletePage = function (req, res, next) {
       author: results.authorDetail,
       listBooksAuthor: results.listBooksAuthor,
       hasBook: results.listBooksAuthor.length > 0,
-      csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
+      csrfToken: req.csrfToken() // send token to client, it is neccessary when send post request
     })
 
     console.log('listBooksAuthor:' + results.listBooksAuthor)
@@ -84,33 +83,35 @@ exports.getDeletePage = function (req, res, next) {
   })
 }
 
-//POST add author
-exports.postAdd = function(req,res,next){
+// POST add author
+exports.postAdd = function (req, res, next) {
   var newAuthor = new Author({
     name: req.body.name,
     birthDate: req.body.date,
-    gender: req.body.gender == 'male' ? 'Nam' : 'Nữ',
+    gender: req.body.gender === 'male' ? 'Nam' : 'Nữ',
     nationality: req.body.national
-  });
-  newAuthor.save(function(err){
-    if(err) throw err;
-    else
-        res.redirect('/admin/author/add')
+  })
+  newAuthor.save(function (err) {
+    if (err) throw err
+    else {
+      res.redirect('/admin/author/add')
+    }
   })
 }
 
 // POST edit author
-exports.postEdit = function(req,res,next){
+exports.postEdit = function (req, res, next) {
   var editAuthor = new Author({
     _id: req.params.id,
     name: req.body.name,
     birthDate: req.body.date,
     gender: req.body.gender,
     nationality: req.body.national
-  });
-  Author.findByIdAndUpdate(req.params.id, editAuthor, function(err){
-    if(err) throw err;
-    else
-     res.redirect('/admin/author');
-})
+  })
+  Author.findByIdAndUpdate(req.params.id, editAuthor, function (err) {
+    if (err) throw err
+    else {
+      res.redirect('/admin/author')
+    }
+  })
 }
