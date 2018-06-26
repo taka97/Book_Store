@@ -1386,7 +1386,19 @@
       margin: 0;
       padding: 10px 0 0 0;
     }
-  
+
+    .section_template__collection .product_options .product_options__name,.section_template__collection .product_options .product_options__price {
+      float: none;
+      margin: 0;
+      padding: 10px 0 0 0;
+    }
+
+    .section_template__collection .product_options .product_options__publisher,.section_template__collection .product_options .product_options__genre {
+      float: none;
+      margin: 0;
+      padding: 10px 0 0 0;
+    }
+
     .section_template__blog .article_info {
       padding: 0;
     }

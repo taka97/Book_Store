@@ -8122,12 +8122,22 @@ h1,h2,h3,h4,h5,h6,p {
     vertical-align: top;
   }
   
-  .section_template__collection .product_options .product_options__sort {
+  .section_template__collection .product_options .product_options__name {
     float: right;
     margin: 10px 0 0 10px;
   }
   
-  .section_template__collection .product_options .product_options__number {
+  .section_template__collection .product_options .product_options__publisher {
+    float: right;
+    margin: 10px 0 0 10px;
+  }
+
+  .section_template__collection .product_options .product_options__genre {
+    float: right;
+    margin: 10px 0 0 10px;
+  }
+
+  .section_template__collection .product_options .product_options__price {
     float: right;
     margin: 10px 0 0 10px;
   }
