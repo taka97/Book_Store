@@ -32,3 +32,10 @@ exports.getDigitalWallets = function (req, res, next) {
     layout: false
   })
 }
+
+exports.searchBook = function (req, res, next) {
+  res.render('search', {
+    layout: 'layoutHomepage',
+    title: 'Tìm kiếm sách'
+  })
+}
