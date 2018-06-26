@@ -1,5 +1,5 @@
 const Cart = require('../models/cart')
-const Book = require('../models/book')
+const BookInstance = require('../models/bookInstance')
 
 /* GET cart page */
 exports.getCartPage = function (req, res, next) {
@@ -10,17 +10,19 @@ exports.getCartPage = function (req, res, next) {
 }
 
 /* GET add-to-cart page */
-exports.getAddToCart = function (req, res, next) {
-  var productId = req.params.id
+exports.postAddToCart = function (req, res, next) {
+  var productId = req.body.product_id
   var cart = new Cart(req.session.cart ? req.session.cart : {})
 
-  Book.findById(productId, function (err, product) {
-    if (err) {
-      return res.redirect('/')
-    }
-    cart.add(product, product.id)
-    req.session.cart = cart
-    console.log(req.session.cart)
-    res.redirect('/')
-  })
+  BookInstance.findById(productId)
+    .exec((err, product) => {
+      if (err) {
+        return res.redirect('/')
+      }
+      cart.add(product, product.id)
+      req.session.cart = cart
+
+      res.redirect('/book')
+      console.log(req.session.cart)
+    })
 }
