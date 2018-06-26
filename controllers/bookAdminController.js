@@ -105,6 +105,7 @@ exports.getDeletePage = function (req, res, next) {
         .populate('publisher')
         .populate('author')
         .populate('genre')
+        .populate('book')
         .exec(callback)
     }
   }, (err, results) => {
@@ -161,9 +162,9 @@ exports.postEdit = function (req, res, next) {
 
 // POST delete author
 exports.postDelete = function(req,res,next){
-  Author.findByIdAndRemove(req.params.id, function(err){
+  Book.findByIdAndRemove(req.params.id, function(err){
     if(err) throw err;
     else
-        res.redirect('/admin/author');
+        res.redirect('/admin/book');
   })
 }
