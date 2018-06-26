@@ -7,22 +7,7 @@ require('../models/book')
 
 // Get list all genre in database
 exports.listGenres = function (req, res, next) {
-  async.parallel({
-    listGenres: (callback) => {
-      Genre.find({})
-        .exec(callback)
-    }
-  }, (err, results) => {
-    if (err) { return next(err) }
-    // Successful, so render.
-    res.render('genre', {
-      layout: 'layoutHomepage',
-      title: 'Book Store',
-      listGenres: results.listGenres
-    })
-
-    console.log(results.listGenres)
-  })
+  res.redirect('/book')
 }
 
 // Get list all book in database
@@ -62,6 +47,6 @@ exports.bookOfGenre = function (req, res, next) {
       listPublishers: results.listPublisher,
       listBooks: results.listBookInstances
     })
-    // console.log(results.listBooks)
+    // console.log(results.listBookInstances)
   })
 }
