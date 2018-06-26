@@ -68,18 +68,17 @@ exports.getDeletePage = function (req, res, next) {
     }
   }, (err, results) => {
     if (err) { return next(err) }
-    // Successful, so render.
+    console.log('listBooksAuthor:' + results.listBooksAuthor)
+    console.log('length:' + results.listBooksAuthor.length)    // Successful, so render.
     res.render('management/authorDelete', {
       layout: 'layoutAdmin',
       title: 'Xóa tác giả',
       author: results.authorDetail,
       listBooksAuthor: results.listBooksAuthor,
-      hasBook: results.listBooksAuthor.length > 0,
+      hasBook: results.listBooksAuthor.length,
       csrfToken: req.csrfToken() // send token to client, it is neccessary when send post request
     })
 
-    console.log('listBooksAuthor:' + results.listBooksAuthor)
-    console.log('listBooksAuthor:' + results.listBooksAuthor.length)
   })
 }
 
@@ -113,5 +112,14 @@ exports.postEdit = function (req, res, next) {
     else {
       res.redirect('/admin/author')
     }
+  })
+}
+
+// POST delete author
+exports.postDelete = function(req,res,next){
+  Author.findByIdAndRemove(req.params.id, function(err){
+    if(err) throw err;
+    else
+        res.redirect('/admin/author');
   })
 }
