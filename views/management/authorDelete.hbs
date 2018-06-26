@@ -49,7 +49,7 @@
                         {{/author}}
                     </form>
                 </div>
-                {{#if length}}
+                {{#if length}}                
                 <div class="x_content">
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                         <thead>
@@ -65,20 +65,21 @@
                                 <th> Hành động </th>
                             </tr>
                         </thead>
+                        {{#each listBooksAuthor}}
                         <tbody>
                             <tr>
                                 <th> 1 </th>
-                                <th> Nhập môn lập trình </th>
-                                <th> Đại học Khoa học Tự nhiên TP.HCM </th>
+                                <th> {{title}} </th>
+                                <th> {{publisher.name}} </th>
                                 {{!--
                                 <th> 10/06/2018 </th> --}}
-                                <th> 1200000 </th>
+                                <th> {{price}} </th>
                                 {{!--
                                 <th>
                                     <img class="thumbnail image" src="http://gralib.hcmuns.edu.vn/sachmoi/2015/05-15/ktlaptrinh.jpg"
                                         alt=""> </th> --}}
                                 <td>
-                                    <a href="/author/ho-van-hoang" class="btn btn-primary btn-xs">
+                                    <a href="admin/book/edit/{{_id}}" class="btn btn-primary btn-xs">
                                         <i class="fa fa-folder"></i> Xem </a>
                                     <a href="/author/ho-van-hoang" class="btn btn-info btn-xs">
                                         <i class="fa fa-pencil"></i> Sửa </a>
@@ -87,8 +88,9 @@
                                 </td>
                             </tr>
                         </tbody>
+                        {{/each}}
                     </table>
-                </div>
+                </div>                
                 {{/if}}
             </div>
         </div>
