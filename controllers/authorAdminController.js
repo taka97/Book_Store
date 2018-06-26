@@ -41,14 +41,14 @@ exports.getEditPage = function (req, res, next) {
   }, (err, results) => {
     if (err) { return next(err) }
     // Successful, so render.
-    console.log(results.authorDetail)
+    // console.log(results.authorDetail)
     res.render('management/authorEdit', {
       layout: 'layoutAdmin',
       title: 'Chỉnh sửa tác giả',
       author: results.authorDetail
     })
 
-    console.log('author: ' + results.authorDetail)
+    // console.log('author: ' + results.authorDetail)
   })
 }
 
@@ -61,6 +61,7 @@ exports.getDeletePage = function (req, res, next) {
     },
     listBooksAuthor: (callback) => {
       Book.find({ author: req.params.id })
+        .populate('publisher')
         .exec(callback)
     }
   }, (err, results) => {
@@ -71,10 +72,10 @@ exports.getDeletePage = function (req, res, next) {
       title: 'Xóa tác giả',
       listBooksAuthor: results.listBooksAuthor,
       author: results.authorDetail,
-      length: result.listBooksAuthor.length
+      length: results.listBooksAuthor.length
     })
 
     console.log('listBooksAuthor:' + results.listBooksAuthor)
-    console.log('listBooksAuthor:' + results.length)
+    console.log('listBooksAuthor:' + results.listBooksAuthor.length)
   })
 }
