@@ -36,10 +36,17 @@ exports.listBookPublisher = function (req, res, next) {
       err.status = 404
       return next(err)
     }
+    var GenreChucks = []
+    var chunkSize = 3
+    for (var i = 0; i <= results.listGenres.length; i += chunkSize) {
+      GenreChucks.push(results.listGenres.slice(i, i + chunkSize))
+    }
     // Successful, so render.
     res.render('book', {
       layout: 'layoutHomepage',
       title: 'Book Store',
+      csrfToken: req.csrfToken(),
+      GenreChucks: GenreChucks,
       listGenres: results.listGenres,
       listAuthors: results.listAuthors,
       listPublishers: results.listPublisher,
