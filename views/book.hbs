@@ -41,14 +41,15 @@
           theme.productNumber = 6;
         </script>
         <div class="row product_listing__main" id="product_listing__sorted">
-          {{#if listBooks}} {{#each listBooks}}
+          {{#if listBookInstances}}
+          {{#each listBookInstances}}
           <div class="col-sm-4 max-height-470">
             <div class="product_item">
               <div class="product_img">
-                <a class="img_change" href="{{ url }}">
-                  <img class="img" src="{{ imageCover }}" alt="{{ title }}">
-                  <span class="product_badge new">New!</span>
-                  <span class="product_badge sale">–23%</span>
+                <a class="img_change" href="{{ book.url }}">
+                  <img class="img" src="{{ imageCover.[0] }}" alt="{{ book.title }}">
+                  {{!-- <span class="product_badge new">New!</span> --}}
+                  {{!-- <span class="product_badge sale">–23%</span> --}}
                 </a>
                 <a class="quick_view_btn" title="Quick view">
                   <i class="fa fa-eye" aria-hidden="true"></i>
@@ -56,20 +57,19 @@
               </div>
               <div class="product_info">
                 <p class="product_name">
-                  <a href="{{ url }}"> {{ title}} </a>
+                  <a href="{{ book.url }}"> {{ book.title }} </a>
                 </p>
-                <p class="product_desc product_desc__short"> {{ description }} </p>
-                <p class="product_desc product_desc__long"> {{ description }} </p>
+                <p class="product_desc product_desc__long"> {{ book.description }} </p>
                 <p class="product_price">
-                  <span class="money"> {{ price }}</span>
+                  <span class="money"> {{ currentPrice }}</span>
                   <span class="currency"> ₫</span>
-                  <span class="money money_sale">{{ price }}</span>
+                  <span class="money money_sale">{{ book.price }}</span>
                   <span class="currency"> ₫</span>
                 </p>
                 <div class="product_links">
                   <form method="post" action="/cart/add-to-cart">
                     <input type="hidden" name="product_id" value="{{ _id }}">
-                    <a class="btn btn_options"> Thêm vào giỏ hàng </a>
+                    <button class="btn btn_options"> Thêm vào giỏ hàng </button>
                   </form>
                   <a class="btn wishlist_add_login" href="/pages/wishlist" title="Add to the wishlist">
                     <i class="fa fa-heart-o" aria-hidden="true"></i>
@@ -79,7 +79,8 @@
               <div class="clearfix"></div>
             </div>
           </div>
-          {{/each}} {{else}}
+          {{/each}}
+          {{else}}
           <h2>Không có dữ liệu!</h2>
           {{/if}}
         </div>
