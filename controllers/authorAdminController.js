@@ -68,17 +68,15 @@ exports.getDeletePage = function (req, res, next) {
     }
   }, (err, results) => {
     if (err) { return next(err) }
-    console.log('listBooksAuthor:' + results.listBooksAuthor)
-    console.log('length:' + results.listBooksAuthor.length)    // Successful, so render.
+    // Successful, so render.
     res.render('management/authorDelete', {
       layout: 'layoutAdmin',
       title: 'Xóa tác giả',
+      csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
       author: results.authorDetail,
       listBooksAuthor: results.listBooksAuthor,
-      hasBook: results.listBooksAuthor.length,
-      csrfToken: req.csrfToken() // send token to client, it is neccessary when send post request
+      hasBook: results.listBooksAuthor.length
     })
-
   })
 }
 
