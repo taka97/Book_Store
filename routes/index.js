@@ -15,6 +15,8 @@ router.get('/', indexController.getHomepage)
 
 router.get('/digital_wallets/dialog', indexController.getDigitalWallets)
 
+router.get('/search', indexController.searchBook)
+
 /* GET login and register page */
 router.use('/', loginRouter)
 
