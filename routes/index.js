@@ -35,4 +35,7 @@ router.get('/digital_wallets/dialog', indexController.getDigitalWallets)
 
 router.get('/search', indexController.searchBook)
 
+// GET about page
+router.get('/about', indexController.getAboutPage)
+
 module.exports = router

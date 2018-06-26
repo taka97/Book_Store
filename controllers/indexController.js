@@ -24,8 +24,8 @@ exports.getHomepage = function (req, res, next) {
       GenreChucks: GenreChucks,
       listGenres: results.listGenres
     })
-    console.log(GenreChucks)
-    console.log(results.listGenres)
+    // console.log(GenreChucks)
+    // console.log(results.listGenres)
   })
 }
 
@@ -33,6 +33,23 @@ exports.getDigitalWallets = function (req, res, next) {
   res.render('digitalwallets', {
     layout: false
   })
+}
+
+// GET about page
+exports.getAboutPage = function (req, res, next) {
+  Genre.find()
+    .exec((err, listGenres) => {
+      if (err) { return next(err) }
+      var GenreChucks = []
+      var chunkSize = 3
+      for (var i = 0; i <= listGenres.length; i += chunkSize) {
+        GenreChucks.push(listGenres.slice(i, i + chunkSize))
+      }
+      res.render('about', {
+        layout: 'layoutHomepage',
+        GenreChucks: GenreChucks
+      })
+    })
 }
 
 exports.searchBook = function (req, res, next) {
