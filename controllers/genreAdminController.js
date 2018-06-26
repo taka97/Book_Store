@@ -53,8 +53,14 @@ exports.getEditPage = function (req, res, next) {
 // GET delete genre (admin) page
 exports.getDeletePage = function (req, res, next) {
   async.parallel({
+    genreDetail: (callback) => {
+      Genre.findById(req.params.id)
+        .exec(callback)
+    },
     listBooksGenre: (callback) => {
       Book.find({ genre: req.params.id })
+      .populate('author')
+      .populate('publisher')
         .exec(callback)
     }
   }, (err, results) => {
@@ -62,9 +68,11 @@ exports.getDeletePage = function (req, res, next) {
     // Successful, so render.
     res.render('management/genreDelete', {
       layout: 'layoutAdmin',
-      title: 'Xóa thể loại',
+      title: 'Xóa thể loại',      
+      genre: results.genreDetail,
       listBooksGenre: results.listBooksGenre
     })
+    console.log('genreDetail: ' + results.genreDetail)
     console.log('listBooksGenre: ' + results.listBooksGenre)
   })
 }

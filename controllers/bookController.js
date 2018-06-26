@@ -3,13 +3,14 @@ const Book = require('../models/book')
 const Author = require('../models/author')
 const Genre = require('../models/genre')
 const Publisher = require('../models/publisher')
+const BookInstance = require('../models/bookInstance')
 
 // Get list all book in database
 exports.listBooks = function (req, res, next) {
   async.parallel({
-    listBooks: (callback) => {
-      Book.find({}, 'title author price imageCover')
-        .populate('author')
+    listBookInstances: (callback) => {
+      BookInstance.find({})
+        .populate('book')
         .exec(callback)
     },
     listGenres: (callback) => {
@@ -26,7 +27,6 @@ exports.listBooks = function (req, res, next) {
     }
   }, (err, results) => {
     if (err) { return next(err) }
-
     // Successful, so render.
     res.render('book', {
       layout: 'layoutHomepage',
@@ -34,10 +34,10 @@ exports.listBooks = function (req, res, next) {
       listGenres: results.listGenres,
       listAuthors: results.listAuthors,
       listPublishers: results.listPublishers,
-      listBooks: results.listBooks
+      listBookInstances: results.listBookInstances
     })
 
-    // console.log(results.listAuthors)
+    console.log(results.listBookInstances)
   })
 }
 
