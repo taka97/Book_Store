@@ -143,8 +143,8 @@ exports.postAdd = function (req, res, next) {
     publisher: req.body.namePublisher,
     publishDate: req.body.date,
     price: req.body.price,
-    genre: req.body.gender,
-    desciption: req.body.desciption
+    genre: req.body.genre,
+    description: req.body.description
   })
   newBook.save(function (err) {
     if (err) throw err
