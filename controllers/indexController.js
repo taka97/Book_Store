@@ -80,9 +80,25 @@ exports.verifyEmail = function (req, res, next) {
           console.log('Link is valid. Email is verified')
         })
       } else { // invalid link
-        res.render('notifyEmail', {
-          layout: false,
-          isVerify: false
+        async.parallel({
+          listGenres: (callback) => {
+            Genre.find({})
+              .exec(callback)
+          }
+        }, (err, results) => {
+          if (err) { return next(err) }
+          var GenreChucks = []
+          var chunkSize = 3
+          for (var i = 0; i <= results.listGenres.length; i += chunkSize) {
+            GenreChucks.push(results.listGenres.slice(i, i + chunkSize))
+          }
+          // Successful, so render.
+          res.render('notifyEmail', {
+            layout: 'layoutHomepage',
+            title: 'Xác thực email',
+            GenreChucks: GenreChucks,
+            isVerify: false
+          })
         })
         console.log('Link is invalid')
       }
