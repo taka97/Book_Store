@@ -20,18 +20,18 @@
                 </tr>
               </thead>
               <tbody>
+                {{#each listPublishers}}
                 <tr>
                   <td> 1 </td>
-                  <td> Nhà xuất bản Kim Đồng </td>
-                  <td>
-                    <a href="/author/ho-van-hoang" class="btn btn-primary btn-xs">
-                      <i class="fa fa-folder"></i> Xem </a>
-                    <a href="/author/ho-van-hoang" class="btn btn-info btn-xs">
+                  <td> {{name}} </td>
+                  <td>                    
+                    <a href="/admin/publisher/edit/{{_id}}" class="btn btn-info btn-xs">
                       <i class="fa fa-pencil"></i> Sửa </a>
-                    <a href="/author/ho-van-hoang" class="btn btn-danger btn-xs">
+                    <a href="/admin/publisher/delete/{{_id}}" class="btn btn-danger btn-xs">
                       <i class="fa fa-trash-o"></i> Xóa </a>
                   </td>
                 </tr>
+                {{/each}}
               </tbody>
             </table>
           </div>

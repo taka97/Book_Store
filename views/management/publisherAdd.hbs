@@ -11,7 +11,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_content">
-                        <form class="form-horizontal form-label-left" novalidate="">
+                        <form action="" method="POST" class="form-horizontal form-label-left" novalidate="">
                             <span class="section">Thông tin nhà xuất bản</span>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tên nhà xuất bản
@@ -22,6 +22,7 @@
                                         data-validate-words="2" data-validate-length-range="6">
                                 </div>
                             <div class="ln_solid"></div>
+                            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
                                     <button class="btn btn-primary" type="submit">Cancel</button>

@@ -15,6 +15,7 @@ exports.getHomepage = function (req, res, next) {
     res.render('management/publisherHomepage', {
       layout: 'layoutAdmin',
       title: 'Quản lý nhà xuất bản',
+      csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
       listPublishers: results.listPublishers
     })
 
@@ -28,7 +29,8 @@ exports.getAddPage = function (req, res, next) {
   // Successful, so render.
   res.render('management/publisherAdd', {
     layout: 'layoutAdmin',
-    title: 'Thêm nhà xuất bản'
+    title: 'Thêm nhà xuất bản',
+    csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
   })
 }
 
@@ -45,6 +47,7 @@ exports.getEditPage = function (req, res, next) {
     res.render('management/publisherEdit', {
       layout: 'layoutAdmin',
       title: 'Chỉnh sửa nhà xuất bản',
+      csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
       publisher: results.publisherDetail
     })
 
@@ -55,6 +58,10 @@ exports.getEditPage = function (req, res, next) {
 // GET delete publisher (admin) page
 exports.getDeletePage = function (req, res, next) {
   async.parallel({
+    publisherDetail: (callback) => {
+      Publisher.findById(req.params.id)
+        .exec(callback)
+    },
     listBooksAuthor: (callback) => {
       Book.find({ publisher: req.params.id })
         .exec(callback)
@@ -65,9 +72,48 @@ exports.getDeletePage = function (req, res, next) {
     res.render('management/publisherDelete', {
       layout: 'layoutAdmin',
       title: 'Xóa sách',
-      listBooksAuthor: results.listBooksAuthor
-    })
-
+      csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
+      publisher: results.publisherDetail,
+      listBooksAuthor: results.listBooksAuthor,
+      hasBook: results.listBooksAuthor.length
+    })    
     console.log('listBooksAuthor: ' + results.listBooksAuthor)
+    console.log('Length: ' + results.listBooksAuthor.length)
+  })
+}
+
+// POST add publisher
+exports.postAdd = function (req, res, next) {
+  var newPublisher = new Publisher({
+    name: req.body.name
+  })
+  newPublisher.save(function (err) {
+    if (err) throw err
+    else {
+      res.redirect('/admin/publisher')
+    }
+  })
+}
+
+// POST edit publisher
+exports.postEdit = function (req, res, next) {
+  var editPublisher = new Publisher({
+    _id: req.params.id,
+    name: req.body.name
+  })
+  Publisher.findByIdAndUpdate(req.params.id, editPublisher, function (err) {
+    if (err) throw err
+    else {
+      res.redirect('/admin/publisher')
+    }
+  })
+}
+
+// POST delete publisher
+exports.postDelete = function(req,res,next){
+  Publisher.findByIdAndRemove(req.params.id, function(err){
+    if(err) throw err;
+    else
+        res.redirect('/admin/publisher');
   })
 }

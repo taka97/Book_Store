@@ -1,14 +1,16 @@
 const async = require('async')
 const Book = require('../models/book')
 const BookInstance = require('../models/bookInstance')
-
+const Author = require('../models/author')
+const Genre = require('../models/genre')
+const Publisher = require('../models/publisher')
 // GET book (admin) homepage
 exports.getHomepage = function (req, res, next) {
   async.parallel({
     listBooks: (callback) => {
       Book.find()
-      .populate('publisher')
-      .exec(callback)
+        .populate('publisher')
+        .exec(callback)
     }
   }, (err, results) => {
     if (err) { return next(err) }
@@ -23,24 +25,36 @@ exports.getHomepage = function (req, res, next) {
   })
 }
 
-// exports.postAddPage = function(req,res){
-//   var newBook = new Book({
-//     title: req.body.name,
-//     author: req.body.nameAuthor,
-//     genre: req.body.genre,
-//     price: req.body.price,
-//     publisher: req.body.namePublisher,
-//     publishDate: req.body.date
-//   })
-// }
 // for develop
 // GET add book (admin) page
 exports.getAddPage = function (req, res, next) {
-  // Successful, so render.
-  res.render('management/bookAdd', {
-    layout: 'layoutAdmin',
-    title: 'Thêm sách',
-    csrfToken: req.csrfToken() // send token to client, it is neccessary when send post request
+  async.parallel({
+    listAuthor: (callback) => {
+      Author.find()
+        .exec(callback)
+    },
+    listGenre: (callback) => {
+      Genre.find()
+        .exec(callback)
+    },
+    listPublisher: (callback) => {
+      Publisher.find()
+        .exec(callback)
+    }
+  }, (err, results) => {
+    if (err) { return next(err) }
+    // Successful, so render.
+    res.render('management/bookAdd', {
+      layout: 'layoutAdmin',
+      title: 'Thêm sách',
+      csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
+      authors: results.listAuthor,
+      genres: results.listGenre,
+      publishers: results.listPublisher
+    })
+    console.log('Authors: ' + results.listAuthor),
+    console.log('Genres: ' + results.listGenre),
+    console.log('Publisher ' + results.listPublisher)
   })
 }
 
@@ -129,8 +143,8 @@ exports.postAdd = function (req, res, next) {
     publisher: req.body.namePublisher,
     publishDate: req.body.date,
     price: req.body.price,
-    genre: req.body.gender,
-    desciption: req.body.desciption
+    genre: req.body.genre,
+    description: req.body.description
   })
   newBook.save(function (err) {
     if (err) throw err
@@ -161,10 +175,10 @@ exports.postEdit = function (req, res, next) {
 }
 
 // POST delete author
-exports.postDelete = function(req,res,next){
-  Book.findByIdAndRemove(req.params.id, function(err){
-    if(err) throw err;
+exports.postDelete = function (req, res, next) {
+  Book.findByIdAndRemove(req.params.id, function (err) {
+    if (err) throw err;
     else
-        res.redirect('/admin/book');
+      res.redirect('/admin/book');
   })
 }

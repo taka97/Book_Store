@@ -1,6 +1,6 @@
 const async = require('async')
 const BookInstance = require('../models/bookInstance')
-require('../models/book')
+const Book = require('../models/book')
 
 // GET bookInstance (admin) homepage
 exports.getHomepage = function (req, res, next) {
@@ -45,16 +45,35 @@ exports.getViewPage = function (req, res, next) {
 
 // GET add bookInstance (admin) page
 exports.getAddPage = function (req, res, next) {
-  // Successful, so render.
-  res.render('management/bookInstanceAdd', {
-    layout: 'layoutAdmin',
-    title: 'Thêm sản phẩm'
+  async.parallel({
+    // bookDetail: (callback) => {
+    //   Book.findById(req.params.id)
+    //     .exec(callback)
+    // }
+    listBook: (callback) => {
+      Book.find()
+        .exec(callback)
+    }
+  }, (err, results) => {
+    if (err) { return next(err) }
+    // Successful, so render.
+    res.render('management/bookInstanceAdd', {
+      layout: 'layoutAdmin',
+      title: 'Thêm sản phẩm',
+      csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
+      books: results.listBook
+    })
+    console.log('Books: ' + results.listBook)
   })
 }
 
 // GET edit bookInstance (admin) page
 exports.getEditPage = function (req, res, next) {
   async.parallel({
+    listBook: (callback) => {
+      Book.find()
+        .exec(callback)
+    },
     bookinstanceDetail: (callback) => {
       BookInstance.findById(req.params.id)
         .populate({ path: 'book', populate: { path: 'author publisher genre' } })
@@ -66,9 +85,12 @@ exports.getEditPage = function (req, res, next) {
     res.render('management/bookInstanceEdit', {
       layout: 'layoutAdmin',
       title: 'Chỉnh sửa sản phẩm',
+      csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
+      books: results.listBook,
       bookinstance: results.bookinstanceDetail
     })
-    console.log('bookinstance: ' + results.bookinstanceDetail)
+    // console.log('bookinstance: ' + results.bookinstanceDetail)
+    console.log('Books: ' + results.listBook)
   })
 }
 
@@ -82,12 +104,62 @@ exports.getDeletePage = function (req, res, next) {
     }
   }, (err, results) => {
     if (err) { return next(err) }
-  // Successful, so render.
+    // Successful, so render.
     res.render('management/bookInstanceDelete', {
       layout: 'layoutAdmin',
       title: 'Xóa sản phẩm',
+      csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
       bookinstance: results.bookinstanceDetail
     })
     console.log('bookinstance: ' + results.bookinstanceDetail)
   })
 }
+
+// POST add bookInstance
+exports.postAdd = function (req, res, next) {
+  var newBookInstance = new BookInstance({
+    book: req.body.name,
+    currentPrice: req.body.price,
+    currentTotalQuantity: req.body.total,
+    size: req.body.size,
+    coverType: req.body.coverType,
+    imageCover: 'https://media.ohay.tv/v1/content/2014/11/minion-ohay-tv-492.jpeg',
+    status: req.body.status
+  })
+  newBookInstance.save(function (err) {
+    if (err) throw err
+    else {
+      res.redirect('/admin/bookinstance')
+    }
+  })
+}
+
+// POST edit bookInstance
+exports.postEdit = function (req, res, next) {
+  var editBookInstance = new BookInstance({
+    _id: req.params.id,
+    book: req.body.name,
+    currentPrice: req.body.price,
+    currentTotalQuantity: req.body.total,
+    size: req.body.size,
+    coverType: req.body.coverType,
+    imageCover: 'https://media.ohay.tv/v1/content/2014/11/minion-ohay-tv-492.jpeg',
+    status: req.body.status
+  })
+  BookInstance.findByIdAndUpdate(req.params.id, editBookInstance, function (err) {
+    if (err) throw err
+    else {
+      res.redirect('/admin/bookinstance')
+    }
+  })
+}
+
+// POST delete bookInstance
+exports.postDelete = function (req, res, next) {
+  BookInstance.findByIdAndRemove(req.params.id, function (err) {
+    if (err) throw err;
+    else
+      res.redirect('/admin/bookinstance');
+  })
+}
+

@@ -30,8 +30,27 @@ exports.getViewPage = function (req, res, next) {
     }
   }, (err, results) => {
     if (err) { return next(err) }
-  // Successful, so render.
+    // Successful, so render.
     res.render('management/accountView', {
+      layout: 'layoutAdmin',
+      title: 'Xem thông tin tài khoản',
+      account: results.accountDetail
+    })
+    console.log('account: ' + results.accountDetail)
+  })
+}
+
+// GET edit account (admin) page
+exports.getEditPage = function (req, res, next) {
+  async.parallel({
+    accountDetail: (callback) => {
+      Account.findById(req.params.id)
+        .exec(callback)
+    }
+  }, (err, results) => {
+    if (err) { return next(err) }
+    // Successful, so render.
+    res.render('management/accountEdit', {
       layout: 'layoutAdmin',
       title: 'Xem thông tin tài khoản',
       account: results.accountDetail
@@ -42,10 +61,20 @@ exports.getViewPage = function (req, res, next) {
 
 // GET upgrade account (admin) page
 exports.getUpgradePage = function (req, res, next) {
-  // Successful, so render.
-  res.render('management/accountUpgrade', {
-    layout: 'layoutAdmin',
-    title: 'Nâng cấp tài khoản'
+  async.parallel({
+    accountDetail: (callback) => {
+      Account.findById(req.params.id)
+        .exec(callback)
+    }
+  }, (err, results) => {
+    if (err) { return next(err) }
+    // Successful, so render.
+    res.render('management/accountUpgrade', {
+      layout: 'layoutAdmin',
+      title: 'Nâng cấp tài khoản',
+      account: results.accountDetail
+    })
+    console.log('account: ' + results.accountDetail)
   })
 }
 

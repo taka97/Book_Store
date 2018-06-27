@@ -27,23 +27,29 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <select class="form-control col-md-7 col-xs-12" id="author">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
+                                        {{#each authors}}
+                                        <option value="{{_id}}">{{name}}</option>
+                                        {{/each}}
                                     </select>
                                 </div>
-                                <button type="button" class="btn btn-round btn-success">
+                                <a href='/admin/author/add' type="button" class="btn btn-round btn-success">
                                     <i class="fa fa-plus" aria-hidden="true" style="line-height: inherit;"></i>
-                                </button>
+                                </a>
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="genre">Thể loại
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="genre" class="form-control col-md-7 col-xs-12" id="genre" required="required" type="text">
+                                    <select class="form-control col-md-7 col-xs-12" id="genre">
+                                        {{#each genres}}
+                                        <option value="{{_id}}">{{name}}</option>
+                                        {{/each}}
+                                    </select>
                                 </div>
+                                <a href='/admin/genre/add' type="button" class="btn btn-round btn-success">
+                                    <i class="fa fa-plus" aria-hidden="true" style="line-height: inherit;"></i>
+                                </a>
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="price">Giá
@@ -58,8 +64,15 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="namePublisher" class="form-control col-md-7 col-xs-12" id="name" required="required" type="text" placeholder="Nhà sản xuất">
+                                    <select class="form-control col-md-7 col-xs-12" id="publisher">
+                                        {{#each publishers}}
+                                        <option value="{{_id}}">{{name}}</option>
+                                        {{/each}}
+                                    </select>
                                 </div>
+                                <a href='/admin/publisher/add' type="button" class="btn btn-round btn-success">
+                                    <i class="fa fa-plus" aria-hidden="true" style="line-height: inherit;"></i>
+                                </a>
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">Ngày sản xuất
@@ -74,7 +87,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="description" class="optional form-control col-md-7 col-xs-12" id="description" type="text">
+                                    <textarea name="description" class="form-control" rows="5" id="description"></textarea>
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
