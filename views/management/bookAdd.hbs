@@ -25,12 +25,12 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nameAuthor">Tác giả
                                     <span class="required">*</span>
                                 </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">                                    
+                                <div class="col-md-6 col-sm-6 col-xs-12">
                                     <select class="form-control col-md-7 col-xs-12" id="author">
                                         {{#each authors}}
-                                        <option>{{name}}</option>           
-                                        {{/each}}                             
-                                    </select>                                    
+                                        <option>{{name}}</option>
+                                        {{/each}}
+                                    </select>
                                 </div>
                                 <a href='/admin/author/add' type="button" class="btn btn-round btn-success">
                                     <i class="fa fa-plus" aria-hidden="true" style="line-height: inherit;"></i>
@@ -40,12 +40,12 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="genre">Thể loại
                                     <span class="required">*</span>
                                 </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">                                    
+                                <div class="col-md-6 col-sm-6 col-xs-12">
                                     <select class="form-control col-md-7 col-xs-12" id="genre">
                                         {{#each genres}}
-                                        <option>{{name}}</option>           
-                                        {{/each}}                             
-                                    </select>                                    
+                                        <option>{{name}}</option>
+                                        {{/each}}
+                                    </select>
                                 </div>
                                 <a href='/admin/genre/add' type="button" class="btn btn-round btn-success">
                                     <i class="fa fa-plus" aria-hidden="true" style="line-height: inherit;"></i>
@@ -63,12 +63,12 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="namePublisher">Nhà sản xuất
                                     <span class="required">*</span>
                                 </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">                                    
+                                <div class="col-md-6 col-sm-6 col-xs-12">
                                     <select class="form-control col-md-7 col-xs-12" id="publisher">
                                         {{#each publishers}}
-                                        <option>{{name}}</option>           
-                                        {{/each}}                             
-                                    </select>                                    
+                                        <option>{{name}}</option>
+                                        {{/each}}
+                                    </select>
                                 </div>
                                 <a href='/admin/publisher/add' type="button" class="btn btn-round btn-success">
                                     <i class="fa fa-plus" aria-hidden="true" style="line-height: inherit;"></i>
@@ -87,7 +87,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="description" class="optional form-control col-md-7 col-xs-12" id="description" type="text">
+                                    <textarea name="description" class="form-control" rows="5" id="description"></textarea>
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
