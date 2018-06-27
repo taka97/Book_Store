@@ -11,16 +11,19 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_content">
-                        <form class="form-horizontal form-label-left" novalidate="">
-                            {{# bookinstance}}
+                        {{!-- {{# bookinstance}} --}}
+                        <form action="" method="POST" class="form-horizontal form-label-left" novalidate="">
                             <span class="section">Thông tin sản phẩm</span>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tên sản phẩm
                                     <span class="required">*</span>
                                 </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="name" class="form-control col-md-7 col-xs-12" id="name" required="required" type="text" value="{{book.title}}"
-                                        data-validate-words="2" data-validate-length-range="6">
+                                <div class="col-md-6 col-sm-6 col-xs-12">                                    
+                                    <select name="name" class="form-control col-md-7 col-xs-12" id="nameAuthor">
+                                        {{#each books}}
+                                        <option value="{{_id}}">{{title}}</option>           
+                                        {{/each}}                             
+                                    </select>                            
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -28,7 +31,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="price" class="form-control col-md-7 col-xs-12" id="price" required="required" type="text" value="{{currentPrice}}">
+                                    <input name="price" class="form-control col-md-7 col-xs-12" id="price" required="required" type="text" value="{{bookinstance.currentPrice}}">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -36,7 +39,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="total" class="form-control col-md-7 col-xs-12" id="total" required="required" type="text" value="{{currentTotalQuantity}}">
+                                    <input name="total" class="form-control col-md-7 col-xs-12" id="total" required="required" type="text" value="{{bookinstance.currentTotalQuantity}}">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -44,7 +47,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="size" class="form-control col-md-7 col-xs-12" id="size" required="required" type="text" value="{{size.[0]}},{{size.[1]}}">
+                                    <input name="size" class="form-control col-md-7 col-xs-12" id="size" required="required" type="text" value="{{bookinstance.size.[0]}},{{bookinstance.size.[1]}}">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -80,7 +83,7 @@
                                             <div id="crop-avatar">
                                                 <!-- Current avatar -->
                                                 <img name="imageCover" id="imageCover" title="Change the image" required="required" class="img-responsive avatar-view" alt="image"
-                                                    src="{{imageCover.[0]}}">
+                                                    src="{{bookinstance.imageCover.[0]}}">
                                             </div>
                                         </div>
                                     </div>
@@ -99,7 +102,7 @@
                                             <div id="crop-avatar">
                                                 <!-- Current avatar -->
                                                 <img name="imageCover" id="imageCover" title="Change the image" required="required" class="img-responsive avatar-view" alt="image"
-                                                    src="{{imageCover.[1]}}">
+                                                    src="{{bookinstance.imageCover.[1]}}">
                                             </div>
                                         </div>
                                     </div>
@@ -109,14 +112,15 @@
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
+                            <input type="hidden" name="_csrf" value="{{ ../csrfToken }}">
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
                                     <button class="btn btn-primary" type="submit">Cancel</button>
                                     <button class="btn btn-success" id="send" type="submit">Submit</button>
                                 </div>
                             </div>
-                            {{/bookinstance}}
                         </form>
+                        {{!-- {{/bookinstance}} --}}
                     </div>
                 </div>
             </div>
