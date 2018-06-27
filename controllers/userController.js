@@ -16,8 +16,8 @@ exports.getHomepage = function (req, res, next) {
       title: 'Người dùng',
       listAccounts: results.listAccounts
     })
+    // console.log('listAccount:' + results.listAccounts)
   })
-  console.log('listAccount:' + results.listAccounts)
 }
 
 // GET view profile page
@@ -36,8 +36,8 @@ exports.getViewProfile = function (req, res, next) {
       user: req.user,
       account: results.accountDetail
     })
-    console.log(req.user),
-      console.log('account: ' + results.accountDetail)
+    // console.log(req.user)
+    // console.log('account: ' + results.accountDetail)
   })
 }
 
@@ -58,7 +58,7 @@ exports.getChangeProfile = function (req, res, next) {
       user: req.user,
       account: results.accountDetail
     })
-    console.log('account: ' + results.accountDetail)
+    // console.log('account: ' + results.accountDetail)
   })
 }
 

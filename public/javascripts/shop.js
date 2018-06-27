@@ -522,3 +522,18 @@ jQuery(function ($) {
     })
   })
 })
+
+function format (inputStr) {
+  let d = new Date(inputStr)
+  return ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth() + 1)).slice(-2) + '/' + d.getFullYear()
+}
+
+function formatdate () {
+  $('[formatdate]').each(function () {
+    $(this).text(format($(this).text() ))
+  })
+}
+
+$(document).ready(function() {
+  formatdate()
+})
