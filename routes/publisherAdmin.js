@@ -16,4 +16,12 @@ router.get('/edit/:id', publisherAdminController.getEditPage)
 // GET delete publisher (admin) page
 router.get('/delete/:id', publisherAdminController.getDeletePage)
 
+// POST add publisher (admin) page
+router.post('/add', publisherAdminController.postAdd)
+
+// POST edit publisher (admin) page
+router.post('/edit/:id', publisherAdminController.postEdit)
+
+// POST delete publisher (admin) page
+router.post('/delete/:id', publisherAdminController.postDelete)
 module.exports = router
