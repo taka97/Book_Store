@@ -3,7 +3,7 @@
         <div class="container">
             <h1 class="page_heading">{{ title }}</h1>
 
-            {{#if cartDetail }}
+            {{!-- {{#if cartDetail }} --}}
             <form action="/payment" method="post" novalidate="" class="cart">
                 <table class="table table-bordered cart_items">
                     <thead>
@@ -19,22 +19,22 @@
                         <tr>
                             <td class="column_product_img">
                                 <a href="/book/{{id}}">
-                                    <img class="cart__image" src={{ item.imageCover.[0]}} alt={{ item.book.title }}>
+                                    <img class="cart__image" src={{ item.one.imageCover.[0]}} alt={{item.two.title }}>
                                 </a>
                             </td>
                             <td class="column_product_info ">
                                 <p class="cart_item__name product_name ">
-                                    <a href="/book/{{id}}">Tên sách{{tittle}}</a>
+                                    <a href="/book/{{id}}">{{item.two.title}}</a>
                                 </p>
                                 <div class="cart_item__details ">
                                     <p class="item_type">
-                                        <b>Thể loại:</b>Thể loại {{ item.book.genre.name }}</p>
+                                        <b>Thể loại:</b>Thể loại {{ item.two.genre.name }}</p>
                                     <p class="item_vendor">
-                                        <b>Tác giả:</b> Tên tác giả {{ item.book.author.name }}</p>
+                                        <b>Tác giả:</b> Tên tác giả {{ item.two.author.name }}</p>
                                     <p class="item_weight">
-                                        <b>Nhà xuất bản:</b> Nhà xuất bản {{ item.book.publisher.name }}</p>
+                                        <b>Nhà xuất bản:</b> Nhà xuất bản {{ item.two.publisher.name }}</p>
                                     <p class="item_cover_type">
-                                        <b>Loại bìa:</b> {{ item.coverType }}</p>
+                                        <b>Loại bìa:</b> {{ item.one.coverType }}</p>
                                 </div>
                                 <a class="btn cart_item__remove " href="/cart/change?line=2&amp;quantity=0 ">Remove</a>
                             </td>
@@ -79,9 +79,9 @@
                 </table>
                 <input type="hidden" name="_csrf" value="{{ csrfToken }}">
             </form>
-            {{else}}
-            <p>Bạn chưa thêm sản phẩm nào vào giỏ hàng</p>
-            {{/if}}
+            {{!-- {{else}} --}}
+            {{!-- <p>Bạn chưa thêm sản phẩm nào vào giỏ hàng</p> --}}
+            {{!-- {{/if}} --}}
         </div>
     </div>
 </div>
