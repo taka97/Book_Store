@@ -15,6 +15,7 @@ exports.getHomepage = function (req, res, next) {
     res.render('management/genreHomepage', {
       layout: 'layoutAdmin',
       title: 'Quản lý thể loại',
+      csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
       listGenres: results.listGenres
     })
     console.log('listGenres: ' + results.listGenres)
@@ -44,6 +45,7 @@ exports.getEditPage = function (req, res, next) {
     res.render('management/genreEdit', {
       layout: 'layoutAdmin',
       title: 'Chỉnh sửa thể loại',
+      csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
       genre: results.genreDetail
     })
     console.log('genre: ' + results.genreDetail)
@@ -69,10 +71,48 @@ exports.getDeletePage = function (req, res, next) {
     res.render('management/genreDelete', {
       layout: 'layoutAdmin',
       title: 'Xóa thể loại',      
+      csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
       genre: results.genreDetail,
-      listBooksGenre: results.listBooksGenre
+      listBooksGenre: results.listBooksGenre,
+      hasBook: results.listBooksGenre.length
     })
     console.log('genreDetail: ' + results.genreDetail)
     console.log('listBooksGenre: ' + results.listBooksGenre)
+  })
+}
+
+// POST add genre
+exports.postAdd = function (req, res, next) {
+  var newGenre = new Genre({
+    name: req.body.name
+  })
+  newGenre.save(function (err) {
+    if (err) throw err
+    else {
+      res.redirect('/admin/genre')
+    }
+  })
+}
+
+// POST edit genre
+exports.postEdit = function (req, res, next) {
+  var editGenre = new Genre({
+    _id: req.params.id,
+    name: req.body.name,
+  })
+  Genre.findByIdAndUpdate(req.params.id, editGenre, function (err) {
+    if (err) throw err
+    else {
+      res.redirect('/admin/genre')
+    }
+  })
+}
+
+// POST delete genre
+exports.postDelete = function(req,res,next){
+  Genre.findByIdAndRemove(req.params.id, function(err){
+    if(err) throw err;
+    else
+        res.redirect('/admin/genre');
   })
 }
