@@ -56,7 +56,19 @@ exports.getCartPage = function (req, res, next) {
   }
 }
 
-/* GET add-to-cart page */
+exports.getCheckoutPage = function (req, res, next) {
+  if (!req.session.cart) {
+    res.redirect('/cart')
+  } else {
+    var cart = new Cart(req.session.cart)
+    res.render('checkout', {
+      layout: false,
+      cartDetail: null
+    })
+  }
+}
+
+/* POST add-to-cart page */
 exports.postAddToCart = function (req, res, next) {
   var productId = req.body.product_id
   var cart = new Cart(req.session.cart)
@@ -101,6 +113,8 @@ exports.postAddToCart = function (req, res, next) {
   })
 }
 
-exports.getCheckoutPage = function (req, res, next) {
-
+/* POST checkout */
+exports.postCheckout = function (req, res, next) {
+  res.status(200)
+  res.send('post checkout')
 }

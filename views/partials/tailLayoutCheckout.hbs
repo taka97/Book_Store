@@ -1,0 +1,116 @@
+<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+<script src="/javascripts/assets.js" defer></script>
+<script src="/javascripts/shop.js" defer></script>
+<script src="/javascripts/customProduct.js"></script>
+<script src="https://js.stripe.com/v2/"></script>
+<script src="/javascripts/checkout.js"></script>
+
+
+<link href="/stylesheets/style.scss.css" rel="stylesheet" type="text/css" media="all" />
+
+<script id="shopify-features" type="application/json">{"accessToken":"8842f28cdcb38a345c426e199215435a","betas":["smart-payment-buttons-experiment-mpo-clarity"],"domain":"theme356-books.myshopify.com","shopId":23233807,"smart_payment_buttons_url":"https:\/\/cdn.shopifycloud.com\/payment-sheet\/assets\/latest\/spb.js"}</script>
+<script>
+    var Shopify = Shopify || {};
+    Shopify.shop = "theme356-books.myshopify.com";
+    Shopify.theme = { "name": "theme356", "id": 195723787, "theme_store_id": null, "role": "main" };
+    Shopify.theme.handle = "null";
+    Shopify.theme.style = { "id": null, "handle": null };
+</script>
+<script id="__st">var __st = { "a": 23233807, "offset": -14400, "reqid": "d198dd4b-3ac3-49ca-b303-a0587d4b4ce3", "pageurl": "theme356-books.myshopify.com\/", "u": "88eb212ad25e", "p": "home" };</script>
+<script>window.ShopifyPaypalV4VisibilityTracking = true;</script>
+<script>
+    window.Shopify = window.Shopify || {};
+    window.Shopify.Checkout = window.Shopify.Checkout || {};
+    window.Shopify.Checkout.apiHost = "theme356-books.myshopify.com";
+    window.ShopifyPay = window.ShopifyPay || {};
+    window.ShopifyPay.acceleratedFlowIncontext = false;
+    window.ShopifyPay.apiHost = "pay.shopify.com";
+    window.ShopifyPay.apiToken = "Ynk4WnlXSUR6VXpRUUJLRzlWMjh3MlFXemVSbmoweXh5cndCUlF2UXVicjNUdlArK0E5aDdOQlZiNFYwM3N1Qy0tTVRnVzJuL3RoUW8zS05sMi9SZGc1UT09--ef6a594691601d2da27b64fa3b0b9e7c15eb7c03";
+    window.ShopifyPay.requestHost = "theme356-books.myshopify.com"
+    window.ShopifyPay.sheetStyleSheetUrl = "\/\/cdn.shopify.com\/s\/assets\/shared\/sheet\/main-9591cdb8fc78ba1acaca189815e8d30f2513988b8b83f4a84c83115fcae19d76.css";
+</script>
+<script>
+    window.ShopifyAnalytics = window.ShopifyAnalytics || {};
+    window.ShopifyAnalytics.meta = window.ShopifyAnalytics.meta || {};
+    window.ShopifyAnalytics.meta.currency = 'USD';
+    var meta = { "page": { "pageType": "home" } };
+    for (var attr in meta) {
+      window.ShopifyAnalytics.meta[attr] = meta[attr];
+    }
+</script>
+<script>window.ShopifyAnalytics.merchantGoogleAnalytics = function () {
+    };
+</script>
+<script class="analytics">
+    (function () {
+      var customDocumentWrite = function (content) {
+        var jquery = null;
+        if (window.jQuery) {
+          jquery = window.jQuery;
+        } else if (window.Checkout && window.Checkout.$) {
+          jquery = window.Checkout.$;
+        }
+        if (jquery) {
+          jquery('body').append(content);
+        }
+      };
+      var trekkie = window.ShopifyAnalytics.lib = window.trekkie = window.trekkie || [];
+      if (trekkie.integrations) {
+        return;
+      }
+      trekkie.methods = [
+        'identify',
+        'page',
+        'ready',
+        'track',
+        'trackForm',
+        'trackLink'
+      ];
+      trekkie.factory = function (method) {
+        return function () {
+          var args = Array.prototype.slice.call(arguments);
+          args.unshift(method);
+          trekkie.push(args);
+          return trekkie;
+        };
+      };
+      for (var i = 0; i < trekkie.methods.length; i++) {
+        var key = trekkie.methods[i];
+        trekkie[key] = trekkie.factory(key);
+      }
+      trekkie.load = function (config) {
+        trekkie.config = config;
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.onerror = function (e) {
+          (new Image()).src = '//v.shopify.com/internal_errors/track?error=trekkie_load';
+        };
+        script.async = true;
+        script.src = 'https://cdn.shopify.com/s/javascripts/tricorder/trekkie.storefront.min.js?v=2017.09.05.1';
+        var first = document.getElementsByTagName('script')[0];
+        first.parentNode.insertBefore(script, first);
+      };
+      trekkie.load(
+        { "Trekkie": { "appName": "storefront", "development": false, "defaultAttributes": { "shopId": 23233807, "isMerchantRequest": null, "themeId": 195723787, "themeCityHash": 5855831490552317750 } }, "Performance": { "navigationTimingApiMeasurementsEnabled": true, "navigationTimingApiMeasurementsSampleRate": 1.0 }, "Session Attribution": {} }
+      );
+      var loaded = false;
+      trekkie.ready(function () {
+        if (loaded) return;
+        loaded = true;
+        window.ShopifyAnalytics.lib = window.trekkie;
+        var originalDocumentWrite = document.write;
+        document.write = customDocumentWrite;
+        try { window.ShopifyAnalytics.merchantGoogleAnalytics.call(this); } catch (error) { };
+        document.write = originalDocumentWrite;
+        window.ShopifyAnalytics.lib.page(
+          null,
+          { "pageType": "home" }
+        );
+      });
+      var eventsListenerScript = document.createElement('script');
+      eventsListenerScript.async = true;
+      eventsListenerScript.src = "//cdn.shopify.com/s/assets/shop_events_listener-f2c5800305098f0ebebdfa7d980c9abf56514c46d5305e97a7c476f7c9116163.js";
+      document.getElementsByTagName('head')[0].appendChild(eventsListenerScript);
+    })();
+</script>
+<script type="text/javascript" async="" src="/javascripts/trekkie.storefront.min.js"></script>
