@@ -21,7 +21,7 @@ exports.getHomepage = function (req, res, next) {
       listBooks: results.listBooks,
       csrfToken: req.csrfToken() // send token to client, it is neccessary when send post request
     })
-    console.log('listBooks: ' + results.listBooks)
+    // console.log('listBooks: ' + results.listBooks)
   })
 }
 
@@ -52,9 +52,9 @@ exports.getAddPage = function (req, res, next) {
       genres: results.listGenre,
       publishers: results.listPublisher
     })
-    console.log('Authors: ' + results.listAuthor),
-    console.log('Genres: ' + results.listGenre),
-    console.log('Publisher ' + results.listPublisher)
+    // console.log('Authors: ' + results.listAuthor)
+    // console.log('Genres: ' + results.listGenre)
+    // console.log('Publisher ' + results.listPublisher)
   })
 }
 
@@ -82,10 +82,9 @@ exports.getViewPage = function (req, res, next) {
       bookIns: results.listBookInstance,
       csrfToken: req.csrfToken() // send token to client, it is neccessary when send post request
     })
-    console.log('book: ' + results.bookDetail)
-    console.log('bookInstance: ' + results.listBookInstance)
+    // console.log('book: ' + results.bookDetail)
+    // console.log('bookInstance: ' + results.listBookInstance)
   })
-
 }
 
 // GET edit book (admin) page
@@ -131,7 +130,7 @@ exports.getDeletePage = function (req, res, next) {
       listBookInstance: results.listBookInstance,
       csrfToken: req.csrfToken() // send token to client, it is neccessary when send post request
     })
-    console.log('listBookInstance: ' + results.listBookInstance)
+    // console.log('listBookInstance: ' + results.listBookInstance)
   })
 }
 
@@ -147,10 +146,8 @@ exports.postAdd = function (req, res, next) {
     description: req.body.description
   })
   newBook.save(function (err) {
-    if (err) throw err
-    else {
-      res.redirect('/admin/book')
-    }
+    if (err) { return next(err) }
+    res.redirect('/admin/book')
   })
 }
 
@@ -167,18 +164,15 @@ exports.postEdit = function (req, res, next) {
     desciption: req.body.desciption
   })
   Book.findByIdAndUpdate(req.params.id, editBook, function (err) {
-    if (err) throw err
-    else {
-      res.redirect('/admin/book')
-    }
+    if (err) { return next(err) }
+    res.redirect('/admin/book')
   })
 }
 
 // POST delete author
 exports.postDelete = function (req, res, next) {
   Book.findByIdAndRemove(req.params.id, function (err) {
-    if (err) throw err;
-    else
-      res.redirect('/admin/book');
+    if (err) { return next(err) }
+    res.redirect('/admin/book')
   })
 }
