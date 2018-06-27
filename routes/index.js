@@ -38,4 +38,12 @@ router.get('/search', indexController.searchBook)
 // GET about page
 router.get('/about', indexController.getAboutPage)
 
+// request send email
+router.get('/send', indexController.sendVerifyEmail)
+
+// verify email
+router.get('/verify', indexController.verifyEmail)
+
+router.get('/resend', indexController.resendVerifyEmail)
+
 module.exports = router

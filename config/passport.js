@@ -1,6 +1,7 @@
 const passport = require('passport')
 const Account = require('../models/account')
-var LocalStratery = require('passport-local').Strategy
+const LocalStratery = require('passport-local').Strategy
+const randomToken = require('random-token')
 
 passport.serializeUser(function (account, done) {
   done(null, account.id)
@@ -71,7 +72,9 @@ passport.use('signup', new LocalStratery({
       newAccount.address = req.body.address
       newAccount.avatarPath = '/images/user.png'
       newAccount.typeAccount = 'User'
-      newAccount.verifyEmail = false
+      newAccount.isVerify = false
+      newAccount.isBlock = false
+      newAccount.token = randomToken(48)
 
       newAccount.save(function (err) {
         if (err) { return done(err) }

@@ -2,6 +2,8 @@ const async = require('async')
 const Genre = require('../models/genre')
 const Publisher = require('../models/publisher')
 const Author = require('../models/author')
+const Mailer = require('../controllers/sendEmailController')
+const Account = require('../models/account')
 
 /* GET homepage. */
 exports.getHomepage = function (req, res, next) {
@@ -50,6 +52,47 @@ exports.getAboutPage = function (req, res, next) {
         GenreChucks: GenreChucks
       })
     })
+}
+
+// send verify link to email
+exports.sendVerifyEmail = function (req, res, next) {
+  let link = `http://${req.get('host')}/verify?id=${req.user.id}&token=${req.user.token}`
+  Mailer.sendVerifyEmail(req.query.email, link)
+  res.redirect('/')
+}
+
+// check verify email link
+exports.verifyEmail = function (req, res, next) {
+  Account.findById(req.query.id)
+    .exec((err, account) => {
+      if (err) { return next(err) }
+      // link is valid
+      if (account.token === req.query.token) {
+        account.isVerify = true
+        account.token = ''
+        account.save((err, account) => {
+          if (err) { return next(err) }
+          req.user = account
+          res.render('notifyEmail', {
+            layout: false,
+            isVerify: true
+          })
+          console.log('Link is valid. Email is verified')
+        })
+      } else { // invalid link
+        res.render('notifyEmail', {
+          layout: false,
+          isVerify: false
+        })
+        console.log('Link is invalid')
+      }
+    })
+}
+
+exports.resendVerifyEmail = function (req, res, next) {
+  let link = `http://${req.get('host')}/verify?id=${req.user.id}&token=${req.user.token}`
+  Mailer.sendVerifyEmail(req.query.email, link)
+  res.redirect('/')
 }
 
 exports.searchBook = function (req, res, next) {
