@@ -163,3 +163,24 @@ exports.postDelete = function (req, res, next) {
   })
 }
 
+
+// POST search bookInstance
+exports.searchBookInstance = function (req, res, next) {
+  console.log('da vao')
+  var bookInsChuck = [];
+  BookInstance.find({ $text: { $search: req.body.keyword } })
+  .populate('book')
+  .exec(function (err, docs) {
+    if (err) throw err;
+    bookInsChuck.push(docs.slice(0, docs.length));
+    // console.log(docs);
+    res.render('search', { 
+      title: 'Group-BookIns', 
+      layout: 'layoutUser',
+      // csrfToken: req.csrfToken(),
+      listBooks: bookInsChuck, 
+      name: req.body.q
+    });
+    console.log(' booookkkkk searchbookInstance')
+  })
+}

@@ -35,6 +35,7 @@ router.get('/digital_wallets/dialog', indexController.getDigitalWallets)
 
 router.get('/search', indexController.searchBook)
 
+router.post('/search', indexController.searchBookInstance)
 // GET about page
 router.get('/about', indexController.getAboutPage)
 

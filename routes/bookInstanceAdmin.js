@@ -19,4 +19,6 @@ router.get('/edit/:id', bookInstanceAdminController.getEditPage)
 // GET delete book instance (admin) page
 router.get('/delete/:id', bookInstanceAdminController.getDeletePage)
 
+//Search bookInstance
+router.post('../search', bookInstanceAdminController.searchBookInstance);
 module.exports = router

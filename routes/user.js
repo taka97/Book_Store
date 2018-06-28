@@ -17,4 +17,6 @@ router.get('/order', userController.getOrderPage)
 /* GET logout request */
 router.get('/logout', userController.logout)
 
+/* POST change password page. */
+router.get('/change-profile', userController.postChangeProfile)
 module.exports = router

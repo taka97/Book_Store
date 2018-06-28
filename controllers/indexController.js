@@ -4,7 +4,7 @@ const Publisher = require('../models/publisher')
 const Author = require('../models/author')
 const Mailer = require('../controllers/sendEmailController')
 const Account = require('../models/account')
-
+const BookInstance = require('../models/bookInstance')
 /* GET homepage. */
 exports.getHomepage = function (req, res, next) {
   async.parallel({
@@ -26,6 +26,7 @@ exports.getHomepage = function (req, res, next) {
       GenreChucks: GenreChucks,
       listGenres: results.listGenres
     })
+    console.log('HomePage')
     // console.log(GenreChucks)
     // console.log(results.listGenres)
   })
@@ -51,6 +52,7 @@ exports.getAboutPage = function (req, res, next) {
         layout: 'layoutHomepage',
         GenreChucks: GenreChucks
       })
+      console.log('About')
     })
 }
 
@@ -124,6 +126,10 @@ exports.searchBook = function (req, res, next) {
     listPublishers: (callback) => {
       Publisher.find()
         .exec(callback)
+    },
+    listBookInstance: (callback) => {
+      BookInstance.find()
+      .exec(callback)
     }
   }, (err, results) => {
     if (err) { return next(err) }
@@ -143,6 +149,29 @@ exports.searchBook = function (req, res, next) {
       listPublishers: results.listPublishers
       // listBooks: results.listBookInstances
     })
+    console.log('Search')
     // console.log(results.listBookInstances)
+  })
+}
+
+// POST search bookInstance
+exports.searchBookInstance = function (req, res, next) {
+  console.log('da vao index')
+  var bookInsChuck = [];
+  BookInstance.find({$text:{$search: req.body.keyword}}).populate('book').exec(function (err, docs) {
+    if (err) throw err;
+    bookInsChuck.push(docs.slice(0, docs.length));
+    // console.log(docs);
+    res.render('search', { 
+      title: 'Group-BookIns', 
+      layout: 'layoutHomepage',
+      // csrfToken: req.csrfToken(),
+      listBooks: bookInsChuck, 
+      // name: req.body.keyword
+    });
+    console.log('searchbookInstance')
+    console.log('size: ' + bookInsChuck.size)
+    console.log('listBook: ' + bookInsChuck)
+    console.log('keet thuc listBook')
   })
 }

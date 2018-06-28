@@ -20,5 +20,6 @@ BookInstanceSchema
     return '/book/' + this._id
   })
 
+BookInstanceSchema.index({coverType: 'text'})
 // Export model
 module.exports = mongoose.model('BookInstance', BookInstanceSchema)
