@@ -3,41 +3,20 @@ const Account = require('../models/account')
 
 // GET user homepage
 exports.getHomepage = function (req, res, next) {
-  async.parallel({
-    listAccounts: (callback) => {
-      Account.find()
-        .exec(callback)
-    }
-  }, (err, results) => {
-    if (err) { return next(err) }
-    // Successful, so render.
-    res.render('account/userHomepage', {
-      layout: 'layoutUser',
-      title: 'Người dùng',
-      listAccounts: results.listAccounts
-    })
-    // console.log('listAccount:' + results.listAccounts)
+  res.render('account/viewProfile', {
+    layout: 'layoutUser',
+    title: 'Người dùng',
+    user: req.user
   })
 }
 
 // GET view profile page
 exports.getViewProfile = function (req, res, next) {
-  async.parallel({
-    accountDetail: (callback) => {
-      Account.findById(req.params.id)
-        .exec(callback)
-    }
-  }, (err, results) => {
-    if (err) { return next(err) }
-    // Successful, so render.
-    res.render('account/viewProfile', {
-      layout: 'layoutUser',
-      title: 'Hồ sơ cá nhân',
-      user: req.user,
-      account: results.accountDetail
-    })
-    // console.log(req.user)
-    // console.log('account: ' + results.accountDetail)
+  // Successful, so render.
+  res.render('account/viewProfile', {
+    layout: 'layoutUser',
+    title: 'Hồ sơ cá nhân',
+    user: req.user
   })
 }
 
