@@ -163,18 +163,18 @@ exports.searchBook = function (req, res, next) {
 // POST search bookInstance
 exports.searchBookInstance = function (req, res, next) {
   console.log('da vao index')
-  var bookInsChuck = [];
+  var bookInsChuck = []
   BookInstance.find({ $text: { $search: req.body.keyword } }).populate('book').exec(function (err, docs) {
-    if (err) throw err;
-    bookInsChuck.push(docs.slice(0, docs.length));
+    if (err) throw err
+    bookInsChuck.push(docs.slice(0, docs.length))
     // console.log(docs);
     res.render('search', {
       title: 'Group-BookIns',
       layout: 'layoutHomepage',
       // csrfToken: req.csrfToken(),
-      listBooks: bookInsChuck,
+      listBooks: bookInsChuck
       // name: req.body.keyword
-    });
+    })
     console.log('searchbookInstance')
     console.log('size: ' + bookInsChuck.size)
     console.log('listBook: ' + bookInsChuck)
