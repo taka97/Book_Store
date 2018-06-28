@@ -13,7 +13,7 @@ var BookSchema = new Schema(
     description: { type: String, required: true }
   }
 )
-
+BookSchema.index({title: 'text'})
 // BookSchema
 //   .virtual('url')
 //   .get(function () {

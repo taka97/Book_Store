@@ -5,6 +5,8 @@ const Author = require('../models/author')
 const Mailer = require('../controllers/sendEmailController')
 const Account = require('../models/account')
 const BookInstance = require('../models/bookInstance')
+const Book = require('../models/book')
+
 /* GET homepage. */
 exports.getHomepage = function (req, res, next) {
   async.parallel({
@@ -163,6 +165,7 @@ exports.searchBook = function (req, res, next) {
 // POST search bookInstance
 exports.searchBookInstance = function (req, res, next) {
   console.log('da vao index')
+<<<<<<< HEAD
   var bookInsChuck = []
   BookInstance.find({ $text: { $search: req.body.keyword } })
     .populate('book')
@@ -183,3 +186,32 @@ exports.searchBookInstance = function (req, res, next) {
       console.log('keet thuc listBook')
     })
 }
+=======
+  var bookInsChuck = [];
+  var bookChuck = [];
+  var promise = new Promise((resolve, reject) => {
+    Book.find({ $text: { $search: req.body.keyword } })
+      .populate('author')
+      .exec((err, product) => {
+        if (err) {
+          return res.redirect('/search')
+        }
+        resolve(product)
+      })
+  }).then(bookas => {
+    console.log('id book: ')
+    console.log(bookas)
+    // tempBook = books;
+    BookInstance.find({ book: bookas[0]._id }).populate('book').exec(function (err, docs) {
+      if (err) throw err;
+      console.log('nasjdknsadnlaskdnlaks')
+      console.log(docs);
+      res.render('search', {
+        layout: 'layoutHomepage',
+        title: 'Group-BookIns',
+        listBooks: docs
+      })
+    })
+  })
+}
+>>>>>>> 66566c68b434fee2317e8b5e13ffe92f0fe9f8e0
