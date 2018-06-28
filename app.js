@@ -12,9 +12,6 @@ const validator = require('express-validator')
 const MongoStore = require('connect-mongo')(session)
 
 const indexRouter = require('./routes/index')
-// for develop
-const adminRouter = require('./routes/admin')
-const userRouter = require('./routes/user')
 
 const app = express()
 
@@ -54,13 +51,11 @@ app.use(favicon(path.join(__dirname, '/public/icons/favicon.png')))
 app.use(function (req, res, next) {
   res.locals.isLogin = req.isAuthenticated()
   res.locals.session = req.session
+  res.locals.isUser = req.isAuthenticated() ? (req.user.typeAccount === 'User') : false
   next()
 })
 
 app.use('/', indexRouter)
-// for developer
-app.use('/admin', adminRouter)
-app.use('/user', userRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

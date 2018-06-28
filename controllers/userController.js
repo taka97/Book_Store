@@ -79,23 +79,17 @@ exports.logout = function (req, res, next) {
 
 // POST change account
 exports.postChangeProfile = function (req, res, next) {
-  var editAccount = new Account({
-    _id: req.params.id,
+  var newData = {
     email: req.body.email,
-    verifyEmail: req.params.verifyEmail,
-    password: req.params.password,
-    avatarPath: req.params.avatarPath,
+    avatarPath: req.body.avatarPath,
     name: req.body.name,
-    birthDate: req.body.date,
-    gender: req.body.gender,
-    address: req.body.address,
-    typeAccount: req.params.typeAccount,
-    isBlock: req.params.isBlock
-  })
-  Account.findByIdAndUpdate(req.params.id, editAccount, function (err) {
-    if (err) throw err
-    else {
-      res.redirect('/user/profile')
-    }
+    gender: req.body.gender === 'male' ? 'Nam' : 'Nữ',
+    address: req.body.address
+  }
+  Account.findByIdAndUpdate(req.user.id, newData, { new: true }, (err, newUser) => {
+    if (err) { return next(err) }
+    req.user = newUser
+    res.redirect('/user/profile')
+    console.log(newUser)
   })
 }

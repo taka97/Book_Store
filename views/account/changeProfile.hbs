@@ -21,6 +21,7 @@
                       <div id="crop-avatar">
                         <!-- Current avatar -->
                         <img title="Change the avatar" class="img-responsive avatar-view" alt="Avatar" src="{{user.avatarPath}}">
+                        <input type="hidden" name="avatarPath" value="{{user.avatarPath}}">
                       </div>
                     </div>
                   </div>
@@ -51,12 +52,12 @@
                   <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <div class="btn-group" id="gender" data-toggle="buttons">
+                  <div class="btn-group" id="gender" data-toggle="buttons" value="{{ user.gender }}">
                     <label class="btn btn-default" style="margin-bottom: 0px;" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
                       <input name="gender" type="radio" value="male" data-parsley-multiple="gender"> &nbsp; Nam &nbsp;
                     </label>
                     <label class="btn btn-primary" style="margin-bottom: 0px;" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                      <input name="gender" type="radio" value="female" data-parsley-multiple="gender"> Nữ
+                      <input name="gender" type="radio" value="female" data-parsley-multiple="gender"> &nbsp; Nữ &nbsp;
                     </label>
                   </div>
                 </div>
@@ -66,7 +67,7 @@
                   <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input name="birthday" class="date-picker form-control col-md-7 col-xs-12" id="birthday" required="required" type="text" value="{{user.birthDate}}">
+                  <input name="birthday" class="form-control col-md-7 col-xs-12" id="birthday" required="required" type="date" value="{{user.birthDate}}">
                 </div>
               </div>             
               <div class="item form-group">
@@ -78,11 +79,11 @@
                 </div>
               </div>              
               <div class="ln_solid"></div>
-              <input type="hidden" name="_csrf" value="{{ ../csrfToken }}">
+              <input type="hidden" name="_csrf" value="{{ csrfToken }}">
               <div class="form-group">
                 <div class="col-md-6 col-md-offset-3">
                   <button class="btn btn-success" id="send" type="submit"> Thay đổi </button>
-                  <button class="btn btn-primary"> Làm lại </button>
+                  <button type="reset" class="btn btn-primary"> Làm lại </button>
                 </div>
               </div>
             </form>
@@ -102,7 +103,7 @@
                   <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input name="newPassword" class="form-control col-md-7 col-xs-12" id="newPassword" required="required" type="newPassword">
+                  <input name="newPassword" class="form-control col-md-7 col-xs-12" id="newPassword" required="required" type="text">
                 </div>
               </div>              
               <div class="item form-group">
@@ -110,7 +111,7 @@
                   <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input name="newPassword" class="date-picker form-control col-md-7 col-xs-12" id="newPassword" required="required" type="text">
+                  <input name="confPassword" class="date-picker form-control col-md-7 col-xs-12" id="confPassword" required="required" type="text">
                 </div>
               </div>             
               <div class="ln_solid"></div>

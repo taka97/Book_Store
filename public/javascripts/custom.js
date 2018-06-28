@@ -1,24 +1,47 @@
-function format (inputStr) {
+function formatDDMMYYYYY(inputStr) {
   let d = new Date(inputStr)
   return ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth() + 1)).slice(-2) + '/' + d.getFullYear()
 }
 
-function formatTd () {
+function formatYYYYMMDD(inputStr) {
+  let d = new Date(inputStr)
+  return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2)
+}
+
+function formatTd() {
   $('td[formatdate]').each(function () {
-    $(this).text(format($(this).text() ))
+    $(this).text(formatDDMMYYYYY($(this).text()))
   })
 }
 
-function formatInput () {
+function formatInput() {
   $('input[formatdate]').each(function () {
-    $(this).attr('value', format($(this).text()))
+    $(this).attr('value', formatDDMMYYYYY($(this).attr('value')))
   })
 }
 
-function init_FormatDate() {
+function formatinputdate() {
+  $('input[type="date"]').each(function () {
+    $(this).val(formatYYYYMMDD($(this).attr('value')))
+  })
+}
+
+function formatGender() {
+  if ($('#gender').attr('value') === 'Nam') {
+    $('input[name="gender"]:first').parent('label').addClass('active')
+    $('input[name="gender"]:first').attr('checked', true)
+  } else {
+    $('input[name="gender"]:last').parent('label').addClass('active')
+    $('input[name="gender"]:last').attr('checked', true)
+  }
+}
+
+function init_Format() {
   console.log('init_formatdate')
   formatTd()
   formatInput()
+  formatinputdate()
+  formatGender()
 }
 
 function init_sidebar() {
@@ -4470,7 +4493,7 @@ $.fn.popover.Constructor.prototype.leave = function (a) {
   }
 }), $(document).ready(function () {
   init_sparklines(),
-  init_FormatDate(),
+    init_Format(),
     init_flot_chart(),
     init_sidebar(),
     init_wysiwyg(), init_InputMask(), init_JQVmap(), init_cropper(),

@@ -31,14 +31,14 @@ exports.getLogoutRequest = function (req, res, next) {
 
 // Handle POST register
 exports.postRegister = passport.authenticate('signup', {
-  successRedirect: '/user/profile',
+  successRedirect: '/',
   failureRedirect: '/register',
   failureFlash: true
 })
 
 // Handle POST login
 exports.postLogin = passport.authenticate('signin', {
-  successRedirect: '/user/profile',
+  successRedirect: '/',
   failureRedirect: '/login',
   failureFlash: true
 })

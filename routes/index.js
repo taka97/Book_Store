@@ -7,6 +7,8 @@ const bookRouter = require('./book')
 const genreRouter = require('./genre')
 const authorRouter = require('./author')
 const publisherRouter = require('./publisher')
+const adminRouter = require('./admin')
+const userRouter = require('./user')
 
 const indexController = require('../controllers/indexController')
 
@@ -27,6 +29,12 @@ router.use('/author', authorRouter)
 
 /* GET publisher Router */
 router.use('/publisher', publisherRouter)
+
+/* GET admin Router */
+router.use('/admin', adminRouter)
+
+/* GET user Router */
+router.use('/user', userRouter)
 
 /* GET homepage. */
 router.get('/', indexController.getHomepage)

@@ -49,13 +49,8 @@
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày sinh
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" class="form-control-plaintext" id="date" value="{{user.birthDate}}">
+                  <input type="text" class="form-control-plaintext" id="date" formatdate value="{{user.birthDate}}">
                 </div>
-                <script>
-                  var d = new Date("{{ user.birthDate }}");
-                  var n = ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth() + 1)).slice(-2) + '/' + d.getFullYear();
-                  document.getElementById("birthDate").value = n;
-                </script>
               </div>
               <div class="item form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Địa chỉ

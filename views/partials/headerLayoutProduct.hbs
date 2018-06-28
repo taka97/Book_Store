@@ -3,13 +3,17 @@
         <div class="top_wrapper container">
             {{#if isLogin }}
             <div class="account_wrap">
+                {{#if isUser}}
                 <a href="/user/profile"> Tài khoản </a>
+                {{else}}
+                <a href="/admin/profile"> Tài khoản </a>
+                {{/if}}
                 <a href="/logout"> Đăng xuất</a>
             </div>
             <div class="wishlist_wrap">
                 <a href="/pages/wishlist"> Yêu thích </a>
             </div>
-            {{ else }}
+            {{else }}
             <div class="account_wrap">
                 <a href="/login"> Đăng nhập </a>
                 <a href="/register"> Đăng ký </a>
