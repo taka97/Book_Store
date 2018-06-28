@@ -37,7 +37,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="date" class="optional form-control col-md-7 col-xs-12" id="date" type="datetime" value="{{birthDate}}" data-validate-length-range="5,20">
+                                    <input name="date" class="optional form-control col-md-7 col-xs-12" id="date" type="date" value="{{birthDate}}">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -45,7 +45,14 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="gender" class="form-control col-md-7 col-xs-12" id="genre" required="required" type="text" value="{{gender}}">
+                                    <div class="btn-group" id="gender" data-toggle="buttons" value="{{ user.gender }}">
+                                        <label class="btn btn-default" style="margin-bottom: 0px;" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                            <input name="gender" type="radio" value="male" data-parsley-multiple="gender"> &nbsp; Nam &nbsp;
+                                        </label>
+                                        <label class="btn btn-primary" style="margin-bottom: 0px;" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                            <input name="gender" type="radio" value="female" data-parsley-multiple="gender"> &nbsp; Nữ &nbsp;
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="item form-group">

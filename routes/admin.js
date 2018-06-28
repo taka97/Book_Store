@@ -23,7 +23,7 @@ router.get('/change-profile', loginProtected.isLoginAndAdmin, adminController.ge
 router.post('/change-profile', loginProtected.isLoginAndAdmin, adminController.postChangeProfile)
 
 /* POST change password request. */
-router.post('/change-password', loginProtected.isLoginAndUser, adminController.postChangePassword)
+router.post('/change-password', loginProtected.isLoginAndAdmin, adminController.postChangePassword)
 
 /* Make middleware for /admin/author */
 router.use('/author', loginProtected.isLoginAndAdmin, authorAdminRouter)

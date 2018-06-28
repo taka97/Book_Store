@@ -96,10 +96,12 @@
             <form action="/admin/change-password" method="POST" class="form-horizontal form-label-left" novalidate="">
             {{/if}}
             <span class="section">Đổi mật khẩu</span>
-            {{#if messagePassword}}
+            {{#if hasMessageConfig}}
+            {{#each messageErrorConfig}}
             <div class="alert alert-danger col-md-6 col-sm-3 col-xs-12" role="alert">
-              {{ messagePassword }}
+              {{ this }}
             </div>
+            {{/each}}
             {{/if}}
             <div class="item form-group">
               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="oldPassword">Mật khẩu cũ

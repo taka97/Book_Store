@@ -24,14 +24,17 @@ exports.getViewProfile = function (req, res, next) {
 exports.getChangeProfile = function (req, res, next) {
   // Successful, so render.
   var messageValidate = req.flash('errorValidate')
+  var messageErrorConfig = req.flash('errorConfig')
+
   res.render('account/changeProfile', {
-    layout: 'layoutUser',
+    layout: 'layoutAdmin',
     title: 'Thay đổi hồ sơ cá nhân',
     csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
     user: req.user,
-    messagePassword: req.flash('errorConfig'),
     messageValidate: messageValidate,
-    hasErrorMessage: messageValidate.length > 0
+    hasErrorMessage: messageValidate.length > 0,
+    messageErrorConfig: messageErrorConfig,
+    hasMessageConfig: messageErrorConfig.length > 0
   })
 }
 
@@ -79,13 +82,22 @@ exports.postChangeProfile = function (req, res, next) {
 
 // POST change password
 exports.postChangePassword = function (req, res, next) {
-  if (!req.user.validPassword(req.body.oldPassword)) {
-    req.flash('errorConfig', 'Mật khẩu không trùng khớp')
-    return res.redirect('/admin/change-profile')
-  }
+  req.checkBody('oldPassword')
+    .notEmpty()
+    .withMessage('Mật khẩu cũ không hợp lệ')
+  req.checkBody('confPassword')
+    .notEmpty()
+    .custom(value => value === req.body.newPpassword).withMessage('Mật khẩu xác nhập không hợp lệ')
 
-  if (req.body.newPassword !== req.body.confPassword) {
-    req.flash('errorConfig', 'Mật khẩu không trùng khớp')
+  // Store error message
+  var errors = req.validationErrors()
+  if (errors) {
+    var messages = []
+    errors.forEach(error => {
+      console.log('Error message: ' + error.msg)
+      messages.push(error.msg)
+    })
+    req.flash('errorConfig', messages)
     return res.redirect('/admin/change-profile')
   }
 
@@ -96,5 +108,7 @@ exports.postChangePassword = function (req, res, next) {
     if (err) { return next(err) }
     req.user = newUser
     res.redirect('/admin/profile')
+    // console.log(newUser)
   })
 }
+
