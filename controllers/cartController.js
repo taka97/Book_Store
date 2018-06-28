@@ -71,7 +71,7 @@ exports.getCheckoutPage = function (req, res, next) {
 /* POST add-to-cart page */
 exports.postAddToCart = function (req, res, next) {
   var productId = req.body.product_id
-  var cart = new Cart(req.session.cart)
+  var cart = new Cart(req.session.cart || {})
   async.parallel({
     one: function (callback) {
       BookInstance.findById(productId)

@@ -16,9 +16,9 @@ module.exports = function Cart (oldCart) {
       this.items.push(storedItem)
     }
     storedItem.qty++
-    storedItem.price = storedItem.item.currentPrice * storedItem.qty
+    storedItem.price = storedItem.item.one.currentPrice * storedItem.qty
     this.totalQty++
-    this.totalPrice += storedItem.item.currentPrice
+    this.totalPrice += storedItem.item.one.currentPrice
   }
 
   this.generateArray = function () {
