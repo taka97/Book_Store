@@ -80,7 +80,9 @@
                 <input type="hidden" name="_csrf" value="{{ csrfToken }}">
             </form>
             {{else}}
-            <p>Bạn chưa thêm sản phẩm nào vào giỏ hàng</p>
+            <div class="cart_empty">
+				<p class="alert alert-warning">Bạn chưa thêm sản phẩm vào giỏ hàng. <a href="/book">Vào trang danh sách theo thể loại để chọn sản phẩm</a>.</p>
+			</div>
             {{/if}}
         </div>
     </div>
