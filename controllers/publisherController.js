@@ -1,5 +1,5 @@
 const async = require('async')
-const Book = require('../models/book')
+const BookInstance = require('../models/book')
 const Author = require('../models/author')
 const Genre = require('../models/genre')
 const Publisher = require('../models/publisher')
@@ -25,9 +25,23 @@ exports.listBookPublisher = function (req, res, next) {
         .exec(callback)
     },
     listBooks: (callback) => {
-      Book.find({ 'publisher': req.params.id })
-        .populate('author')
-        .exec(callback)
+      var promise = new Promise((resolve, reject) => {
+        BookInstance.find()
+          .populate({ path: 'book', populate: { path: 'publisher' } })
+          .exec((err, bookInstance) => {
+            if (err) { return next(err) }
+            resolve(bookInstance)
+          })
+      })
+      promise.then((bookInstance) => {
+        var bookLists = []
+        for (let i = 0; i < bookInstance.length; i++) {
+          if (bookInstance[i].book.publisher.id === req.params.id) {
+            bookLists.push(bookInstance[i])
+          }
+        }
+        callback(null, bookLists)
+      })
     }
   }, (err, results) => {
     if (err) { return next(err) }

@@ -26,9 +26,23 @@ exports.listBooksAuthor = function (req, res, next) {
         .exec(callback)
     },
     listBookInstances: (callback) => {
-      BookInstance.find({})
-        .populate('book')
-        .exec(callback)
+      var promise = new Promise((resolve, reject) => {
+        BookInstance.find()
+          .populate({ path: 'book', populate: { path: 'author' } })
+          .exec((err, bookInstance) => {
+            if (err) { return next(err) }
+            resolve(bookInstance)
+          })
+      })
+      promise.then((bookInstance) => {
+        var bookLists = []
+        for (let i = 0; i < bookInstance.length; i++) {
+          if (bookInstance[i].book.author.id === req.params.id) {
+            bookLists.push(bookInstance[i])
+          }
+        }
+        callback(null, bookLists)
+      })
     }
   }, (err, results) => {
     if (err) { return next(err) }

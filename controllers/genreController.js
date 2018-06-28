@@ -25,10 +25,24 @@ exports.bookOfGenre = function (req, res, next) {
       Publisher.find({})
         .exec(callback)
     },
-    listBookInstances: (callback) => {
-      BookInstance.find({})
-        .populate('book')
-        .exec(callback)
+    listBookInstanceOfGenres: (callback) => {
+      var promise = new Promise((resolve, reject) => {
+        BookInstance.find()
+          .populate({path: 'book', populate: {path: 'genre'}})
+          .exec((err, bookInstance) => {
+            if (err) { return next(err) }
+            resolve(bookInstance)
+          })
+      })
+      promise.then((bookInstance) => {
+        var bookLists = []
+        for (let i = 0; i < bookInstance.length; i++) {
+          if (bookInstance[i].book.genre.id === req.params.id) {
+            bookLists.push(bookInstance[i])
+          }
+        }
+        callback(null, bookLists)
+      })
     }
   }, (err, results) => {
     if (err) { return next(err) }
@@ -46,8 +60,7 @@ exports.bookOfGenre = function (req, res, next) {
       listGenres: results.listGenres,
       listAuthors: results.listAuthors,
       listPublishers: results.listPublisher,
-      listBooks: results.listBookInstances
+      listBooks: results.listBookInstanceOfGenres
     })
-    // console.log(results.listBookInstances)
   })
 }
