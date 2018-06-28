@@ -5,6 +5,8 @@ const Author = require('../models/author')
 const Mailer = require('../controllers/sendEmailController')
 const Account = require('../models/account')
 const BookInstance = require('../models/bookInstance')
+const Book = require('../models/book')
+
 /* GET homepage. */
 exports.getHomepage = function (req, res, next) {
   async.parallel({
@@ -164,20 +166,29 @@ exports.searchBook = function (req, res, next) {
 exports.searchBookInstance = function (req, res, next) {
   console.log('da vao index')
   var bookInsChuck = [];
-  BookInstance.find({ $text: { $search: req.body.keyword } }).populate('book').exec(function (err, docs) {
-    if (err) throw err;
-    bookInsChuck.push(docs.slice(0, docs.length));
-    // console.log(docs);
-    res.render('search', {
-      title: 'Group-BookIns',
-      layout: 'layoutHomepage',
-      // csrfToken: req.csrfToken(),
-      listBooks: bookInsChuck,
-      // name: req.body.keyword
-    });
-    console.log('searchbookInstance')
-    console.log('size: ' + bookInsChuck.size)
-    console.log('listBook: ' + bookInsChuck)
-    console.log('keet thuc listBook')
+  var bookChuck = [];
+  var promise = new Promise((resolve, reject) => {
+    Book.find({ $text: { $search: req.body.keyword } })
+      .populate('author')
+      .exec((err, product) => {
+        if (err) {
+          return res.redirect('/search')
+        }
+        resolve(product)
+      })
+  }).then(bookas => {
+    console.log('id book: ')
+    console.log(bookas)
+    // tempBook = books;
+    BookInstance.find({ book: bookas[0]._id }).populate('book').exec(function (err, docs) {
+      if (err) throw err;
+      console.log('nasjdknsadnlaskdnlaks')
+      console.log(docs);
+      res.render('search', {
+        layout: 'layoutHomepage',
+        title: 'Group-BookIns',
+        listBooks: docs
+      })
+    })
   })
 }
