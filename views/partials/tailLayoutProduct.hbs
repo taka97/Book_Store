@@ -2,8 +2,17 @@
 <script src="/javascripts/assets.js" defer></script>
 <script src="/javascripts/shop.js" defer></script>
 <script src="/javascripts/customProduct.js"></script>
+<script src="/javascripts/accounting.min.js"></script>
 
 <link href="/stylesheets/style.scss.css" rel="stylesheet" type="text/css" media="all" />
+
+<script>
+
+    $('.money').each(function () {
+        $(this).text(accounting.formatNumber($(this).text()))
+    })
+</script>
+
 {{!-- <script> --}}
     {{!-- var loadDeferredStyles = function () { --}}
         {{!-- var addStylesNode = document.getElementById('deferred_styles'); --}}
