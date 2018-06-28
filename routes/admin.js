@@ -19,11 +19,11 @@ router.get('/profile', loginProtected.isLoginAndAdmin, adminController.getViewPr
 /* GET change password page. */
 router.get('/change-profile', loginProtected.isLoginAndAdmin, adminController.getChangeProfile)
 
-/* GET order page. */
-router.get('/order', loginProtected.isLoginAndAdmin, adminController.getOrderPage)
+/* POST change profile request. */
+router.post('/change-profile', loginProtected.isLoginAndAdmin, adminController.postChangeProfile)
 
-/* GET logout request */
-router.get('/logout', loginProtected.isLoginAndAdmin, adminController.logout)
+/* POST change password request. */
+router.post('/change-password', loginProtected.isLoginAndUser, adminController.postChangePassword)
 
 /* Make middleware for /admin/author */
 router.use('/author', loginProtected.isLoginAndAdmin, authorAdminRouter)

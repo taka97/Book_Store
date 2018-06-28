@@ -15,10 +15,10 @@ router.get('/change-profile', loginProtected.isLoginAndUser, userController.getC
 /* GET order page. */
 router.get('/order', loginProtected.isLoginAndUser, userController.getOrderPage)
 
-/* GET logout request */
-router.get('/logout', loginProtected.isLoginAndUser, userController.logout)
-
-/* POST change password page. */
+/* POST change profile request. */
 router.post('/change-profile', loginProtected.isLoginAndUser, userController.postChangeProfile)
+
+/* POST change password request. */
+router.post('/change-password', loginProtected.isLoginAndUser, userController.postChangePassword)
 
 module.exports = router
