@@ -88,10 +88,10 @@
                                             <button type="submit" name="add" class="btn" id="single_product__addtocart-template-product">Thêm vào giỏ hàng</button>
                                         </div>
                                     </div>
-                                    <p class="wishlist_section">
+                                    {{!-- <p class="wishlist_section">
                                         <a href="/pages/wishlist" class="wishlist_form">
                                             <i class="fa fa-heart" aria-hidden="true"></i> Thêm vào yêu thích </a>
-                                    </p>
+                                    </p> --}}
                                 </div>
                             </div>
                         </form>
@@ -113,7 +113,7 @@
                 </div>
             </div>
             <div class="article_comments__list">
-                <h3>2 comments</h3>
+                <h3>1 Bình luận</h3>
                 <div>
                     <ul>
                         <li>
@@ -122,12 +122,6 @@
                             </div>
                             <div class="comment_content">Content1</div>
                         </li>
-                        <li>
-                            <div class="comment_author">Author2
-                                <div class="comment_date">Date2</div>
-                            </div>
-                            <div class="comment_content">Content2</div>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -135,10 +129,10 @@
                 <form method="post" action="/blogs/blog/textbooks/comments#comment_form" id="comment_form" accept-charset="UTF-8" class="comment-form">
                     <input type="hidden" name="form_type" value="new_comment">
                     <input type="hidden" name="utf8" value="✓">
-                    <h3>Leave a comment</h3>
+                    <h3>Bình luận</h3>
                     <div class="row">
                         <div class="col-sm-4 col-lg-3 form-group">
-                            <label for="comment_author">Name</label>
+                            <label for="comment_author">Tên</label>
                             <input id="comment_author" class="form-control" type="text" name="comment[author]" value="">
                         </div>
                         <div class="col-sm-4 col-lg-3 form-group">
@@ -147,11 +141,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="comment-body">Message</label>
+                        <label for="comment-body">Nội dung</label>
                         <textarea class="form-control" name="comment[body]" id="comment-body"></textarea>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn">Post comment</button>
+                        <button type="submit" class="btn">Gửi bình luận</button>
                     </div>
                 </form>
             </div>

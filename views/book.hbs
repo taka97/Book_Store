@@ -3,8 +3,7 @@
     <div class="main_content sidebar_on col-sm-9 col-sm-push-3">
       <div id="shopify-section-template-collection" class="shopify-section section_template section_template__collection">
         <div class="row product_listing__main" id="product_listing__sorted">
-          {{#if listBooks}} 
-          {{#each listBooks}}
+          {{#if listBooks}} {{#each listBooks}}
           <div class="col-sm-4 max-height-470">
             <div class="product_item">
               <div class="product_img">
@@ -31,7 +30,7 @@
                     <input type="hidden" name="_csrf" value="{{ ../csrfToken }}">
                     <button class="btn" type="submit"> Thêm vào giỏ hàng </button>
                   </form>
-                  <a class="btn wishlist_add_login" href="/pages/wishlist" title="Add to the wishlist">
+                  <a disabled class="btn wishlist_add_login" href="/pages/wishlist" title="Thêm vào yêu thích!Comming soon!">
                     <i class="fa fa-heart-o" aria-hidden="true"></i>
                   </a>
                 </div>
@@ -39,8 +38,7 @@
               <div class="clearfix"></div>
             </div>
           </div>
-          {{/each}} 
-          {{else}}
+          {{/each}} {{else}}
           <h2>Không có dữ liệu!</h2>
           {{/if}}
         </div>
