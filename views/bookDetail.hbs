@@ -34,7 +34,7 @@
                     {{#with bookDetail}}
                     <h2 class="single_product__title">{{ book.title }}</h2>
                     <div class="single_product__details">
-                        <form action="/cart/add" method="post" enctype="multipart/form-data" data-section="template-product">
+                        <form action="/cart/add-to-cart" method="post" data-section="template-product">
                             <div class="details_separator"></div>
                             <div class="details_wrapper">
                                 <div class="details_left">
@@ -83,6 +83,8 @@
                                             <span class="quantity_up">
                                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                             </span>
+                                            <input type="hidden" name="_csrf" value="{{ ../csrfToken }}">
+                                            <input type="hidden" name="product_id" value="{{  id }}">
                                             <button type="submit" name="add" class="btn" id="single_product__addtocart-template-product">Thêm vào giỏ hàng</button>
                                         </div>
                                     </div>
@@ -92,7 +94,6 @@
                                     </p>
                                 </div>
                             </div>
-                            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
                         </form>
                     </div>
                 </div>
