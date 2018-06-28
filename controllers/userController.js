@@ -1,4 +1,3 @@
-const async = require('async')
 const Account = require('../models/account')
 
 // GET user homepage
@@ -22,22 +21,12 @@ exports.getViewProfile = function (req, res, next) {
 
 // GET change profile page
 exports.getChangeProfile = function (req, res, next) {
-  async.parallel({
-    accountDetail: (callback) => {
-      Account.findById(req.params.id)
-        .exec(callback)
-    }
-  }, (err, results) => {
-    if (err) { return next(err) }
-    // Successful, so render.
-    res.render('account/changeProfile', {
-      layout: 'layoutUser',
-      title: 'Thay đổi hồ sơ cá nhân',
-      csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
-      user: req.user,
-      account: results.accountDetail
-    })
-    // console.log('account: ' + results.accountDetail)
+  // Successful, so render.
+  res.render('account/changeProfile', {
+    layout: 'layoutUser',
+    title: 'Thay đổi hồ sơ cá nhân',
+    csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
+    user: req.user
   })
 }
 
@@ -48,12 +37,6 @@ exports.getOrderPage = function (req, res, next) {
     layout: 'layoutUser',
     title: 'Quản lý đơn hàng'
   })
-}
-
-/* Get logout request */
-exports.logout = function (req, res, next) {
-  // Successful, so render.
-  res.redirect('/login')
 }
 
 // POST change account
