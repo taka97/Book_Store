@@ -71,15 +71,14 @@ exports.getCheckoutPage = function (req, res, next) {
 /* POST add-to-cart page */
 exports.postAddToCart = function (req, res, next) {
   var productId = req.body.product_id
+  var quantity = req.body.quantity
   var cart = new Cart(req.session.cart || {})
   async.parallel({
     one: function (callback) {
       BookInstance.findById(productId)
         .populate('book')
         .exec((err, product) => {
-          if (err) {
-            return res.redirect('/')
-          }
+          if (err) { return next(err) }
           callback(null, product)
           // cart.add(product, product.id)
           // req.session.cart = cart
@@ -106,7 +105,9 @@ exports.postAddToCart = function (req, res, next) {
     }
   }, (err, results) => {
     if (err) { return next(err) }
-    cart.add(results, results.one.id)
+    for (let i = 0; i < quantity; i++) {
+      cart.add(results, results.one.id)
+    }
     req.session.cart = cart
     console.log(cart)
     res.redirect('/book')
