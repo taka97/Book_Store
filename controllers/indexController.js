@@ -11,6 +11,12 @@ exports.getHomepage = function (req, res, next) {
     listGenres: (callback) => {
       Genre.find({})
         .exec(callback)
+    },
+    listBookInstance: (callback) => {
+      BookInstance.find()
+        .populate({ path: 'book', populate: { path: 'author publisher genre' } })
+        .limit(4)
+        .exec(callback)
     }
   }, (err, results) => {
     if (err) { return next(err) }
@@ -23,12 +29,12 @@ exports.getHomepage = function (req, res, next) {
     res.render('homepage', {
       layout: 'layoutHomepage',
       title: 'Nhà sách - Trang chủ',
+      csrfToken: req.csrfToken(),
       GenreChucks: GenreChucks,
-      listGenres: results.listGenres
+      listGenres: results.listGenres,
+      listBooks: results.listBookInstance
     })
-    console.log('HomePage')
-    // console.log(GenreChucks)
-    // console.log(results.listGenres)
+    // console.log(results.listBookInstance)
   })
 }
 
@@ -129,7 +135,7 @@ exports.searchBook = function (req, res, next) {
     },
     listBookInstance: (callback) => {
       BookInstance.find()
-      .exec(callback)
+        .exec(callback)
     }
   }, (err, results) => {
     if (err) { return next(err) }
@@ -158,15 +164,15 @@ exports.searchBook = function (req, res, next) {
 exports.searchBookInstance = function (req, res, next) {
   console.log('da vao index')
   var bookInsChuck = [];
-  BookInstance.find({$text:{$search: req.body.keyword}}).populate('book').exec(function (err, docs) {
+  BookInstance.find({ $text: { $search: req.body.keyword } }).populate('book').exec(function (err, docs) {
     if (err) throw err;
     bookInsChuck.push(docs.slice(0, docs.length));
     // console.log(docs);
-    res.render('search', { 
-      title: 'Group-BookIns', 
+    res.render('search', {
+      title: 'Group-BookIns',
       layout: 'layoutHomepage',
       // csrfToken: req.csrfToken(),
-      listBooks: bookInsChuck, 
+      listBooks: bookInsChuck,
       // name: req.body.keyword
     });
     console.log('searchbookInstance')
