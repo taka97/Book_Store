@@ -4,22 +4,23 @@
             <h1 class="page_heading">{{ title }}</h1>
 
             {{#if cartDetail }}
-            <form action="/checkout" method="post">
-                <table class="table table-bordered cart_items">
-                    <thead>
-                        <tr>
-                            <th class="column_product" colspan="2">Sản phẩm</th>
-                            <th class="column_price">Giá</th>
-                            <th class="column_quantity">Số lượng</th>
-                            <th class="column_total">Tổng</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{#each cartDetail}}
+
+            <table class="table table-bordered cart_items">
+                <thead>
+                    <tr>
+                        <th class="column_product" colspan="2">Sản phẩm</th>
+                        <th class="column_price">Giá</th>
+                        <th class="column_quantity">Số lượng</th>
+                        <th class="column_total">Tổng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each cartDetail}}
+                    <form action="cart/change" method="get">
                         <tr>
                             <td class="column_product_img">
                                 <a href="/book/{{id}}">
-                                    <img class="cart__image" src={{ item.one.imageCover.[0]}} alt={{item.two.title }}>
+                                    <img class="cart__image" src="{{ item.one.imageCover.[0]}}" alt="{{item.two.title }}">
                                 </a>
                             </td>
                             <td class="column_product_info">
@@ -36,53 +37,53 @@
                                     <p class="item_cover_type">
                                         <b>Loại bìa:</b> {{ item.one.coverType }}</p>
                                 </div>
-                                <a class="btn cart_item__remove" href="/cart/change?line=2&amp;quantity=0">Remove</a>
+                                <a class="btn cart_item__remove" href="/cart/change?productId={{ id }}&quantity=0">Remove</a>
                             </td>
                             <td class="column_price">
-                                <span class="money" data-currency-usd="$50.00">{{ item.currentPrice }}</span>
+                                <span class="money" data-currency-usd="$50.00">{{ item.one.currentPrice }}</span>
                             </td>
                             <td class="column_quantity">
                                 <div class="quantity_box">
-                                    <input id="updates_{{ id }}" name="updates[]" value="{{ qty }}"
-                                        class="quantity_input" type="text">
+                                    <input name="quantity" value="{{ qty }}" class="quantity_input" type="text">
                                     <span class="quantity_down">
                                         <i class="fa fa-minus" aria-hidden="true"></i>
                                     </span>
                                     <span class="quantity_up">
                                         <i class="fa fa-plus" aria-hidden="true"></i>
                                     </span>
-                                    <button type="submit" name="update" class="btn">Cập nhật</button>
+                                    <button value="{{id}}" id="update_{{ id }}" href="" type="submit" name="productId" class="btn">Cập nhật</button>
                                 </div>
                             </td>
                             <td class="column_total">
                                 <span class="money">{{ price }}</span>
                             </td>
                         </tr>
-                        {{/each}}
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="5">
-                                <p class="cart_total">Tổng giá tiền
-                                    <span class="money">{{ session.cart.totalPrice }}</span>
-                                </p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="5">
-                                <a class="btn" href="/book">Tiếp tục mua hàng</a>
-                                <a href="/cart/checkout" name="checkout" class="btn btn_alt">Tiến hành thanh toán</a>
-                                <div class="clearfix"></div>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
-                <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-            </form>
+                        {{!-- <input type="hidden" name="_csrf" value="{{ csrfToken }}"> --}}
+                    </form>
+                    {{/each}}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">
+                            <p class="cart_total">Tổng giá tiền
+                                <span class="money">{{ session.cart.totalPrice }}</span>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <a class="btn" href="/book">Tiếp tục mua hàng</a>
+                            <a href="/cart/checkout" name="checkout" class="btn btn_alt">Tiến hành thanh toán</a>
+                            <div class="clearfix"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
             {{else}}
             <div class="cart_empty">
-				<p class="alert alert-warning">Bạn chưa thêm sản phẩm vào giỏ hàng. <a href="/book">Vào trang danh sách theo thể loại để chọn sản phẩm</a>.</p>
-			</div>
+                <p class="alert alert-warning">Bạn chưa thêm sản phẩm vào giỏ hàng.
+                    <a href="/book">Vào trang danh sách theo thể loại để chọn sản phẩm</a>.</p>
+            </div>
             {{/if}}
         </div>
     </div>

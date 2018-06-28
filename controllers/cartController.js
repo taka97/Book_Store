@@ -56,6 +56,60 @@ exports.getCartPage = function (req, res, next) {
   }
 }
 
+exports.getCartChange = function (req, res, next) {
+  if (!req.session.cart) {
+    return res.redirect('/book')
+  }
+
+  var quantity = parseInt(req.query.quantity, 10)
+  var productId = req.query.productId
+  console.log(productId)
+
+  var cart = new Cart(req.session.cart)
+  async.parallel({
+    one: function (callback) {
+      BookInstance.findById(productId)
+        .populate('book')
+        .exec((err, product) => {
+          if (err) { return next(err) }
+          callback(null, product)
+          // cart.add(product, product.id)
+          // req.session.cart = cart
+        })
+    },
+    two: function (callback) {
+      var promise = new Promise((resolve, reject) => {
+        BookInstance.findById(productId)
+          .exec((err, product) => {
+            if (err) {
+              return res.redirect('/')
+            }
+            resolve(product)
+          })
+      })
+      promise.then(product => {
+        Book.findById(product.book._id)
+          .populate('author genre publisher')
+          .exec((err, book) => {
+            if (err) { return next(err) }
+            callback(null, book)
+          })
+      })
+    }
+  }, (err, results) => {
+    if (err) { return next(err) }
+    if (quantity === 0) {
+      cart.remove(results, results.one.id)
+    } else {
+      cart.update(results, results.one.id, quantity)
+    }
+
+    req.session.cart = cart
+    console.log(cart)
+    res.redirect('/cart')
+  })
+}
+
 exports.getCheckoutPage = function (req, res, next) {
   if (!req.session.cart) {
     res.redirect('/cart')
@@ -71,7 +125,7 @@ exports.getCheckoutPage = function (req, res, next) {
 /* POST add-to-cart page */
 exports.postAddToCart = function (req, res, next) {
   var productId = req.body.product_id
-  var quantity = req.body.quantity
+  var quantity = req.body.quantity || 1
   var cart = new Cart(req.session.cart || {})
   async.parallel({
     one: function (callback) {

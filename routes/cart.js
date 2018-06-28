@@ -8,6 +8,8 @@ router.get('/', cartController.getCartPage)
 
 router.get('/checkout', cartController.getCheckoutPage)
 
+router.get('/change', cartController.getCartChange)
+
 router.post('/add-to-cart', cartController.postAddToCart)
 
 router.post('/checkout', cartController.postCheckout)
