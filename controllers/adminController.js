@@ -3,7 +3,8 @@ exports.getHomepage = function (req, res, next) {
   // Successful, so render.
   res.render('account/viewProfile', {
     layout: 'layoutAdmin',
-    title: 'Hồ sơ cá nhân'
+    title: 'Hồ sơ cá nhân',
+    user: req.user
   })
 }
 
@@ -12,7 +13,8 @@ exports.getViewProfile = function (req, res, next) {
   // Successful, so render.
   res.render('account/viewProfile', {
     layout: 'layoutAdmin',
-    title: 'Hồ sơ cá nhân'
+    title: 'Hồ sơ cá nhân',
+    user: req.user
   })
 }
 

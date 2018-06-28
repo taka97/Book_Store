@@ -11,17 +11,17 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
           <a class="user-profile dropdown-toggle" aria-expanded="false" href="javascript:;" data-toggle="dropdown">
-            <img alt="" src="https://colorlib.com/polygon/gentelella/images/img.jpg">John Doe
+            <img alt="" src="{{ user.avatarPath }}"> {{ user.name}}
             <span class=" fa fa-angle-down"></span>
           </a>
           <ul class="dropdown-menu dropdown-usermenu pull-right">
             <li>
-              <a href="/admin/profile"> Profile </a>
+              <a href="/admin/profile"> Hồ sơ </a>
             </li>
             <li>
-              <a href="/login">
+              <a href="/logout">
                 <i class="fa fa-sign-out pull-right"></i>
-                Log Out
+                Đăng xuất
               </a>
             </li>
           </ul>
