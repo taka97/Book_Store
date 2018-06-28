@@ -63,7 +63,7 @@ exports.getCheckoutPage = function (req, res, next) {
     var cart = new Cart(req.session.cart)
     res.render('checkout', {
       layout: 'layoutCheckout',
-      cartDetail: cart
+      cartDetail: cart.generateArray()
     })
   }
 }
