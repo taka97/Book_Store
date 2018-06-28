@@ -62,7 +62,7 @@ exports.getCheckoutPage = function (req, res, next) {
   } else {
     var cart = new Cart(req.session.cart)
     res.render('checkout', {
-      layout: false,
+      layout: 'layoutCheckout',
       cartDetail: null
     })
   }
