@@ -1,0 +1,75 @@
+<!-- page content -->
+<div class="right_col" role="main" style="min-height: 1134px;">
+    <div>
+        <div class="page-title">
+            <div class="title_left">
+                <h3> Xoá sách </h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2> Thông tin sách </h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    {{#listBookInstance}}
+                    <form action="" method="POST" class="form-horizontal form-label-left">
+                        <div class="form-group row">
+                            <label for="title" class="col-sm-2 control-label"> Tên sách </label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="title" value="{{book.title}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="price" class="col-sm-2 control-label"> Giá </label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="price" value="{{currentPrice}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="total" class="col-sm-2 control-label"> Tổng số lượng còn lại </label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="total" value="{{currentTotalQuantity}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="size" class="col-sm-2 control-label"> Kích thước </label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="size" value="{{size.[0]}},{{size.[1]}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="coverType" class="col-sm-2 control-label"> Bìa sách </label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="coverType" value="{{coverType}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="status" class="col-sm-2 control-label"> Tình trạng </label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="status" value="{{status}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="image" class="col-sm-2 control-label"> Ảnh sách </label>
+                            <div class="col-sm-10">
+                                <img id="image" class="img-responsive avatar-view" alt="image" src="{{imageCover.[0]}}">
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>                        
+                        <input type="hidden" name="_csrf" value="{{ ../csrfToken }}"> 
+                        <div class="form-group">
+                            <div class="col-md-4 col-md-offset-3">
+                                <button type="submit" class="btn btn-success"> Xóa sách </button>
+                            </div>
+                        </div>
+                    </form>
+                    {{/listBookInstance}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- page content -->

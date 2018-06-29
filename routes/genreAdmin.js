@@ -6,17 +6,23 @@ const genreAdminController = require('../controllers/genreAdminController')
 /* GET admin/genre homepage. */
 router.get('/', genreAdminController.getHomepage)
 
-// for developer
-// GET view genre (admin) page
-router.get('/view', genreAdminController.getViewPage)
+// for develop
 
 // GET add genre (admin) page
 router.get('/add', genreAdminController.getAddPage)
 
 // GET edit genre (admin) page
-router.get('/edit', genreAdminController.getEditPage)
+router.get('/edit/:id', genreAdminController.getEditPage)
 
 // GET delete genre (admin) page
-router.get('/delete', genreAdminController.getDeletePage)
+router.get('/delete/:id', genreAdminController.getDeletePage)
 
+// POST add genre (admin) page
+router.post('/add', genreAdminController.postAdd)
+
+// POST edit genre (admin) page
+router.post('/edit/:id', genreAdminController.postEdit)
+
+// POST delete genre (admin) page
+router.post('/delete/:id', genreAdminController.postDelete)
 module.exports = router

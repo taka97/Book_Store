@@ -12,13 +12,6 @@ const validator = require('express-validator')
 const MongoStore = require('connect-mongo')(session)
 
 const indexRouter = require('./routes/index')
-const bookRouter = require('./routes/book')
-const genreRouter = require('./routes/genre')
-const authorRouter = require('./routes/author')
-const publisherRouter = require('./routes/publisher')
-// for develop
-const adminRouter = require('./routes/admin')
-const userRouter = require('./routes/user')
 
 const app = express()
 
@@ -33,7 +26,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 require('./config/passport')
 
 // view engine setup
-app.engine('.hbs', exphbs({ defaultLayout: 'layoutUser', extname: '.hbs' }))
+app.engine('.hbs', exphbs({ defaultLayout: false, extname: '.hbs' }))
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'hbs')
 
@@ -58,17 +51,11 @@ app.use(favicon(path.join(__dirname, '/public/icons/favicon.png')))
 app.use(function (req, res, next) {
   res.locals.isLogin = req.isAuthenticated()
   res.locals.session = req.session
+  res.locals.isUser = req.isAuthenticated() ? (req.user.typeAccount === 'User') : false
   next()
 })
 
 app.use('/', indexRouter)
-app.use('/book', bookRouter)
-app.use('/genre', genreRouter)
-app.use('/author', authorRouter)
-app.use('/publisher', publisherRouter)
-// for developer
-app.use('/admin', adminRouter)
-app.use('/user', userRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

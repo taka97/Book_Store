@@ -1,45 +1,119 @@
+const async = require('async')
+const Publisher = require('../models/publisher')
+const Book = require('../models/book')
+
 // GET publisher (admin) homepage
 exports.getHomepage = function (req, res, next) {
-  // Successful, so render.
-  res.render('account/publisherHomepage', {
-    layout: 'layoutAdmin',
-    title: 'Quản lý nhà xuất bản'
+  async.parallel({
+    listPublishers: (callback) => {
+      Publisher.find()
+        .exec(callback)
+    }
+  }, (err, results) => {
+    if (err) { return next(err) }
+    // Successful, so render.
+    res.render('management/publisherHomepage', {
+      layout: 'layoutAdmin',
+      title: 'Quản lý nhà xuất bản',
+      csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
+      listPublishers: results.listPublishers
+    })
+
+    console.log('listPublishers: ' + results.listPublishers)
   })
 }
 
-// for developer
-// GET view publisher (admin) page
-exports.getViewPage = function (req, res, next) {
-  // Successful, so render.
-  res.render('account/publisherView', {
-    layout: 'layoutAdmin',
-    title: 'Xem thông tin sách'
-  })
-}
-
+// for develop
 // GET add publisher (admin) page
 exports.getAddPage = function (req, res, next) {
   // Successful, so render.
-  res.render('account/publisherAdd', {
+  res.render('management/publisherAdd', {
     layout: 'layoutAdmin',
-    title: 'Thêm sách'
+    title: 'Thêm nhà xuất bản',
+    csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
   })
 }
 
 // GET edit publisher (admin) page
 exports.getEditPage = function (req, res, next) {
-  // Successful, so render.
-  res.render('account/publisherEdit', {
-    layout: 'layoutAdmin',
-    title: 'Chỉnh sửa sách'
+  async.parallel({
+    publisherDetail: (callback) => {
+      Publisher.findById(req.params.id)
+        .exec(callback)
+    }
+  }, (err, results) => {
+    if (err) { return next(err) }
+    // Successful, so render.
+    res.render('management/publisherEdit', {
+      layout: 'layoutAdmin',
+      title: 'Chỉnh sửa nhà xuất bản',
+      csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
+      publisher: results.publisherDetail
+    })
+
+    console.log('publisher:' + results.publisherDetail)
   })
 }
 
 // GET delete publisher (admin) page
 exports.getDeletePage = function (req, res, next) {
-  // Successful, so render.
-  res.render('account/publisherDelete', {
-    layout: 'layoutAdmin',
-    title: 'Xóa sách'
+  async.parallel({
+    publisherDetail: (callback) => {
+      Publisher.findById(req.params.id)
+        .exec(callback)
+    },
+    listBooksAuthor: (callback) => {
+      Book.find({ publisher: req.params.id })
+        .exec(callback)
+    }
+  }, (err, results) => {
+    if (err) { return next(err) }
+    // Successful, so render.
+    res.render('management/publisherDelete', {
+      layout: 'layoutAdmin',
+      title: 'Xóa sách',
+      csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
+      publisher: results.publisherDetail,
+      listBooksAuthor: results.listBooksAuthor,
+      hasBook: results.listBooksAuthor.length
+    })    
+    console.log('listBooksAuthor: ' + results.listBooksAuthor)
+    console.log('Length: ' + results.listBooksAuthor.length)
+  })
+}
+
+// POST add publisher
+exports.postAdd = function (req, res, next) {
+  var newPublisher = new Publisher({
+    name: req.body.name
+  })
+  newPublisher.save(function (err) {
+    if (err) throw err
+    else {
+      res.redirect('/admin/publisher')
+    }
+  })
+}
+
+// POST edit publisher
+exports.postEdit = function (req, res, next) {
+  var editPublisher = new Publisher({
+    _id: req.params.id,
+    name: req.body.name
+  })
+  Publisher.findByIdAndUpdate(req.params.id, editPublisher, function (err) {
+    if (err) throw err
+    else {
+      res.redirect('/admin/publisher')
+    }
+  })
+}
+
+// POST delete publisher
+exports.postDelete = function(req,res,next){
+  Publisher.findByIdAndRemove(req.params.id, function(err){
+    if(err) throw err;
+    else
+        res.redirect('/admin/publisher');
   })
 }

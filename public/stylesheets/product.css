@@ -1,5 +1,4 @@
-html,
-body {
+html, body {
     overflow-x: hidden;
 }
 
@@ -18,7 +17,6 @@ body {
     -webkit-transition: opacity .1s ease-in-out .05s, z-index .1s ease-in-out .05s;
     -moz-transition: opacity .1s ease-in-out .05s, z-index .1s ease-in-out .05s;
     transition: opacity .1s ease-in-out .05s, z-index .1s ease-in-out .05s;
-
     -webkit-transform: translate3d(0, 0, 0);
     -ms-transform: translate3d(0, 0, 0);
     -o-transform: translate3d(0, 0, 0);
@@ -30,7 +28,6 @@ body {
     z-index: -10;
 }
 
-
 #page_preloader__img {
     margin: -50px 0 0 -50px;
     position: absolute;
@@ -40,7 +37,6 @@ body {
     -webkit-transition: transform .2s ease-in-out;
     -moz-transition: transform .2s ease-in-out;
     transition: transform .2s ease-in-out;
-
     -webkit-transform: scale3d(1, 1, 1);
     -ms-transform: scale3d(1, 1, 1);
     -o-transform: scale3d(1, 1, 1);
@@ -102,72 +98,14 @@ body {
     clear: both
 }
 
-.col-xs-1,
-.col-sm-1,
-.col-md-1,
-.col-lg-1,
-.col-xs-2,
-.col-sm-2,
-.col-md-2,
-.col-lg-2,
-.col-xs-3,
-.col-sm-3,
-.col-md-3,
-.col-lg-3,
-.col-xs-4,
-.col-sm-4,
-.col-md-4,
-.col-lg-4,
-.col-xs-5,
-.col-sm-5,
-.col-md-5,
-.col-lg-5,
-.col-xs-6,
-.col-sm-6,
-.col-md-6,
-.col-lg-6,
-.col-xs-7,
-.col-sm-7,
-.col-md-7,
-.col-lg-7,
-.col-xs-8,
-.col-sm-8,
-.col-md-8,
-.col-lg-8,
-.col-xs-9,
-.col-sm-9,
-.col-md-9,
-.col-lg-9,
-.col-xs-10,
-.col-sm-10,
-.col-md-10,
-.col-lg-10,
-.col-xs-11,
-.col-sm-11,
-.col-md-11,
-.col-lg-11,
-.col-xs-12,
-.col-sm-12,
-.col-md-12,
-.col-lg-12 {
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
     min-height: 1px;
     padding-right: 15px;
     padding-left: 15px;
-    position: relative
+    position: relative;
 }
 
-.col-xs-1,
-.col-xs-2,
-.col-xs-3,
-.col-xs-4,
-.col-xs-5,
-.col-xs-6,
-.col-xs-7,
-.col-xs-8,
-.col-xs-9,
-.col-xs-10,
-.col-xs-11,
-.col-xs-12 {
+.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
     float: left
 }
 
@@ -376,18 +314,7 @@ body {
 }
 
 @media (min-width: 768px) {
-    .col-sm-1,
-    .col-sm-2,
-    .col-sm-3,
-    .col-sm-4,
-    .col-sm-5,
-    .col-sm-6,
-    .col-sm-7,
-    .col-sm-8,
-    .col-sm-9,
-    .col-sm-10,
-    .col-sm-11,
-    .col-sm-12 {
+    .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
         float: left
     }
     .col-sm-12 {
@@ -415,7 +342,7 @@ body {
         width: 41.66666667%
     }
     .col-sm-4 {
-        width: 33.33333333%
+        width: 33.33333333%;
     }
     .col-sm-3 {
         width: 25%
@@ -546,18 +473,7 @@ body {
 }
 
 @media (min-width: 992px) {
-    .col-md-1,
-    .col-md-2,
-    .col-md-3,
-    .col-md-4,
-    .col-md-5,
-    .col-md-6,
-    .col-md-7,
-    .col-md-8,
-    .col-md-9,
-    .col-md-10,
-    .col-md-11,
-    .col-md-12 {
+    .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
         float: left
     }
     .col-md-12 {
@@ -716,18 +632,7 @@ body {
 }
 
 @media (min-width: 1200px) {
-    .col-lg-1,
-    .col-lg-2,
-    .col-lg-3,
-    .col-lg-4,
-    .col-lg-5,
-    .col-lg-6,
-    .col-lg-7,
-    .col-lg-8,
-    .col-lg-9,
-    .col-lg-10,
-    .col-lg-11,
-    .col-lg-12 {
+    .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
         float: left
     }
     .col-lg-12 {
@@ -986,4 +891,45 @@ body {
     flex: 1 !important;
     display: flex !important;
     flex-direction: column !important;
+}
+
+.product_item {
+    padding-bottom: 10px;
+    border-radius: 2%;
+}
+
+.product_item:hover {
+    box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+.product_item .img_change {
+    text-align: center;
+}
+
+.product_item .img_change img {
+    max-height: 270px;
+}
+
+.max-height-470 {
+    max-height: 470px;
+}
+
+.product_info {
+    text-align: left !important;
+}
+
+.product_info .product_name, .product_info .product_price {
+    padding-left: 15px !important;
+}
+.product_info .product_links {
+    text-align: center !important;    
+}
+
+.cnt_wrap {
+    line-height: 1.25 !important;
+    padding: 10px 50px !important;
+}
+
+.cnt_wrap h3, .cnt_wrap h5 {
+    margin-top: 30px !important;
 }

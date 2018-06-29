@@ -1,11 +1,17 @@
 const async = require('async')
-const Book = require('../models/book')
 const Author = require('../models/author')
 const Genre = require('../models/genre')
 const Publisher = require('../models/publisher')
+const BookInstance = require('../models/bookInstance')
+require('../models/book')
+
+// Get list all genre in database
+exports.listGenres = function (req, res, next) {
+  res.redirect('/book')
+}
 
 // Get list all book in database
-exports.genreDetail = function (req, res, next) {
+exports.bookOfGenre = function (req, res, next) {
   async.parallel({
     listGenres: (callback) => {
       Genre.find({})
@@ -19,27 +25,42 @@ exports.genreDetail = function (req, res, next) {
       Publisher.find({})
         .exec(callback)
     },
-    listBooks: (callback) => {
-      Book.find({'genre': req.params.id})
-        .populate('author')
-        .exec(callback)
+    listBookInstanceOfGenres: (callback) => {
+      var promise = new Promise((resolve, reject) => {
+        BookInstance.find()
+          .populate({path: 'book', populate: {path: 'genre'}})
+          .exec((err, bookInstance) => {
+            if (err) { return next(err) }
+            resolve(bookInstance)
+          })
+      })
+      promise.then((bookInstance) => {
+        var bookLists = []
+        for (let i = 0; i < bookInstance.length; i++) {
+          if (bookInstance[i].book.genre.id === req.params.id) {
+            bookLists.push(bookInstance[i])
+          }
+        }
+        callback(null, bookLists)
+      })
     }
   }, (err, results) => {
     if (err) { return next(err) }
-    if (results.listGenres == null) { // No results.
-      err = new Error('Genre not found')
-      err.status = 404
-      return next(err)
+    var GenreChucks = []
+    var chunkSize = 3
+    for (var i = 0; i <= results.listGenres.length; i += chunkSize) {
+      GenreChucks.push(results.listGenres.slice(i, i + chunkSize))
     }
     // Successful, so render.
     res.render('book', {
+      layout: 'layoutHomepage',
       title: 'Book Store',
+      csrfToken: req.csrfToken(),
+      GenreChucks: GenreChucks,
       listGenres: results.listGenres,
       listAuthors: results.listAuthors,
       listPublishers: results.listPublisher,
-      listBooks: results.listBooks
+      listBooks: results.listBookInstanceOfGenres
     })
-
-    console.log(results.listBooks)
   })
 }

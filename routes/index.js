@@ -1,7 +1,14 @@
 const express = require('express')
 const router = express.Router()
+
 const loginRouter = require('./login')
 const cartRouter = require('./cart')
+const bookRouter = require('./book')
+const genreRouter = require('./genre')
+const authorRouter = require('./author')
+const publisherRouter = require('./publisher')
+const adminRouter = require('./admin')
+const userRouter = require('./user')
 
 const indexController = require('../controllers/indexController')
 
@@ -11,13 +18,43 @@ router.use('/', loginRouter)
 /* GET CART */
 router.use('/cart', cartRouter)
 
+/* GET BOOK Router */
+router.use('/book', bookRouter)
+
+/* GET GENRE Router */
+router.use('/genre', genreRouter)
+
+/* GET AUTHOR Router */
+router.use('/author', authorRouter)
+
+/* GET publisher Router */
+router.use('/publisher', publisherRouter)
+
+/* GET admin Router */
+router.use('/admin', adminRouter)
+
+/* GET user Router */
+router.use('/user', userRouter)
+
 /* GET homepage. */
 router.get('/', indexController.getHomepage)
 
-/* GET genre list */
-router.get('/genre', indexController.getGenre)
+router.get('/digital_wallets/dialog', indexController.getDigitalWallets)
 
-/* GET book detail */
-router.get('/bookdetail', indexController.getBookDetail)
+router.get('/search', indexController.searchBook)
+
+router.post('/search', indexController.searchBookInstance)
+
+// router.post('/search', indexController.postSearchBook)
+// GET about page
+router.get('/about', indexController.getAboutPage)
+
+// request send email
+router.get('/send', indexController.sendVerifyEmail)
+
+// verify email
+router.get('/verify', indexController.verifyEmail)
+
+router.get('/resend', indexController.resendVerifyEmail)
 
 module.exports = router

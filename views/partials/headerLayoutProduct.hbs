@@ -3,18 +3,23 @@
         <div class="top_wrapper container">
             {{#if isLogin }}
             <div class="account_wrap">
-                <a href="/user/profile"> Tài khoản </a>
+                {{#if isUser}}
+                <a href="/user"> Tài khoản </a>
+                {{else}}
+                <a href="/admin"> Tài khoản </a>
+                {{/if}}
                 <a href="/logout"> Đăng xuất</a>
             </div>
-            {{ else }}
+            <div class="wishlist_wrap">
+                <a href="/pages/wishlist"> Yêu thích </a>
+            </div>
+            {{else }}
             <div class="account_wrap">
                 <a href="/login"> Đăng nhập </a>
                 <a href="/register"> Đăng ký </a>
             </div>
             {{/if}}
-            <div class="wishlist_wrap">
-                <a href="/pages/wishlist"> Yêu thích </a>
-            </div>
+
             <script>
                 theme.shopCurrency = "USD";
                 theme.moneyFormat = "${{amount}}";
@@ -26,7 +31,7 @@
         <div class="page_container">
             <div class="header_wrap1 container">
                 <div class="header_wrap2 header_left">
-                    <a class="header_logo" href="https://theme356-books.myshopify.com">
+                    <a class="header_logo" href="/">
                         <img src="//cdn.shopify.com/s/files/1/2323/3807/files/logo_03_240x21_crop_center.png?v=1505898426" alt="Bookstore">
                     </a>
                 </div>
@@ -42,192 +47,62 @@
                         </div>
                         <ul id="megamenu_level__1" class="level_1 sf-js-enabled sf-arrows">
                             <li class="level_1__item ">
-                                <a class="level_1__link active" href="https://theme356-books.myshopify.com">Trang chủ
+                                <a class="level_1__link active" href="/">Trang chủ
                                 </a>
                             </li>
                             <li class="level_1__item level_2__links">
-                                <a class="level_1__link sf-with-ul" href="/collections">Sản phẩm
+                                <a class="level_1__link sf-with-ul" href="/book">Sản phẩm
                                     <i class="level_1__trigger megamenu_trigger" data-submenu="menu_1505916634232"></i>
                                 </a>
                                 <ul class="level_2" id="menu_1505916634232">
                                     <li class="container">
+                                        {{#each GenreChucks}}
                                         <div class="megamenu_col__item">
                                             <h3>Collections #1
                                                 <i class="level_2__trigger megamenu_trigger" data-submenu="menu_1505916634232-1"></i>
                                             </h3>
+
                                             <ul class="level_3" id="menu_1505916634232-1">
+                                                {{#each this}}
                                                 <li class="level_3__item">
-                                                    <a class="level_3__link" href="/collections/poetry">Architecture</a>
+                                                    <a class="level_3__link" href={{url}}>{{name}}</a>
                                                 </li>
-                                                <li class="level_3__item">
-                                                    <a class="level_3__link" href="/collections/romance">Art</a>
-                                                </li>
-                                                <li class="level_3__item">
-                                                    <a class="level_3__link" href="/collections/science-fiction">Audiobooks</a>
-                                                </li>
-                                                <li class="level_3__item">
-                                                    <a class="level_3__link" href="/collections/classic">Bibles</a>
-                                                </li>
-                                                <li class="level_3__item">
-                                                    <a class="level_3__link" href="/collections/belles-lettres">Biography</a>
-                                                </li>
-                                                <li class="level_3__item">
-                                                    <a class="level_3__link" href="/collections/childrens-books">Business &amp; Finance</a>
-                                                </li>
+                                                {{/each}}
                                             </ul>
                                         </div>
-                                        <div class="megamenu_col__item">
-                                            <h3>Collections #2
-                                                <i class="level_2__trigger megamenu_trigger" data-submenu="menu_1505916634232-2"></i>
-                                            </h3>
-                                            <ul class="level_3" id="menu_1505916634232-2">
-                                                <li class="level_3__item">
-                                                    <a class="level_3__link" href="/collections/belles-lettres">Career &amp; Professional</a>
-                                                </li>
-                                                <li class="level_3__item">
-                                                    <a class="level_3__link" href="/collections/history">Children's Books</a>
-                                                </li>
-                                                <li class="level_3__item">
-                                                    <a class="level_3__link" href="/collections/childrens-books">Comics</a>
-                                                </li>
-                                                <li class="level_3__item">
-                                                    <a class="level_3__link" href="/collections/science-fiction">Computer</a>
-                                                </li>
-                                                <li class="level_3__item">
-                                                    <a class="level_3__link" href="/collections/classic">Cookbooks</a>
-                                                </li>
-                                                <li class="level_3__item">
-                                                    <a class="level_3__link" href="/collections/poetry">Dictionary</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="megamenu_col__item">
-                                            <h3>Collections #3
-                                                <i class="level_2__trigger megamenu_trigger" data-submenu="menu_1505916634232-3"></i>
-                                            </h3>
-                                            <ul class="level_3" id="menu_1505916634232-3">
-                                                <li class="level_3__item">
-                                                    <a class="level_3__link" href="/collections/romance">Drama</a>
-                                                </li>
-                                                <li class="level_3__item">
-                                                    <a class="level_3__link" href="/collections/classic">Encyclopedia</a>
-                                                </li>
-                                                <li class="level_3__item">
-                                                    <a class="level_3__link" href="/collections/romance">Erotica</a>
-                                                </li>
-                                                <li class="level_3__item">
-                                                    <a class="level_3__link" href="/collections/detective-stories">Family &amp; Relationship</a>
-                                                </li>
-                                                <li class="level_3__item">
-                                                    <a class="level_3__link" href="/collections/science-fiction">Fantasy</a>
-                                                </li>
-                                                <li class="level_3__item">
-                                                    <a class="level_3__link" href="/collections/poetry">Fiction</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="megamenu_col__item megamenu_banner">
-                                            <div class="img_placeholder__wrap img_placeholder__" style="background-image: url( //cdn.shopify.com/s/files/1/2323/3807/files/menu-banner_03_569x200_crop_center.jpg?v=1505980834 );"></div>
-                                            <div class="item_caption">
-                                                <div class="caption_text">
-                                                    <p>Get an Extra 10% off your first order</p>
-                                                    <a class="btn megamenu_banner_btn" href="/collections/childrens-books">Shop now</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {{/each}}
                                     </li>
                                 </ul>
                             </li>
-                            <li class="level_1__item level_2__products">
-                                <a class="level_1__link sf-with-ul" href="/collections/detective-stories">Khuyến mãi
-                                    <i class="level_1__trigger megamenu_trigger" data-submenu="menu_1479746552441"></i>
-                                </a>
-                                <ul class="level_2" id="menu_1479746552441">
-                                    <li class="container">
-                                        <div class="megamenu_col__item">
-                                            <div class="product">
-                                                <div class="product_img">
-                                                    <a href="/products/outlander-book-series-by-diana-gabaldon">
-                                                        <img src="//cdn.shopify.com/s/files/1/2323/3807/products/outlander_book_series_by_diana_gabaldon_1_255x.png?v=1504250185"
-                                                            alt="Outlander Book Series By Diana Gabaldon">
-                                                    </a>
-                                                </div>
-                                                <div class="product_info">
-                                                    <p class="product_name">
-                                                        <a href="/products/outlander-book-series-by-diana-gabaldon">Outlander Book Series By Diana Gabaldon</a>
-                                                    </p>
-                                                    <p class="product_price">
-                                                        <span class="money" data-currency-usd="$28.00">$28.00</span>
-                                                        <span class="money money_sale" data-currency-usd="$35.00">$35.00</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="megamenu_col__item">
-                                            <div class="product">
-                                                <div class="product_img">
-                                                    <a href="/products/the-hobbit-and-the-lord-of-the-rings">
-                                                        <img src="//cdn.shopify.com/s/files/1/2323/3807/products/the_hobbit_and_the_lord_of_the_rings_1_255x.png?v=1504250252" alt="The Hobbit And The Lord Of The Rings">
-                                                    </a>
-                                                </div>
-                                                <div class="product_info">
-                                                    <p class="product_name">
-                                                        <a href="/products/the-hobbit-and-the-lord-of-the-rings">The Hobbit And The Lord Of The Rings</a>
-                                                    </p>
-                                                    <p class="product_price">
-                                                        <span class="money" data-currency-usd="$50.00">$50.00</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="megamenu_col__item">
-                                            <div class="product">
-                                                <div class="product_img">
-                                                    <a href="/products/penguin-classics-penguins-poems-for-love">
-                                                        <img src="//cdn.shopify.com/s/files/1/2323/3807/products/penguin_classics_penguins_poems_for_love_1_255x.png?v=1504250192"
-                                                            alt="Penguin Classics Penguins Poems For Love">
-                                                    </a>
-                                                </div>
-                                                <div class="product_info">
-                                                    <p class="product_name">
-                                                        <a href="/products/penguin-classics-penguins-poems-for-love">Penguin Classics Penguins Poems For Love</a>
-                                                    </p>
-                                                    <p class="product_price">
-                                                        <span class="money" data-currency-usd="$18.00">$18.00</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="megamenu_col__item">
-                                            <div class="product">
-                                                <div class="product_img">
-                                                    <a href="/products/george-r-r-martins-a-game-of-thrones-5-book-boxed-set-song-of-ice-and-fire-series-a-game-of-thrones-a-clash-of-kings-a-storm-of-swords-a-feast-for-crows-and-a-dance-with-dragons">
-                                                        <img src="//cdn.shopify.com/s/files/1/2323/3807/products/george_r_r_martins_a_game_of_thrones_5_book_boxed_set_song_of_ice_and_fire_series_a_game_of_thrones_a_clash_of_kings_a_storm_of_swords_a_feast_for_crows_and_a_dance_with_dragons_1_255x.png?v=1504250132"
-                                                            alt="George R R Martins A Game Of Thrones 5 Book Boxed Set Song Of Ice And Fire Series A Game Of Thrones A Clash Of Kings A Storm Of Swords A Feast For Crows And A Dance With Dragons">
-                                                    </a>
-                                                </div>
-                                                <div class="product_info">
-                                                    <p class="product_name">
-                                                        <a href="/products/george-r-r-martins-a-game-of-thrones-5-book-boxed-set-song-of-ice-and-fire-series-a-game-of-thrones-a-clash-of-kings-a-storm-of-swords-a-feast-for-crows-and-a-dance-with-dragons">George R R Martins A Game Of Thrones 5 Book Box...</a>
-                                                    </p>
-                                                    <p class="product_price">
-                                                        <span class="money" data-currency-usd="$90.00">$90.00</span>
-                                                        <span class="money money_sale" data-currency-usd="$95.00">$95.00</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                            <li class="level_1__item">
+                                <a class="level_1__link" href="/about">Về chúng tôi</a>
                             </li>
+
                         </ul>
                     </nav>
                     <div>
-
+                        <div class="header_search">
+                            <span class="header_search_trigger">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </span>
+                            <div class="header_search_form">
+                                <form action="/search" method="POST" class="search_form">
+                                    <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+                                    <input type="text" name="keyword" placeholder="Nhập tên sách" aria-label="Search store" >
+                                    <button type="submit">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                         <div class="cart_wrap">
                             <a href="/cart" title="Giỏ hàng">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                {{#if session.cart }}
+                                <span id="cart_items">{{ session.cart.totalQty }}</span>
+                                {{else }}
                                 <span id="cart_items">0</span>
+                                {{/if}}
                             </a>
                         </div>
                     </div>

@@ -1,33 +1,20 @@
 <!-- page content -->
 <div class="right_col" role="main" style="min-height: 639px;">
   <div>
-    <div class="page-title">
-      <div class="title_left">
-        <h3>Form Validation</h3>
-      </div>
-      <div class="title_right">
-        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-          <div class="input-group">
-            <input class="form-control" type="text" placeholder="Search for...">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button">Go!</button>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="clearfix"></div>
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Hồ sơ cá nhân             
-            </h2>          
+            <h2>Hồ sơ cá nhân
+            </h2>
             <div class="clearfix"></div>
           </div>
           <div class="x_content">
-            <form class="form-horizontal form-label-left" novalidate="">             
+            <form action="" method="POST" class="form-horizontal form-label-left" novalidate="">
               <span class="section">Thông tin</span>
+              {{#if hasErrorMessage}} {{#each messageValidate}}
+              <div class="alert alert-danger">{{ this }}</div>
+              {{/each}} {{/if}}
               <div class="item form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Avatar
                 </label>
@@ -36,8 +23,8 @@
                     <div class="profile_img">
                       <div id="crop-avatar">
                         <!-- Current avatar -->
-                        <img title="Change the avatar" class="img-responsive avatar-view" alt="Avatar" src="/images/user.png">
-                        
+                        <img title="Change the avatar" class="img-responsive avatar-view" alt="Avatar" src="{{user.avatarPath}}">
+                        <input type="hidden" name="avatarPath" value="{{user.avatarPath}}">
                       </div>
                     </div>
                   </div>
@@ -51,7 +38,7 @@
                   <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input name="name" class="form-control col-md-7 col-xs-12" id="name" required="required" type="text" placeholder="both name(s) e.g Jon Doe"
+                  <input name="name" class="form-control col-md-7 col-xs-12" id="name" required="required" type="text" value="{{ user.name }}"
                     data-validate-words="2" data-validate-length-range="6">
                 </div>
               </div>
@@ -60,7 +47,7 @@
                   <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input name="email" class="form-control col-md-7 col-xs-12" id="email" required="required" type="email">
+                  <input name="email" class="form-control col-md-7 col-xs-12" id="email" required="required" type="email" value="{{ user.email }}">
                 </div>
               </div>
               <div class="item form-group">
@@ -68,12 +55,12 @@
                   <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <div class="btn-group" id="gender" data-toggle="buttons">
+                  <div class="btn-group" id="gender" data-toggle="buttons" value="{{ user.gender }}">
                     <label class="btn btn-default" style="margin-bottom: 0px;" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
                       <input name="gender" type="radio" value="male" data-parsley-multiple="gender"> &nbsp; Nam &nbsp;
                     </label>
                     <label class="btn btn-primary" style="margin-bottom: 0px;" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                      <input name="gender" type="radio" value="female" data-parsley-multiple="gender"> Nữ
+                      <input name="gender" type="radio" value="female" data-parsley-multiple="gender"> &nbsp; Nữ &nbsp;
                     </label>
                   </div>
                 </div>
@@ -83,24 +70,68 @@
                   <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input class="date-picker form-control col-md-7 col-xs-12" id="birthday" required="required" type="text">
+                  <input name="birthday" class="form-control col-md-7 col-xs-12" id="birthday" required="required" type="date" value="{{user.birthDate}}">
                 </div>
-              </div>             
+              </div>
               <div class="item form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Địa chỉ
                   <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <textarea name="address" class="form-control col-md-7 col-xs-12" id="textarea" required="required"></textarea>
+                  <textarea name="address" class="form-control col-md-7 col-xs-12" id="address" required="required">{{ user.address }}</textarea>
                 </div>
-              </div>              
+              </div>
               <div class="ln_solid"></div>
+              <input type="hidden" name="_csrf" value="{{ csrfToken }}">
               <div class="form-group">
                 <div class="col-md-6 col-md-offset-3">
                   <button class="btn btn-success" id="send" type="submit"> Thay đổi </button>
-                  <button class="btn btn-primary"> Làm lại </button>
+                  <button type="reset" class="btn btn-primary"> Làm lại </button>
                 </div>
               </div>
+            </form>
+            {{#if isUser}}
+            <form action="/user/change-password" method="POST" class="form-horizontal form-label-left" novalidate="">
+            {{else}}
+            <form action="/admin/change-password" method="POST" class="form-horizontal form-label-left" novalidate="">
+            {{/if}}
+            <span class="section">Đổi mật khẩu</span>
+            {{#if messagePassword}}
+            <div class="alert alert-danger col-md-6 col-sm-3 col-xs-12" role="alert">
+              {{ messagePassword }}
+            </div>
+            {{/if}}
+            <div class="item form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="oldPassword">Mật khẩu cũ
+                <span class="required">*</span>
+              </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <input name="oldPassword" class="form-control col-md-7 col-xs-12" id="oldPassword" required="required" type="password">
+              </div>
+            </div>
+            <div class="item form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="newPassword">Mật khẩu mới
+                <span class="required">*</span>
+              </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <input name="newPassword" class="form-control col-md-7 col-xs-12" id="newPassword" required="required" type="password">
+              </div>
+            </div>
+            <div class="item form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">Nhập lại mật khẩu mới
+                <span class="required">*</span>
+              </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <input name="confPassword" class="date-picker form-control col-md-7 col-xs-12" id="confPassword" required="required" type="password">
+              </div>
+            </div>
+            <div class="ln_solid"></div>
+            <div class="form-group">
+              <div class="col-md-6 col-md-offset-3">
+                <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+                <button class="btn btn-success" id="send" type="submit">Đổi mật khẩu </button>
+              </div>
+            </div>
             </form>
           </div>
         </div>

@@ -1,24 +1,110 @@
-<div class="product-listing">
-    <div class="product-box no-mg">
-        <div class="product-box-list">
-
-            {{# each listBooks}}
-            <div class="product-item">
-                <a href={{url}}>
-                    <span class="image">
-                        <img class="product-image img-responsive" src={{imageCover}} alt="">
-                        <span class="product-right-icon">
-                            <i class="tikicon icon-2h"></i>
-                        </span>
-                    </span>
-                    <span class="title">{{title}}</span>
-                    <p class="author">{{author.name}}</p>
-                    <p class="price-sale">
-                        <span class="final-price">{{price}}</span>
-                    </p>
+<div class="container">
+  <div class="row">
+    <div class="main_content sidebar_on col-sm-9 col-sm-push-3">
+      <div id="shopify-section-template-collection" class="shopify-section section_template section_template__collection">
+        <div class="row product_listing__main" id="product_listing__sorted">
+          {{#if listBooks}} {{#each listBooks}}
+          <div class="col-sm-4 max-height-470">
+            <div class="product_item">
+              <div class="product_img">
+                <a class="img_change" href="{{ url }}">
+                  <img class="img" src="{{ imageCover.[0] }}" alt="{{ book.title }}"> {{!--
+                  <span class="product_badge new">New!</span> --}} {{!--
+                  <span class="product_badge sale">–23%</span> --}}
                 </a>
+              </div>
+              <div class="product_info">
+                <p class="product_name">
+                  <a href="{{ url }}"> {{ book.title }} </a>
+                </p>
+                <p class="product_desc product_desc__long"> {{ book.description }} </p>
+                <p class="product_price">
+                  <span class="money"> {{ currentPrice }}</span>
+                  <span class="currency"> ₫</span>
+                  <span class="money money_sale">{{ book.price }}</span>
+                  <span class="currency"> ₫</span>
+                </p>
+                <div class="product_links">
+                  <form method="post" action="/cart/add-to-cart">
+                    <input type="hidden" name="product_id" value="{{ _id }}">
+                    <input type="hidden" name="_csrf" value="{{ ../csrfToken }}">
+                    <button class="btn" type="submit"> Thêm vào giỏ hàng </button>
+                  </form>
+                  <a disabled class="btn wishlist_add_login" href="/pages/wishlist" title="Thêm vào yêu thích!Comming soon!">
+                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="clearfix"></div>
             </div>
-            {{/each}}
+          </div>
+          {{/each}} {{else}}
+          <h2>Không có dữ liệu!</h2>
+          {{/if}}
         </div>
+        <div class="pagination">
+          <p>1 – 6 product(s) of 10</p>
+          <ul>
+            <li class="pagination_prev">
+              <span>
+                <i class="fa fa-angle-left" aria-hidden="true"></i>Previous</span>
+            </li>
+            <li class="pagination_current">
+              <span>1</span>
+            </li>
+            <li>
+              <a href="/collections/belles-lettres?page=2">2</a>
+            </li>
+            <li class="pagination_next">
+              <a href="/collections/belles-lettres?page=2">Next
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
+    <div class="col-sm-3 col-sm-pull-9">
+      <div id="shopify-section-sidebar" class="shopify-section page_sidebar">
+        <div class="sidebar">
+          <div class="sidebar_widget sidebar_widget__collections">
+            <h3 class="widget_header">Thể loại</h3>
+            <div class="widget_content">
+              <ul class="list_links">
+                {{#each listGenres}}
+                <li>
+                  <a class="" href={{url}}>{{name}}</a>
+                </li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+          <div class="sidebar_widget sidebar_widget__types">
+            <h3 class="widget_header">Tác giả</h3>
+            <div class="widget_content">
+              <ul class="list_links">
+                {{#each listAuthors}}
+                <li>
+                  <a href={{url}}>{{name}}</a>
+                </li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+          <div class="sidebar_widget sidebar_widget__vendors">
+            <h3 class="widget_header">Nhà xuất bản</h3>
+            <div class="widget_content">
+              <ul class="list_links">
+                {{#each listPublishers}}
+                <li>
+                  <a href={{url}}>{{name}}</a>
+                </li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

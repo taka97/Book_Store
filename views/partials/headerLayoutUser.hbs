@@ -11,91 +11,18 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
           <a class="user-profile dropdown-toggle" aria-expanded="false" href="javascript:;" data-toggle="dropdown">
-            <img alt="" src="https://colorlib.com/polygon/gentelella/images/img.jpg">John Doe
+            <img alt="" src="{{ user.avatarPath }}"> {{ user.name}}
             <span class=" fa fa-angle-down"></span>
           </a>
           <ul class="dropdown-menu dropdown-usermenu pull-right">
             <li>
-              <a href="/user/profile"> Profile </a>
+              <a href="/user/profile"> Tài khoản </a>
             </li>
             <li>
-              <a href="/user/logout">
+              <a href="/logout">
                 <i class="fa fa-sign-out pull-right"></i>
-                Log Out
+                Đăng xuất
               </a>
-            </li>
-          </ul>
-        </li>
-
-        <li class="dropdown" role="presentation">
-          <a class="dropdown-toggle info-number" aria-expanded="false" href="javascript:;" data-toggle="dropdown">
-            <i class="fa fa-envelope-o"></i>
-            <span class="badge bg-green">6</span>
-          </a>
-          <ul class="dropdown-menu list-unstyled msg_list" id="menu1" role="menu">
-            <li>
-              <a>
-                <span class="image">
-                  <img alt="Profile Image" src="https://colorlib.com/polygon/gentelella/images/img.jpg">
-                </span>
-                <span>
-                  <span>John Smith</span>
-                  <span class="time">3 mins ago</span>
-                </span>
-                <span class="message">
-                  Film festivals used to be do-or-die moments for movie makers. They were where...
-                </span>
-              </a>
-            </li>
-            <li>
-              <a>
-                <span class="image">
-                  <img alt="Profile Image" src="https://colorlib.com/polygon/gentelella/images/img.jpg">
-                </span>
-                <span>
-                  <span>John Smith</span>
-                  <span class="time">3 mins ago</span>
-                </span>
-                <span class="message">
-                  Film festivals used to be do-or-die moments for movie makers. They were where...
-                </span>
-              </a>
-            </li>
-            <li>
-              <a>
-                <span class="image">
-                  <img alt="Profile Image" src="https://colorlib.com/polygon/gentelella/images/img.jpg">
-                </span>
-                <span>
-                  <span>John Smith</span>
-                  <span class="time">3 mins ago</span>
-                </span>
-                <span class="message">
-                  Film festivals used to be do-or-die moments for movie makers. They were where...
-                </span>
-              </a>
-            </li>
-            <li>
-              <a>
-                <span class="image">
-                  <img alt="Profile Image" src="https://colorlib.com/polygon/gentelella/images/img.jpg">
-                </span>
-                <span>
-                  <span>John Smith</span>
-                  <span class="time">3 mins ago</span>
-                </span>
-                <span class="message">
-                  Film festivals used to be do-or-die moments for movie makers. They were where...
-                </span>
-              </a>
-            </li>
-            <li>
-              <div class="text-center">
-                <a>
-                  <strong>See All Alerts</strong>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-              </div>
             </li>
           </ul>
         </li>

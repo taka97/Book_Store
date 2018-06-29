@@ -6,17 +6,22 @@ const authorAdminController = require('../controllers/authorAdminController')
 /* GET admin/author homepage. */
 router.get('/', authorAdminController.getHomepage)
 
-// for developer
-// GET view author (admin) page
-router.get('/view', authorAdminController.getViewPage)
-
+// for develop
 // GET add author (admin) page
 router.get('/add', authorAdminController.getAddPage)
 
 // GET edit author (admin) page
-router.get('/edit', authorAdminController.getEditPage)
+router.get('/edit/:id', authorAdminController.getEditPage)
 
 // GET delete author (admin) page
-router.get('/delete', authorAdminController.getDeletePage)
+router.get('/delete/:id', authorAdminController.getDeletePage)
 
+// POST add author (admin) page
+router.post('/add', authorAdminController.postAdd)
+
+// POST edit author (admin) page
+router.post('/edit/:id', authorAdminController.postEdit)
+
+// POST delete author (admin) page
+router.post('/delete/:id', authorAdminController.postDelete)
 module.exports = router

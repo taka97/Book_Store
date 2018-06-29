@@ -12,7 +12,7 @@
                                 <input type="hidden" name="contact[tags]" value="Newsletter subscriber">
                                 <div class="form_wrapper">
                                     <input type="email" name="contact[email]" class="input-group__field newsletter__input" placeholder="Nhập email của bạn">
-                                    <button class="btn btn_inverted" type="submit">Đăng ký</button>
+                                    <button class="btn btn_inverted">Đăng ký</button>
                                 </div>
                             </form>
                         </div>
@@ -28,8 +28,8 @@
                                     <a href="/genre">Thể loại</a>
                                 </li>
                                 <li>
-                                    <a href="/collections/romance">Khuyến mãi</a>
-                                </li>                                                              
+                                    <a href="/about">Về chúng tôi</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -37,17 +37,16 @@
                         <div class="footer_item footer_item__links">
                             <h3>Tài khoản</h3>
                             <ul>
+                                {{#if isLogin}}
                                 <li>
-                                    <a href="/account">Tài khoản</a>
+                                    <a href="/user/profile">Tài khoản</a>
                                 </li>
                                 <li>
-                                    <a href="/account/addresses">Địa chỉ của tôi</a>
+                                    <a href="/wishlist">Yêu thích</a>
                                 </li>
+                                {{/if}}
                                 <li>
                                     <a href="/cart">Giỏ hàng</a>
-                                </li>
-                                <li>
-                                    <a href="/pages/wishlist">Yêu thích</a>
                                 </li>
                             </ul>
                         </div>
@@ -56,9 +55,9 @@
                         <div class="footer_item footer_item__contacts">
                             <h3>Our shop</h3>
                             <div>
-                                <p>My Company Glasgow D04 89GR</p>
-                                <p>1-800-1234-567</p>
-                                <p>info@demolink.org</p>
+                                <p>Lập trình ứng dụng web</p>
+                                <p>Cửa hàng sách</p>
+                                <p>1512169-1512170-1512174</p>
                             </div>
                         </div>
                     </div>

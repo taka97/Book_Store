@@ -1,0 +1,27 @@
+<div class="container">
+
+    <img alt="" src="https://www.wonderplugin.com/wp-content/plugins/wonderplugin-popup/skins/logo-0.png">
+    <div>
+        <div>
+            {{#if isVeryfy}}
+            <h2>Xác nhận email thành công</h2>
+            <br>
+            <h5>Xin chúc mừng!</h5>
+            <br>
+            <p>Bạn có thể đăng nhập để đón nhận những trải nghiệm phong phú hơn</p>
+            <br> {{else}}
+            <h2>Xác nhận email thất bại</h2>
+            <br>
+            <h5>Email chưa xác nhận!</h5>
+            <br>
+            <p>Bạn hãy kiểm tra lại email được gửi tới</p>
+            <br> {{/if}}
+        </div>
+        <div>
+            <a class="btn btn_inverted" href="/"> Quay lại trang chủ </a>
+            {{#if isVeryfy}}
+            <a href="/login" class="btn btn_inverted" href="/login">Đăng nhập </a>
+            {{/if}}
+        </div>
+    </div>
+</div>

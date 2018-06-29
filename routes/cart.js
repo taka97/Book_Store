@@ -1,11 +1,17 @@
-var express = require('express')
-var router = express.Router()
+const express = require('express')
+const router = express.Router()
 
 var cartController = require('../controllers/cartController')
 
 /* Get CART page */
 router.get('/', cartController.getCartPage)
 
-router.get('/add-to-cart/:id', cartController.getAddToCart)
+router.get('/checkout', cartController.getCheckoutPage)
+
+router.get('/change', cartController.getCartChange)
+
+router.post('/add-to-cart', cartController.postAddToCart)
+
+router.post('/checkout', cartController.postCheckout)
 
 module.exports = router

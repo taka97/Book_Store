@@ -10,59 +10,63 @@
             <div class="clearfix"></div>
           </div>
           <div class="x_content">
-            <form class="form-horizontal form-label-left" novalidate="">              
+            <form class="form-horizontal form-label-left" novalidate="">
               <span class="section">Thông tin</span>
               <div class="item form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Avatar
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                      <div class="profile_img">
-                        <div id="crop-avatar">
-                          <!-- Current avatar -->
-                          <img title="Change the avatar" class="img-responsive avatar-view" alt="Avatar" src="/images/user.png">
-                        </div>
-                      </div>
+                  <div class="profile_img">
+                    <div id="crop-avatar">
+                      <!-- Current avatar -->
+                      <img title="Change the avatar" class="img-responsive avatar-view" alt="Avatar" src="{{ user.avatarPath }}">
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="item form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Họ tên
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" readonly class="form-control-plaintext" id="name" value="Võ Sơn Hiệp">
+                  <input type="text" class="form-control-plaintext" id="name" value="{{ user.name }}">
                 </div>
               </div>
               <div class="item form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" readonly class="form-control-plaintext" id="email" value="vosonhiepa@gmail.com">
+                  <input type="text" class="form-control-plaintext" id="email" value="{{ user.email }}">
                 </div>
               </div>
               <div class="item form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender">Giới tính
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" readonly class="form-control-plaintext" id="gender" value="Nam">
+                  <input type="text" class="form-control-plaintext" id="gender" value="{{ user.gender }}">
                 </div>
               </div>
               <div class="item form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày sinh
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" readonly class="form-control-plaintext" id="datetime" value="24/10/1997">
+                  <input type="text" class="form-control-plaintext" id="date" formatdate value="{{user.birthDate}}">
                 </div>
-              </div>         
+              </div>
               <div class="item form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Địa chỉ
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <textarea name="address" class="form-control-plaintext" id="textarea" readonly></textarea>
+                  <input type="text" class="form-control-plaintext" id="textarea" value="{{ user.address }}"></input>
                 </div>
-              </div>              
+              </div>
               <div class="ln_solid"></div>
               <div class="form-group">
                 <div class="col-md-6 col-md-offset-3">
-                  <button class="btn btn-success" href ="/admin/change-profile"> Thay đổi thông tin </button>
+                  {{#if isUser}}
+                  <a class="btn btn-success" href="/user/change-profile"> Thay đổi thông tin </a>
+                  {{else}}
+                  <a class="btn btn-success" href="/admin/change-profile"> Thay đổi thông tin </a>
+                  {{/if}}
                 </div>
               </div>
             </form>

@@ -6,10 +6,9 @@
             <div class="container">
                 <div class="section_txt">
                     <div class="cnt_wrap">
-                        <h2>BOOKSTORE .COM</h2>
-                        <h3>BEST</h3>
-                        <h4>BOOKS STORE</h4>
-                        <h5>SUMMER ESCAPE SALE</h5>
+                        <h2>NHÀ SÁCH</h2>
+                        <h3>TUYỆT NHẤT</h3>
+                        <h5>ƯU ĐÃI MÙA HÈ</h5>
                     </div>
                     </a>
                 </div>
@@ -22,17 +21,18 @@
                 <div class="col-xs-6 col_item item_2_1">
                     <div class="custom_content__item item_text">
                         <div class="item_text item_text__left">
-                            <h4 class="item_text__title">WELCOME TO BOOKSTORE.COM</h4>
+                            <h4 class="item_text__title">CHÀO MỪNG ĐẾN VỚI NHÀ SÁCH</h4>
                             <div class="item_text__content">
-                                <p>We have the biggest bestsellers to the hardest-to-find, out-of-print rarities brought to
-                                    you by thousands of Booksellers around the world.
-                                    <br>So look around and let us help you find your next favorite book.</p>
+                                <p>Cửa hàng sách của chúng tôi không chỉ là một nhà bán lẻ trực tuyến thông thường. Chúng tôi
+                                    mong muốn bán sản phẩm chất lượng hàng đầu mà còn mang đến cho khách hàng trải nghiệm
+                                    mua sắm trực tuyến tích cực.
+                                    <br>Tất cả đều có ở cửa hàng trực tuyến nhà sách.</p>
                                 <p></p>
                                 <p></p>
                                 <p></p>
                                 <p></p>
                             </div>
-                            <a href="/collections" class="btn">READ MORE
+                            <a href="/about" class="btn">READ MORE
                                 <i class="fa fa-arrow-right" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -41,10 +41,10 @@
                 <div class="col-xs-6 col_item ">
                     <div class="custom_content__item item_text">
                         <div class="item_text item_text__left">
-                            <h4 class="item_text__title">SAVE 50% OFF</h4>
+                            <h4 class="item_text__title">ƯU ĐÃI LÊN TỚI 50%</h4>
                             <div class="item_text__content">
-                                <p>Whether you are looking for a special book, recording, album, cassette, CD, or even computer
-                                    software, we will do our best to secure it for you if we do not have it in stock.</p>
+                                <p>Bạn đang tìm kiếm những cuốn sách nổi tiếng, những cuốn sách bán chạy nhất thế giới. Hãy
+                                    đến với chúng tôi với ưu đãi có thể lên đến 50%</p>
                             </div>
                         </div>
                     </div>
@@ -58,14 +58,7 @@
                 <div class="custom_content__item item_advantages">
                     <div class="index_item__advantages">
 
-                        <div class="circle-bg circle-bg__1">
-                            <i class="advantages_icon thin-icon-love"></i>
-                        </div>
-
-                        <a href="/collections/romance" class="advantages_btn btn_fon">Romance</a>
-
-
-                        {{# each listGenres}}
+                        {{#each listGenres}}
                         <div class="advantages_item col-sm-6">
                             <div class="circle-bg circle-bg__1">
                                 <i class="advantages_icon thin-icon-love"></i>
@@ -83,10 +76,10 @@
                             <img src="//cdn.shopify.com/s/files/1/2323/3807/files/bnr_07_27b0064b-1b4f-47d0-9f3f-187b6bca65c8_1036x472.jpg?v=1506603035">
                             <div class="section_txt">
                                 <div class="cnt_wrap">
-                                    <h2>super sale!</h2>
-                                    <h3>Get an extra 15% off</h3>
-                                    <h4>your first order</h4>
-                                    <a href="/collections/belles-lettres" class="btn btn_inverted">READ MORE</a>
+                                    <h2>ưu đãi khủng!</h2>
+                                    <h3>GIẢM GIÁ 15%</h3>
+                                    <h4>cho đơn đặt hàng đầu tiên</h4>
+                                    <a href="/book" class="btn btn_inverted">XEM NGAY</a>
                                 </div>
                             </div>
                         </div>
@@ -97,86 +90,36 @@
     </div>
     <div id="shopify-section-1478270037550" class="shopify-section section section_homepage section_featured-products">
         <div class="container">
-            <h2 class="section_heading">Featured products</h2>
+            <h2 class="section_heading">Sản phẩm nổi bật</h2>
             <div class="row product_listing__main">
-                <div class="col-xs-3 item_4_1">
+                {{#each listBooks}}
+                <div class="col-xs-3">
                     <div class="product_item">
                         <div class="product_img">
-                            <a class="img_change" href="/collections/childrens-books/products/the-hobbit-and-the-lord-of-the-rings">
-                                <img class="img__1" src="//cdn.shopify.com/s/files/1/2323/3807/products/the_hobbit_and_the_lord_of_the_rings_1_270x270_crop_top.png?v=1504250252"
-                                    alt="The Hobbit And The Lord Of The Rings" style="opacity: 1;">
-                                <img class="img__2" src="//cdn.shopify.com/s/files/1/2323/3807/products/the_hobbit_and_the_lord_of_the_rings_2_270x270_crop_top.png?v=1504250252"
-                                    alt="The Hobbit And The Lord Of The Rings" style="opacity: 0;">
-                                <span class="product_badge new">New!</span>
-                            </a>
-                            <a class="quick_view_btn" href="/products/the-hobbit-and-the-lord-of-the-rings" title="Quick view">
-                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            <a class="img_change" href="{{ url }}">
+                                <img class="img" src="{{ imageCover.[0] }}" alt="{{ book.title }}"> {{!--
+                                <span class="product_badge new">New!</span> --}} {{!--
+                                <span class="product_badge sale">–23%</span> --}}
                             </a>
                         </div>
                         <div class="product_info">
                             <p class="product_name">
-                                <a href="/products/the-hobbit-and-the-lord-of-the-rings">The Hobbit And The Lord Of The Rings</a>
+                                <a href="{{ url }}"> {{ book.title }} </a>
                             </p>
-                            <p class="product_desc product_desc__short">It is a great pleasure to give people the knowledge and the power of the intelligence Our business
-                                is very ...</p>
-                            <p class="product_desc product_desc__long">It is a great pleasure to give people the knowledge and the power of the intelligence Our business
-                                is very noble and it has many traditions. That is why we have such a great number of devoted
-                                clients all over the country. It is a great pleasure to give people the knowledge and the
-                                power of the intelligence. We all must remember that our forefathers didn’t have such unlimited
-                                abilities as we have. The diversity of our products is unbelievable because we have a vast
-                                book collection - all genres...
-                            </p>
+                            <p class="product_desc product_desc__long"> {{ book.description }} </p>
                             <p class="product_price">
-                                <span class="money" data-currency-usd="$50.00">$50.00</span>
+                                <span class="money"> {{ currentPrice }}</span>
+                                <span class="currency"> ₫</span>
+                                <span class="money money_sale">{{ book.price }}</span>
+                                <span class="currency"> ₫</span>
                             </p>
                             <div class="product_links">
-                                <form method="post" action="/cart/add">
-                                    <input name="id" value="50971280395" type="hidden">
-                                    <button class="btn btn-cart" type="submit">Thêm vào giỏ hàng</button>
+                                <form method="post" action="/cart/add-to-cart">
+                                    <input type="hidden" name="product_id" value="{{ _id }}">
+                                    <input type="hidden" name="_csrf" value="{{ ../csrfToken }}">
+                                    <button class="btn" type="submit"> Thêm vào giỏ hàng </button>
                                 </form>
-                                <a class="btn wishlist_add_login" href="/pages/wishlist" title="Add to the wishlist">
-                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                {{# each listBooks}}
-                <div class="col-xs-3 item_4_1 item_2_1">
-                    <div class="product_item">
-                        <div class="product_img">
-                            <a class="img_change" href={{url}}>
-                                <img class="img__1" src={{imageCover}} alt={{title}}>
-                                <img class="img__2" src={{imageCover}} alt={{title}}>
-                                <span class="product_badge new">New!</span>
-                            </a>
-                            <a class="quick_view_btn" href={{url}} title="Quick view">
-                                <i class="fa fa-eye" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                        <div class="product_info">
-                            <p class="product_name">
-                                <a href={{url}}>{{title}}</a>
-                            </p>
-                            <p class="product_desc product_desc__short">It is a great pleasure to give people the knowledge and the power of the intelligence Our business
-                                is very ...</p>
-                            <p class="product_desc product_desc__long">It is a great pleasure to give people the knowledge and the power of the intelligence Our business
-                                is very noble and it has many traditions. That is why we have such a great number of devoted
-                                clients all over the country. It is a great pleasure to give people the knowledge and the
-                                power of the intelligence. We all must remember that our forefathers didn’t have such unlimited
-                                abilities as we have. The diversity of our products is unbelievable because we have a vast
-                                book collection - all genres...
-                            </p>
-                            <p class="product_price">
-                                <span class="money" data-currency-usd="{{price}}">$price</span>
-                            </p>
-                            <div class="product_links">
-                                <form method="post" action="/cart/add">
-                                    <input type="hidden" name="id" value="50971280395">
-                                    <button class="btn btn-cart" type="submit">Thêm vào giỏ hàng</button>
-                                </form>
-                                <a class="btn wishlist_add_login" href="/pages/wishlist" title="Add to the wishlist">
+                                <a disabled class="btn wishlist_add_login" href="/pages/wishlist" title="Thêm vào yêu thích!Comming soon!">
                                     <i class="fa fa-heart-o" aria-hidden="true"></i>
                                 </a>
                             </div>
@@ -194,10 +137,10 @@
             <div class="section_txt">
                 <div class="container">
                     <div class="cnt_wrap">
-                        <h2>super sale!</h2>
-                        <h3>Get an extra 15% off</h3>
-                        <h4>your first order</h4>
-                        <a href="/collections/romance" class="btn btn_inverted">Read more</a>
+                        <h2>ưu đãi khủng!</h2>
+                        <h3>GIẢM GIÁ 15%</h3>
+                        <h4>cho đơn đặt hàng đầu tiên</h4>
+                        <a href="/book" class="btn btn_inverted">XEM NGAY</a>
                     </div>
                 </div>
             </div>

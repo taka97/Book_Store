@@ -824,7 +824,7 @@ h1,h2,h3,h4,h5,h6,p {
   }
   
   html,body {
-    font: 11px/1.5em Poppins;
+    font: 11px/1.5em inherit;
     color: #4d555c;
   }
   
@@ -853,7 +853,7 @@ h1,h2,h3,h4,h5,h6,p {
   }
   
   h1,h2,h3,h4,h5,h6 {
-    font: 18px/1.1em Poppins;
+    font: 18px/1.1em inherit;
     color: #000;
   }
   
@@ -957,7 +957,7 @@ h1,h2,h3,h4,h5,h6,p {
     -webkit-transition: background 0.2s ease-in-out,border-color 0.2s ease-in-out,color 0.2s ease-in-out;
     -moz-transition: background 0.2s ease-in-out,border-color 0.2s ease-in-out,color 0.2s ease-in-out;
     transition: background 0.2s ease-in-out,border-color 0.2s ease-in-out,color 0.2s ease-in-out;
-    font-family: 'Poppins';
+    /* font-family: 'Poppins'; */
   }
   
   .btn:active,.btn:focus,.btn:hover {
@@ -4495,7 +4495,7 @@ h1,h2,h3,h4,h5,h6,p {
   }
   
   @font-face {
-    font-family:'Thin Regular';src:url("../assets/Thin-Regular.eot?66413286");src:url("../assets/Thin-Regular.eot?66413286#iefix") format("embedded-opentype"),url("../assets/Thin-Regular.woff?66413286") format("woff"),url("../assets/Thin-Regular.ttf?66413286") format("truetype"),url("../assets/Thin-Regular.svg?66413286#thin") format("svg");font-weight:normal;font-style:normal;
+    font-family:'Thin Regular';src:url("http://cdn.shopify.com/s/files/1/2323/3807/t/2/assets/Thin-Regular.eot?66413286");src:url("http://cdn.shopify.com/s/files/1/2323/3807/t/2/assets/Thin-Regular.eot?66413286#iefix") format("embedded-opentype"),url("http://cdn.shopify.com/s/files/1/2323/3807/t/2/assets/Thin-Regular.woff?66413286") format("woff"),url("../assets/Thin-Regular.ttf?66413286") format("truetype"),url("http://cdn.shopify.com/s/files/1/2323/3807/t/2/assets/Thin-Regular.svg?66413286#thin") format("svg");font-weight:normal;font-style:normal;
   }
   
   [class^="thin-icon-"]:before,[class*=" thin-icon-"]:before,.thin-ico {
@@ -6051,6 +6051,11 @@ h1,h2,h3,h4,h5,h6,p {
     top: -3px;
   }
   
+  .currency {
+    font-size:18px;
+    line-height: 22px;
+  }
+
   .currency_selector {
     display: inline-block;
     margin-left: 16px;
@@ -6820,7 +6825,7 @@ h1,h2,h3,h4,h5,h6,p {
   
   footer .footer_item__newsletter input {
     font-size: 11px;
-    font-family: 'Poppins';
+    /* font-family: 'Poppins'; */
     color: #4d555c;
     padding-right: 10px;
     width: 238px;
@@ -7555,7 +7560,7 @@ h1,h2,h3,h4,h5,h6,p {
   }
   
   .section_single-product .details_left b {
-    font-weight: normal !important;
+    font-weight: bold !important;
     color: #3d4851;
   }
   
@@ -8117,13 +8122,23 @@ h1,h2,h3,h4,h5,h6,p {
     vertical-align: top;
   }
   
-  .section_template__collection .product_options .product_options__sort {
-    float: right;
+  .section_template__collection .product_options .product_options__name {
+    float: left;
     margin: 10px 0 0 10px;
   }
   
-  .section_template__collection .product_options .product_options__number {
-    float: right;
+  .section_template__collection .product_options .product_options__publisher {
+    float: left;
+    margin: 10px 0 0 10px;
+  }
+
+  .section_template__collection .product_options .product_options__genre {
+    float: left;
+    margin: 10px 0 0 10px;
+  }
+
+  .section_template__collection .product_options .product_options__price {
+    float: left;
     margin: 10px 0 0 10px;
   }
   
@@ -8596,7 +8611,6 @@ h1,h2,h3,h4,h5,h6,p {
   }
   
   .template_search .search_form {
-    margin: 30px 0 0 0;
     position: relative;
   }
   
@@ -8953,7 +8967,7 @@ h1,h2,h3,h4,h5,h6,p {
   }
   
   .wishlist_page .product_name {
-    font-family: Poppins;
+    /* font-family: Poppins; */
     font-size: 16px;
     margin-bottom: 10px;
     margin-top: 10px;
