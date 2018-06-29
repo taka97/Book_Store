@@ -1346,7 +1346,8 @@ function init_SmartWizard() {
 
 function init_validator() {
   'undefined' != typeof validator && (console.log('init_validator'),
-    validator.message.date = 'not a real date',
+    validator.message.date = 'Vui lòng chọn ngày hợp lệ',
+    validator.message.empty = 'Vui lòng nhập dữ liệu',
     $('form').on('blur', 'input[required], input.optional, select.required', validator.checkField).on('change', 'select.required', validator.checkField).on(
       'keypress', 'input[required][pattern]', validator.keypress), $(
         '.multi.required').on('keyup blur', 'input', function () {
