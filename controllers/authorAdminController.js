@@ -101,7 +101,7 @@ exports.postEdit = function (req, res, next) {
   var newData = {
     name: req.body.name,
     birthDate: req.body.date,
-    gender: req.body.gender,
+    gender: req.body.gender === 'male' ? 'Nam' : 'Nữ',
     nationality: req.body.national
   }
   Author.findByIdAndUpdate(req.params.id, newData, (err) => {
