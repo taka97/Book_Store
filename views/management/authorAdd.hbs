@@ -18,8 +18,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="name" class="form-control col-md-7 col-xs-12" id="name" required="required" type="text" placeholder="both name(s) e.g Jon Doe"
-                                        data-validate-words="2" data-validate-length-range="6">
+                                    <input name="name" class="form-control col-md-7 col-xs-12" id="name" required="required" type="text" placeholder="Nhập tên tác giả. Ví dụ: Jon Doe">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -27,7 +26,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="date" class="optional form-control col-md-7 col-xs-12" id="date" type="date" data-validate-length-range="5,20">
+                                    <input name="date" class="optional form-control col-md-7 col-xs-12" id="date" type="date">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -35,7 +34,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select name="gender" class="form-control" required="" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Chọn loại bìa')">
+                                    <select name="gender" class="form-control" required="" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Vui lòng chọn giới tính')">
                                         <option selected disabled> Giới tính </option>
                                         <option value="male"> Nam </option>
                                         <option value="female"> Nữ</option>
@@ -46,15 +45,16 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="national" class="form-control col-md-7 col-xs-12" id="national" required="required" type="text" placeholder="Việt Nam">
+                                    <input name="national" class="form-control col-md-7 col-xs-12" id="national" required="required" type="text" placeholder="Nhập quốc tịch. Ví dụ: Việt Nam"
+                                        oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Vui lòng nhập quốc tịch')">
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
                             <input type="hidden" name="_csrf" value="{{ csrfToken }}">
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
-                                    <button class="btn btn-primary" type="submit">Cancel</button>
-                                    <button class="btn btn-success" id="send" type="submit">Submit</button>
+                                    <button class="btn btn-success" type="submit">Thêm tác giả</button>
+                                    <button class="btn btn-primary" type="reset">Làm lại</button>
                                 </div>
                             </div>
                         </form>
