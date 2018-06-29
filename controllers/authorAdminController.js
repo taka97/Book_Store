@@ -31,7 +31,7 @@ exports.getAddPage = function (req, res, next) {
     layout: 'layoutAdmin',
     title: 'Thêm tác giả',
     csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
-    user: req.user,
+    user: req.user
   })
 }
 
@@ -92,7 +92,7 @@ exports.postAdd = function (req, res, next) {
   })
   newAuthor.save((err) => {
     if (err) throw err
-    res.redirect('/admin/author/add')
+    res.redirect('/admin/author')
   })
 }
 
@@ -101,7 +101,7 @@ exports.postEdit = function (req, res, next) {
   var newData = {
     name: req.body.name,
     birthDate: req.body.date,
-    gender: req.body.gender,
+    gender: req.body.gender === 'male' ? 'Nam' : 'Nữ',
     nationality: req.body.national
   }
   Author.findByIdAndUpdate(req.params.id, newData, (err) => {
