@@ -92,7 +92,7 @@ exports.postAdd = function (req, res, next) {
   })
   newAuthor.save((err) => {
     if (err) throw err
-      res.redirect('/admin/author/add')
+    res.redirect('/admin/author/add')
   })
 }
 
@@ -104,7 +104,7 @@ exports.postEdit = function (req, res, next) {
     gender: req.body.gender,
     nationality: req.body.national
   }
-  Author.findByIdAndUpdate(req.params.id, editAuthor, (err) => {
+  Author.findByIdAndUpdate(req.params.id, newData, (err) => {
     if (err) { return next(err) }
     res.redirect('/admin/author')
   })
@@ -113,7 +113,7 @@ exports.postEdit = function (req, res, next) {
 // POST delete author
 exports.postDelete = function (req, res, next) {
   Author.findByIdAndRemove(req.params.id, (err) => {
-    if(err) { return next(err) } 
+    if (err) { return next(err) }
     res.redirect('/admin/author')
   })
 }
