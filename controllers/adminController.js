@@ -5,8 +5,7 @@ exports.getHomepage = function (req, res, next) {
   // Successful, so render.
   res.render('account/viewProfile', {
     layout: 'layoutAdmin',
-    title: 'Hồ sơ cá nhân',
-    user: req.user
+    title: 'Hồ sơ cá nhân'
   })
 }
 
@@ -15,8 +14,7 @@ exports.getViewProfile = function (req, res, next) {
   // Successful, so render.
   res.render('account/viewProfile', {
     layout: 'layoutAdmin',
-    title: 'Hồ sơ cá nhân',
-    user: req.user
+    title: 'Hồ sơ cá nhân'
   })
 }
 
@@ -30,7 +28,6 @@ exports.getChangeProfile = function (req, res, next) {
     layout: 'layoutAdmin',
     title: 'Thay đổi hồ sơ cá nhân',
     csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
-    user: req.user,
     messageValidate: messageValidate,
     hasErrorMessage: messageValidate.length > 0,
     messageErrorConfig: messageErrorConfig,
@@ -58,7 +55,7 @@ exports.postChangeProfile = function (req, res, next) {
   if (errors) {
     var messages = []
     errors.forEach(error => {
-      console.log('Error message: ' + error.msg)
+      // console.log('Error message: ' + error.msg)
       messages.push(error.msg)
     })
     req.flash('errorValidate', messages)
@@ -76,7 +73,7 @@ exports.postChangeProfile = function (req, res, next) {
     if (err) { return next(err) }
     req.user = newUser
     res.redirect('/admin/profile')
-    console.log(newUser)
+    // console.log(newUser)
   })
 }
 
@@ -94,7 +91,7 @@ exports.postChangePassword = function (req, res, next) {
   if (errors) {
     var messages = []
     errors.forEach(error => {
-      console.log('Error message: ' + error.msg)
+      // console.log('Error message: ' + error.msg)
       messages.push(error.msg)
     })
     req.flash('errorConfig', messages)
@@ -111,4 +108,3 @@ exports.postChangePassword = function (req, res, next) {
     // console.log(newUser)
   })
 }
-
