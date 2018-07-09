@@ -8,16 +8,6 @@
             <h2> Quản lý sách
               <small> Thêm, sửa, xóa, tìm kiếm </small>
             </h2>
-            <div class="title_right">
-              <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search for...">
-                  <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Go!</button>
-                  </span>
-                </div>
-              </div>
-            </div>
             <div class="clearfix"></div>
           </div>
           <div class="x_content">
@@ -27,11 +17,7 @@
                   <th> STT </th>
                   <th> Tên sách </th>
                   <th> Nhà xuất bản </th>
-                  {{!--
-                  <th> Ngày xuất bản </th> --}}
                   <th> Giá </th>
-                  {{!--
-                  <th> Ảnh bìa </th> --}}
                   <th> Hành động </th>
                 </tr>
               </thead>
@@ -41,12 +27,7 @@
                   <th> {{@index}} </th>
                   <th> {{title}} </th>
                   <th> {{publisher.name}} </th>
-                  {{!--
-                  <th> 10/06/2018 </th> --}}
                   <th> {{price}} </th>
-                  {{!--
-                  <th>
-                    <img class="thumbnail image" src="http://gralib.hcmuns.edu.vn/sachmoi/2015/05-15/ktlaptrinh.jpg" alt=""> </th> --}}
                   <td>
                     <a href="/admin/book/view/{{_id}}" class="btn btn-primary btn-xs">
                       <i class="fa fa-folder"></i> Xem </a>
