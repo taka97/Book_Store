@@ -92,14 +92,13 @@ exports.postChangePassword = function (req, res, next) {
     .withMessage('Mật khẩu cũ không hợp lệ')
   req.checkBody('confPassword')
     .notEmpty()
-    .custom(value => value === req.body.newPpassword).withMessage('Mật khẩu xác nhập không hợp lệ')
+    .custom(value => value === req.body.newPassword).withMessage('Mật khẩu xác nhập không hợp lệ')
 
   // Store error message
   var errors = req.validationErrors()
   if (errors) {
     var messages = []
     errors.forEach(error => {
-      console.log('Error message: ' + error.msg)
       messages.push(error.msg)
     })
     req.flash('errorConfig', messages)

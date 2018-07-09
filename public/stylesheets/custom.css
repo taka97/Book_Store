@@ -4599,6 +4599,11 @@ ul.verticle_bars li {
     bottom: 0
 }
 
+.custom-alert-danger {
+    text-align: center;
+    font-weight: bold;
+}
+
 ul.notifications {
     float: right;
     display: block;
