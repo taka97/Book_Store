@@ -23,35 +23,35 @@ var datatableLangConf = {
   }
 }
 
-function formatDDMMYYYYY (inputStr) {
+function formatDDMMYYYYY(inputStr) {
   let d = new Date(inputStr)
   return ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth() + 1)).slice(-2) + '/' + d.getFullYear()
 }
 
-function formatYYYYMMDD (inputStr) {
+function formatYYYYMMDD(inputStr) {
   let d = new Date(inputStr)
   return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2)
 }
 
-function formatTd () {
+function formatTd() {
   $('td[formatdate]').each(function () {
     $(this).text(formatDDMMYYYYY($(this).text()))
   })
 }
 
-function formatInput () {
+function formatInput() {
   $('input[formatdate]').each(function () {
     $(this).attr('value', formatDDMMYYYYY($(this).attr('value')))
   })
 }
 
-function formatinputdate () {
+function formatinputdate() {
   $('input[type="date"]').each(function () {
     $(this).val(formatYYYYMMDD($(this).attr('value')))
   })
 }
 
-function formatGender () {
+function formatGender() {
   if ($('#gender').attr('value') === 'Nam') {
     $('input[name="gender"]:first').parent('label').addClass('active')
     $('input[name="gender"]:first').attr('checked', true)
@@ -61,15 +61,22 @@ function formatGender () {
   }
 }
 
-function init_Format () {
+function formatPrice() {
+  $('.money').each(function () {
+    $(this).text(accounting.formatNumber($(this).text()))
+  })
+}
+
+function init_Format() {
   console.log('init_formatdate')
   formatTd()
   formatInput()
   formatinputdate()
   formatGender()
+  formatPrice()
 }
 
-function init_sidebar () {
+function init_sidebar() {
   var a = function () {
     $RIGHT_COL.css('min-height', $(window).height())
     var a = $BODY.outerHeight(),
@@ -82,137 +89,139 @@ function init_sidebar () {
     var c = $(this).parent()
     c.is('.active') ? (c.removeClass('active active-sm'), $(
       'ul:first', c).slideUp(function () {
-      a()
-    })) : (c.parent().is('.child_menu') ? $BODY.is('.nav-sm') &&
+        a()
+      })) : (c.parent().is('.child_menu') ? $BODY.is('.nav-sm') &&
         ($SIDEBAR_MENU.find('li').removeClass(
           'active active-sm'), $SIDEBAR_MENU.find('li ul')
             .slideUp()) : ($SIDEBAR_MENU.find('li').removeClass(
-      'active active-sm'), $SIDEBAR_MENU.find('li ul')
-        .slideUp()), c.addClass('active'), $('ul:first', c)
-        .slideDown(function () {
-          a()
-        }))
+              'active active-sm'), $SIDEBAR_MENU.find('li ul')
+                .slideUp()), c.addClass('active'), $('ul:first', c)
+                  .slideDown(function () {
+                    a()
+                  }))
   }), $MENU_TOGGLE.on('click', function () {
     $BODY.hasClass('nav-md') ? ($SIDEBAR_MENU.find('li.active ul').hide(),
       $SIDEBAR_MENU.find('li.active').addClass('active-sm').removeClass(
         'active')) : ($SIDEBAR_MENU.find('li.active-sm ul')
-      .show(), $SIDEBAR_MENU.find('li.active-sm').addClass(
-        'active').removeClass('active-sm')), $BODY.toggleClass(
-      'nav-md nav-sm'), a()
+          .show(), $SIDEBAR_MENU.find('li.active-sm').addClass(
+            'active').removeClass('active-sm')), $BODY.toggleClass(
+              'nav-md nav-sm'), a()
   }), $SIDEBAR_MENU.find('a[href="' + CURRENT_URL + '"]').parent('li').addClass(
     'current-page'), $SIDEBAR_MENU.find('a').filter(function () {
-    return this.href == CURRENT_URL
-  }).parent('li').addClass('current-page').parents('ul').slideDown(
-    function () {
-      a()
-    }).parent().addClass('active'), $(window).smartresize(function () {
-    a()
-  }), a(), $.fn.mCustomScrollbar && $('.menu_fixed').mCustomScrollbar({
-    autoHideScrollbar: !0,
-    theme: 'minimal',
-    mouseWheel: {
-      preventDefault: !0
-    }
-  })
+      return this.href == CURRENT_URL
+    }).parent('li').addClass('current-page').parents('ul').slideDown(
+      function () {
+        a()
+      }).parent().addClass('active'), $(window).smartresize(function () {
+        a()
+      }), a(), $.fn.mCustomScrollbar && $('.menu_fixed').mCustomScrollbar({
+        autoHideScrollbar: !0,
+        theme: 'minimal',
+        mouseWheel: {
+          preventDefault: !0
+        }
+      })
 }
 
-function countChecked () {
+function countChecked() {
   checkState === 'all' && $(".bulk_action input[name='table_records']").iCheck(
     'check'), checkState === 'none' && $(
-    ".bulk_action input[name='table_records']").iCheck('uncheck')
+      ".bulk_action input[name='table_records']").iCheck('uncheck')
   var a = $(".bulk_action input[name='table_records']:checked").length
   a ? ($('.column-title').hide(), $('.bulk-actions').show(), $('.action-cnt')
     .html(a + ' Records Selected')) : ($('.column-title').show(), $(
-    '.bulk-actions').hide())
+      '.bulk-actions').hide())
 }
 
-function gd (a, b, c) {
+function gd(a, b, c) {
   return new Date(a, b - 1, c).getTime()
 }
 
-function init_flot_chart () {
+function init_flot_chart() {
   if (typeof $.plot !== 'undefined') {
     console.log('init_flot_chart')
     for (var a = [
-        [gd(2012, 1, 1), 17],
-        [gd(2012, 1, 2), 74],
-        [gd(2012, 1, 3), 6],
-        [gd(2012, 1, 4), 39],
-        [gd(2012, 1, 5), 20],
-        [gd(2012, 1, 6), 85],
-        [gd(2012, 1, 7), 7]
-      ], b = [
-        [gd(2012, 1, 1), 82],
-        [gd(2012, 1, 2), 23],
-        [gd(2012, 1, 3), 66],
-        [gd(2012, 1, 4), 9],
-        [gd(2012, 1, 5), 119],
-        [gd(2012, 1, 6), 6],
-        [gd(2012, 1, 7), 9]
-      ], d = [], e = [
-        [0, 1],
-        [1, 9],
-        [2, 6],
-        [3, 10],
-        [4, 5],
-        [5, 17],
-        [6, 6],
-        [7, 10],
-        [8, 7],
-        [9, 11],
-        [10, 35],
-        [11, 9],
-        [12, 12],
-        [13, 5],
-        [14, 3],
-        [15, 4],
-        [16, 9]
-      ], f = 0; f < 30; f++) {d.push([new Date(Date.today().add(f).days())
-      .getTime(), randNum() + f + f + 10
-    ]);}
+      [gd(2012, 1, 1), 17],
+      [gd(2012, 1, 2), 74],
+      [gd(2012, 1, 3), 6],
+      [gd(2012, 1, 4), 39],
+      [gd(2012, 1, 5), 20],
+      [gd(2012, 1, 6), 85],
+      [gd(2012, 1, 7), 7]
+    ], b = [
+      [gd(2012, 1, 1), 82],
+      [gd(2012, 1, 2), 23],
+      [gd(2012, 1, 3), 66],
+      [gd(2012, 1, 4), 9],
+      [gd(2012, 1, 5), 119],
+      [gd(2012, 1, 6), 6],
+      [gd(2012, 1, 7), 9]
+    ], d = [], e = [
+      [0, 1],
+      [1, 9],
+      [2, 6],
+      [3, 10],
+      [4, 5],
+      [5, 17],
+      [6, 6],
+      [7, 10],
+      [8, 7],
+      [9, 11],
+      [10, 35],
+      [11, 9],
+      [12, 12],
+      [13, 5],
+      [14, 3],
+      [15, 4],
+      [16, 9]
+    ], f = 0; f < 30; f++) {
+      d.push([new Date(Date.today().add(f).days())
+        .getTime(), randNum() + f + f + 10
+      ]);
+    }
     var g = {
-        series: {
-          lines: {
-            show: !1,
-            fill: !0
-          },
-          splines: {
-            show: !0,
-            tension: 0.4,
-            lineWidth: 1,
-            fill: 0.4
-          },
-          points: {
-            radius: 0,
-            show: !0
-          },
-          shadowSize: 2
+      series: {
+        lines: {
+          show: !1,
+          fill: !0
         },
-        grid: {
-          verticalLines: !0,
-          hoverable: !0,
-          clickable: !0,
-          tickColor: '#d5d5d5',
-          borderWidth: 1,
-          color: '#fff'
+        splines: {
+          show: !0,
+          tension: 0.4,
+          lineWidth: 1,
+          fill: 0.4
         },
-        colors: ['rgba(38, 185, 154, 0.38)', 'rgba(3, 88, 106, 0.38)'],
-        xaxis: {
-          tickColor: 'rgba(51, 51, 51, 0.06)',
-          mode: 'time',
-          tickSize: [1, 'day'],
-          axisLabel: 'Date',
-          axisLabelUseCanvas: !0,
-          axisLabelFontSizePixels: 12,
-          axisLabelFontFamily: 'Verdana, Arial',
-          axisLabelPadding: 10
+        points: {
+          radius: 0,
+          show: !0
         },
-        yaxis: {
-          ticks: 8,
-          tickColor: 'rgba(51, 51, 51, 0.06)'
-        },
-        tooltip: !1
+        shadowSize: 2
       },
+      grid: {
+        verticalLines: !0,
+        hoverable: !0,
+        clickable: !0,
+        tickColor: '#d5d5d5',
+        borderWidth: 1,
+        color: '#fff'
+      },
+      colors: ['rgba(38, 185, 154, 0.38)', 'rgba(3, 88, 106, 0.38)'],
+      xaxis: {
+        tickColor: 'rgba(51, 51, 51, 0.06)',
+        mode: 'time',
+        tickSize: [1, 'day'],
+        axisLabel: 'Date',
+        axisLabelUseCanvas: !0,
+        axisLabelFontSizePixels: 12,
+        axisLabelFontFamily: 'Verdana, Arial',
+        axisLabelPadding: 10
+      },
+      yaxis: {
+        ticks: 8,
+        tickColor: 'rgba(51, 51, 51, 0.06)'
+      },
+      tooltip: !1
+    },
       h = {
         grid: {
           show: !0,
@@ -302,30 +311,30 @@ function init_flot_chart () {
       }
     $('#chart_plot_01').length && (console.log('Plot1'), $.plot($(
       '#chart_plot_01'), [a, b], g)), $('#chart_plot_02').length && (
-      console.log('Plot2'), $.plot($('#chart_plot_02'), [{
-        label: 'Email Sent',
-        data: d,
-        lines: {
-          fillColor: 'rgba(150, 202, 89, 0.12)'
-        },
-        points: {
-          fillColor: '#fff'
-        }
-      }], h)), $('#chart_plot_03').length && (console.log('Plot3'), $
-      .plot($('#chart_plot_03'), [{
-        label: 'Registrations',
-        data: e,
-        lines: {
-          fillColor: 'rgba(150, 202, 89, 0.12)'
-        },
-        points: {
-          fillColor: '#fff'
-        }
-      }], i))
+        console.log('Plot2'), $.plot($('#chart_plot_02'), [{
+          label: 'Email Sent',
+          data: d,
+          lines: {
+            fillColor: 'rgba(150, 202, 89, 0.12)'
+          },
+          points: {
+            fillColor: '#fff'
+          }
+        }], h)), $('#chart_plot_03').length && (console.log('Plot3'), $
+          .plot($('#chart_plot_03'), [{
+            label: 'Registrations',
+            data: e,
+            lines: {
+              fillColor: 'rgba(150, 202, 89, 0.12)'
+            },
+            points: {
+              fillColor: '#fff'
+            }
+          }], i))
   }
 }
 
-function init_starrr () {
+function init_starrr() {
   typeof starrr != 'undefined' && (console.log('init_starrr'), $('.stars').starrr(),
     $('.stars-existing').starrr({
       rating: 4
@@ -336,7 +345,7 @@ function init_starrr () {
     }))
 }
 
-function init_JQVmap () {
+function init_JQVmap() {
   typeof jQuery.fn.vectorMap != 'undefined' && (console.log('init_JQVmap'), $(
     '#world-map-gdp').length && $('#world-map-gdp').vectorMap({
       map: 'world_en',
@@ -363,12 +372,12 @@ function init_JQVmap () {
     }))
 }
 
-function init_skycons () {
+function init_skycons() {
   if (typeof Skycons !== 'undefined') {
     console.log('init_skycons')
     var c, a = new Skycons({
-        color: '#73879C'
-      }),
+      color: '#73879C'
+    }),
       b = ['clear-day', 'clear-night', 'partly-cloudy-day',
         'partly-cloudy-night', 'cloudy', 'rain', 'sleet', 'snow',
         'wind', 'fog'
@@ -378,7 +387,7 @@ function init_skycons () {
   }
 }
 
-function init_chart_doughnut () {
+function init_chart_doughnut() {
   if (typeof Chart != 'undefined' && (console.log('init_chart_doughnut'), $(
     '.canvasDoughnut').length)) {
     var a = {
@@ -408,7 +417,7 @@ function init_chart_doughnut () {
   }
 }
 
-function init_gauge () {
+function init_gauge() {
   if (typeof Gauge !== 'undefined') {
     console.log('init_gauge [' + $('.gauge-chart').length + ']'), console.log(
       'init_gauge')
@@ -427,390 +436,394 @@ function init_gauge () {
       strokeColor: '#F0F3F3',
       generateGradient: !0
     }
-    if ($('#chart_gauge_01').length) {var b = document.getElementById(
-      'chart_gauge_01'),
-      c = new Gauge(b).setOptions(a);}
+    if ($('#chart_gauge_01').length) {
+      var b = document.getElementById(
+        'chart_gauge_01'),
+      c = new Gauge(b).setOptions(a);
+    }
     if ($('#gauge-text').length && (c.maxValue = 6e3, c.animationSpeed = 32,
       c.set(3200), c.setTextField(document.getElementById(
-        'gauge-text'))), $('#chart_gauge_02').length) {var d =
-          document.getElementById('chart_gauge_02'),
-          e = new Gauge(d).setOptions(a);}
+        'gauge-text'))), $('#chart_gauge_02').length) {
+          var d =
+            document.getElementById('chart_gauge_02'),
+          e = new Gauge(d).setOptions(a);
+    }
     $('#gauge-text2').length && (e.maxValue = 9e3, e.animationSpeed = 32, e
       .set(2400), e.setTextField(document.getElementById(
         'gauge-text2')))
   }
 }
 
-function init_sparklines () {
+function init_sparklines() {
   typeof jQuery.fn.sparkline != 'undefined' && (console.log('init_sparklines'),
     $('.sparkline_one').sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 5, 6,
       4, 5, 6, 3, 5, 4, 5, 4, 5, 4, 3, 4, 5, 6, 7, 5, 4, 3, 5, 6
     ], {
-      type: 'bar',
-      height: '125',
-      barWidth: 13,
-      colorMap: {
-        7: '#a1a1a1'
-      },
-      barSpacing: 2,
-      barColor: '#26B99A'
-    }), $('.sparkline_two').sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 5,
-      6, 7, 5, 4, 3, 5, 6
-    ], {
-      type: 'bar',
-      height: '40',
-      barWidth: 9,
-      colorMap: {
-        7: '#a1a1a1'
-      },
-      barSpacing: 2,
-      barColor: '#26B99A'
-    }), $('.sparkline_three').sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4,
-      5, 6, 7, 5, 4, 3, 5, 6
-    ], {
-      type: 'line',
-      width: '200',
-      height: '40',
-      lineColor: '#26B99A',
-      fillColor: 'rgba(223, 223, 223, 0.57)',
-      lineWidth: 2,
-      spotColor: '#26B99A',
-      minSpotColor: '#26B99A'
-    }), $('.sparkline11').sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 6, 2,
-      4, 3, 4, 5, 4, 5, 4, 3
-    ], {
-      type: 'bar',
-      height: '40',
-      barWidth: 8,
-      colorMap: {
-        7: '#a1a1a1'
-      },
-      barSpacing: 2,
-      barColor: '#26B99A'
-    }), $('.sparkline22').sparkline([2, 4, 3, 4, 7, 5, 4, 3, 5, 6, 2, 4,
-      3, 4, 5, 4, 5, 4, 3, 4, 6
-    ], {
-      type: 'line',
-      height: '40',
-      width: '200',
-      lineColor: '#26B99A',
-      fillColor: '#ffffff',
-      lineWidth: 3,
-      spotColor: '#34495E',
-      minSpotColor: '#34495E'
-    }), $('.sparkline_bar').sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 5,
-      6, 4, 5, 6, 3, 5
-    ], {
-      type: 'bar',
-      colorMap: {
-        7: '#a1a1a1'
-      },
-      barColor: '#26B99A'
-    }), $('.sparkline_area').sparkline([5, 6, 7, 9, 9, 5, 3, 2, 2, 4, 6,
-      7
-    ], {
-      type: 'line',
-      lineColor: '#26B99A',
-      fillColor: '#26B99A',
-      spotColor: '#4578a0',
-      minSpotColor: '#728fb2',
-      maxSpotColor: '#6d93c4',
-      highlightSpotColor: '#ef5179',
-      highlightLineColor: '#8ba8bf',
-      spotRadius: 2.5,
-      width: 85
-    }), $('.sparkline_line').sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 5,
-      6, 4, 5, 6, 3, 5
-    ], {
-      type: 'line',
-      lineColor: '#26B99A',
-      fillColor: '#ffffff',
-      width: 85,
-      spotColor: '#34495E',
-      minSpotColor: '#34495E'
-    }), $('.sparkline_pie').sparkline([1, 1, 2, 1], {
-      type: 'pie',
-      sliceColors: ['#26B99A', '#ccc', '#75BCDD', '#D66DE2']
-    }), $('.sparkline_discreet').sparkline([4, 6, 7, 7, 4, 3, 2, 1, 4,
-      4, 2, 4, 3, 7, 8, 9, 7, 6, 4, 3
-    ], {
-      type: 'discrete',
-      barWidth: 3,
-      lineColor: '#26B99A',
-      width: '85'
-    }))
+        type: 'bar',
+        height: '125',
+        barWidth: 13,
+        colorMap: {
+          7: '#a1a1a1'
+        },
+        barSpacing: 2,
+        barColor: '#26B99A'
+      }), $('.sparkline_two').sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 5,
+        6, 7, 5, 4, 3, 5, 6
+      ], {
+          type: 'bar',
+          height: '40',
+          barWidth: 9,
+          colorMap: {
+            7: '#a1a1a1'
+          },
+          barSpacing: 2,
+          barColor: '#26B99A'
+        }), $('.sparkline_three').sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4,
+          5, 6, 7, 5, 4, 3, 5, 6
+        ], {
+            type: 'line',
+            width: '200',
+            height: '40',
+            lineColor: '#26B99A',
+            fillColor: 'rgba(223, 223, 223, 0.57)',
+            lineWidth: 2,
+            spotColor: '#26B99A',
+            minSpotColor: '#26B99A'
+          }), $('.sparkline11').sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 6, 2,
+            4, 3, 4, 5, 4, 5, 4, 3
+          ], {
+              type: 'bar',
+              height: '40',
+              barWidth: 8,
+              colorMap: {
+                7: '#a1a1a1'
+              },
+              barSpacing: 2,
+              barColor: '#26B99A'
+            }), $('.sparkline22').sparkline([2, 4, 3, 4, 7, 5, 4, 3, 5, 6, 2, 4,
+              3, 4, 5, 4, 5, 4, 3, 4, 6
+            ], {
+                type: 'line',
+                height: '40',
+                width: '200',
+                lineColor: '#26B99A',
+                fillColor: '#ffffff',
+                lineWidth: 3,
+                spotColor: '#34495E',
+                minSpotColor: '#34495E'
+              }), $('.sparkline_bar').sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 5,
+                6, 4, 5, 6, 3, 5
+              ], {
+                  type: 'bar',
+                  colorMap: {
+                    7: '#a1a1a1'
+                  },
+                  barColor: '#26B99A'
+                }), $('.sparkline_area').sparkline([5, 6, 7, 9, 9, 5, 3, 2, 2, 4, 6,
+                  7
+                ], {
+                    type: 'line',
+                    lineColor: '#26B99A',
+                    fillColor: '#26B99A',
+                    spotColor: '#4578a0',
+                    minSpotColor: '#728fb2',
+                    maxSpotColor: '#6d93c4',
+                    highlightSpotColor: '#ef5179',
+                    highlightLineColor: '#8ba8bf',
+                    spotRadius: 2.5,
+                    width: 85
+                  }), $('.sparkline_line').sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 5,
+                    6, 4, 5, 6, 3, 5
+                  ], {
+                      type: 'line',
+                      lineColor: '#26B99A',
+                      fillColor: '#ffffff',
+                      width: 85,
+                      spotColor: '#34495E',
+                      minSpotColor: '#34495E'
+                    }), $('.sparkline_pie').sparkline([1, 1, 2, 1], {
+                      type: 'pie',
+                      sliceColors: ['#26B99A', '#ccc', '#75BCDD', '#D66DE2']
+                    }), $('.sparkline_discreet').sparkline([4, 6, 7, 7, 4, 3, 2, 1, 4,
+                      4, 2, 4, 3, 7, 8, 9, 7, 6, 4, 3
+                    ], {
+                        type: 'discrete',
+                        barWidth: 3,
+                        lineColor: '#26B99A',
+                        width: '85'
+                      }))
 }
 
-function init_autocomplete () {
+function init_autocomplete() {
   if (typeof autocomplete !== 'undefined') {
     console.log('init_autocomplete')
     var a = {
-        AD: 'Andorra',
-        A2: 'Andorra Test',
-        AE: 'United Arab Emirates',
-        AF: 'Afghanistan',
-        AG: 'Antigua and Barbuda',
-        AI: 'Anguilla',
-        AL: 'Albania',
-        AM: 'Armenia',
-        AN: 'Netherlands Antilles',
-        AO: 'Angola',
-        AQ: 'Antarctica',
-        AR: 'Argentina',
-        AS: 'American Samoa',
-        AT: 'Austria',
-        AU: 'Australia',
-        AW: 'Aruba',
-        AX: 'Åland Islands',
-        AZ: 'Azerbaijan',
-        BA: 'Bosnia and Herzegovina',
-        BB: 'Barbados',
-        BD: 'Bangladesh',
-        BE: 'Belgium',
-        BF: 'Burkina Faso',
-        BG: 'Bulgaria',
-        BH: 'Bahrain',
-        BI: 'Burundi',
-        BJ: 'Benin',
-        BL: 'Saint Barthélemy',
-        BM: 'Bermuda',
-        BN: 'Brunei',
-        BO: 'Bolivia',
-        BQ: 'British Antarctic Territory',
-        BR: 'Brazil',
-        BS: 'Bahamas',
-        BT: 'Bhutan',
-        BV: 'Bouvet Island',
-        BW: 'Botswana',
-        BY: 'Belarus',
-        BZ: 'Belize',
-        CA: 'Canada',
-        CC: 'Cocos [Keeling] Islands',
-        CD: 'Congo - Kinshasa',
-        CF: 'Central African Republic',
-        CG: 'Congo - Brazzaville',
-        CH: 'Switzerland',
-        CI: 'Côte d’Ivoire',
-        CK: 'Cook Islands',
-        CL: 'Chile',
-        CM: 'Cameroon',
-        CN: 'China',
-        CO: 'Colombia',
-        CR: 'Costa Rica',
-        CS: 'Serbia and Montenegro',
-        CT: 'Canton and Enderbury Islands',
-        CU: 'Cuba',
-        CV: 'Cape Verde',
-        CX: 'Christmas Island',
-        CY: 'Cyprus',
-        CZ: 'Czech Republic',
-        DD: 'East Germany',
-        DE: 'Germany',
-        DJ: 'Djibouti',
-        DK: 'Denmark',
-        DM: 'Dominica',
-        DO: 'Dominican Republic',
-        DZ: 'Algeria',
-        EC: 'Ecuador',
-        EE: 'Estonia',
-        EG: 'Egypt',
-        EH: 'Western Sahara',
-        ER: 'Eritrea',
-        ES: 'Spain',
-        ET: 'Ethiopia',
-        FI: 'Finland',
-        FJ: 'Fiji',
-        FK: 'Falkland Islands',
-        FM: 'Micronesia',
-        FO: 'Faroe Islands',
-        FQ: 'French Southern and Antarctic Territories',
-        FR: 'France',
-        FX: 'Metropolitan France',
-        GA: 'Gabon',
-        GB: 'United Kingdom',
-        GD: 'Grenada',
-        GE: 'Georgia',
-        GF: 'French Guiana',
-        GG: 'Guernsey',
-        GH: 'Ghana',
-        GI: 'Gibraltar',
-        GL: 'Greenland',
-        GM: 'Gambia',
-        GN: 'Guinea',
-        GP: 'Guadeloupe',
-        GQ: 'Equatorial Guinea',
-        GR: 'Greece',
-        GS: 'South Georgia and the South Sandwich Islands',
-        GT: 'Guatemala',
-        GU: 'Guam',
-        GW: 'Guinea-Bissau',
-        GY: 'Guyana',
-        HK: 'Hong Kong SAR China',
-        HM: 'Heard Island and McDonald Islands',
-        HN: 'Honduras',
-        HR: 'Croatia',
-        HT: 'Haiti',
-        HU: 'Hungary',
-        ID: 'Indonesia',
-        IE: 'Ireland',
-        IL: 'Israel',
-        IM: 'Isle of Man',
-        IN: 'India',
-        IO: 'British Indian Ocean Territory',
-        IQ: 'Iraq',
-        IR: 'Iran',
-        IS: 'Iceland',
-        IT: 'Italy',
-        JE: 'Jersey',
-        JM: 'Jamaica',
-        JO: 'Jordan',
-        JP: 'Japan',
-        JT: 'Johnston Island',
-        KE: 'Kenya',
-        KG: 'Kyrgyzstan',
-        KH: 'Cambodia',
-        KI: 'Kiribati',
-        KM: 'Comoros',
-        KN: 'Saint Kitts and Nevis',
-        KP: 'North Korea',
-        KR: 'South Korea',
-        KW: 'Kuwait',
-        KY: 'Cayman Islands',
-        KZ: 'Kazakhstan',
-        LA: 'Laos',
-        LB: 'Lebanon',
-        LC: 'Saint Lucia',
-        LI: 'Liechtenstein',
-        LK: 'Sri Lanka',
-        LR: 'Liberia',
-        LS: 'Lesotho',
-        LT: 'Lithuania',
-        LU: 'Luxembourg',
-        LV: 'Latvia',
-        LY: 'Libya',
-        MA: 'Morocco',
-        MC: 'Monaco',
-        MD: 'Moldova',
-        ME: 'Montenegro',
-        MF: 'Saint Martin',
-        MG: 'Madagascar',
-        MH: 'Marshall Islands',
-        MI: 'Midway Islands',
-        MK: 'Macedonia',
-        ML: 'Mali',
-        MM: 'Myanmar [Burma]',
-        MN: 'Mongolia',
-        MO: 'Macau SAR China',
-        MP: 'Northern Mariana Islands',
-        MQ: 'Martinique',
-        MR: 'Mauritania',
-        MS: 'Montserrat',
-        MT: 'Malta',
-        MU: 'Mauritius',
-        MV: 'Maldives',
-        MW: 'Malawi',
-        MX: 'Mexico',
-        MY: 'Malaysia',
-        MZ: 'Mozambique',
-        NA: 'Namibia',
-        NC: 'New Caledonia',
-        NE: 'Niger',
-        NF: 'Norfolk Island',
-        NG: 'Nigeria',
-        NI: 'Nicaragua',
-        NL: 'Netherlands',
-        NO: 'Norway',
-        NP: 'Nepal',
-        NQ: 'Dronning Maud Land',
-        NR: 'Nauru',
-        NT: 'Neutral Zone',
-        NU: 'Niue',
-        NZ: 'New Zealand',
-        OM: 'Oman',
-        PA: 'Panama',
-        PC: 'Pacific Islands Trust Territory',
-        PE: 'Peru',
-        PF: 'French Polynesia',
-        PG: 'Papua New Guinea',
-        PH: 'Philippines',
-        PK: 'Pakistan',
-        PL: 'Poland',
-        PM: 'Saint Pierre and Miquelon',
-        PN: 'Pitcairn Islands',
-        PR: 'Puerto Rico',
-        PS: 'Palestinian Territories',
-        PT: 'Portugal',
-        PU: 'U.S. Miscellaneous Pacific Islands',
-        PW: 'Palau',
-        PY: 'Paraguay',
-        PZ: 'Panama Canal Zone',
-        QA: 'Qatar',
-        RE: 'Réunion',
-        RO: 'Romania',
-        RS: 'Serbia',
-        RU: 'Russia',
-        RW: 'Rwanda',
-        SA: 'Saudi Arabia',
-        SB: 'Solomon Islands',
-        SC: 'Seychelles',
-        SD: 'Sudan',
-        SE: 'Sweden',
-        SG: 'Singapore',
-        SH: 'Saint Helena',
-        SI: 'Slovenia',
-        SJ: 'Svalbard and Jan Mayen',
-        SK: 'Slovakia',
-        SL: 'Sierra Leone',
-        SM: 'San Marino',
-        SN: 'Senegal',
-        SO: 'Somalia',
-        SR: 'Suriname',
-        ST: 'São Tomé and Príncipe',
-        SU: 'Union of Soviet Socialist Republics',
-        SV: 'El Salvador',
-        SY: 'Syria',
-        SZ: 'Swaziland',
-        TC: 'Turks and Caicos Islands',
-        TD: 'Chad',
-        TF: 'French Southern Territories',
-        TG: 'Togo',
-        TH: 'Thailand',
-        TJ: 'Tajikistan',
-        TK: 'Tokelau',
-        TL: 'Timor-Leste',
-        TM: 'Turkmenistan',
-        TN: 'Tunisia',
-        TO: 'Tonga',
-        TR: 'Turkey',
-        TT: 'Trinidad and Tobago',
-        TV: 'Tuvalu',
-        TW: 'Taiwan',
-        TZ: 'Tanzania',
-        UA: 'Ukraine',
-        UG: 'Uganda',
-        UM: 'U.S. Minor Outlying Islands',
-        US: 'United States',
-        UY: 'Uruguay',
-        UZ: 'Uzbekistan',
-        VA: 'Vatican City',
-        VC: 'Saint Vincent and the Grenadines',
-        VD: 'North Vietnam',
-        VE: 'Venezuela',
-        VG: 'British Virgin Islands',
-        VI: 'U.S. Virgin Islands',
-        VN: 'Vietnam',
-        VU: 'Vanuatu',
-        WF: 'Wallis and Futuna',
-        WK: 'Wake Island',
-        WS: 'Samoa',
-        YD: "People's Democratic Republic of Yemen",
-        YE: 'Yemen',
-        YT: 'Mayotte',
-        ZA: 'South Africa',
-        ZM: 'Zambia',
-        ZW: 'Zimbabwe',
-        ZZ: 'Unknown or Invalid Region'
-      },
+      AD: 'Andorra',
+      A2: 'Andorra Test',
+      AE: 'United Arab Emirates',
+      AF: 'Afghanistan',
+      AG: 'Antigua and Barbuda',
+      AI: 'Anguilla',
+      AL: 'Albania',
+      AM: 'Armenia',
+      AN: 'Netherlands Antilles',
+      AO: 'Angola',
+      AQ: 'Antarctica',
+      AR: 'Argentina',
+      AS: 'American Samoa',
+      AT: 'Austria',
+      AU: 'Australia',
+      AW: 'Aruba',
+      AX: 'Åland Islands',
+      AZ: 'Azerbaijan',
+      BA: 'Bosnia and Herzegovina',
+      BB: 'Barbados',
+      BD: 'Bangladesh',
+      BE: 'Belgium',
+      BF: 'Burkina Faso',
+      BG: 'Bulgaria',
+      BH: 'Bahrain',
+      BI: 'Burundi',
+      BJ: 'Benin',
+      BL: 'Saint Barthélemy',
+      BM: 'Bermuda',
+      BN: 'Brunei',
+      BO: 'Bolivia',
+      BQ: 'British Antarctic Territory',
+      BR: 'Brazil',
+      BS: 'Bahamas',
+      BT: 'Bhutan',
+      BV: 'Bouvet Island',
+      BW: 'Botswana',
+      BY: 'Belarus',
+      BZ: 'Belize',
+      CA: 'Canada',
+      CC: 'Cocos [Keeling] Islands',
+      CD: 'Congo - Kinshasa',
+      CF: 'Central African Republic',
+      CG: 'Congo - Brazzaville',
+      CH: 'Switzerland',
+      CI: 'Côte d’Ivoire',
+      CK: 'Cook Islands',
+      CL: 'Chile',
+      CM: 'Cameroon',
+      CN: 'China',
+      CO: 'Colombia',
+      CR: 'Costa Rica',
+      CS: 'Serbia and Montenegro',
+      CT: 'Canton and Enderbury Islands',
+      CU: 'Cuba',
+      CV: 'Cape Verde',
+      CX: 'Christmas Island',
+      CY: 'Cyprus',
+      CZ: 'Czech Republic',
+      DD: 'East Germany',
+      DE: 'Germany',
+      DJ: 'Djibouti',
+      DK: 'Denmark',
+      DM: 'Dominica',
+      DO: 'Dominican Republic',
+      DZ: 'Algeria',
+      EC: 'Ecuador',
+      EE: 'Estonia',
+      EG: 'Egypt',
+      EH: 'Western Sahara',
+      ER: 'Eritrea',
+      ES: 'Spain',
+      ET: 'Ethiopia',
+      FI: 'Finland',
+      FJ: 'Fiji',
+      FK: 'Falkland Islands',
+      FM: 'Micronesia',
+      FO: 'Faroe Islands',
+      FQ: 'French Southern and Antarctic Territories',
+      FR: 'France',
+      FX: 'Metropolitan France',
+      GA: 'Gabon',
+      GB: 'United Kingdom',
+      GD: 'Grenada',
+      GE: 'Georgia',
+      GF: 'French Guiana',
+      GG: 'Guernsey',
+      GH: 'Ghana',
+      GI: 'Gibraltar',
+      GL: 'Greenland',
+      GM: 'Gambia',
+      GN: 'Guinea',
+      GP: 'Guadeloupe',
+      GQ: 'Equatorial Guinea',
+      GR: 'Greece',
+      GS: 'South Georgia and the South Sandwich Islands',
+      GT: 'Guatemala',
+      GU: 'Guam',
+      GW: 'Guinea-Bissau',
+      GY: 'Guyana',
+      HK: 'Hong Kong SAR China',
+      HM: 'Heard Island and McDonald Islands',
+      HN: 'Honduras',
+      HR: 'Croatia',
+      HT: 'Haiti',
+      HU: 'Hungary',
+      ID: 'Indonesia',
+      IE: 'Ireland',
+      IL: 'Israel',
+      IM: 'Isle of Man',
+      IN: 'India',
+      IO: 'British Indian Ocean Territory',
+      IQ: 'Iraq',
+      IR: 'Iran',
+      IS: 'Iceland',
+      IT: 'Italy',
+      JE: 'Jersey',
+      JM: 'Jamaica',
+      JO: 'Jordan',
+      JP: 'Japan',
+      JT: 'Johnston Island',
+      KE: 'Kenya',
+      KG: 'Kyrgyzstan',
+      KH: 'Cambodia',
+      KI: 'Kiribati',
+      KM: 'Comoros',
+      KN: 'Saint Kitts and Nevis',
+      KP: 'North Korea',
+      KR: 'South Korea',
+      KW: 'Kuwait',
+      KY: 'Cayman Islands',
+      KZ: 'Kazakhstan',
+      LA: 'Laos',
+      LB: 'Lebanon',
+      LC: 'Saint Lucia',
+      LI: 'Liechtenstein',
+      LK: 'Sri Lanka',
+      LR: 'Liberia',
+      LS: 'Lesotho',
+      LT: 'Lithuania',
+      LU: 'Luxembourg',
+      LV: 'Latvia',
+      LY: 'Libya',
+      MA: 'Morocco',
+      MC: 'Monaco',
+      MD: 'Moldova',
+      ME: 'Montenegro',
+      MF: 'Saint Martin',
+      MG: 'Madagascar',
+      MH: 'Marshall Islands',
+      MI: 'Midway Islands',
+      MK: 'Macedonia',
+      ML: 'Mali',
+      MM: 'Myanmar [Burma]',
+      MN: 'Mongolia',
+      MO: 'Macau SAR China',
+      MP: 'Northern Mariana Islands',
+      MQ: 'Martinique',
+      MR: 'Mauritania',
+      MS: 'Montserrat',
+      MT: 'Malta',
+      MU: 'Mauritius',
+      MV: 'Maldives',
+      MW: 'Malawi',
+      MX: 'Mexico',
+      MY: 'Malaysia',
+      MZ: 'Mozambique',
+      NA: 'Namibia',
+      NC: 'New Caledonia',
+      NE: 'Niger',
+      NF: 'Norfolk Island',
+      NG: 'Nigeria',
+      NI: 'Nicaragua',
+      NL: 'Netherlands',
+      NO: 'Norway',
+      NP: 'Nepal',
+      NQ: 'Dronning Maud Land',
+      NR: 'Nauru',
+      NT: 'Neutral Zone',
+      NU: 'Niue',
+      NZ: 'New Zealand',
+      OM: 'Oman',
+      PA: 'Panama',
+      PC: 'Pacific Islands Trust Territory',
+      PE: 'Peru',
+      PF: 'French Polynesia',
+      PG: 'Papua New Guinea',
+      PH: 'Philippines',
+      PK: 'Pakistan',
+      PL: 'Poland',
+      PM: 'Saint Pierre and Miquelon',
+      PN: 'Pitcairn Islands',
+      PR: 'Puerto Rico',
+      PS: 'Palestinian Territories',
+      PT: 'Portugal',
+      PU: 'U.S. Miscellaneous Pacific Islands',
+      PW: 'Palau',
+      PY: 'Paraguay',
+      PZ: 'Panama Canal Zone',
+      QA: 'Qatar',
+      RE: 'Réunion',
+      RO: 'Romania',
+      RS: 'Serbia',
+      RU: 'Russia',
+      RW: 'Rwanda',
+      SA: 'Saudi Arabia',
+      SB: 'Solomon Islands',
+      SC: 'Seychelles',
+      SD: 'Sudan',
+      SE: 'Sweden',
+      SG: 'Singapore',
+      SH: 'Saint Helena',
+      SI: 'Slovenia',
+      SJ: 'Svalbard and Jan Mayen',
+      SK: 'Slovakia',
+      SL: 'Sierra Leone',
+      SM: 'San Marino',
+      SN: 'Senegal',
+      SO: 'Somalia',
+      SR: 'Suriname',
+      ST: 'São Tomé and Príncipe',
+      SU: 'Union of Soviet Socialist Republics',
+      SV: 'El Salvador',
+      SY: 'Syria',
+      SZ: 'Swaziland',
+      TC: 'Turks and Caicos Islands',
+      TD: 'Chad',
+      TF: 'French Southern Territories',
+      TG: 'Togo',
+      TH: 'Thailand',
+      TJ: 'Tajikistan',
+      TK: 'Tokelau',
+      TL: 'Timor-Leste',
+      TM: 'Turkmenistan',
+      TN: 'Tunisia',
+      TO: 'Tonga',
+      TR: 'Turkey',
+      TT: 'Trinidad and Tobago',
+      TV: 'Tuvalu',
+      TW: 'Taiwan',
+      TZ: 'Tanzania',
+      UA: 'Ukraine',
+      UG: 'Uganda',
+      UM: 'U.S. Minor Outlying Islands',
+      US: 'United States',
+      UY: 'Uruguay',
+      UZ: 'Uzbekistan',
+      VA: 'Vatican City',
+      VC: 'Saint Vincent and the Grenadines',
+      VD: 'North Vietnam',
+      VE: 'Venezuela',
+      VG: 'British Virgin Islands',
+      VI: 'U.S. Virgin Islands',
+      VN: 'Vietnam',
+      VU: 'Vanuatu',
+      WF: 'Wallis and Futuna',
+      WK: 'Wake Island',
+      WS: 'Samoa',
+      YD: "People's Democratic Republic of Yemen",
+      YE: 'Yemen',
+      YT: 'Mayotte',
+      ZA: 'South Africa',
+      ZM: 'Zambia',
+      ZW: 'Zimbabwe',
+      ZZ: 'Unknown or Invalid Region'
+    },
       b = $.map(a, function (a, b) {
         return {
           value: a,
@@ -823,11 +836,11 @@ function init_autocomplete () {
   }
 }
 
-function init_autosize () {
+function init_autosize() {
   typeof $.fn.autosize != 'undefined' && autosize($('.resizable_textarea'))
 }
 
-function init_parsley () {
+function init_parsley() {
   if (typeof parsley !== 'undefined') {
     console.log('init_parsley'), $('parsley:field:validate', function () {
       a()
@@ -838,8 +851,8 @@ function init_parsley () {
       !0 === $('#demo-form').parsley().isValid() ? ($(
         '.bs-callout-info').removeClass('hidden'), $(
           '.bs-callout-warning').addClass('hidden')) : ($(
-        '.bs-callout-info').addClass('hidden'), $(
-          '.bs-callout-warning').removeClass('hidden'))
+            '.bs-callout-info').addClass('hidden'), $(
+              '.bs-callout-warning').removeClass('hidden'))
     }
     $('parsley:field:validate', function () {
       a()
@@ -850,8 +863,8 @@ function init_parsley () {
       !0 === $('#demo-form2').parsley().isValid() ? ($(
         '.bs-callout-info').removeClass('hidden'), $(
           '.bs-callout-warning').addClass('hidden')) : ($(
-        '.bs-callout-info').addClass('hidden'), $(
-          '.bs-callout-warning').removeClass('hidden'))
+            '.bs-callout-info').addClass('hidden'), $(
+              '.bs-callout-warning').removeClass('hidden'))
     }
     try {
       hljs.initHighlightingOnLoad()
@@ -859,55 +872,55 @@ function init_parsley () {
   }
 }
 
-function onAddTag (a) {
+function onAddTag(a) {
   alert('Added a tag: ' + a)
 }
 
-function onRemoveTag (a) {
+function onRemoveTag(a) {
   alert('Removed a tag: ' + a)
 }
 
-function onChangeTag (a, b) {
+function onChangeTag(a, b) {
   alert('Changed a tag: ' + b)
 }
 
-function init_TagsInput () {
+function init_TagsInput() {
   typeof $.fn.tagsInput !== 'undefined' && $('#tags_1').tagsInput({
     width: 'auto'
   })
 }
 
-function init_select2 () {
+function init_select2() {
   typeof select2 !== 'undefined' && (console.log('init_toolbox'), $(
     '.select2_single').select2({
-    placeholder: 'Select a state',
-    allowClear: !0
-  }), $('.select2_group').select2({}), $('.select2_multiple').select2({
+      placeholder: 'Select a state',
+      allowClear: !0
+    }), $('.select2_group').select2({}), $('.select2_multiple').select2({
       maximumSelectionLength: 4,
       placeholder: 'With Max Selection limit 4',
       allowClear: !0
     }))
 }
 
-function init_wysiwyg () {
-  function b (a, b) {
+function init_wysiwyg() {
+  function b(a, b) {
     var c = ''
     'unsupported-file-type' === a ? c = 'Unsupported format ' + b : console
       .log('error uploading file', a, b), $(
-      '<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button><strong>File upload error</strong> ' +
+        '<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button><strong>File upload error</strong> ' +
         c + ' </div>').prependTo('#alerts')
   }
   typeof $.fn.wysiwyg !== 'undefined' && (console.log('init_wysiwyg'), $(
     '.editor-wrapper').each(function () {
-    var a = $(this).attr('id')
+      var a = $(this).attr('id')
       $(this).wysiwyg({
-      toolbarSelector: '[data-target="#' + a + '"]',
-      fileUploadError: b
-    })
-  }), window.prettyPrint, prettyPrint())
+        toolbarSelector: '[data-target="#' + a + '"]',
+        fileUploadError: b
+      })
+    }), window.prettyPrint, prettyPrint())
 }
 
-function init_cropper () {
+function init_cropper() {
   if (typeof $.fn.cropper != 'undefined') {
     console.log('init_cropper')
     var a = $('#image'),
@@ -925,7 +938,7 @@ function init_cropper () {
         crop: function (a) {
           c.val(Math.round(a.x)), d.val(Math.round(a.y)), e.val(
             Math.round(a.height)), f.val(Math.round(a.width)),
-          g.val(a.rotate), h.val(a.scaleX), i.val(a.scaleY)
+            g.val(a.rotate), h.val(a.scaleX), i.val(a.scaleY)
         }
       }
     $('[data-toggle="tooltip"]').tooltip(), a.on({
@@ -953,56 +966,60 @@ function init_cropper () {
       }
     }).cropper(j), $.isFunction(document.createElement('canvas').getContext) ||
       $('button[data-method="getCroppedCanvas"]').prop('disabled', !0),
-    typeof document.createElement('cropper').style.transition == 'undefined' &&
+      typeof document.createElement('cropper').style.transition == 'undefined' &&
       ($('button[data-method="rotate"]').prop('disabled', !0), $(
         'button[data-method="scale"]').prop('disabled', !0)),
-    typeof b[0].download == 'undefined' && b.addClass('disabled'), $(
-      '.docs-toggles').on('change', 'input', function () {
-      var e, f, b = $(this),
-        c = b.attr('name'),
-        d = b.prop('type')
+      typeof b[0].download == 'undefined' && b.addClass('disabled'), $(
+        '.docs-toggles').on('change', 'input', function () {
+          var e, f, b = $(this),
+            c = b.attr('name'),
+            d = b.prop('type')
           a.data('cropper') && (d === 'checkbox' ? (j[c] = b.prop(
-        'checked'), e = a.cropper('getCropBoxData'),
-        f = a.cropper('getCanvasData'), j.built =
+            'checked'), e = a.cropper('getCropBoxData'),
+            f = a.cropper('getCanvasData'), j.built =
             function () {
               a.cropper('setCropBoxData', e), a.cropper(
                 'setCanvasData', f)
             }) : d === 'radio' && (j[c] = b.val()), a.cropper(
-          'destroy').cropper(j))
-    }), $('.docs-buttons').on('click', '[data-method]', function () {
-      var e, f, c = $(this),
-        d = c.data()
+              'destroy').cropper(j))
+        }), $('.docs-buttons').on('click', '[data-method]', function () {
+          var e, f, c = $(this),
+            d = c.data()
           if (!c.prop('disabled') && !c.hasClass('disabled') && a.data(
-        'cropper') && d.method) {
-        if (d = $.extend({}, d), typeof d.target != 'undefined' &&
-              (e = $(d.target), typeof d.option == 'undefined'))
-          {try {
+            'cropper') && d.method) {
+            if (d = $.extend({}, d), typeof d.target != 'undefined' &&
+              (e = $(d.target), typeof d.option == 'undefined')) {
+              try {
                 d.option = JSON.parse(e.val())
               }
               catch (a) {
                 console.log(a.message)
-              }}
-        switch (f = a.cropper(d.method, d.option, d.secondOption),
-          d.method) {
-          case 'scaleX':
-          case 'scaleY':
-            $(this).data('option', -d.option)
-                break;
-          case 'getCroppedCanvas':
-            f && ($('#getCroppedCanvasModal').modal().find(
-              '.modal-body').html(f), b.hasClass(
-                'disabled') || b.attr('href', f.toDataURL()))
-        }
-        if ($.isPlainObject(f) && e) {try {
-              e.val(JSON.stringify(f))
+              }
             }
+            switch (f = a.cropper(d.method, d.option, d.secondOption),
+            d.method) {
+              case 'scaleX':
+              case 'scaleY':
+                $(this).data('option', -d.option)
+                break;
+              case 'getCroppedCanvas':
+                f && ($('#getCroppedCanvasModal').modal().find(
+                  '.modal-body').html(f), b.hasClass(
+                    'disabled') || b.attr('href', f.toDataURL()))
+            }
+            if ($.isPlainObject(f) && e) {
+              try {
+                e.val(JSON.stringify(f))
+              }
               catch (a) {
                 console.log(a.message)
-              }}
-      }
-    }), $(document.body).on('keydown', function (b) {
-      if (a.data('cropper') && !(this.scrollTop > 300)) {switch (b
-            .which) {
+              }
+            }
+          }
+        }), $(document.body).on('keydown', function (b) {
+          if (a.data('cropper') && !(this.scrollTop > 300)) {
+            switch (b
+              .which) {
               case 37:
                 b.preventDefault(), a.cropper('move', -1, 0);
                 break;
@@ -1014,8 +1031,9 @@ function init_cropper () {
                 break;
               case 40:
                 b.preventDefault(), a.cropper('move', 0, 1)
-            }}
-    })
+            }
+          }
+        })
     var m, k = $('#inputImage'),
       l = window.URL || window.webkitURL
     l ? k.change(function () {
@@ -1026,12 +1044,12 @@ function init_cropper () {
             l.revokeObjectURL(m)
           }).cropper('reset').cropper('replace', m), k.val(
             '')) : window.alert(
-          'Please choose an image file.'))
+              'Please choose an image file.'))
     }) : k.prop('disabled', !0).parent().addClass('disabled')
   }
 }
 
-function init_knob () {
+function init_knob() {
   if (typeof $.fn.knob !== 'undefined') {
     console.log('init_knob'), $('.knob').knob({
       change: function (a) { },
@@ -1048,19 +1066,19 @@ function init_knob () {
             c = 1
           return this.g.lineWidth = this.lineWidth, this.o
             .displayPrevious && (b = this.arc(this.v),
-            this.g.beginPath(), this.g.strokeStyle =
+              this.g.beginPath(), this.g.strokeStyle =
               this.pColor, this.g.arc(this.xy, this.xy,
-              this.radius - this.lineWidth, b.s,
-              b.e, b.d), this.g.stroke()), this.g
-            .beginPath(), this.g.strokeStyle = c ? this
-            .o.fgColor : this.fgColor, this.g.arc(this.xy,
-            this.xy, this.radius - this.lineWidth,
-            a.s, a.e, a.d), this.g.stroke(), this.g
-            .lineWidth = 2, this.g.beginPath(), this.g.strokeStyle =
+                this.radius - this.lineWidth, b.s,
+                b.e, b.d), this.g.stroke()), this.g
+                  .beginPath(), this.g.strokeStyle = c ? this
+                    .o.fgColor : this.fgColor, this.g.arc(this.xy,
+                      this.xy, this.radius - this.lineWidth,
+                      a.s, a.e, a.d), this.g.stroke(), this.g
+                        .lineWidth = 2, this.g.beginPath(), this.g.strokeStyle =
             this.o.fgColor, this.g.arc(this.xy, this.xy,
-            this.radius - this.lineWidth + 1 + 2 *
+              this.radius - this.lineWidth + 1 + 2 *
               this.lineWidth / 3, 0, 2 * Math.PI, !1),
-          this.g.stroke(), !1
+            this.g.stroke(), !1
         }
       }
     })
@@ -1070,10 +1088,10 @@ function init_knob () {
       e = $('div.idir'),
       f = $('div.ival'),
       g = function () {
-        d++, e.show().html('+').fadeOut(), f.html(d)
+        d++ , e.show().html('+').fadeOut(), f.html(d)
       },
       h = function () {
-        d--, e.show().html('-').fadeOut(), f.html(d)
+        d-- , e.show().html('-').fadeOut(), f.html(d)
       }
     $('input.infinite').knob({
       min: 0,
@@ -1082,29 +1100,29 @@ function init_knob () {
       change: function () {
         a > this.cv ? b ? (h(), b = 0) : (b = 1, c = 0) : a <
           this.cv && (c ? (g(), c = 0) : (c = 1, b = 0)),
-        a = this.cv
+          a = this.cv
       }
     })
   }
 }
 
-function init_InputMask () {
+function init_InputMask() {
   typeof $.fn.inputmask !== 'undefined' && (console.log('init_InputMask'), $(
     ':input').inputmask())
 }
 
-function init_ColorPicker () {
+function init_ColorPicker() {
   typeof $.fn.colorpicker != 'undefined' && (console.log('init_ColorPicker'),
     $('.demo1').colorpicker(), $('.demo2').colorpicker(), $(
       '#demo_forceformat').colorpicker({
-      format: 'rgba',
-      horizontal: !0
-    }), $('#demo_forceformat3').colorpicker({
-      format: 'rgba'
-    }), $('.demo-auto').colorpicker())
+        format: 'rgba',
+        horizontal: !0
+      }), $('#demo_forceformat3').colorpicker({
+        format: 'rgba'
+      }), $('.demo-auto').colorpicker())
 }
 
-function init_IonRangeSlider () {
+function init_IonRangeSlider() {
   typeof $.fn.ionRangeSlider !== 'undefined' && (console.log(
     'init_IonRangeSlider'), $('#range_27').ionRangeSlider({
       type: 'double',
@@ -1162,14 +1180,14 @@ function init_IonRangeSlider () {
     }))
 }
 
-function init_daterangepicker () {
+function init_daterangepicker() {
   if (typeof $.fn.daterangepicker !== 'undefined') {
     console.log('init_daterangepicker')
     var a = function (a, b, c) {
-        console.log(a.toISOString(), b.toISOString(), c), $(
-          '#reportrange span').html(a.format('MMMM D, YYYY') +
+      console.log(a.toISOString(), b.toISOString(), c), $(
+        '#reportrange span').html(a.format('MMMM D, YYYY') +
           ' - ' + b.format('MMMM D, YYYY'))
-      },
+    },
       b = {
         startDate: moment().subtract(29, 'days'),
         endDate: moment(),
@@ -1193,7 +1211,7 @@ function init_daterangepicker () {
             'month')],
           'Last Month': [moment().subtract(1, 'month').startOf(
             'month'), moment().subtract(1, 'month').endOf(
-            'month')]
+              'month')]
         },
         opens: 'left',
         buttonClasses: ['btn btn-default'],
@@ -1217,37 +1235,37 @@ function init_daterangepicker () {
       }
     $('#reportrange span').html(moment().subtract(29, 'days').format(
       'MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY')), $(
-      '#reportrange').daterangepicker(b, a), $('#reportrange').on(
-      'show.daterangepicker',
-      function () {
-        console.log('show event fired')
-      }), $('#reportrange').on('hide.daterangepicker', function () {
-      console.log('hide event fired')
-    }), $('#reportrange').on('apply.daterangepicker', function (a, b) {
-      console.log('apply event fired, start/end dates are ' + b.startDate
-        .format('MMMM D, YYYY') + ' to ' + b.endDate.format(
-          'MMMM D, YYYY'))
-    }), $('#reportrange').on('cancel.daterangepicker', function (a, b) {
-      console.log('cancel event fired')
-    }), $('#options1').click(function () {
-      $('#reportrange').data('daterangepicker').setOptions(b, a)
-    }), $('#options2').click(function () {
-      $('#reportrange').data('daterangepicker').setOptions(
-        optionSet2, a)
-    }), $('#destroy').click(function () {
-      $('#reportrange').data('daterangepicker').remove()
-    })
+        '#reportrange').daterangepicker(b, a), $('#reportrange').on(
+          'show.daterangepicker',
+          function () {
+            console.log('show event fired')
+          }), $('#reportrange').on('hide.daterangepicker', function () {
+            console.log('hide event fired')
+          }), $('#reportrange').on('apply.daterangepicker', function (a, b) {
+            console.log('apply event fired, start/end dates are ' + b.startDate
+              .format('MMMM D, YYYY') + ' to ' + b.endDate.format(
+                'MMMM D, YYYY'))
+          }), $('#reportrange').on('cancel.daterangepicker', function (a, b) {
+            console.log('cancel event fired')
+          }), $('#options1').click(function () {
+            $('#reportrange').data('daterangepicker').setOptions(b, a)
+          }), $('#options2').click(function () {
+            $('#reportrange').data('daterangepicker').setOptions(
+              optionSet2, a)
+          }), $('#destroy').click(function () {
+            $('#reportrange').data('daterangepicker').remove()
+          })
   }
 }
 
-function init_daterangepicker_right () {
+function init_daterangepicker_right() {
   if (typeof $.fn.daterangepicker != 'undefined') {
     console.log('init_daterangepicker_right')
     var a = function (a, b, c) {
-        console.log(a.toISOString(), b.toISOString(), c), $(
-          '#reportrange_right span').html(a.format('MMMM D, YYYY') +
+      console.log(a.toISOString(), b.toISOString(), c), $(
+        '#reportrange_right span').html(a.format('MMMM D, YYYY') +
           ' - ' + b.format('MMMM D, YYYY'))
-      },
+    },
       b = {
         startDate: moment().subtract(29, 'days'),
         endDate: moment(),
@@ -1271,7 +1289,7 @@ function init_daterangepicker_right () {
             'month')],
           'Last Month': [moment().subtract(1, 'month').startOf(
             'month'), moment().subtract(1, 'month').endOf(
-            'month')]
+              'month')]
         },
         opens: 'right',
         buttonClasses: ['btn btn-default'],
@@ -1295,32 +1313,32 @@ function init_daterangepicker_right () {
       }
     $('#reportrange_right span').html(moment().subtract(29, 'days').format(
       'MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY')), $(
-      '#reportrange_right').daterangepicker(b, a), $(
-      '#reportrange_right').on('show.daterangepicker', function () {
-      console.log('show event fired')
-    }), $('#reportrange_right').on('hide.daterangepicker', function () {
-      console.log('hide event fired')
-    }), $('#reportrange_right').on('apply.daterangepicker', function (a,
-      b) {
-      console.log('apply event fired, start/end dates are ' + b.startDate
-        .format('MMMM D, YYYY') + ' to ' + b.endDate.format(
-          'MMMM D, YYYY'))
-    }), $('#reportrange_right').on('cancel.daterangepicker', function (a,
-      b) {
-      console.log('cancel event fired')
-    }), $('#options1').click(function () {
-      $('#reportrange_right').data('daterangepicker').setOptions(
-        b, a)
-    }), $('#options2').click(function () {
-      $('#reportrange_right').data('daterangepicker').setOptions(
-        optionSet2, a)
-    }), $('#destroy').click(function () {
-      $('#reportrange_right').data('daterangepicker').remove()
-    })
+        '#reportrange_right').daterangepicker(b, a), $(
+          '#reportrange_right').on('show.daterangepicker', function () {
+            console.log('show event fired')
+          }), $('#reportrange_right').on('hide.daterangepicker', function () {
+            console.log('hide event fired')
+          }), $('#reportrange_right').on('apply.daterangepicker', function (a,
+            b) {
+            console.log('apply event fired, start/end dates are ' + b.startDate
+              .format('MMMM D, YYYY') + ' to ' + b.endDate.format(
+                'MMMM D, YYYY'))
+          }), $('#reportrange_right').on('cancel.daterangepicker', function (a,
+            b) {
+            console.log('cancel event fired')
+          }), $('#options1').click(function () {
+            $('#reportrange_right').data('daterangepicker').setOptions(
+              b, a)
+          }), $('#options2').click(function () {
+            $('#reportrange_right').data('daterangepicker').setOptions(
+              optionSet2, a)
+          }), $('#destroy').click(function () {
+            $('#reportrange_right').data('daterangepicker').remove()
+          })
   }
 }
 
-function init_daterangepicker_single_call () {
+function init_daterangepicker_single_call() {
   typeof $.fn.daterangepicker != 'undefined' && (console.log(
     'init_daterangepicker_single_call'), $('#single_cal1').daterangepicker({
       singleDatePicker: !0,
@@ -1345,46 +1363,46 @@ function init_daterangepicker_single_call () {
     }))
 }
 
-function init_daterangepicker_reservation () {
+function init_daterangepicker_reservation() {
   typeof $.fn.daterangepicker !== 'undefined' && (console.log(
     'init_daterangepicker_reservation'), $('#reservation').daterangepicker(
       null,
       function (a, b, c) {
         console.log(a.toISOString(), b.toISOString(), c)
       }), $('#reservation-time').daterangepicker({
-      timePicker: !0,
-      timePickerIncrement: 30,
-      locale: {
-        format: 'MM/DD/YYYY h:mm A'
-      }
-    }))
+        timePicker: !0,
+        timePickerIncrement: 30,
+        locale: {
+          format: 'MM/DD/YYYY h:mm A'
+        }
+      }))
 }
 
-function init_SmartWizard () {
+function init_SmartWizard() {
   typeof $.fn.smartWizard !== 'undefined' && (console.log('init_SmartWizard'),
     $('#wizard').smartWizard(), $('#wizard_verticle').smartWizard({
       transitionEffect: 'slide'
     }), $('.buttonNext').addClass('btn btn-success'), $(
       '.buttonPrevious').addClass('btn btn-primary'), $(
-      '.buttonFinish').addClass('btn btn-default'))
+        '.buttonFinish').addClass('btn btn-default'))
 }
 
-function init_validator () {
+function init_validator() {
   typeof validator != 'undefined' && (console.log('init_validator'),
     validator.message.date = 'Vui lòng chọn ngày hợp lệ',
     validator.message.empty = 'Vui lòng nhập dữ liệu',
     $('form').on('blur', 'input[required], input.optional, select.required', validator.checkField).on('change', 'select.required', validator.checkField).on(
       'keypress', 'input[required][pattern]', validator.keypress), $(
-      '.multi.required').on('keyup blur', 'input', function () {
-      validator.checkField.apply($(this).siblings().last()[0])
-    }), $('form').submit(function (a) {
-      a.preventDefault()
+        '.multi.required').on('keyup blur', 'input', function () {
+          validator.checkField.apply($(this).siblings().last()[0])
+        }), $('form').submit(function (a) {
+          a.preventDefault()
           var b = !0
           return validator.checkAll($(this)) || (b = !1), b && this.submit(), !1
-    }))
+        }))
 }
 
-function init_PNotify () {
+function init_PNotify() {
   typeof PNotify !== 'undefined' && (console.log('init_PNotify'), new PNotify({
     title: 'PNotify',
     type: 'info',
@@ -1405,7 +1423,7 @@ function init_PNotify () {
   }))
 }
 
-function init_CustomNotification () {
+function init_CustomNotification() {
   if (console.log('run_customtabs'), typeof CustomTabs != 'undefined') {
     console.log('init_CustomTabs')
     var a = 10
@@ -1417,37 +1435,37 @@ function init_CustomNotification () {
         b.text + '</p></div>'
       document.getElementById('custom_notifications') ? ($(
         '#custom_notifications ul.notifications').append(
-        "<li><a id='ntlink" + a + "' class='alert-" + b.type +
+          "<li><a id='ntlink" + a + "' class='alert-" + b.type +
           "' href='#ntf" + a +
           "'><i class='fa fa-bell animated shake'></i></a></li>"
-      ), $('#custom_notifications #notif-group').append(c), a++,
+        ), $('#custom_notifications #notif-group').append(c), a++ ,
         CustomTabs(b)) : alert('doesnt exists')
     }, CustomTabs = function (a) {
       $('.tabbed_notifications > div').hide(), $(
         '.tabbed_notifications > div:first-of-type').show(), $(
-        '#custom_notifications').removeClass('dsp_none'), $(
-        '.notifications a').click(function (a) {
-        a.preventDefault()
+          '#custom_notifications').removeClass('dsp_none'), $(
+            '.notifications a').click(function (a) {
+              a.preventDefault()
               var b = $(this),
-          c = '#' + b.parents('.notifications').data(
-            'tabbed_notifications'),
-          d = b.closest('li').siblings().children('a'),
-          e = b.attr('href')
+                c = '#' + b.parents('.notifications').data(
+                  'tabbed_notifications'),
+                d = b.closest('li').siblings().children('a'),
+                e = b.attr('href')
               d.removeClass('active'), b.addClass('active'), $(c)
-          .children('div').hide(), $(e).show()
-      })
+                .children('div').hide(), $(e).show()
+            })
     }, CustomTabs()
     var b = idname = ''
     $(document).on('click', '.notification_close', function (a) {
       idname = $(this).parent().parent().attr('id'), b = idname.substr(-2), $('#ntf' + b).remove(), $('#ntlink' + b).parent()
         .remove(), $('.notifications a').first().addClass(
-        'active'), $('#notif-group div').first().css(
-        'display', 'block')
+          'active'), $('#notif-group div').first().css(
+            'display', 'block')
     })
   }
 }
 
-function init_EasyPieChart () {
+function init_EasyPieChart() {
   if (typeof $.fn.easyPieChart != 'undefined') {
     console.log('init_EasyPieChart'), $('.chart').easyPieChart({
       easing: 'easeOutElastic',
@@ -1470,7 +1488,7 @@ function init_EasyPieChart () {
     $.fn.popover.Constructor.prototype.leave = function (a) {
       var d, e, c = a instanceof this.constructor ? a : $(a.currentTarget)[
         this.type](this.getDelegateOptions()).data('bs.' + this
-        .type)
+          .type)
       b.call(this, a), a.currentTarget && (d = $(a.currentTarget).siblings(
         '.popover'), e = c.timeout, d.one('mouseenter',
           function () {
@@ -1490,7 +1508,7 @@ function init_EasyPieChart () {
   }
 }
 
-function init_charts () {
+function init_charts() {
   if (console.log('run_charts  typeof [' + typeof Chart + ']'), typeof Chart !==
     'undefined') {
     if (console.log('init_charts'), Chart.defaults.global.legend = {
@@ -1811,14 +1829,14 @@ function init_charts () {
   }
 }
 
-function init_compose () {
+function init_compose() {
   typeof $.fn.slideToggle != 'undefined' && (console.log('init_compose'), $(
     '#compose, .compose-close').click(function () {
-    $('.compose').slideToggle()
-  }))
+      $('.compose').slideToggle()
+    }))
 }
 
-function init_calendar () {
+function init_calendar() {
   if (typeof $.fn.fullCalendar !== 'undefined') {
     console.log('init_calendar')
     var e, f, a = new Date(),
@@ -1836,27 +1854,27 @@ function init_calendar () {
         select: function (a, b, c) {
           $('#fc_create').click(), e = a, ended = b, $(
             '.antosubmit').on('click', function () {
-            var a = $('#title').val()
+              var a = $('#title').val()
               return b && (ended = b), f = $(
-              '#event_type').val(), a && g.fullCalendar(
-              'renderEvent', {
-                title: a,
-                start: e,
-                end: b,
-                allDay: c
-              }, !0), $('#title').val(''), g.fullCalendar(
-              'unselect'), $('.antoclose').click(), !1
-          })
+                '#event_type').val(), a && g.fullCalendar(
+                  'renderEvent', {
+                    title: a,
+                    start: e,
+                    end: b,
+                    allDay: c
+                  }, !0), $('#title').val(''), g.fullCalendar(
+                    'unselect'), $('.antoclose').click(), !1
+            })
         },
         eventClick: function (a, b, c) {
           $('#fc_edit').click(), $('#title2').val(a.title), f =
             $('#event_type').val(), $('.antosubmit2').on(
-            'click',
-            function () {
-              a.title = $('#title2').val(), g.fullCalendar(
-                'updateEvent', a), $(
-                '.antoclose2').click()
-            }), g.fullCalendar('unselect')
+              'click',
+              function () {
+                a.title = $('#title2').val(), g.fullCalendar(
+                  'updateEvent', a), $(
+                    '.antoclose2').click()
+              }), g.fullCalendar('unselect')
         },
         editable: !0,
         events: [{
@@ -1890,7 +1908,7 @@ function init_calendar () {
   }
 }
 
-function init_DataTables () {
+function init_DataTables() {
   if (console.log('run_datatables'), typeof $.fn.DataTable != 'undefined') {
     console.log('init_DataTables')
     var a = function () {
@@ -1923,26 +1941,26 @@ function init_DataTables () {
         }
       }
     }()),
-    $('#datatable').dataTable({
-      'language': datatableLangConf
-    }),
-    $('#datatable-keytable').DataTable({
-      keys: !0
-    }),
-    $('#datatable-responsive').DataTable({
-      'language': datatableLangConf
-    }),
-    $('#datatable-scroller')
-      .DataTable({
-        ajax: 'js/datatables/json/scroller-demo.json',
-        deferRender: !0,
-        scrollY: 380,
-        scrollCollapse: !0,
-        scroller: !0
+      $('#datatable').dataTable({
+        'language': datatableLangConf
       }),
-    $('#datatable-fixed-header').DataTable({
-      fixedHeader: !0
-    })
+      $('#datatable-keytable').DataTable({
+        keys: !0
+      }),
+      $('#datatable-responsive').DataTable({
+        'language': datatableLangConf
+      }),
+      $('#datatable-scroller')
+        .DataTable({
+          ajax: 'js/datatables/json/scroller-demo.json',
+          deferRender: !0,
+          scrollY: 380,
+          scrollCollapse: !0,
+          scroller: !0
+        }),
+      $('#datatable-fixed-header').DataTable({
+        fixedHeader: !0
+      })
     var b = $('#datatable-checkbox')
     b.dataTable({
       order: [
@@ -1960,7 +1978,7 @@ function init_DataTables () {
   }
 }
 
-function init_morris_charts () {
+function init_morris_charts() {
   typeof Morris !== 'undefined' && (console.log('init_morris_charts'), $(
     '#graph_bar').length && Morris.Bar({
       element: 'graph_bar',
@@ -2189,11 +2207,11 @@ function init_morris_charts () {
       }],
       resize: !0
     }), $MENU_TOGGLE.on('click', function () {
-        $(window).resize()
-      })))
+      $(window).resize()
+    })))
 }
 
-function init_echarts () {
+function init_echarts() {
   if (typeof echarts !== 'undefined') {
     console.log('init_echarts')
     var a = {
@@ -3687,15 +3705,15 @@ function init_echarts () {
         }]
       })
       var k = {
-          normal: {
-            label: {
-              show: !1
-            },
-            labelLine: {
-              show: !1
-            }
+        normal: {
+          label: {
+            show: !1
+          },
+          labelLine: {
+            show: !1
           }
-        },
+        }
+      },
         l = {
           normal: {
             color: 'rgba(0,0,0,0)',
@@ -4415,7 +4433,7 @@ function init_echarts () {
   var c = function (a, b, c) {
     var d
     return function () {
-      function h () {
+      function h() {
         c || a.apply(f, g), d = null
       }
       var f = this,
@@ -4448,7 +4466,7 @@ $(document).ready(function () {
     a.attr('style') ? c.slideToggle(200, function () {
       a.removeAttr('style')
     }) : (c.slideToggle(200), a.css('height', 'auto')),
-    b.toggleClass('fa-chevron-up fa-chevron-down')
+      b.toggleClass('fa-chevron-up fa-chevron-down')
   }), $('.close-link').click(function () {
     var a = $(this).closest('.x_panel')
     a.remove()
@@ -4458,30 +4476,30 @@ $(document).ready(function () {
     container: 'body'
   })
 }), $('.progress .progress-bar')[0] && $('.progress .progress-bar').progressbar(),
-$(document).ready(function () {
-  if ($('.js-switch')[0]) {
-    var a = Array.prototype.slice.call(document.querySelectorAll(
-      '.js-switch'))
+  $(document).ready(function () {
+    if ($('.js-switch')[0]) {
+      var a = Array.prototype.slice.call(document.querySelectorAll(
+        '.js-switch'))
       a.forEach(function (a) {
-      new Switchery(a, {
-        color: '#26B99A'
+        new Switchery(a, {
+          color: '#26B99A'
+        })
+      })
+    }
+  }), $(document).ready(function () {
+    $('input.flat')[0] && $(document).ready(function () {
+      $('input.flat').iCheck({
+        checkboxClass: 'icheckbox_flat-green',
+        radioClass: 'iradio_flat-green'
       })
     })
-  }
-}), $(document).ready(function () {
-  $('input.flat')[0] && $(document).ready(function () {
-    $('input.flat').iCheck({
-      checkboxClass: 'icheckbox_flat-green',
-      radioClass: 'iradio_flat-green'
-    })
+  }), $('table input').on('ifChecked', function () {
+    checkState = '', $(this).parent().parent().parent().addClass(
+      'selected'), countChecked()
+  }), $('table input').on('ifUnchecked', function () {
+    checkState = '', $(this).parent().parent().parent().removeClass(
+      'selected'), countChecked()
   })
-}), $('table input').on('ifChecked', function () {
-  checkState = '', $(this).parent().parent().parent().addClass(
-    'selected'), countChecked()
-}), $('table input').on('ifUnchecked', function () {
-  checkState = '', $(this).parent().parent().parent().removeClass(
-    'selected'), countChecked()
-})
 var checkState = ''
 $('.bulk_action input').on('ifChecked', function () {
   checkState = '', $(this).parent().parent().parent().addClass(
@@ -4502,8 +4520,8 @@ $('.bulk_action input').on('ifChecked', function () {
 }), typeof NProgress !== 'undefined' && ($(document).ready(function () {
   NProgress.start()
 }), $(window).load(function () {
-    NProgress.done()
-  }))
+  NProgress.done()
+}))
 var originalLeave = $.fn.popover.Constructor.prototype.leave
 $.fn.popover.Constructor.prototype.leave = function (a) {
   var c, d, b = a instanceof this.constructor ? a : $(a.currentTarget)[
@@ -4525,18 +4543,18 @@ $.fn.popover.Constructor.prototype.leave = function (a) {
   }
 }), $(document).ready(function () {
   init_sparklines(),
-  init_Format(),
-  init_flot_chart(),
-  init_sidebar(),
-  init_wysiwyg(), init_InputMask(), init_JQVmap(), init_cropper(),
-  init_knob(), init_IonRangeSlider(), init_ColorPicker(),
-  init_TagsInput(), init_parsley(), init_daterangepicker(),
-  init_daterangepicker_right(), init_daterangepicker_single_call(),
-  init_daterangepicker_reservation(), init_SmartWizard(),
-  init_EasyPieChart(), init_charts(), init_echarts(),
-  init_morris_charts(), init_skycons(), init_select2(),
-  init_validator(), init_DataTables(), init_chart_doughnut(),
-  init_gauge(), init_PNotify(), init_starrr(), init_calendar(),
-  init_compose(), init_CustomNotification(), init_autosize(),
-  init_autocomplete()
+    init_Format(),
+    init_flot_chart(),
+    init_sidebar(),
+    init_wysiwyg(), init_InputMask(), init_JQVmap(), init_cropper(),
+    init_knob(), init_IonRangeSlider(), init_ColorPicker(),
+    init_TagsInput(), init_parsley(), init_daterangepicker(),
+    init_daterangepicker_right(), init_daterangepicker_single_call(),
+    init_daterangepicker_reservation(), init_SmartWizard(),
+    init_EasyPieChart(), init_charts(), init_echarts(),
+    init_morris_charts(), init_skycons(), init_select2(),
+    init_validator(), init_DataTables(), init_chart_doughnut(),
+    init_gauge(), init_PNotify(), init_starrr(), init_calendar(),
+    init_compose(), init_CustomNotification(), init_autosize(),
+    init_autocomplete()
 })

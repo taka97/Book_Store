@@ -22,12 +22,12 @@
                 </tr>
               </thead>
               <tbody>
-                {{# each listBooks}}
+                {{#each listBooks}}
                 <tr>
-                  <th> {{@index}} </th>
-                  <th> {{title}} </th>
-                  <th> {{publisher.name}} </th>
-                  <th> {{price}} </th>
+                  <td> {{@index}} </td>
+                  <td> {{title}} </td>
+                  <td> {{publisher.name}} </td>
+                  <td> {{price}} </td>
                   <td>
                     <a href="/admin/book/view/{{_id}}" class="btn btn-primary btn-xs">
                       <i class="fa fa-folder"></i> Xem </a>
