@@ -1,4 +1,4 @@
-var datatableLangConf = {
+var dataTableLangConf = {
   'decimal': '',
   'emptyTable': 'Không có dữ liệu',
   'info': 'Bản ghi số _START_ đến _END_ trong _TOTAL_ bản ghi',
@@ -1942,20 +1942,20 @@ function init_DataTables() {
       }
     }()),
       $('#datatable').dataTable({
-        'language': datatableLangConf
+        'language': dataTableLangConf
       }),
       $('#datatable-keytable').DataTable({
         keys: !0
       }),
-      $('#datatable-responsive').DataTable({
-        'language': datatableLangConf
+      $('table.datatable-responsive').DataTable({
+        'language': dataTableLangConf
       }),
-      $('#datatable-responsive-admin').DataTable({
-        'language': datatableLangConf
-      }),
-      $('#datatable-responsive-user').DataTable({
-        'language': datatableLangConf
-      }),
+      // $('#datatable-responsive-admin').DataTable({
+      //   'language': dataTableLangConf
+      // }),
+      // $('#datatable-responsive-user').DataTable({
+      //   'language': dataTableLangConf
+      // }),
       $('#datatable-scroller')
         .DataTable({
           ajax: 'js/datatables/json/scroller-demo.json',
