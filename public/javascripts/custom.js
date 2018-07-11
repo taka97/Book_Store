@@ -1950,6 +1950,12 @@ function init_DataTables() {
       $('#datatable-responsive').DataTable({
         'language': datatableLangConf
       }),
+      $('#datatable-responsive-admin').DataTable({
+        'language': datatableLangConf
+      }),
+      $('#datatable-responsive-user').DataTable({
+        'language': datatableLangConf
+      }),
       $('#datatable-scroller')
         .DataTable({
           ajax: 'js/datatables/json/scroller-demo.json',
