@@ -11,8 +11,8 @@ const Book = require('../models/book')
  */
 exports.getHomepage = function (req, res, next) {
   var listAuthors = cache.get('listAuthors')
-  cache.put('updateListAuthors', true)
   var hasUpdate = cache.get('updateListAuthors')
+  var message = req.flash('msg')[0]
 
   if (!listAuthors || hasUpdate) { // listAuthors is not cached or hasNewAuthor
     async.parallel({
@@ -22,14 +22,15 @@ exports.getHomepage = function (req, res, next) {
       }
     }, (err, results) => {
       if (err) { return next(err) }
-
       cache.put('listAuthors', results.listAuthors)
       // Successful, so render.
       res.render('management/authorHomepage', {
         layout: 'layoutAdmin',
         title: 'Quản lý tác giả',
         csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request,
-        listAuthors: results.listAuthors
+        listAuthors: results.listAuthors,
+        message: message,
+        noMessage: !message
       })
     })
   } else {
@@ -38,11 +39,12 @@ exports.getHomepage = function (req, res, next) {
       layout: 'layoutAdmin',
       title: 'Quản lý tác giả',
       csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request,
-      listAuthors: listAuthors
+      listAuthors: listAuthors,
+      message: message,
+      noMessage: !message
     })
   }
-
-  console.log(hasUpdate)
+  cache.del('updateListAuthors')
 }
 
 /**
@@ -120,6 +122,8 @@ exports.postAdd = function (req, res, next) {
   })
   newAuthor.save((err) => {
     if (err) throw err
+    cache.put('updateListAuthors', true)
+    req.flash('msg', 'Thêm tác giả thành công')
     res.redirect('/admin/author')
   })
 }
@@ -136,6 +140,8 @@ exports.postEdit = function (req, res, next) {
   }
   Author.findByIdAndUpdate(req.params.id, newData, (err) => {
     if (err) { return next(err) }
+    cache.put('updateListAuthors', true)
+    req.flash('msg', 'Thay đổi thông tin tác giả thành công')
     res.redirect('/admin/author')
   })
 }
@@ -146,6 +152,8 @@ exports.postEdit = function (req, res, next) {
 exports.postDelete = function (req, res, next) {
   Author.findByIdAndRemove(req.params.id, (err) => {
     if (err) { return next(err) }
+    cache.put('updateListAuthors', true)
+    req.flash('msg', 'Xóa tác giả thành công')
     res.redirect('/admin/author')
   })
 }

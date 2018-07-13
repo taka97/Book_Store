@@ -48,6 +48,8 @@ function formatInput() {
 function formatinputdate() {
   $('input[type="date"]').each(function () {
     $(this).val(formatYYYYMMDD($(this).attr('value')))
+    $(this).attr('min', formatYYYYMMDD(new Date(1975, 0, 2, 0, 0)))
+    $(this).attr('max', formatYYYYMMDD(Date()))
   })
 }
 
