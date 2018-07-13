@@ -11,8 +11,10 @@ const Book = require('../models/book')
  */
 exports.getHomepage = function (req, res, next) {
   var listAuthors = cache.get('listAuthors')
+  cache.put('updateListAuthors', true)
+  var hasUpdate = cache.get('updateListAuthors')
 
-  if (!listAuthors) { // listAuthors is not cached
+  if (!listAuthors || hasUpdate) { // listAuthors is not cached or hasNewAuthor
     async.parallel({
       listAuthors: (callback) => {
         Author.find()
@@ -29,7 +31,6 @@ exports.getHomepage = function (req, res, next) {
         csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request,
         listAuthors: results.listAuthors
       })
-      // console.log('listAuthors: ' + results.listAuthors)
     })
   } else {
     // Successful, so render.
@@ -39,8 +40,9 @@ exports.getHomepage = function (req, res, next) {
       csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request,
       listAuthors: listAuthors
     })
-    // console.log('listAuthors: ' + listAuthors)
   }
+
+  console.log(hasUpdate)
 }
 
 /**
@@ -71,9 +73,9 @@ exports.getEditPage = function (req, res, next) {
       layout: 'layoutAdmin',
       title: 'Chỉnh sửa tác giả',
       csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
-      user: req.user,
       author: results.authorDetail
     })
+    console.log(cache.get('listAuthors'))
   })
 }
 
