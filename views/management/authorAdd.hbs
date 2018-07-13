@@ -1,65 +1,59 @@
 <!-- page content -->
 <div class="right_col" role="main" style="min-height: 958px;">
-    <div>
-        <div class="page-title">
-            <div class="title_left">
-                <h3>Thêm tác giả</h3>
-            </div>            
-        </div>
-        <div class="clearfix"></div>
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                    <div class="x_content">
-                        <form  method="POST" action="" class="form-horizontal form-label-left" novalidate="">
-                            <span class="section">Thông tin tác giả</span>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tên tác giả
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="name" class="form-control col-md-7 col-xs-12" id="name" required="required" type="text" placeholder="Nhập tên tác giả. Ví dụ: Jon Doe">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">Ngày sinh
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="date" class="optional form-control col-md-7 col-xs-12" id="date" type="date">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender">Giới tính
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select name="gender" class="form-control" required="" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Vui lòng chọn giới tính')">
-                                        <option selected disabled> Giới tính </option>
-                                        <option value="male"> Nam </option>
-                                        <option value="female"> Nữ</option>
-                                    </select></div>
-                            </div>                       
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="national">Quốc tịch
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="national" class="form-control col-md-7 col-xs-12" id="national" required="required" type="text" placeholder="Nhập quốc tịch. Ví dụ: Việt Nam"
-                                        oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Vui lòng nhập quốc tịch')">
-                                </div>
-                            </div>
-                            <div class="ln_solid"></div>
-                            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-                            <div class="form-group">
-                                <div class="col-md-6 col-md-offset-3">
-                                    <button class="btn btn-success" type="submit">Thêm tác giả</button>
-                                    <button class="btn btn-primary" type="reset">Làm lại</button>
-                                </div>
-                            </div>
-                        </form>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_content">
+                <form method="POST" action="" class="form-horizontal form-label-left" novalidate="">
+                    <span class="section">{{ title }}</span>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tên tác giả
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input name="name" class="form-control col-md-7 col-xs-12" id="name" required="required" type="text" placeholder="Nhập tên tác giả. Ví dụ: Jon Doe">
+                        </div>
                     </div>
-                </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">Ngày sinh
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input name="date" class="optional form-control col-md-7 col-xs-12" id="date" type="date">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender">Giới tính
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div id="gender" class="btn-group" id="gender" data-toggle="buttons" value="{{ user.gender }}">
+                                <label class="btn btn-default" style="margin-bottom: 0px;" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                    <input name="gender" type="radio" value="male"> &nbsp; Nam &nbsp;
+                                </label>
+                                <label class="btn btn-primary" style="margin-bottom: 0px;" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                    <input name="gender" type="radio" value="female"> &nbsp; Nữ &nbsp;
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="national">Quốc tịch
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input name="national" class="form-control col-md-7 col-xs-12" id="national" required="required" type="text" placeholder="Nhập quốc tịch. Ví dụ: Việt Nam"
+                                oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Vui lòng nhập quốc tịch')">
+                        </div>
+                    </div>
+                    <div class="ln_solid"></div>
+                    <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+                            <button class="btn btn-success" type="submit">Thêm tác giả</button>
+                            <button class="btn btn-primary" type="reset">Làm lại</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

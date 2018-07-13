@@ -1,81 +1,59 @@
 <!-- page content -->
 <div class="right_col" role="main" style="min-height: 958px;">
-    <div>
-        <div class="page-title">
-            <div class="title_left">
-                <h3>Sửa tác giả</h3>
-            </div>
-            <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                    <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Search for...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Go!</button>
-                        </span>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_content">
+                {{#with author}}
+                <form action="" class="form-horizontal form-label-left" method="POST">
+                    <span class="section">{{ ../title }}</span>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tên tác giả
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input name="name" class="form-control col-md-7 col-xs-12" id="name" required="required" type="text" value="{{name}}">
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="clearfix"></div>
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                    <div class="x_content">
-                        {{#author}}
-                        <form action="" class="form-horizontal form-label-left" method="POST">
-                            <span class="section">Thông tin tác giả</span>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tên tác giả
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="name" class="form-control col-md-7 col-xs-12" id="name" required="required" type="text" value="{{name}}">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">Ngày sinh
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="date" class="optional form-control col-md-7 col-xs-12" id="date" type="date" value="{{birthDate}}">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender">Giới tính
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <div class="btn-group" id="gender" data-toggle="buttons" value="{{ user.gender }}">
-                                        <label class="btn btn-default" style="margin-bottom: 0px;" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                            <input name="gender" type="radio" value="male" data-parsley-multiple="gender"> &nbsp; Nam &nbsp;
-                                        </label>
-                                        <label class="btn btn-primary" style="margin-bottom: 0px;" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                            <input name="gender" type="radio" value="female" data-parsley-multiple="gender"> &nbsp; Nữ &nbsp;
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="national">Quốc tịch
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="national" class="form-control col-md-7 col-xs-12" id="national" required="required" type="text" value="{{nationality}}">
-                                </div>
-                            </div>
-                            <div class="ln_solid"></div>
-                            <input type="hidden" name="_csrf" value="{{ ../csrfToken }}">
-                            <div class="form-group">
-                                <div class="col-md-6 col-md-offset-3">
-                                    {{!--
-                                    <button class="btn btn-primary" type="submit">Cancel</button> --}}
-                                    <button class="btn btn-success" id="send" type="submit">Submit</button>
-                                </div>
-                            </div>
-                        </form>
-                        {{/author}}
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">Ngày sinh
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input name="date" class="optional form-control col-md-7 col-xs-12" id="date" type="date" value="{{birthDate}}">
+                        </div>
                     </div>
-                </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender">Giới tính
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div id="gender" class="btn-group" id="gender" data-toggle="buttons" value="{{ gender }}">
+                                <label class="btn btn-default" style="margin-bottom: 0px;" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                    <input name="gender" type="radio" value="male"> &nbsp; Nam &nbsp;
+                                </label>
+                                <label class="btn btn-primary" style="margin-bottom: 0px;" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                    <input name="gender" type="radio" value="female"> &nbsp; Nữ &nbsp;
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="national">Quốc tịch
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input name="national" class="form-control col-md-7 col-xs-12" id="national" required="required" type="text" value="{{nationality}}">
+                        </div>
+                    </div>
+                    <div class="ln_solid"></div>
+                    <input type="hidden" name="_csrf" value="{{ ../csrfToken }}">
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+                            <button class="btn btn-success" id="send" type="submit">Thay đổi</button>
+                        </div>
+                    </div>
+                </form>
+                {{/with}}
             </div>
         </div>
     </div>
