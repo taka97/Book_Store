@@ -1,30 +1,51 @@
 const async = require('async')
+const cache = require('memory-cache')
+
 const Author = require('../models/author')
 const Book = require('../models/book')
 
 // GET author (admin) homepage
+
+/**
+ * GET author (admin) homepage
+ */
 exports.getHomepage = function (req, res, next) {
-  async.parallel({
-    listAuthors: (callback) => {
-      Author.find()
-        .exec(callback)
-    }
-  }, (err, results) => {
-    if (err) { return next(err) }
+  var listAuthors = cache.get('listAuthors')
+
+  if (!listAuthors) { // listAuthors is not cached
+    async.parallel({
+      listAuthors: (callback) => {
+        Author.find()
+          .exec(callback)
+      }
+    }, (err, results) => {
+      if (err) { return next(err) }
+
+      cache.put('listAuthors', results.listAuthors)
+      // Successful, so render.
+      res.render('management/authorHomepage', {
+        layout: 'layoutAdmin',
+        title: 'Quản lý tác giả',
+        csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request,
+        listAuthors: results.listAuthors
+      })
+      // console.log('listAuthors: ' + results.listAuthors)
+    })
+  } else {
     // Successful, so render.
     res.render('management/authorHomepage', {
       layout: 'layoutAdmin',
       title: 'Quản lý tác giả',
       csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request,
-      user: req.user,
-      listAuthors: results.listAuthors
+      listAuthors: listAuthors
     })
-    console.log('listAuthors:' + results.listAuthors)
-  })
+    // console.log('listAuthors: ' + listAuthors)
+  }
 }
 
-// for developer
-// GET add author (admin) page
+/**
+ * GET add author (admin) page
+ */
 exports.getAddPage = function (req, res, next) {
   // Successful, so render.
   res.render('management/authorAdd', {
@@ -35,7 +56,9 @@ exports.getAddPage = function (req, res, next) {
   })
 }
 
-// GET edit author (admin) page
+/**
+ * GET edit author (admin) page
+ */
 exports.getEditPage = function (req, res, next) {
   async.parallel({
     authorDetail: (callback) => {
@@ -55,7 +78,9 @@ exports.getEditPage = function (req, res, next) {
   })
 }
 
-// GET delete author (admin) page
+/**
+ * GET delete author (admin) page
+ */
 exports.getDeletePage = function (req, res, next) {
   async.parallel({
     authorDetail: (callback) => {
@@ -82,7 +107,9 @@ exports.getDeletePage = function (req, res, next) {
   })
 }
 
-// POST add author
+/**
+ * POST add author (admin) page
+ */
 exports.postAdd = function (req, res, next) {
   var newAuthor = new Author({
     name: req.body.name,
@@ -96,7 +123,9 @@ exports.postAdd = function (req, res, next) {
   })
 }
 
-// POST edit author
+/**
+ * POST edit author (admin) page
+ */
 exports.postEdit = function (req, res, next) {
   var newData = {
     name: req.body.name,
@@ -110,7 +139,9 @@ exports.postEdit = function (req, res, next) {
   })
 }
 
-// POST delete author
+/**
+ * POST delete author (admin) page
+ */
 exports.postDelete = function (req, res, next) {
   Author.findByIdAndRemove(req.params.id, (err) => {
     if (err) { return next(err) }
