@@ -994,7 +994,7 @@ footer {
     height: 50px;
     display: inline;
     font-size: 20px;
-    line-height: 40px;
+    line-height: 38px;
     color: #fff;
     text-align: center;
     position: fixed;
@@ -1010,11 +1010,7 @@ footer {
 }
 
 .avatar-view {
-    height: 100px;
-}
-
-.changeAvatar {
-    margin-top: 66px;
+    height: 150px;
 }
 
 .degrees:after, .x_content, .x_panel {
@@ -4599,6 +4595,11 @@ ul.verticle_bars li {
     bottom: 0
 }
 
+.custom-alert-danger {
+    text-align: center;
+    font-weight: bold;
+}
+
 ul.notifications {
     float: right;
     display: block;
@@ -4715,4 +4716,25 @@ ul.notifications {
 
 .text {
     text-align: center;
+}
+
+.float-right {
+    float: right;
+}
+
+.text-align-left {
+    text-align: left;
+}
+
+#crop-avatar {
+    padding: 0px 0px 10px 0px;
+}
+
+.inputfile {
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
 }

@@ -4,8 +4,7 @@ const Account = require('../models/account')
 exports.getHomepage = function (req, res, next) {
   res.render('account/viewProfile', {
     layout: 'layoutUser',
-    title: 'Người dùng',
-    user: req.user
+    title: 'Người dùng'
   })
 }
 
@@ -14,8 +13,7 @@ exports.getViewProfile = function (req, res, next) {
   // Successful, so render.
   res.render('account/viewProfile', {
     layout: 'layoutUser',
-    title: 'Hồ sơ cá nhân',
-    user: req.user
+    title: 'Hồ sơ cá nhân'
   })
 }
 
@@ -29,7 +27,6 @@ exports.getChangeProfile = function (req, res, next) {
     layout: 'layoutUser',
     title: 'Thay đổi hồ sơ cá nhân',
     csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
-    user: req.user,
     messageValidate: messageValidate,
     hasErrorMessage: messageValidate.length > 0,
     messageErrorConfig: messageErrorConfig,
@@ -95,14 +92,13 @@ exports.postChangePassword = function (req, res, next) {
     .withMessage('Mật khẩu cũ không hợp lệ')
   req.checkBody('confPassword')
     .notEmpty()
-    .custom(value => value === req.body.newPpassword).withMessage('Mật khẩu xác nhập không hợp lệ')
+    .custom(value => value === req.body.newPassword).withMessage('Mật khẩu xác nhập không hợp lệ')
 
   // Store error message
   var errors = req.validationErrors()
   if (errors) {
     var messages = []
     errors.forEach(error => {
-      console.log('Error message: ' + error.msg)
       messages.push(error.msg)
     })
     req.flash('errorConfig', messages)

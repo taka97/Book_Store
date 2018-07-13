@@ -63,7 +63,7 @@ exports.getCartChange = function (req, res, next) {
 
   var quantity = parseInt(req.query.quantity, 10)
   var productId = req.query.productId
-  console.log(productId)
+  // console.log(productId)
 
   var cart = new Cart(req.session.cart)
   async.parallel({
@@ -105,7 +105,7 @@ exports.getCartChange = function (req, res, next) {
     }
 
     req.session.cart = cart
-    console.log(cart)
+    // console.log(cart)
     res.redirect('/cart')
   })
 }
@@ -163,7 +163,7 @@ exports.postAddToCart = function (req, res, next) {
       cart.add(results, results.one.id)
     }
     req.session.cart = cart
-    console.log(cart)
+    // console.log(cart)
     res.redirect('/book')
   })
 }

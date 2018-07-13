@@ -3,12 +3,13 @@ const router = express.Router()
 const loginProtected = require('../controllers/loginProtected')
 const adminController = require('../controllers/adminController')
 
-const authorAdminRouter = require('../routes/authorAdmin')
-const publisherAdminRouter = require('../routes/publisherAdmin')
-const genreAdminRouter = require('../routes/genreAdmin')
-const bookAdminRouter = require('../routes/bookAdmin')
-const accountAdminRouter = require('../routes/accountAdmin')
-const bookInstanceRouter = require('../routes/bookInstanceAdmin')
+const authorAdminRouter = require('./authorAdmin')
+const publisherAdminRouter = require('./publisherAdmin')
+const genreAdminRouter = require('./genreAdmin')
+const bookAdminRouter = require('./bookAdmin')
+const accountAdminRouter = require('./accountAdmin')
+const bookInstanceAdminRouter = require('./bookInstanceAdmin')
+const orderAdminRouter = require('./orderAdmin')
 
 /* GET admin homepage. */
 router.get('/', loginProtected.isLoginAndAdmin, adminController.getHomepage)
@@ -41,6 +42,9 @@ router.use('/book', loginProtected.isLoginAndAdmin, bookAdminRouter)
 router.use('/account', loginProtected.isLoginAndAdmin, accountAdminRouter)
 
 /* Make middleware for /admin/bookinstance */
-router.use('/bookinstance', loginProtected.isLoginAndAdmin, bookInstanceRouter)
+router.use('/bookinstance', loginProtected.isLoginAndAdmin, bookInstanceAdminRouter)
+
+/* Make middleware for /admin/order */
+router.use('/order', loginProtected.isLoginAndAdmin, orderAdminRouter)
 
 module.exports = router

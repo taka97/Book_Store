@@ -52,6 +52,7 @@ app.use(function (req, res, next) {
   res.locals.isLogin = req.isAuthenticated()
   res.locals.session = req.session
   res.locals.isUser = req.isAuthenticated() ? (req.user.typeAccount === 'User') : false
+  res.locals.user = req.user
   next()
 })
 

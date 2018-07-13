@@ -3,7 +3,7 @@
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
       <div class="x_title">
-        <h2> Quản lý sách
+        <h2> Quản lý đơn hàng
           <small> Thêm, sửa, xóa, tìm kiếm </small>
         </h2>
         <div class="clearfix"></div>
@@ -13,25 +13,19 @@
           <thead>
             <tr>
               <th> # </th>
-              <th> Tên sách </th>
-              <th> Nhà xuất bản </th>
-              <th> Giá </th>
+              <th> Tên thể loại </th>
               <th> Hành động </th>
             </tr>
           </thead>
           <tbody>
-            {{#each listBooks}}
+            {{#each listGenres}}
             <tr>
               <td> {{@index}} </td>
-              <td> {{title}} </td>
-              <td> {{publisher.name}} </td>
-              <td class="money"> {{price}} </td>
+              <td> {{name}} </td>
               <td>
-                <a href="/admin/book/view/{{_id}}" class="btn btn-primary btn-xs">
-                  <i class="fa fa-folder"></i> Xem </a>
-                <a href="/admin/book/edit/{{_id}}" class="btn btn-info btn-xs">
+                <a href="/admin/genre/edit/{{_id}}" class="btn btn-info btn-xs">
                   <i class="fa fa-pencil"></i> Sửa </a>
-                <a href="/admin/book/delete/{{_id}}" class="btn btn-danger btn-xs">
+                <a href="/admin/genre/delete/{{_id}}" class="btn btn-danger btn-xs">
                   <i class="fa fa-trash-o"></i> Xóa </a>
               </td>
             </tr>
@@ -45,8 +39,8 @@
 <!-- /page content -->
 
 <!-- add button -->
-<a id="add_button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Thêm sách"
-  href="/admin/book/add">
+<a id="add_button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Thêm thể loại"
+  href="/admin/genre/add">
   <i class="fa fa-plus" aria-hidden="true" style="line-height: inherit;"></i>
 </a>
 <!-- /add content -->

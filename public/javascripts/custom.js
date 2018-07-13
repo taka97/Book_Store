@@ -1,3 +1,28 @@
+var dataTableLangConf = {
+  'decimal': '',
+  'emptyTable': 'Không có dữ liệu',
+  'info': 'Bản ghi số _START_ đến _END_ trong _TOTAL_ bản ghi',
+  'infoEmpty': 'Bản ghi số 0 đến 0 trong 0 bản ghi',
+  'infoFiltered': '(Đã lọc từ _MAX_ bản ghi)',
+  'infoPostFix': '',
+  'thousands': ',',
+  'lengthMenu': 'Hiện _MENU_ bản ghi',
+  'loadingRecords': 'Đang tải dữ liệu...',
+  'processing': 'Đang xử lý...',
+  'search': 'Tìm kiếm:',
+  'zeroRecords': 'Không tìm thấy kết quả phù hợp',
+  'paginate': {
+    'first': 'Trang đầu tiên',
+    'last': 'Trang cuối cùng',
+    'next': 'Trang tiếp',
+    'previous': 'Trang trước'
+  },
+  'aria': {
+    'sortAscending': ': Kích hoạt để sắp xếp cột tăng dần',
+    'sortDescending': ': Kích hoạt để sắp xếp cột giảm dần'
+  }
+}
+
 function formatDDMMYYYYY(inputStr) {
   let d = new Date(inputStr)
   return ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth() + 1)).slice(-2) + '/' + d.getFullYear()
@@ -36,25 +61,32 @@ function formatGender() {
   }
 }
 
+function formatPrice() {
+  $('.money').each(function () {
+    $(this).text(accounting.formatNumber($(this).text()))
+  })
+}
+
 function init_Format() {
   console.log('init_formatdate')
   formatTd()
   formatInput()
   formatinputdate()
   formatGender()
+  formatPrice()
 }
 
 function init_sidebar() {
   var a = function () {
-    $RIGHT_COL.css('min-height', $(window).height());
+    $RIGHT_COL.css('min-height', $(window).height())
     var a = $BODY.outerHeight(),
       b = $BODY.hasClass('footer_fixed') ? -10 : $FOOTER.height(),
       c = $LEFT_COL.eq(1).height() + $SIDEBAR_FOOTER.height(),
-      d = a < c ? c : a;
+      d = a < c ? c : a
     d -= $NAV_MENU.height() + b, $RIGHT_COL.css('min-height', d)
-  };
+  }
   $SIDEBAR_MENU.find('a').on('click', function (b) {
-    var c = $(this).parent();
+    var c = $(this).parent()
     c.is('.active') ? (c.removeClass('active active-sm'), $(
       'ul:first', c).slideUp(function () {
         a()
@@ -92,10 +124,10 @@ function init_sidebar() {
 }
 
 function countChecked() {
-  'all' === checkState && $(".bulk_action input[name='table_records']").iCheck(
-    'check'), 'none' === checkState && $(
-      ".bulk_action input[name='table_records']").iCheck('uncheck');
-  var a = $(".bulk_action input[name='table_records']:checked").length;
+  checkState === 'all' && $(".bulk_action input[name='table_records']").iCheck(
+    'check'), checkState === 'none' && $(
+      ".bulk_action input[name='table_records']").iCheck('uncheck')
+  var a = $(".bulk_action input[name='table_records']:checked").length
   a ? ($('.column-title').hide(), $('.bulk-actions').show(), $('.action-cnt')
     .html(a + ' Records Selected')) : ($('.column-title').show(), $(
       '.bulk-actions').hide())
@@ -106,8 +138,8 @@ function gd(a, b, c) {
 }
 
 function init_flot_chart() {
-  if ('undefined' !== typeof $.plot) {
-    console.log('init_flot_chart');
+  if (typeof $.plot !== 'undefined') {
+    console.log('init_flot_chart')
     for (var a = [
       [gd(2012, 1, 1), 17],
       [gd(2012, 1, 2), 74],
@@ -142,9 +174,11 @@ function init_flot_chart() {
       [14, 3],
       [15, 4],
       [16, 9]
-    ], f = 0; f < 30; f++) d.push([new Date(Date.today().add(f).days())
-      .getTime(), randNum() + f + f + 10
-    ]);
+    ], f = 0; f < 30; f++) {
+      d.push([new Date(Date.today().add(f).days())
+        .getTime(), randNum() + f + f + 10
+      ]);
+    }
     var g = {
       series: {
         lines: {
@@ -274,7 +308,7 @@ function init_flot_chart() {
             left: '#7F8790'
           }
         }
-      };
+      }
     $('#chart_plot_01').length && (console.log('Plot1'), $.plot($(
       '#chart_plot_01'), [a, b], g)), $('#chart_plot_02').length && (
         console.log('Plot2'), $.plot($('#chart_plot_02'), [{
@@ -301,7 +335,7 @@ function init_flot_chart() {
 }
 
 function init_starrr() {
-  'undefined' != typeof starrr && (console.log('init_starrr'), $('.stars').starrr(),
+  typeof starrr != 'undefined' && (console.log('init_starrr'), $('.stars').starrr(),
     $('.stars-existing').starrr({
       rating: 4
     }), $('.stars').on('starrr:change', function (a, b) {
@@ -312,7 +346,7 @@ function init_starrr() {
 }
 
 function init_JQVmap() {
-  'undefined' != typeof jQuery.fn.vectorMap && (console.log('init_JQVmap'), $(
+  typeof jQuery.fn.vectorMap != 'undefined' && (console.log('init_JQVmap'), $(
     '#world-map-gdp').length && $('#world-map-gdp').vectorMap({
       map: 'world_en',
       backgroundColor: null,
@@ -339,22 +373,22 @@ function init_JQVmap() {
 }
 
 function init_skycons() {
-  if ('undefined' !== typeof Skycons) {
-    console.log('init_skycons');
+  if (typeof Skycons !== 'undefined') {
+    console.log('init_skycons')
     var c, a = new Skycons({
       color: '#73879C'
     }),
       b = ['clear-day', 'clear-night', 'partly-cloudy-day',
         'partly-cloudy-night', 'cloudy', 'rain', 'sleet', 'snow',
         'wind', 'fog'
-      ];
-    for (c = b.length; c--;) a.set(b[c], b[c]);
+      ]
+    for (c = b.length; c--;) a.set(b[c], b[c])
     a.play()
   }
 }
 
 function init_chart_doughnut() {
-  if ('undefined' != typeof Chart && (console.log('init_chart_doughnut'), $(
+  if (typeof Chart != 'undefined' && (console.log('init_chart_doughnut'), $(
     '.canvasDoughnut').length)) {
     var a = {
       type: 'doughnut',
@@ -375,18 +409,18 @@ function init_chart_doughnut() {
         legend: !1,
         responsive: !1
       }
-    };
+    }
     $('.canvasDoughnut').each(function () {
-      var b = $(this);
+      var b = $(this)
       new Chart(b, a)
     })
   }
 }
 
 function init_gauge() {
-  if ('undefined' !== typeof Gauge) {
+  if (typeof Gauge !== 'undefined') {
     console.log('init_gauge [' + $('.gauge-chart').length + ']'), console.log(
-      'init_gauge');
+      'init_gauge')
     var a = {
       lines: 12,
       angle: 0,
@@ -401,15 +435,19 @@ function init_gauge() {
       colorStop: '#1ABC9C',
       strokeColor: '#F0F3F3',
       generateGradient: !0
-    };
-    if ($('#chart_gauge_01').length) var b = document.getElementById(
-      'chart_gauge_01'),
+    }
+    if ($('#chart_gauge_01').length) {
+      var b = document.getElementById(
+        'chart_gauge_01'),
       c = new Gauge(b).setOptions(a);
+    }
     if ($('#gauge-text').length && (c.maxValue = 6e3, c.animationSpeed = 32,
       c.set(3200), c.setTextField(document.getElementById(
-        'gauge-text'))), $('#chart_gauge_02').length) var d =
-          document.getElementById('chart_gauge_02'),
+        'gauge-text'))), $('#chart_gauge_02').length) {
+          var d =
+            document.getElementById('chart_gauge_02'),
           e = new Gauge(d).setOptions(a);
+    }
     $('#gauge-text2').length && (e.maxValue = 9e3, e.animationSpeed = 32, e
       .set(2400), e.setTextField(document.getElementById(
         'gauge-text2')))
@@ -417,7 +455,7 @@ function init_gauge() {
 }
 
 function init_sparklines() {
-  'undefined' != typeof jQuery.fn.sparkline && (console.log('init_sparklines'),
+  typeof jQuery.fn.sparkline != 'undefined' && (console.log('init_sparklines'),
     $('.sparkline_one').sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 5, 6,
       4, 5, 6, 3, 5, 4, 5, 4, 5, 4, 3, 4, 5, 6, 7, 5, 4, 3, 5, 6
     ], {
@@ -517,8 +555,8 @@ function init_sparklines() {
 }
 
 function init_autocomplete() {
-  if ('undefined' !== typeof autocomplete) {
-    console.log('init_autocomplete');
+  if (typeof autocomplete !== 'undefined') {
+    console.log('init_autocomplete')
     var a = {
       AD: 'Andorra',
       A2: 'Andorra Test',
@@ -791,7 +829,7 @@ function init_autocomplete() {
           value: a,
           data: b
         }
-      });
+      })
     $('#autocomplete-custom-append').autocomplete({
       lookup: b
     })
@@ -799,35 +837,35 @@ function init_autocomplete() {
 }
 
 function init_autosize() {
-  'undefined' != typeof $.fn.autosize && autosize($('.resizable_textarea'))
+  typeof $.fn.autosize != 'undefined' && autosize($('.resizable_textarea'))
 }
 
 function init_parsley() {
-  if ('undefined' !== typeof parsley) {
+  if (typeof parsley !== 'undefined') {
     console.log('init_parsley'), $('parsley:field:validate', function () {
       a()
     }), $('#demo-form .btn').on('click', function () {
       $('#demo-form').parsley().validate(), a()
-    });
+    })
     var a = function () {
       !0 === $('#demo-form').parsley().isValid() ? ($(
         '.bs-callout-info').removeClass('hidden'), $(
           '.bs-callout-warning').addClass('hidden')) : ($(
             '.bs-callout-info').addClass('hidden'), $(
               '.bs-callout-warning').removeClass('hidden'))
-    };
+    }
     $('parsley:field:validate', function () {
       a()
     }), $('#demo-form2 .btn').on('click', function () {
       $('#demo-form2').parsley().validate(), a()
-    });
+    })
     var a = function () {
       !0 === $('#demo-form2').parsley().isValid() ? ($(
         '.bs-callout-info').removeClass('hidden'), $(
           '.bs-callout-warning').addClass('hidden')) : ($(
             '.bs-callout-info').addClass('hidden'), $(
               '.bs-callout-warning').removeClass('hidden'))
-    };
+    }
     try {
       hljs.initHighlightingOnLoad()
     } catch (a) { }
@@ -847,13 +885,13 @@ function onChangeTag(a, b) {
 }
 
 function init_TagsInput() {
-  'undefined' !== typeof $.fn.tagsInput && $('#tags_1').tagsInput({
+  typeof $.fn.tagsInput !== 'undefined' && $('#tags_1').tagsInput({
     width: 'auto'
   })
 }
 
 function init_select2() {
-  'undefined' !== typeof select2 && (console.log('init_toolbox'), $(
+  typeof select2 !== 'undefined' && (console.log('init_toolbox'), $(
     '.select2_single').select2({
       placeholder: 'Select a state',
       allowClear: !0
@@ -866,15 +904,15 @@ function init_select2() {
 
 function init_wysiwyg() {
   function b(a, b) {
-    var c = '';
+    var c = ''
     'unsupported-file-type' === a ? c = 'Unsupported format ' + b : console
       .log('error uploading file', a, b), $(
         '<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button><strong>File upload error</strong> ' +
         c + ' </div>').prependTo('#alerts')
   }
-  'undefined' !== typeof $.fn.wysiwyg && (console.log('init_wysiwyg'), $(
+  typeof $.fn.wysiwyg !== 'undefined' && (console.log('init_wysiwyg'), $(
     '.editor-wrapper').each(function () {
-      var a = $(this).attr('id');
+      var a = $(this).attr('id')
       $(this).wysiwyg({
         toolbarSelector: '[data-target="#' + a + '"]',
         fileUploadError: b
@@ -883,8 +921,8 @@ function init_wysiwyg() {
 }
 
 function init_cropper() {
-  if ('undefined' != typeof $.fn.cropper) {
-    console.log('init_cropper');
+  if (typeof $.fn.cropper != 'undefined') {
+    console.log('init_cropper')
     var a = $('#image'),
       b = $('#download'),
       c = $('#dataX'),
@@ -902,7 +940,7 @@ function init_cropper() {
             Math.round(a.height)), f.val(Math.round(a.width)),
             g.val(a.rotate), h.val(a.scaleX), i.val(a.scaleY)
         }
-      };
+      }
     $('[data-toggle="tooltip"]').tooltip(), a.on({
       'build.cropper': function (a) {
         console.log(a.type)
@@ -928,56 +966,60 @@ function init_cropper() {
       }
     }).cropper(j), $.isFunction(document.createElement('canvas').getContext) ||
       $('button[data-method="getCroppedCanvas"]').prop('disabled', !0),
-      'undefined' == typeof document.createElement('cropper').style.transition &&
+      typeof document.createElement('cropper').style.transition == 'undefined' &&
       ($('button[data-method="rotate"]').prop('disabled', !0), $(
         'button[data-method="scale"]').prop('disabled', !0)),
-      'undefined' == typeof b[0].download && b.addClass('disabled'), $(
+      typeof b[0].download == 'undefined' && b.addClass('disabled'), $(
         '.docs-toggles').on('change', 'input', function () {
           var e, f, b = $(this),
             c = b.attr('name'),
-            d = b.prop('type');
-          a.data('cropper') && ('checkbox' === d ? (j[c] = b.prop(
+            d = b.prop('type')
+          a.data('cropper') && (d === 'checkbox' ? (j[c] = b.prop(
             'checked'), e = a.cropper('getCropBoxData'),
             f = a.cropper('getCanvasData'), j.built =
             function () {
               a.cropper('setCropBoxData', e), a.cropper(
                 'setCanvasData', f)
-            }) : 'radio' === d && (j[c] = b.val()), a.cropper(
+            }) : d === 'radio' && (j[c] = b.val()), a.cropper(
               'destroy').cropper(j))
         }), $('.docs-buttons').on('click', '[data-method]', function () {
           var e, f, c = $(this),
-            d = c.data();
+            d = c.data()
           if (!c.prop('disabled') && !c.hasClass('disabled') && a.data(
             'cropper') && d.method) {
-            if (d = $.extend({}, d), 'undefined' != typeof d.target &&
-              (e = $(d.target), 'undefined' == typeof d.option))
+            if (d = $.extend({}, d), typeof d.target != 'undefined' &&
+              (e = $(d.target), typeof d.option == 'undefined')) {
               try {
                 d.option = JSON.parse(e.val())
               }
               catch (a) {
                 console.log(a.message)
               }
+            }
             switch (f = a.cropper(d.method, d.option, d.secondOption),
             d.method) {
               case 'scaleX':
               case 'scaleY':
-                $(this).data('option', -d.option);
+                $(this).data('option', -d.option)
                 break;
               case 'getCroppedCanvas':
                 f && ($('#getCroppedCanvasModal').modal().find(
                   '.modal-body').html(f), b.hasClass(
                     'disabled') || b.attr('href', f.toDataURL()))
             }
-            if ($.isPlainObject(f) && e) try {
-              e.val(JSON.stringify(f))
-            }
+            if ($.isPlainObject(f) && e) {
+              try {
+                e.val(JSON.stringify(f))
+              }
               catch (a) {
                 console.log(a.message)
               }
+            }
           }
         }), $(document.body).on('keydown', function (b) {
-          if (a.data('cropper') && !(this.scrollTop > 300)) switch (b
-            .which) {
+          if (a.data('cropper') && !(this.scrollTop > 300)) {
+            switch (b
+              .which) {
               case 37:
                 b.preventDefault(), a.cropper('move', -1, 0);
                 break;
@@ -990,11 +1032,12 @@ function init_cropper() {
               case 40:
                 b.preventDefault(), a.cropper('move', 0, 1)
             }
-        });
+          }
+        })
     var m, k = $('#inputImage'),
-      l = window.URL || window.webkitURL;
+      l = window.URL || window.webkitURL
     l ? k.change(function () {
-      var c, b = this.files;
+      var c, b = this.files
       a.data('cropper') && b && b.length && (c = b[0],
         /^image\/\w+$/.test(c.type) ? (m = l.createObjectURL(
           c), a.one('built.cropper', function () {
@@ -1007,7 +1050,7 @@ function init_cropper() {
 }
 
 function init_knob() {
-  if ('undefined' !== typeof $.fn.knob) {
+  if (typeof $.fn.knob !== 'undefined') {
     console.log('init_knob'), $('.knob').knob({
       change: function (a) { },
       release: function (a) {
@@ -1017,10 +1060,10 @@ function init_knob() {
         console.log('cancel : ', this)
       },
       draw: function () {
-        if ('tron' == this.$.data('skin')) {
-          this.cursorExt = 0.3;
+        if (this.$.data('skin') == 'tron') {
+          this.cursorExt = 0.3
           var b, a = this.arc(this.cv),
-            c = 1;
+            c = 1
           return this.g.lineWidth = this.lineWidth, this.o
             .displayPrevious && (b = this.arc(this.v),
               this.g.beginPath(), this.g.strokeStyle =
@@ -1038,7 +1081,7 @@ function init_knob() {
             this.g.stroke(), !1
         }
       }
-    });
+    })
     var a, b = 0,
       c = 0,
       d = 0,
@@ -1049,7 +1092,7 @@ function init_knob() {
       },
       h = function () {
         d-- , e.show().html('-').fadeOut(), f.html(d)
-      };
+      }
     $('input.infinite').knob({
       min: 0,
       max: 20,
@@ -1064,12 +1107,12 @@ function init_knob() {
 }
 
 function init_InputMask() {
-  'undefined' !== typeof $.fn.inputmask && (console.log('init_InputMask'), $(
+  typeof $.fn.inputmask !== 'undefined' && (console.log('init_InputMask'), $(
     ':input').inputmask())
 }
 
 function init_ColorPicker() {
-  'undefined' != typeof $.fn.colorpicker && (console.log('init_ColorPicker'),
+  typeof $.fn.colorpicker != 'undefined' && (console.log('init_ColorPicker'),
     $('.demo1').colorpicker(), $('.demo2').colorpicker(), $(
       '#demo_forceformat').colorpicker({
         format: 'rgba',
@@ -1080,7 +1123,7 @@ function init_ColorPicker() {
 }
 
 function init_IonRangeSlider() {
-  'undefined' !== typeof $.fn.ionRangeSlider && (console.log(
+  typeof $.fn.ionRangeSlider !== 'undefined' && (console.log(
     'init_IonRangeSlider'), $('#range_27').ionRangeSlider({
       type: 'double',
       min: 1e6,
@@ -1131,15 +1174,15 @@ function init_IonRangeSlider() {
       grid: !0,
       force_edges: !0,
       prettify: function (a) {
-        var b = moment(a, 'X');
+        var b = moment(a, 'X')
         return b.format('Do MMMM, HH:mm')
       }
     }))
 }
 
 function init_daterangepicker() {
-  if ('undefined' !== typeof $.fn.daterangepicker) {
-    console.log('init_daterangepicker');
+  if (typeof $.fn.daterangepicker !== 'undefined') {
+    console.log('init_daterangepicker')
     var a = function (a, b, c) {
       console.log(a.toISOString(), b.toISOString(), c), $(
         '#reportrange span').html(a.format('MMMM D, YYYY') +
@@ -1189,7 +1232,7 @@ function init_daterangepicker() {
           ],
           firstDay: 1
         }
-      };
+      }
     $('#reportrange span').html(moment().subtract(29, 'days').format(
       'MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY')), $(
         '#reportrange').daterangepicker(b, a), $('#reportrange').on(
@@ -1216,8 +1259,8 @@ function init_daterangepicker() {
 }
 
 function init_daterangepicker_right() {
-  if ('undefined' != typeof $.fn.daterangepicker) {
-    console.log('init_daterangepicker_right');
+  if (typeof $.fn.daterangepicker != 'undefined') {
+    console.log('init_daterangepicker_right')
     var a = function (a, b, c) {
       console.log(a.toISOString(), b.toISOString(), c), $(
         '#reportrange_right span').html(a.format('MMMM D, YYYY') +
@@ -1267,7 +1310,7 @@ function init_daterangepicker_right() {
           ],
           firstDay: 1
         }
-      };
+      }
     $('#reportrange_right span').html(moment().subtract(29, 'days').format(
       'MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY')), $(
         '#reportrange_right').daterangepicker(b, a), $(
@@ -1296,7 +1339,7 @@ function init_daterangepicker_right() {
 }
 
 function init_daterangepicker_single_call() {
-  'undefined' != typeof $.fn.daterangepicker && (console.log(
+  typeof $.fn.daterangepicker != 'undefined' && (console.log(
     'init_daterangepicker_single_call'), $('#single_cal1').daterangepicker({
       singleDatePicker: !0,
       singleClasses: 'picker_1'
@@ -1321,7 +1364,7 @@ function init_daterangepicker_single_call() {
 }
 
 function init_daterangepicker_reservation() {
-  'undefined' !== typeof $.fn.daterangepicker && (console.log(
+  typeof $.fn.daterangepicker !== 'undefined' && (console.log(
     'init_daterangepicker_reservation'), $('#reservation').daterangepicker(
       null,
       function (a, b, c) {
@@ -1336,7 +1379,7 @@ function init_daterangepicker_reservation() {
 }
 
 function init_SmartWizard() {
-  'undefined' !== typeof $.fn.smartWizard && (console.log('init_SmartWizard'),
+  typeof $.fn.smartWizard !== 'undefined' && (console.log('init_SmartWizard'),
     $('#wizard').smartWizard(), $('#wizard_verticle').smartWizard({
       transitionEffect: 'slide'
     }), $('.buttonNext').addClass('btn btn-success'), $(
@@ -1345,7 +1388,7 @@ function init_SmartWizard() {
 }
 
 function init_validator() {
-  'undefined' != typeof validator && (console.log('init_validator'),
+  typeof validator != 'undefined' && (console.log('init_validator'),
     validator.message.date = 'Vui lòng chọn ngày hợp lệ',
     validator.message.empty = 'Vui lòng nhập dữ liệu',
     $('form').on('blur', 'input[required], input.optional, select.required', validator.checkField).on('change', 'select.required', validator.checkField).on(
@@ -1353,15 +1396,14 @@ function init_validator() {
         '.multi.required').on('keyup blur', 'input', function () {
           validator.checkField.apply($(this).siblings().last()[0])
         }), $('form').submit(function (a) {
-          a.preventDefault();
-          var b = !0;
-          return validator.checkAll($(this)) || (b = !1), b && this.submit(), !
-            1
+          a.preventDefault()
+          var b = !0
+          return validator.checkAll($(this)) || (b = !1), b && this.submit(), !1
         }))
 }
 
 function init_PNotify() {
-  'undefined' !== typeof PNotify && (console.log('init_PNotify'), new PNotify({
+  typeof PNotify !== 'undefined' && (console.log('init_PNotify'), new PNotify({
     title: 'PNotify',
     type: 'info',
     text: "Welcome. Try hovering over me. You can click things behind me, because I'm non-blocking.",
@@ -1382,15 +1424,15 @@ function init_PNotify() {
 }
 
 function init_CustomNotification() {
-  if (console.log('run_customtabs'), 'undefined' != typeof CustomTabs) {
-    console.log('init_CustomTabs');
-    var a = 10;
+  if (console.log('run_customtabs'), typeof CustomTabs != 'undefined') {
+    console.log('init_CustomTabs')
+    var a = 10
     TabbedNotification = function (b) {
       var c = "<div id='ntf" + a + "' class='text alert-" + b.type +
         "' style='display:none'><h2><i class='fa fa-bell'></i> " +
         b.title +
         "</h2><div class='close'><a href='javascript:;' class='notification_close'><i class='fa fa-close'></i></a></div><p>" +
-        b.text + '</p></div>';
+        b.text + '</p></div>'
       document.getElementById('custom_notifications') ? ($(
         '#custom_notifications ul.notifications').append(
           "<li><a id='ntlink" + a + "' class='alert-" + b.type +
@@ -1403,29 +1445,28 @@ function init_CustomNotification() {
         '.tabbed_notifications > div:first-of-type').show(), $(
           '#custom_notifications').removeClass('dsp_none'), $(
             '.notifications a').click(function (a) {
-              a.preventDefault();
+              a.preventDefault()
               var b = $(this),
                 c = '#' + b.parents('.notifications').data(
                   'tabbed_notifications'),
                 d = b.closest('li').siblings().children('a'),
-                e = b.attr('href');
+                e = b.attr('href')
               d.removeClass('active'), b.addClass('active'), $(c)
                 .children('div').hide(), $(e).show()
             })
-    }, CustomTabs();
-    var b = idname = '';
+    }, CustomTabs()
+    var b = idname = ''
     $(document).on('click', '.notification_close', function (a) {
-      idname = $(this).parent().parent().attr('id'), b = idname.substr(-
-        2), $('#ntf' + b).remove(), $('#ntlink' + b).parent()
-          .remove(), $('.notifications a').first().addClass(
-            'active'), $('#notif-group div').first().css(
-              'display', 'block')
+      idname = $(this).parent().parent().attr('id'), b = idname.substr(-2), $('#ntf' + b).remove(), $('#ntlink' + b).parent()
+        .remove(), $('.notifications a').first().addClass(
+          'active'), $('#notif-group div').first().css(
+            'display', 'block')
     })
   }
 }
 
 function init_EasyPieChart() {
-  if ('undefined' != typeof $.fn.easyPieChart) {
+  if (typeof $.fn.easyPieChart != 'undefined') {
     console.log('init_EasyPieChart'), $('.chart').easyPieChart({
       easing: 'easeOutElastic',
       delay: 3e3,
@@ -1438,16 +1479,16 @@ function init_EasyPieChart() {
       onStep: function (a, b, c) {
         $(this.el).find('.percent').text(Math.round(c))
       }
-    });
-    var a = window.chart = $('.chart').data('easyPieChart');
+    })
+    var a = window.chart = $('.chart').data('easyPieChart')
     $('.js_update').on('click', function () {
       a.update(200 * Math.random() - 100)
-    });
-    var b = $.fn.popover.Constructor.prototype.leave;
+    })
+    var b = $.fn.popover.Constructor.prototype.leave
     $.fn.popover.Constructor.prototype.leave = function (a) {
       var d, e, c = a instanceof this.constructor ? a : $(a.currentTarget)[
         this.type](this.getDelegateOptions()).data('bs.' + this
-          .type);
+          .type)
       b.call(this, a), a.currentTarget && (d = $(a.currentTarget).siblings(
         '.popover'), e = c.timeout, d.one('mouseenter',
           function () {
@@ -1468,8 +1509,8 @@ function init_EasyPieChart() {
 }
 
 function init_charts() {
-  if (console.log('run_charts  typeof [' + typeof Chart + ']'), 'undefined' !==
-    typeof Chart) {
+  if (console.log('run_charts  typeof [' + typeof Chart + ']'), typeof Chart !==
+    'undefined') {
     if (console.log('init_charts'), Chart.defaults.global.legend = {
       enabled: !1
     }, $('#canvas_line').length) {
@@ -1628,7 +1669,7 @@ function init_charts() {
       })
     }
     if ($('#lineChart').length) {
-      var f = document.getElementById('lineChart');
+      var f = document.getElementById('lineChart')
       new Chart(f, {
         type: 'line',
         data: {
@@ -1660,7 +1701,7 @@ function init_charts() {
       })
     }
     if ($('#mybarChart').length) {
-      var f = document.getElementById('mybarChart');
+      var f = document.getElementById('mybarChart')
       new Chart(f, {
         type: 'bar',
         data: {
@@ -1703,7 +1744,7 @@ function init_charts() {
               '#CFD4D8', '#36CAAB', '#49A9EA'
             ]
           }]
-        };
+        }
       new Chart(f, {
         type: 'doughnut',
         tooltipFillColor: 'rgba(51, 51, 51, 0.55)',
@@ -1735,7 +1776,7 @@ function init_charts() {
             pointHighlightStroke: 'rgba(151,187,205,1)',
             data: [28, 48, 40, 19, 96, 27, 100]
           }]
-        };
+        }
       new Chart(f, {
         type: 'radar',
         data: i
@@ -1752,7 +1793,7 @@ function init_charts() {
             label: 'My dataset'
           }],
           labels: ['Dark Gray', 'Purple', 'Gray', 'Green', 'Blue']
-        };
+        }
       new Chart(f, {
         data: i,
         type: 'pie',
@@ -1772,7 +1813,7 @@ function init_charts() {
             label: 'My dataset'
           }],
           labels: ['Dark Gray', 'Purple', 'Gray', 'Green', 'Blue']
-        };
+        }
       new Chart(f, {
         data: i,
         type: 'polarArea',
@@ -1789,15 +1830,15 @@ function init_charts() {
 }
 
 function init_compose() {
-  'undefined' != typeof $.fn.slideToggle && (console.log('init_compose'), $(
+  typeof $.fn.slideToggle != 'undefined' && (console.log('init_compose'), $(
     '#compose, .compose-close').click(function () {
       $('.compose').slideToggle()
     }))
 }
 
 function init_calendar() {
-  if ('undefined' !== typeof $.fn.fullCalendar) {
-    console.log('init_calendar');
+  if (typeof $.fn.fullCalendar !== 'undefined') {
+    console.log('init_calendar')
     var e, f, a = new Date(),
       b = a.getDate(),
       c = a.getMonth(),
@@ -1813,7 +1854,7 @@ function init_calendar() {
         select: function (a, b, c) {
           $('#fc_create').click(), e = a, ended = b, $(
             '.antosubmit').on('click', function () {
-              var a = $('#title').val();
+              var a = $('#title').val()
               return b && (ended = b), f = $(
                 '#event_type').val(), a && g.fullCalendar(
                   'renderEvent', {
@@ -1822,8 +1863,7 @@ function init_calendar() {
                     end: b,
                     allDay: c
                   }, !0), $('#title').val(''), g.fullCalendar(
-                    'unselect'), $('.antoclose').click(), !
-                1
+                    'unselect'), $('.antoclose').click(), !1
             })
         },
         eventClick: function (a, b, c) {
@@ -1869,8 +1909,8 @@ function init_calendar() {
 }
 
 function init_DataTables() {
-  if (console.log('run_datatables'), 'undefined' != typeof $.fn.DataTable) {
-    console.log('init_DataTables');
+  if (console.log('run_datatables'), typeof $.fn.DataTable != 'undefined') {
+    console.log('init_DataTables')
     var a = function () {
       $('#datatable-buttons').length && $('#datatable-buttons').DataTable({
         dom: 'Bfrtip',
@@ -1892,27 +1932,42 @@ function init_DataTables() {
         }],
         responsive: !0
       })
-    };
+    }
     TableManageButtons = (function () {
-      "use strict";
+      'use strict';
       return {
         init: function () {
           a()
         }
       }
-    }()), $('#datatable').dataTable(), $('#datatable-keytable').DataTable({
-      keys: !0
-    }), $('#datatable-responsive').DataTable(), $('#datatable-scroller')
-      .DataTable({
-        ajax: 'js/datatables/json/scroller-demo.json',
-        deferRender: !0,
-        scrollY: 380,
-        scrollCollapse: !0,
-        scroller: !0
-      }), $('#datatable-fixed-header').DataTable({
+    }()),
+      $('#datatable').dataTable({
+        'language': dataTableLangConf
+      }),
+      $('#datatable-keytable').DataTable({
+        keys: !0
+      }),
+      $('table.datatable-responsive').DataTable({
+        'language': dataTableLangConf
+      }),
+      // $('#datatable-responsive-admin').DataTable({
+      //   'language': dataTableLangConf
+      // }),
+      // $('#datatable-responsive-user').DataTable({
+      //   'language': dataTableLangConf
+      // }),
+      $('#datatable-scroller')
+        .DataTable({
+          ajax: 'js/datatables/json/scroller-demo.json',
+          deferRender: !0,
+          scrollY: 380,
+          scrollCollapse: !0,
+          scroller: !0
+        }),
+      $('#datatable-fixed-header').DataTable({
         fixedHeader: !0
-      });
-    var b = $('#datatable-checkbox');
+      })
+    var b = $('#datatable-checkbox')
     b.dataTable({
       order: [
         [1, 'asc']
@@ -1930,7 +1985,7 @@ function init_DataTables() {
 }
 
 function init_morris_charts() {
-  'undefined' !== typeof Morris && (console.log('init_morris_charts'), $(
+  typeof Morris !== 'undefined' && (console.log('init_morris_charts'), $(
     '#graph_bar').length && Morris.Bar({
       element: 'graph_bar',
       data: [{
@@ -2163,8 +2218,8 @@ function init_morris_charts() {
 }
 
 function init_echarts() {
-  if ('undefined' !== typeof echarts) {
-    console.log('init_echarts');
+  if (typeof echarts !== 'undefined') {
+    console.log('init_echarts')
     var a = {
       color: ['#26B99A', '#34495E', '#BDC3C7', '#3498DB', '#9B59B6',
         '#8abb6f', '#759c6a', '#bfd3b7'
@@ -2376,9 +2431,9 @@ function init_echarts() {
       textStyle: {
         fontFamily: 'Arial, Verdana, sans-serif'
       }
-    };
+    }
     if ($('#mainb').length) {
-      var b = echarts.init(document.getElementById('mainb'), a);
+      var b = echarts.init(document.getElementById('mainb'), a)
       b.setOption({
         title: {
           text: 'Graph title',
@@ -2454,7 +2509,7 @@ function init_echarts() {
       })
     }
     if ($('#echart_sonar').length) {
-      var c = echarts.init(document.getElementById('echart_sonar'), a);
+      var c = echarts.init(document.getElementById('echart_sonar'), a)
       c.setOption({
         title: {
           text: 'Budget vs spending',
@@ -2522,7 +2577,7 @@ function init_echarts() {
       })
     }
     if ($('#echart_pyramid').length) {
-      var d = echarts.init(document.getElementById('echart_pyramid'), a);
+      var d = echarts.init(document.getElementById('echart_pyramid'), a)
       d.setOption({
         title: {
           text: 'Echart Pyramid Graph',
@@ -2579,7 +2634,7 @@ function init_echarts() {
       })
     }
     if ($('#echart_gauge').length) {
-      var e = echarts.init(document.getElementById('echart_gauge'), a);
+      var e = echarts.init(document.getElementById('echart_gauge'), a)
       e.setOption({
         tooltip: {
           formatter: '{a} <br/>{b} : {c}%'
@@ -2634,13 +2689,13 @@ function init_echarts() {
             formatter: function (a) {
               switch (a + '') {
                 case '10':
-                  return 'a';
+                  return 'a'
                 case '30':
-                  return 'b';
+                  return 'b'
                 case '60':
-                  return 'c';
+                  return 'c'
                 case '90':
-                  return 'd';
+                  return 'd'
                 default:
                   return ''
               }
@@ -2693,7 +2748,7 @@ function init_echarts() {
       })
     }
     if ($('#echart_line').length) {
-      var f = echarts.init(document.getElementById('echart_line'), a);
+      var f = echarts.init(document.getElementById('echart_line'), a)
       f.setOption({
         title: {
           text: 'Line Graph',
@@ -2781,7 +2836,7 @@ function init_echarts() {
       })
     }
     if ($('#echart_scatter').length) {
-      var g = echarts.init(document.getElementById('echart_scatter'), a);
+      var g = echarts.init(document.getElementById('echart_scatter'), a)
       g.setOption({
         title: {
           text: 'Scatter Graph',
@@ -2832,8 +2887,8 @@ function init_echarts() {
             formatter: function (a) {
               return a.value.length > 1 ? a.seriesName +
                 ' :<br/>' + a.value[0] +
-                'cm ' + a.value[1] + 'kg ' :
-                a.seriesName + ' :<br/>' +
+                'cm ' + a.value[1] + 'kg '
+                : a.seriesName + ' :<br/>' +
                 a.name + ' : ' + a.value +
                 'kg '
             }
@@ -3123,8 +3178,8 @@ function init_echarts() {
             formatter: function (a) {
               return a.value.length > 1 ? a.seriesName +
                 ' :<br/>' + a.value[0] +
-                'cm ' + a.value[1] + 'kg ' :
-                a.seriesName + ' :<br/>' +
+                'cm ' + a.value[1] + 'kg '
+                : a.seriesName + ' :<br/>' +
                 a.name + ' : ' + a.value +
                 'kg '
             }
@@ -3398,7 +3453,7 @@ function init_echarts() {
     }
     if ($('#echart_bar_horizontal').length) {
       var b = echarts.init(document.getElementById(
-        'echart_bar_horizontal'), a);
+        'echart_bar_horizontal'), a)
       b.setOption({
         title: {
           text: 'Bar Graph',
@@ -3447,7 +3502,7 @@ function init_echarts() {
       })
     }
     if ($('#echart_pie2').length) {
-      var h = echarts.init(document.getElementById('echart_pie2'), a);
+      var h = echarts.init(document.getElementById('echart_pie2'), a)
       h.setOption({
         tooltip: {
           trigger: 'item',
@@ -3510,7 +3565,7 @@ function init_echarts() {
       })
     }
     if ($('#echart_donut').length) {
-      var i = echarts.init(document.getElementById('echart_donut'), a);
+      var i = echarts.init(document.getElementById('echart_donut'), a)
       i.setOption({
         tooltip: {
           trigger: 'item',
@@ -3593,7 +3648,7 @@ function init_echarts() {
       })
     }
     if ($('#echart_pie').length) {
-      var j = echarts.init(document.getElementById('echart_pie'), a);
+      var j = echarts.init(document.getElementById('echart_pie'), a)
       j.setOption({
         tooltip: {
           trigger: 'item',
@@ -3654,7 +3709,7 @@ function init_echarts() {
             name: 'Search Engine'
           }]
         }]
-      });
+      })
       var k = {
         normal: {
           label: {
@@ -3681,7 +3736,7 @@ function init_echarts() {
         }
     }
     if ($('#echart_mini_pie').length) {
-      var m = echarts.init(document.getElementById('echart_mini_pie'), a);
+      var m = echarts.init(document.getElementById('echart_mini_pie'), a)
       m.setOption({
         title: {
           text: 'Chart #2',
@@ -3778,7 +3833,7 @@ function init_echarts() {
       })
     }
     if ($('#echart_world_map').length) {
-      var n = echarts.init(document.getElementById('echart_world_map'), a);
+      var n = echarts.init(document.getElementById('echart_world_map'), a)
       n.setOption({
         title: {
           text: 'World Population (2010)',
@@ -3789,7 +3844,7 @@ function init_echarts() {
         tooltip: {
           trigger: 'item',
           formatter: function (a) {
-            var b = (a.value + '').split('.');
+            var b = (a.value + '').split('.')
             return b = b[0].replace(
               /(\d{1,3})(?=(?:\d{3})+(?!\d))/g,
               '$1,') + '.' + b[1], a.seriesName +
@@ -4382,21 +4437,21 @@ function init_echarts() {
   }
 } !(function (a, b) {
   var c = function (a, b, c) {
-    var d;
+    var d
     return function () {
       function h() {
         c || a.apply(f, g), d = null
       }
       var f = this,
-        g = arguments;
+        g = arguments
       d ? clearTimeout(d) : c && a.apply(f, g), d =
         setTimeout(h, b || 100)
     }
-  };
-  jQuery.fn[b] = function (a) {
-    return a ? this.bind("resize", c(a)) : this.trigger(b)
   }
-}(jQuery, "smartresize"));
+  jQuery.fn[b] = function (a) {
+    return a ? this.bind('resize', c(a)) : this.trigger(b)
+  }
+}(jQuery, 'smartresize'))
 var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
   $BODY = $('body'),
   $MENU_TOGGLE = $('#menu_toggle'),
@@ -4408,18 +4463,18 @@ var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
   $FOOTER = $('footer'),
   randNum = function () {
     return Math.floor(21 * Math.random()) + 20
-  };
+  }
 $(document).ready(function () {
   $('.collapse-link').on('click', function () {
     var a = $(this).closest('.x_panel'),
       b = $(this).find('i'),
-      c = a.find('.x_content');
+      c = a.find('.x_content')
     a.attr('style') ? c.slideToggle(200, function () {
       a.removeAttr('style')
     }) : (c.slideToggle(200), a.css('height', 'auto')),
       b.toggleClass('fa-chevron-up fa-chevron-down')
   }), $('.close-link').click(function () {
-    var a = $(this).closest('.x_panel');
+    var a = $(this).closest('.x_panel')
     a.remove()
   })
 }), $(document).ready(function () {
@@ -4430,7 +4485,7 @@ $(document).ready(function () {
   $(document).ready(function () {
     if ($('.js-switch')[0]) {
       var a = Array.prototype.slice.call(document.querySelectorAll(
-        '.js-switch'));
+        '.js-switch'))
       a.forEach(function (a) {
         new Switchery(a, {
           color: '#26B99A'
@@ -4450,8 +4505,8 @@ $(document).ready(function () {
   }), $('table input').on('ifUnchecked', function () {
     checkState = '', $(this).parent().parent().parent().removeClass(
       'selected'), countChecked()
-  });
-var checkState = '';
+  })
+var checkState = ''
 $('.bulk_action input').on('ifChecked', function () {
   checkState = '', $(this).parent().parent().parent().addClass(
     'selected'), countChecked()
@@ -4465,18 +4520,18 @@ $('.bulk_action input').on('ifChecked', function () {
 }), $(document).ready(function () {
   $('.expand').on('click', function () {
     $(this).next().slideToggle(200), $expand = $(this).find(
-      '>:first-child'), '+' == $expand.text() ?
-        $expand.text('-') : $expand.text('+')
+      '>:first-child'), $expand.text() == '+'
+        ? $expand.text('-') : $expand.text('+')
   })
-}), 'undefined' !== typeof NProgress && ($(document).ready(function () {
+}), typeof NProgress !== 'undefined' && ($(document).ready(function () {
   NProgress.start()
 }), $(window).load(function () {
   NProgress.done()
-}));
-var originalLeave = $.fn.popover.Constructor.prototype.leave;
+}))
+var originalLeave = $.fn.popover.Constructor.prototype.leave
 $.fn.popover.Constructor.prototype.leave = function (a) {
   var c, d, b = a instanceof this.constructor ? a : $(a.currentTarget)[
-    this.type](this.getDelegateOptions()).data('bs.' + this.type);
+    this.type](this.getDelegateOptions()).data('bs.' + this.type)
   originalLeave.call(this, a), a.currentTarget && (c = $(a.currentTarget)
     .siblings('.popover'), d = b.timeout, c.one('mouseenter',
       function () {
