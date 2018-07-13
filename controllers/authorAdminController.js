@@ -51,8 +51,7 @@ exports.getAddPage = function (req, res, next) {
   res.render('management/authorAdd', {
     layout: 'layoutAdmin',
     title: 'Thêm tác giả',
-    csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
-    user: req.user
+    csrfToken: req.csrfToken()
   })
 }
 
