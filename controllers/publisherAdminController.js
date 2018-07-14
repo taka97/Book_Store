@@ -78,7 +78,9 @@ exports.getEditPage = function (req, res, next) {
   })
 }
 
-// GET delete publisher (admin) page
+/**
+ * GET delete publisher (admin) page
+ */
 exports.getDeletePage = function (req, res, next) {
   async.parallel({
     publisherDetail: (callback) => {
@@ -99,9 +101,7 @@ exports.getDeletePage = function (req, res, next) {
       publisher: results.publisherDetail,
       listBooksAuthor: results.listBooksAuthor,
       hasBook: results.listBooksAuthor.length
-    })    
-    console.log('listBooksAuthor: ' + results.listBooksAuthor)
-    console.log('Length: ' + results.listBooksAuthor.length)
+    })
   })
 }
 
@@ -133,10 +133,10 @@ exports.postEdit = function (req, res, next) {
 }
 
 // POST delete publisher
-exports.postDelete = function(req,res,next){
-  Publisher.findByIdAndRemove(req.params.id, function(err){
-    if(err) throw err;
+exports.postDelete = function (req, res, next) {
+  Publisher.findByIdAndRemove(req.params.id, function (err) {
+    if (err) throw err;
     else
-        res.redirect('/admin/publisher');
+      res.redirect('/admin/publisher');
   })
 }
