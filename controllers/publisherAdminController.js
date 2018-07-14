@@ -105,7 +105,9 @@ exports.getDeletePage = function (req, res, next) {
   })
 }
 
-// POST add publisher
+/**
+ * POST add publisher (admin) page
+ */
 exports.postAdd = function (req, res, next) {
   var newPublisher = new Publisher({
     name: req.body.name

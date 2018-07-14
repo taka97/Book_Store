@@ -118,7 +118,7 @@ exports.postAdd = function (req, res, next) {
     nationality: req.body.national
   })
   newAuthor.save((err) => {
-    if (err) throw err
+    if (err) { return next(err) }
     cache.put('updateListAuthors', true)
     req.flash('msg', 'Thêm tác giả thành công')
     res.redirect('/admin/author')
