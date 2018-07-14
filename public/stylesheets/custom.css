@@ -4738,3 +4738,7 @@ ul.notifications {
 	position: absolute;
 	z-index: -1;
 }
+
+.padding-left-0 {
+    padding-left: 0;
+}
