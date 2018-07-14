@@ -112,11 +112,11 @@ exports.postAdd = function (req, res, next) {
   var newPublisher = new Publisher({
     name: req.body.name
   })
-  newPublisher.save(function (err) {
-    if (err) throw err
-    else {
-      res.redirect('/admin/publisher')
-    }
+  newPublisher.save((err) => {
+    if (err) { return next(err) }
+    cache.put('updateListPublishers', true)
+    req.flash('msg', 'Thêm nhà xuất bản thành công')
+    res.redirect('/admin/publisher')
   })
 }
 
