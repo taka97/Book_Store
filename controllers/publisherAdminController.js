@@ -48,15 +48,12 @@ exports.getHomepage = function (req, res, next) {
 /**
  * GET add publisher (admin) page
  */
-
-// for develop
-// GET add publisher (admin) page
 exports.getAddPage = function (req, res, next) {
   // Successful, so render.
   res.render('management/publisherAdd', {
     layout: 'layoutAdmin',
     title: 'Thêm nhà xuất bản',
-    csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
+    csrfToken: req.csrfToken() // send token to client, it is neccessary when send post request
   })
 }
 
