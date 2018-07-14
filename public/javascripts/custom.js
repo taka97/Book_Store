@@ -67,8 +67,37 @@ function formatPrice() {
   $('.money').each(function () {
     $(this).text(accounting.formatNumber($(this).text()))
   })
+
+  $('input.money').each(function () {
+    $(this).val(accounting.formatNumber($(this).val()))
+  })
+
+  $('#txtPrice').keydown(function (e) {
+    // Allow: backspace, delete, tab, escape and enter
+    if ($.inArray(e.keyCode, [46, 8, 9, 27, 13]) !== -1 ||
+      // Allow: Ctrl+A, Command+A
+      (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+      // Allow: home, end, left, right, down, up
+      (e.keyCode >= 35 && e.keyCode <= 40)) {
+      // let it happen, don't do anything
+      return
+    }
+    // Ensure that it is a number and stop the keypress
+    if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+      e.preventDefault()
+    }
+  })
 }
 
+function priceProcess () { 
+  $("#txtPrice").keyup(function() {
+    $(this).val(accounting.formatNumber($(this).val()))
+  })
+
+  $('#edit-form').submit(function () {
+      $('#txtPrice').val(accounting.unformat($('#txtPrice').val()))
+  })
+}
 function init_Format() {
   console.log('init_formatdate')
   formatTd()
@@ -441,14 +470,14 @@ function init_gauge() {
     if ($('#chart_gauge_01').length) {
       var b = document.getElementById(
         'chart_gauge_01'),
-      c = new Gauge(b).setOptions(a);
+        c = new Gauge(b).setOptions(a);
     }
     if ($('#gauge-text').length && (c.maxValue = 6e3, c.animationSpeed = 32,
       c.set(3200), c.setTextField(document.getElementById(
         'gauge-text'))), $('#chart_gauge_02').length) {
-          var d =
-            document.getElementById('chart_gauge_02'),
-          e = new Gauge(d).setOptions(a);
+      var d =
+        document.getElementById('chart_gauge_02'),
+        e = new Gauge(d).setOptions(a);
     }
     $('#gauge-text2').length && (e.maxValue = 9e3, e.animationSpeed = 32, e
       .set(2400), e.setTextField(document.getElementById(
@@ -4552,6 +4581,7 @@ $.fn.popover.Constructor.prototype.leave = function (a) {
 }), $(document).ready(function () {
   init_sparklines(),
     init_Format(),
+    priceProcess(),
     init_flot_chart(),
     init_sidebar(),
     init_wysiwyg(), init_InputMask(), init_JQVmap(), init_cropper(),
