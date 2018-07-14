@@ -1,25 +1,48 @@
 const async = require('async')
+const cache = require('memory-cache')
+
 const Genre = require('../models/genre')
 const Book = require('../models/book')
 
-// GET genre (admin) homepage
+/**
+ * GET genre (admin) homepage
+ */
 exports.getHomepage = function (req, res, next) {
-  async.parallel({
-    listGenres: (callback) => {
-      Genre.find()
-        .exec(callback)
-    }
-  }, (err, results) => {
-    if (err) { return next(err) }
+  var listGenres = cache.get('listGenres')
+  var hasUpdate = cache.get('updateListGenres')
+  var message = req.flash('msg')[0]
+
+  if (!listGenres || hasUpdate) { // listGenres is not cached or hasUpdate
+    async.parallel({
+      listGenres: (callback) => {
+        Genre.find()
+          .exec(callback)
+      }
+    }, (err, results) => {
+      if (err) { return next(err) }
+      cache.put('listGenres', results.listGenres)
+      // Successful, so render.
+      res.render('management/genreHomepage', {
+        layout: 'layoutAdmin',
+        title: 'Quản lý thể loại',
+        csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
+        listGenres: results.listGenres,
+        message: message,
+        noMessage: !message
+      })
+    })
+    cache.del('updateListGenres')
+  } else {
     // Successful, so render.
     res.render('management/genreHomepage', {
       layout: 'layoutAdmin',
       title: 'Quản lý thể loại',
       csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
-      listGenres: results.listGenres
+      listGenres: listGenres,
+      message: message,
+      noMessage: !message
     })
-    console.log('listGenres: ' + results.listGenres)
-  })
+  }
 }
 
 // for develop
@@ -61,8 +84,8 @@ exports.getDeletePage = function (req, res, next) {
     },
     listBooksGenre: (callback) => {
       Book.find({ genre: req.params.id })
-      .populate('author')
-      .populate('publisher')
+        .populate('author')
+        .populate('publisher')
         .exec(callback)
     }
   }, (err, results) => {
@@ -70,7 +93,7 @@ exports.getDeletePage = function (req, res, next) {
     // Successful, so render.
     res.render('management/genreDelete', {
       layout: 'layoutAdmin',
-      title: 'Xóa thể loại',      
+      title: 'Xóa thể loại',
       csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
       genre: results.genreDetail,
       listBooksGenre: results.listBooksGenre,
@@ -109,10 +132,10 @@ exports.postEdit = function (req, res, next) {
 }
 
 // POST delete genre
-exports.postDelete = function(req,res,next){
-  Genre.findByIdAndRemove(req.params.id, function(err){
-    if(err) throw err;
+exports.postDelete = function (req, res, next) {
+  Genre.findByIdAndRemove(req.params.id, function (err) {
+    if (err) throw err;
     else
-        res.redirect('/admin/genre');
+      res.redirect('/admin/genre');
   })
 }
