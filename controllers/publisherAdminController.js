@@ -136,10 +136,14 @@ exports.postEdit = function (req, res, next) {
   })
 }
 
-// POST delete publisher
+/**
+ * POST delete publisher (admin) page
+ */
 exports.postDelete = function (req, res, next) {
-  Publisher.findByIdAndRemove(req.params.id, function (err) {
-    if (err) throw err
-    else { res.redirect('/admin/publisher'); }
+  Publisher.findByIdAndRemove(req.params.id, (err) => {
+    if (err) { return next(err) }
+    cache.put('updateListPublishers', true)
+    req.flash('msg', 'Xóa nhà xuất bản thành công')
+    res.redirect('/admin/publisher')
   })
 }
