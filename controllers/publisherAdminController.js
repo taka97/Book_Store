@@ -1,27 +1,53 @@
 const async = require('async')
+const cache = require('memory-cache')
+
 const Publisher = require('../models/publisher')
 const Book = require('../models/book')
 
-// GET publisher (admin) homepage
+/**
+ * GET publisher (admin) homepage
+ */
 exports.getHomepage = function (req, res, next) {
-  async.parallel({
-    listPublishers: (callback) => {
-      Publisher.find()
-        .exec(callback)
-    }
-  }, (err, results) => {
-    if (err) { return next(err) }
+  var listPublishers = cache.get('listPublishers')
+  var hasUpdate = cache.get('updateListPublishers')
+  var message = req.flash('msg')[0]
+
+  if (!listPublishers || hasUpdate) { // listPublishers is not cached or hasUpdate
+    async.parallel({
+      listPublishers: (callback) => {
+        Publisher.find()
+          .exec(callback)
+      }
+    }, (err, results) => {
+      if (err) { return next(err) }
+      cache.put('listPublishers', results.listPublishers)
+      // Successful, so render.
+      res.render('management/publisherHomepage', {
+        layout: 'layoutAdmin',
+        title: 'Quản lý nhà xuất bản',
+        csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
+        listPublishers: results.listPublishers,
+        message: message,
+        noMessage: !message
+      })
+    })
+    cache.del('updateListPublishers')
+  } else {
     // Successful, so render.
     res.render('management/publisherHomepage', {
       layout: 'layoutAdmin',
       title: 'Quản lý nhà xuất bản',
       csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
-      listPublishers: results.listPublishers
+      listPublishers: listPublishers,
+      message: message,
+      noMessage: !message
     })
-
-    console.log('listPublishers: ' + results.listPublishers)
-  })
+  }
 }
+
+/**
+ * GET add publisher (admin) page
+ */
 
 // for develop
 // GET add publisher (admin) page
