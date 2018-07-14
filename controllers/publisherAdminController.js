@@ -57,7 +57,9 @@ exports.getAddPage = function (req, res, next) {
   })
 }
 
-// GET edit publisher (admin) page
+/**
+ * GET edit publisher (admin) page
+ */
 exports.getEditPage = function (req, res, next) {
   async.parallel({
     publisherDetail: (callback) => {
@@ -73,8 +75,6 @@ exports.getEditPage = function (req, res, next) {
       csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
       publisher: results.publisherDetail
     })
-
-    console.log('publisher:' + results.publisherDetail)
   })
 }
 
