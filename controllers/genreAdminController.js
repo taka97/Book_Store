@@ -45,8 +45,9 @@ exports.getHomepage = function (req, res, next) {
   }
 }
 
-// for develop
-// GET add genre (admin) page
+/**
+ * GET add genre (admin) page
+ */
 exports.getAddPage = function (req, res, next) {
   // Successful, so render.
   res.render('management/genreAdd', {
@@ -55,7 +56,9 @@ exports.getAddPage = function (req, res, next) {
   })
 }
 
-// GET edit genre (admin) page
+/**
+ * GET edit genre (admin) page
+ */
 exports.getEditPage = function (req, res, next) {
   async.parallel({
     genreDetail: (callback) => {
@@ -71,11 +74,12 @@ exports.getEditPage = function (req, res, next) {
       csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
       genre: results.genreDetail
     })
-    console.log('genre: ' + results.genreDetail)
   })
 }
 
-// GET delete genre (admin) page
+/**
+ * GET delete genre (admin) page
+ */
 exports.getDeletePage = function (req, res, next) {
   async.parallel({
     genreDetail: (callback) => {
@@ -99,8 +103,6 @@ exports.getDeletePage = function (req, res, next) {
       listBooksGenre: results.listBooksGenre,
       hasBook: results.listBooksGenre.length
     })
-    console.log('genreDetail: ' + results.genreDetail)
-    console.log('listBooksGenre: ' + results.listBooksGenre)
   })
 }
 
