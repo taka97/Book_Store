@@ -120,25 +120,26 @@ exports.postAdd = function (req, res, next) {
   })
 }
 
-// POST edit publisher
+/**
+ * POST edit publisher
+ */
 exports.postEdit = function (req, res, next) {
-  var editPublisher = new Publisher({
+  var newPublisher = new Publisher({
     _id: req.params.id,
     name: req.body.name
   })
-  Publisher.findByIdAndUpdate(req.params.id, editPublisher, function (err) {
-    if (err) throw err
-    else {
-      res.redirect('/admin/publisher')
-    }
+  Publisher.findByIdAndUpdate(req.params.id, newPublisher, (err) => {
+    if (err) { return next(err) }
+    cache.put('updateListPublishers', true)
+    req.flash('msg', 'Thay đổi thông tin nhà xuất bản thành công')
+    res.redirect('/admin/publisher')
   })
 }
 
 // POST delete publisher
 exports.postDelete = function (req, res, next) {
   Publisher.findByIdAndRemove(req.params.id, function (err) {
-    if (err) throw err;
-    else
-      res.redirect('/admin/publisher');
+    if (err) throw err
+    else { res.redirect('/admin/publisher'); }
   })
 }
