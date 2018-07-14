@@ -52,7 +52,8 @@ exports.getAddPage = function (req, res, next) {
   // Successful, so render.
   res.render('management/genreAdd', {
     layout: 'layoutAdmin',
-    title: 'Thêm thể loại'
+    title: 'Thêm thể loại',
+    csrfToken: req.csrfToken()
   })
 }
 
@@ -106,38 +107,44 @@ exports.getDeletePage = function (req, res, next) {
   })
 }
 
-// POST add genre
+/**
+ * POST add genre (admin) page
+ */
 exports.postAdd = function (req, res, next) {
   var newGenre = new Genre({
     name: req.body.name
   })
-  newGenre.save(function (err) {
-    if (err) throw err
-    else {
-      res.redirect('/admin/genre')
-    }
+  newGenre.save((err) => {
+    if (err) { return next(err) }
+    cache.put('updateListGenres', true)
+    req.flash('msg', 'Thêm thể loại thành công')
+    res.redirect('/admin/genre')
   })
 }
 
-// POST edit genre
+/**
+ * POST edit genre (admin) page
+ */
 exports.postEdit = function (req, res, next) {
-  var editGenre = new Genre({
-    _id: req.params.id,
-    name: req.body.name,
-  })
-  Genre.findByIdAndUpdate(req.params.id, editGenre, function (err) {
-    if (err) throw err
-    else {
-      res.redirect('/admin/genre')
-    }
+  var newData = {
+    name: req.body.name
+  }
+  Genre.findByIdAndUpdate(req.params.id, newData, (err) => {
+    if (err) { return next(err) }
+    cache.put('updateListGenres', true)
+    req.flash('msg', 'Thay đổi thông tin thể loại thành công')
+    res.redirect('/admin/genre')
   })
 }
 
-// POST delete genre
+/**
+ * POST delete genre (admin) page
+ */
 exports.postDelete = function (req, res, next) {
   Genre.findByIdAndRemove(req.params.id, function (err) {
-    if (err) throw err;
-    else
-      res.redirect('/admin/genre');
+    if (err) { return next(err) }
+    cache.put('updateListGenres', true)
+    req.flash('msg', 'Xóa thể loại thành công')
+    res.redirect('/admin/genre')
   })
 }

@@ -5,14 +5,13 @@
             <div class="x_content">
                 {{#with genre}}
                 <form action="" class="form-horizontal form-label-left" method="POST">
-                    <span class="section">{{ title }}</span>
+                    <span class="section">{{ ../title }}</span>
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Thể loại
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input name="name" class="form-control col-md-7 col-xs-12" id="name" required="required" type="text" value="{{name}}" data-validate-words="2"
-                                data-validate-length-range="6">
+                            <input name="name" class="form-control col-md-7 col-xs-12" id="name" required="required" type="text" value="{{name}}">
                         </div>
                     </div>
                     <div class="ln_solid"></div>
