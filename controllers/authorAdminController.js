@@ -4,8 +4,6 @@ const cache = require('memory-cache')
 const Author = require('../models/author')
 const Book = require('../models/book')
 
-// GET author (admin) homepage
-
 /**
  * GET author (admin) homepage
  */
@@ -14,7 +12,7 @@ exports.getHomepage = function (req, res, next) {
   var hasUpdate = cache.get('updateListAuthors')
   var message = req.flash('msg')[0]
 
-  if (!listAuthors || hasUpdate) { // listAuthors is not cached or hasNewAuthor
+  if (!listAuthors || hasUpdate) { // listAuthors is not cached or hasUpdate
     async.parallel({
       listAuthors: (callback) => {
         Author.find()
@@ -33,6 +31,7 @@ exports.getHomepage = function (req, res, next) {
         noMessage: !message
       })
     })
+    cache.del('updateListAuthors')
   } else {
     // Successful, so render.
     res.render('management/authorHomepage', {
@@ -44,7 +43,6 @@ exports.getHomepage = function (req, res, next) {
       noMessage: !message
     })
   }
-  cache.del('updateListAuthors')
 }
 
 /**
@@ -77,7 +75,6 @@ exports.getEditPage = function (req, res, next) {
       csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
       author: results.authorDetail
     })
-    console.log(cache.get('listAuthors'))
   })
 }
 
