@@ -216,7 +216,6 @@ exports.getEditPage = function (req, res, next) {
       cache.put('listPublishers', results.listPublishers)
       cache.del('updateListPublishers')
     }
-    console.log(results.bookDetail)
     // Successful, so render.
     res.render('management/bookEdit', {
       layout: 'layoutAdmin',
@@ -250,7 +249,6 @@ exports.getDeletePage = function (req, res, next) {
       listBookInstance: results.listBookInstance,
       csrfToken: req.csrfToken() // send token to client, it is neccessary when send post request
     })
-    // console.log('listBookInstance: ' + results.listBookInstance)
   })
 }
 
@@ -258,15 +256,19 @@ exports.getDeletePage = function (req, res, next) {
 exports.postAdd = function (req, res, next) {
   var newBook = new Book({
     title: req.body.name,
-    author: req.body.nameAuthor,
-    publisher: req.body.namePublisher,
-    publishDate: req.body.date,
+    author: req.body.author,
+    publisher: req.body.publisher,
+    publishDate: req.body.publishDate,
     price: req.body.price,
     genre: req.body.genre,
     description: req.body.description
   })
   newBook.save(function (err) {
-    if (err) { return next(err) }
+    if (err) {
+      return next(err)
+    }
+    cache.put('updateListBooks', true)
+    req.flash('msg', 'Thêm sách thành công')
     res.redirect('/admin/book')
   })
 }

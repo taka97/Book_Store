@@ -94,7 +94,7 @@ function priceProcess () {
     $(this).val(accounting.formatNumber($(this).val()))
   })
 
-  $('#edit-form').submit(function () {
+  $('#my-form').submit(function () {
       $('#txtPrice').val(accounting.unformat($('#txtPrice').val()))
   })
 }
