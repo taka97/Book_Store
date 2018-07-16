@@ -166,7 +166,6 @@ exports.getEditPage = function (req, res, next) {
   var hasUpdateAuthors = cache.get('updateListAuthors')
   var hasUpdateGenres = cache.get('updateListGenres')
   var hasUpdatePublishers = cache.get('updateListPublishers')
-
   async.parallel({
     listAuthors: (callback) => {
       if (!listAuthors || hasUpdateAuthors) {
@@ -232,12 +231,19 @@ exports.getEditPage = function (req, res, next) {
 // GET delete book (admin) page
 exports.getDeletePage = function (req, res, next) {
   async.parallel({
-    listBookInstance: (callback) => {
+    bookDetail: (callback) => {
+      Book.findById(req.params.id)
+        .populate('author genre publisher')
+        .exec(callback)
+    },
+    listInstancesOfBook: (callback) => {
       BookInstance.find({ book: req.params.id })
-        .populate('publisher')
-        .populate('author')
-        .populate('genre')
-        .populate('book')
+        .populate({
+          path: 'book',
+          populate: {
+            path: 'publisher author genre'
+          }
+        })
         .exec(callback)
     }
   }, (err, results) => {
@@ -246,8 +252,10 @@ exports.getDeletePage = function (req, res, next) {
     res.render('management/bookDelete', {
       layout: 'layoutAdmin',
       title: 'Xóa sách',
-      listBookInstance: results.listBookInstance,
-      csrfToken: req.csrfToken() // send token to client, it is neccessary when send post request
+      csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
+      book: results.bookDetail,
+      listInstancesOfBook: results.listInstancesOfBook,
+      hasBookInstance: results.listInstancesOfBook.length > 0
     })
   })
 }
@@ -297,6 +305,8 @@ exports.postEdit = function (req, res, next) {
 exports.postDelete = function (req, res, next) {
   Book.findByIdAndRemove(req.params.id, function (err) {
     if (err) { return next(err) }
+    cache.put('updateListBooks', true)
+    req.flash('msg', 'Xóa sách thành công')
     res.redirect('/admin/book')
   })
 }
