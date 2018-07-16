@@ -4,7 +4,7 @@
         <div class="x_panel">
             <div class="x_content">
                 {{#with book}}
-                <form id="edit-form" action="" class="form-horizontal form-label-left" method="POST">
+                <form id="my-form" action="" class="form-horizontal form-label-left" method="POST">
                     <span class="section">{{ ../title }}</span>
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tên sách
@@ -19,7 +19,7 @@
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <select name="author" class="form-control col-md-7 col-xs-12" id="author">
+                            <select name="author" class="form-control col-md-7 col-xs-12" id="author" value="{{ author }}">
                                 {{#each ../listAuthors}}
                                 <option value="{{_id}}">{{name}}</option>
                                 {{/each}}
@@ -31,7 +31,7 @@
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <select name="genre" class="form-control col-md-7 col-xs-12" id="genre">
+                            <select name="genre" class="form-control col-md-7 col-xs-12" id="genre" value="{{ genre }}">
                                 {{#each ../listGenres}}
                                 <option value="{{_id}}">{{name}}</option>
                                 {{/each}}
@@ -52,7 +52,7 @@
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <select name="publisher" class="form-control col-md-7 col-xs-12" id="publisher">
+                            <select name="publisher" class="form-control col-md-7 col-xs-12" id="publisher" value="{{ publisher }}">
                                 {{#each ../listPublishers}}
                                 <option value="{{_id}}">{{name}}</option>
                                 {{/each}}
@@ -64,7 +64,7 @@
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input name="date" class="optional form-control col-md-7 col-xs-12" id="date" type="date" value="{{publishDate}}">
+                            <input name="publishDate" class="optional form-control col-md-7 col-xs-12" id="date" type="date" value="{{publishDate}}">
                         </div>
                     </div>
                     <div class="item form-group">

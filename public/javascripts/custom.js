@@ -89,6 +89,29 @@ function formatPrice() {
   })
 }
 
+function formatSelect () {
+  $('select[value!=""]').each(function () {
+    console.log('run select')
+    $this = $(this)
+    $this.children('option').each(function () {
+      console.log('run select option')
+      if ($(this).val() === $this.attr('value')) {
+        $(this).attr('selected', 'selected')
+      }
+    })
+  })
+}
+
+function init_Format() {
+  console.log('init_formatdate')
+  formatTd()
+  formatInput()
+  formatinputdate()
+  formatGender()
+  formatPrice()
+  formatSelect()
+}
+
 function priceProcess () { 
   $("#txtPrice").keyup(function() {
     $(this).val(accounting.formatNumber($(this).val()))
@@ -97,14 +120,6 @@ function priceProcess () {
   $('#my-form').submit(function () {
       $('#txtPrice').val(accounting.unformat($('#txtPrice').val()))
   })
-}
-function init_Format() {
-  console.log('init_formatdate')
-  formatTd()
-  formatInput()
-  formatinputdate()
-  formatGender()
-  formatPrice()
 }
 
 function init_sidebar() {

@@ -219,7 +219,7 @@ exports.getEditPage = function (req, res, next) {
     // Successful, so render.
     res.render('management/bookEdit', {
       layout: 'layoutAdmin',
-      title: 'Thêm sách',
+      title: 'Chỉnh sửa thông tin sách',
       csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
       listAuthors: listAuthors,
       listGenres: listGenres,
@@ -275,18 +275,20 @@ exports.postAdd = function (req, res, next) {
 
 // POST edit book
 exports.postEdit = function (req, res, next) {
-  var editBook = new Book({
-    _id: req.params.id,
+  var newData = {
     title: req.body.name,
-    author: req.body.nameAuthor,
-    publisher: req.body.namePublisher,
-    publishDate: req.body.date,
+    author: req.body.author,
+    publisher: req.body.publisher,
+    publishDate: req.body.publishDate,
     price: req.body.price,
-    genre: req.body.gender,
-    desciption: req.body.desciption
-  })
-  Book.findByIdAndUpdate(req.params.id, editBook, function (err) {
+    genre: req.body.genre,
+    description: req.body.description
+  }
+
+  Book.findByIdAndUpdate(req.params.id, newData, function (err) {
     if (err) { return next(err) }
+    cache.put('updateListBooks', true)
+    req.flash('msg', 'Thay đổi thông tin sách thành công')
     res.redirect('/admin/book')
   })
 }
