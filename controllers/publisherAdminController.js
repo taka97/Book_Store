@@ -21,6 +21,8 @@ exports.getHomepage = function (req, res, next) {
     }, (err, results) => {
       if (err) { return next(err) }
       cache.put('listPublishers', results.listPublishers)
+      cache.del('updateListPublishers')
+
       // Successful, so render.
       res.render('management/publisherHomepage', {
         layout: 'layoutAdmin',
@@ -31,7 +33,6 @@ exports.getHomepage = function (req, res, next) {
         noMessage: !message
       })
     })
-    cache.del('updateListPublishers')
   } else {
     // Successful, so render.
     res.render('management/publisherHomepage', {
@@ -68,6 +69,7 @@ exports.getEditPage = function (req, res, next) {
     }
   }, (err, results) => {
     if (err) { return next(err) }
+
     // Successful, so render.
     res.render('management/publisherEdit', {
       layout: 'layoutAdmin',
@@ -93,6 +95,7 @@ exports.getDeletePage = function (req, res, next) {
     }
   }, (err, results) => {
     if (err) { return next(err) }
+
     // Successful, so render.
     res.render('management/publisherDelete', {
       layout: 'layoutAdmin',
@@ -112,9 +115,11 @@ exports.postAdd = function (req, res, next) {
   var newPublisher = new Publisher({
     name: req.body.name
   })
+
   newPublisher.save((err) => {
     if (err) { return next(err) }
     cache.put('updateListPublishers', true)
+    cache.put('updateListBooks', true)
     req.flash('msg', 'Thêm nhà xuất bản thành công')
     res.redirect('/admin/publisher')
   })
@@ -124,13 +129,15 @@ exports.postAdd = function (req, res, next) {
  * POST edit publisher
  */
 exports.postEdit = function (req, res, next) {
-  var newPublisher = new Publisher({
-    _id: req.params.id,
+  var newData = {
     name: req.body.name
-  })
-  Publisher.findByIdAndUpdate(req.params.id, newPublisher, (err) => {
+  }
+
+  Publisher.findByIdAndUpdate(req.params.id, newData, (err) => {
     if (err) { return next(err) }
+
     cache.put('updateListPublishers', true)
+    cache.put('updateListBooks', true)
     req.flash('msg', 'Thay đổi thông tin nhà xuất bản thành công')
     res.redirect('/admin/publisher')
   })
@@ -142,7 +149,9 @@ exports.postEdit = function (req, res, next) {
 exports.postDelete = function (req, res, next) {
   Publisher.findByIdAndRemove(req.params.id, (err) => {
     if (err) { return next(err) }
+
     cache.put('updateListPublishers', true)
+    cache.put('updateListBooks', true)
     req.flash('msg', 'Xóa nhà xuất bản thành công')
     res.redirect('/admin/publisher')
   })

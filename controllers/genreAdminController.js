@@ -114,9 +114,11 @@ exports.postAdd = function (req, res, next) {
   var newGenre = new Genre({
     name: req.body.name
   })
+
   newGenre.save((err) => {
     if (err) { return next(err) }
     cache.put('updateListGenres', true)
+    cache.put('updateListBooks', true)
     req.flash('msg', 'Thêm thể loại thành công')
     res.redirect('/admin/genre')
   })
@@ -129,9 +131,11 @@ exports.postEdit = function (req, res, next) {
   var newData = {
     name: req.body.name
   }
+
   Genre.findByIdAndUpdate(req.params.id, newData, (err) => {
     if (err) { return next(err) }
     cache.put('updateListGenres', true)
+    cache.put('updateListBooks', true)
     req.flash('msg', 'Thay đổi thông tin thể loại thành công')
     res.redirect('/admin/genre')
   })
@@ -143,7 +147,9 @@ exports.postEdit = function (req, res, next) {
 exports.postDelete = function (req, res, next) {
   Genre.findByIdAndRemove(req.params.id, function (err) {
     if (err) { return next(err) }
+
     cache.put('updateListGenres', true)
+    cache.put('updateListBooks', true)
     req.flash('msg', 'Xóa thể loại thành công')
     res.redirect('/admin/genre')
   })

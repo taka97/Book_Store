@@ -117,9 +117,11 @@ exports.postAdd = function (req, res, next) {
     gender: req.body.gender === 'male' ? 'Nam' : 'Nữ',
     nationality: req.body.national
   })
+
   newAuthor.save((err) => {
     if (err) { return next(err) }
     cache.put('updateListAuthors', true)
+    cache.put('updateListBooks', true)
     req.flash('msg', 'Thêm tác giả thành công')
     res.redirect('/admin/author')
   })
@@ -135,9 +137,12 @@ exports.postEdit = function (req, res, next) {
     gender: req.body.gender === 'male' ? 'Nam' : 'Nữ',
     nationality: req.body.national
   }
+
   Author.findByIdAndUpdate(req.params.id, newData, (err) => {
     if (err) { return next(err) }
+
     cache.put('updateListAuthors', true)
+    cache.put('updateListBooks', true)
     req.flash('msg', 'Thay đổi thông tin tác giả thành công')
     res.redirect('/admin/author')
   })
@@ -149,7 +154,9 @@ exports.postEdit = function (req, res, next) {
 exports.postDelete = function (req, res, next) {
   Author.findByIdAndRemove(req.params.id, (err) => {
     if (err) { return next(err) }
+
     cache.put('updateListAuthors', true)
+    cache.put('updateListBooks', true)
     req.flash('msg', 'Xóa tác giả thành công')
     res.redirect('/admin/author')
   })
