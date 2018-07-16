@@ -1,5 +1,6 @@
 const createError = require('http-errors')
 const express = require('express')
+const compression = require('compression')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
@@ -10,6 +11,7 @@ const passport = require('passport')
 const flash = require('connect-flash')
 const validator = require('express-validator')
 const MongoStore = require('connect-mongo')(session)
+const helmet = require('helmet')
 
 const indexRouter = require('./routes/index')
 
@@ -30,6 +32,7 @@ app.engine('.hbs', exphbs({ defaultLayout: false, extname: '.hbs' }))
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'hbs')
 
+app.use(helmet())
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -45,6 +48,7 @@ app.use(session({
 app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session())
+app.use(compression())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(favicon(path.join(__dirname, '/public/icons/favicon.png')))
 
