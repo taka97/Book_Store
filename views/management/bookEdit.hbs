@@ -10,7 +10,7 @@
                 {{#with book}}
                 <form id="my-form" action="" class="form-horizontal form-label-left" method="POST">
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tên sách
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tên sách
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -18,11 +18,11 @@
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="author">Tác giả
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="author">Tác giả
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <select name="author" class="form-control col-md-7 col-xs-12" id="author" value="{{ author }}">
+                            <select name="author" class="form-control col-md-7 col-xs-12" id="author" data-value="{{ author }}">
                                 {{#each ../listAuthors}}
                                 <option value="{{_id}}">{{name}}</option>
                                 {{/each}}
@@ -30,11 +30,11 @@
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="genre">Thể loại
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="genre">Thể loại
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <select name="genre" class="form-control col-md-7 col-xs-12" id="genre" value="{{ genre }}">
+                            <select name="genre" class="form-control col-md-7 col-xs-12" id="genre" data-value="{{ genre }}">
                                 {{#each ../listGenres}}
                                 <option value="{{_id}}">{{name}}</option>
                                 {{/each}}
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="txtPrice">Giá
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="txtPrice">Giá
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -51,11 +51,11 @@
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="publisher">Nhà sản xuất
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="publisher">Nhà sản xuất
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <select name="publisher" class="form-control col-md-7 col-xs-12" id="publisher" value="{{ publisher }}">
+                            <select name="publisher" class="form-control col-md-7 col-xs-12" id="publisher" data-value="{{ publisher }}">
                                 {{#each ../listPublishers}}
                                 <option value="{{_id}}">{{name}}</option>
                                 {{/each}}
@@ -63,11 +63,11 @@
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">Ngày sản xuất
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">Ngày sản xuất
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input name="publishDate" class="optional form-control col-md-7 col-xs-12" id="date" type="date" value="{{publishDate}}">
+                            <input name="publishDate" class="optional form-control col-md-7 col-xs-12 formatdate-stardard" id="date" type="date" value="{{publishDate}}">
                         </div>
                     </div>
                     <div class="item form-group">

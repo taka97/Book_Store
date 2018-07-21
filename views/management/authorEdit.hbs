@@ -10,7 +10,7 @@
                 {{#with author}}
                 <form action="" class="form-horizontal form-label-left" method="POST">
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tên tác giả
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tên tác giả
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -18,30 +18,30 @@
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">Ngày sinh
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">Ngày sinh
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input name="date" class="optional form-control col-md-7 col-xs-12" id="date" type="date" value="{{birthDate}}">
+                            <input name="date" class="optional form-control col-md-7 col-xs-12 formatdate-stardard" id="date" type="date" value="{{birthDate}}">
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender">Giới tính
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Giới tính
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div id="gender" class="btn-group" id="gender" data-toggle="buttons" value="{{ gender }}">
+                            <div id="gender" class="btn-group" data-toggle="buttons" data-value="{{ gender }}">
                                 <label class="btn btn-default" style="margin-bottom: 0px;" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
                                     <input name="gender" type="radio" value="male"> &nbsp; Nam &nbsp;
                                 </label>
                                 <label class="btn btn-primary" style="margin-bottom: 0px;" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                    <input name="gender" type="radio" value="female"> &nbsp; Nữ &nbsp;
+                                    <input name="gender" type="radio" value="female"> &nbsp; Nữ &nbsp;
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="national">Quốc tịch
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="national">Quốc tịch
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">

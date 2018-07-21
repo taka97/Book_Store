@@ -10,45 +10,45 @@
                 <form class="form-horizontal form-label-left" novalidate="">
                     {{#with book}}
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tên sách
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tên sách
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" readonly class="form-control-plaintext" id="name" value="{{ title }}">
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="author">Tác giả
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="author">Tác giả
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" readonly class="form-control-plaintext" id="author" value="{{ author.name }}">
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="genre">Thể loại
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="genre">Thể loại
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" readonly class="form-control-plaintext" id="genre" value="{{ genre.name }}">
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="price">Giá
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="price">Giá
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" readonly class="form-control-plaintext money" id="price" value="{{ price }}">
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="publisher">Nhà xuất bản
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="publisher">Nhà xuất bản
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" readonly class="form-control-plaintext" id="publisher" value="{{ publisher.name }}">
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="publishDate">Ngày xuất bản
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="publishDate">Ngày xuất bản
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input formatdate type="text" readonly class="form-control-plaintext" id="publishDate" value="{{publishDate}}">
+                            <input type="text" readonly class="form-control-plaintext formatdate" id="publishDate" value="{{publishDate}}">
                         </div>
                     </div>
                     <div class="item form-group">
@@ -61,7 +61,7 @@
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
-                            <a class="btn btn-success" href="/admin/book/edit/{{_id}}" id="send" type="submit">Sửa thông tin sách</a>
+                            <a class="btn btn-success" href="/admin/book/edit/{{_id}}">Sửa thông tin sách</a>
                         </div>
                     </div>
                     {{/with}}

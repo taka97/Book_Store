@@ -34,14 +34,18 @@ function formatYYYYMMDD(inputStr) {
 }
 
 function formatTd() {
-  $('td[formatdate]').each(function () {
+  $('td.formatdate').each(function () {
     $(this).text(formatDDMMYYYYY($(this).text()))
   })
 }
 
 function formatInput() {
-  $('input[formatdate]').each(function () {
+  $('input.formatdate').each(function () {
     $(this).attr('value', formatDDMMYYYYY($(this).attr('value')))
+  })
+
+  $('input.formatdate-stardard').each(function () {
+    $(this).attr('value', formatYYYYMMDD($(this).attr('value')))
   })
 }
 
@@ -54,7 +58,7 @@ function formatinputdate() {
 }
 
 function formatGender() {
-  if ($('#gender').attr('value') === 'Nam') {
+  if ($('#gender').attr('data-value') === 'Nam') {
     $('input[name="gender"]:first').parent('label').addClass('active')
     $('input[name="gender"]:first').attr('checked', true)
   } else {
@@ -90,15 +94,8 @@ function formatPrice() {
 }
 
 function formatSelect () {
-  $('select[value!=""]').each(function () {
-    console.log('run select')
-    $this = $(this)
-    $this.children('option').each(function () {
-      console.log('run select option')
-      if ($(this).val() === $this.attr('value')) {
-        $(this).attr('selected', 'selected')
-      }
-    })
+  $('select[data-value!=""]').each(function () {
+    $(this).val($(this).attr('data-value'))
   })
 }
 

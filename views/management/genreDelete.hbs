@@ -8,7 +8,7 @@
             </div>
             <form action="" method="POST" class="form-horizontal form-label-left">
                 <div class="form-group row">
-                    <label for="name" class="col-sm-2 control-label"> Thể loại </label>
+                    <label for="name" class="col-sm-2 control-label"> Thể loại </label>
                     <div class="col-sm-10">
                         <input type="text" readonly class="form-control-plaintext" id="name" value="{{genre.name}}">
                     </div>
@@ -17,7 +17,7 @@
                 <input type="hidden" name="_csrf" value="{{ csrfToken }}"> {{#if hasBook}} {{else}}
                 <div class="form-group">
                     <div class="col-md-4 col-md-offset-3">
-                        <button type="submit" class="btn btn-success"> Xóa thể loại </button>
+                        <button type="submit" class="btn btn-success"> Xóa thể loại </button>
                     </div>
                 </div>
                 {{/if}}
