@@ -12,6 +12,8 @@ const flash = require('connect-flash')
 const validator = require('express-validator')
 const MongoStore = require('connect-mongo')(session)
 const helmet = require('helmet')
+const PropertiesReader  = require('properties-reader')
+const properties = PropertiesReader('./config/properties.file')
 
 const indexRouter = require('./routes/index')
 
@@ -19,7 +21,7 @@ const app = express()
 
 // Set up mongoose connection
 const mongoose = require('mongoose')
-const devDBurl = 'mongodb://admin:123456@ds231740.mlab.com:31740/book-store'
+const devDBurl = properties.get('database.MongoDB-URI')
 const mongoDB = process.env.MONGODB_URI || devDBurl
 mongoose.connect(mongoDB)
 mongoose.Promise = global.Promise

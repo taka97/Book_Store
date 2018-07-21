@@ -1,0 +1,4 @@
+# contents of properties file
+[database]
+MongoDB-URI = mongodb://admin:123456@ds231740.mlab.com:31740/book-store
+
