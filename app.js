@@ -12,8 +12,7 @@ const flash = require('connect-flash')
 const validator = require('express-validator')
 const MongoStore = require('connect-mongo')(session)
 const helmet = require('helmet')
-const PropertiesReader  = require('properties-reader')
-const properties = PropertiesReader('./config/properties.file')
+const properties = require('properties-reader')('./config/properties.file')
 
 const indexRouter = require('./routes/index')
 
