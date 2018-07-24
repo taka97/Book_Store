@@ -32,14 +32,14 @@
                   <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="avatar-upload">
                       <input type="file" name="file" id="file" class="inputfile" />
-                      <label class="btn btn-default" for="file">Đổi ảnh đại diện</label>
+                      <label class="btn btn-default" style="width: 200px;" for="file">Đổi ảnh đại diện</label>
                     </div>
                   </div>
                 </div>
               </form>
             </div>
 
-            <div class="col-md-8 col-sm-8 col-xs-12 float-right">
+            <div class="col-md-7 col-sm-8 col-xs-12 float-right">
               <form {{#if isUser }} action="/user/change-profile" {{else}} action="/admin/change-profile" {{/if}} method="POST" class="form-horizontal form-label-left">
                 <div class="item form-group">
                   <label class="control-label col-md-2 col-sm-3 col-xs-12" for="name">Họ tên
