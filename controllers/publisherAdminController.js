@@ -1,40 +1,66 @@
 const async = require('async')
+const cache = require('memory-cache')
+
 const Publisher = require('../models/publisher')
 const Book = require('../models/book')
 
-// GET publisher (admin) homepage
+/**
+ * GET publisher (admin) homepage
+ */
 exports.getHomepage = function (req, res, next) {
-  async.parallel({
-    listPublishers: (callback) => {
-      Publisher.find()
-        .exec(callback)
-    }
-  }, (err, results) => {
-    if (err) { return next(err) }
+  var listPublishers = cache.get('listPublishers')
+  var hasUpdate = cache.get('updateListPublishers')
+  var message = req.flash('msg')[0]
+
+  if (!listPublishers || hasUpdate) { // listPublishers is not cached or hasUpdate
+    async.parallel({
+      listPublishers: (callback) => {
+        Publisher.find()
+          .exec(callback)
+      }
+    }, (err, results) => {
+      if (err) { return next(err) }
+      cache.put('listPublishers', results.listPublishers)
+      cache.del('updateListPublishers')
+
+      // Successful, so render.
+      res.render('management/publisherHomepage', {
+        layout: 'layoutAdmin',
+        title: 'Quản lý nhà xuất bản',
+        csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
+        listPublishers: results.listPublishers,
+        message: message,
+        noMessage: !message
+      })
+    })
+  } else {
     // Successful, so render.
     res.render('management/publisherHomepage', {
       layout: 'layoutAdmin',
       title: 'Quản lý nhà xuất bản',
       csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
-      listPublishers: results.listPublishers
+      listPublishers: listPublishers,
+      message: message,
+      noMessage: !message
     })
-
-    console.log('listPublishers: ' + results.listPublishers)
-  })
+  }
 }
 
-// for develop
-// GET add publisher (admin) page
+/**
+ * GET add publisher (admin) page
+ */
 exports.getAddPage = function (req, res, next) {
   // Successful, so render.
   res.render('management/publisherAdd', {
     layout: 'layoutAdmin',
     title: 'Thêm nhà xuất bản',
-    csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
+    csrfToken: req.csrfToken() // send token to client, it is neccessary when send post request
   })
 }
 
-// GET edit publisher (admin) page
+/**
+ * GET edit publisher (admin) page
+ */
 exports.getEditPage = function (req, res, next) {
   async.parallel({
     publisherDetail: (callback) => {
@@ -43,6 +69,7 @@ exports.getEditPage = function (req, res, next) {
     }
   }, (err, results) => {
     if (err) { return next(err) }
+
     // Successful, so render.
     res.render('management/publisherEdit', {
       layout: 'layoutAdmin',
@@ -50,12 +77,12 @@ exports.getEditPage = function (req, res, next) {
       csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
       publisher: results.publisherDetail
     })
-
-    console.log('publisher:' + results.publisherDetail)
   })
 }
 
-// GET delete publisher (admin) page
+/**
+ * GET delete publisher (admin) page
+ */
 exports.getDeletePage = function (req, res, next) {
   async.parallel({
     publisherDetail: (callback) => {
@@ -68,6 +95,7 @@ exports.getDeletePage = function (req, res, next) {
     }
   }, (err, results) => {
     if (err) { return next(err) }
+
     // Successful, so render.
     res.render('management/publisherDelete', {
       layout: 'layoutAdmin',
@@ -76,44 +104,55 @@ exports.getDeletePage = function (req, res, next) {
       publisher: results.publisherDetail,
       listBooksAuthor: results.listBooksAuthor,
       hasBook: results.listBooksAuthor.length
-    })    
-    console.log('listBooksAuthor: ' + results.listBooksAuthor)
-    console.log('Length: ' + results.listBooksAuthor.length)
+    })
   })
 }
 
-// POST add publisher
+/**
+ * POST add publisher (admin) page
+ */
 exports.postAdd = function (req, res, next) {
   var newPublisher = new Publisher({
     name: req.body.name
   })
-  newPublisher.save(function (err) {
-    if (err) throw err
-    else {
-      res.redirect('/admin/publisher')
-    }
+
+  newPublisher.save((err) => {
+    if (err) { return next(err) }
+    cache.put('updateListPublishers', true)
+    cache.put('updateListBooks', true)
+    req.flash('msg', 'Thêm nhà xuất bản thành công')
+    res.redirect('/admin/publisher')
   })
 }
 
-// POST edit publisher
+/**
+ * POST edit publisher
+ */
 exports.postEdit = function (req, res, next) {
-  var editPublisher = new Publisher({
-    _id: req.params.id,
+  var newData = {
     name: req.body.name
-  })
-  Publisher.findByIdAndUpdate(req.params.id, editPublisher, function (err) {
-    if (err) throw err
-    else {
-      res.redirect('/admin/publisher')
-    }
+  }
+
+  Publisher.findByIdAndUpdate(req.params.id, newData, (err) => {
+    if (err) { return next(err) }
+
+    cache.put('updateListPublishers', true)
+    cache.put('updateListBooks', true)
+    req.flash('msg', 'Thay đổi thông tin nhà xuất bản thành công')
+    res.redirect('/admin/publisher')
   })
 }
 
-// POST delete publisher
-exports.postDelete = function(req,res,next){
-  Publisher.findByIdAndRemove(req.params.id, function(err){
-    if(err) throw err;
-    else
-        res.redirect('/admin/publisher');
+/**
+ * POST delete publisher (admin) page
+ */
+exports.postDelete = function (req, res, next) {
+  Publisher.findByIdAndRemove(req.params.id, (err) => {
+    if (err) { return next(err) }
+
+    cache.put('updateListPublishers', true)
+    cache.put('updateListBooks', true)
+    req.flash('msg', 'Xóa nhà xuất bản thành công')
+    res.redirect('/admin/publisher')
   })
 }

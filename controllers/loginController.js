@@ -1,11 +1,12 @@
+const properties = require('properties-reader')('./config/properties.file')
 const passport = require(`passport`)
 
 // GET Login page
 exports.getLoginPage = function (req, res, next) {
   var messages = req.flash('error')
   res.render('login/login', {
-    layout: 'layoutLogin',
-    title: 'Đăng nhập',
+    layout: properties.get('layout.loginLayout'),
+    title: properties.get('title.login'),
     csrfToken: req.csrfToken(),
     messages: messages,
     hasErrors: messages.length > 0
@@ -16,8 +17,8 @@ exports.getLoginPage = function (req, res, next) {
 exports.getRegisterPage = function (req, res, next) {
   var messages = req.flash('error')
   res.render('login/register', {
-    layout: 'layoutLogin',
-    title: 'Đăng ký tài khoản',
+    layout: properties.get('layout.loginLayout'),
+    title: properties.get('title.register'),
     csrfToken: req.csrfToken(),
     messages: messages,
     hasErrors: messages.length > 0

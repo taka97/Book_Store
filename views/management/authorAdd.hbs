@@ -1,12 +1,15 @@
 <!-- page content -->
-<div class="right_col" role="main" style="min-height: 958px;">
+<div class="right_col" role="main">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
+            <div class="x_title">
+                <h2> {{ title }}</h2>
+                <div class="clearfix"></div>
+            </div>
             <div class="x_content">
                 <form method="POST" action="" class="form-horizontal form-label-left" novalidate="">
-                    <span class="section">{{ title }}</span>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tên tác giả
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tên tác giả
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -14,7 +17,7 @@
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">Ngày sinh
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">Ngày sinh
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -22,26 +25,26 @@
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender">Giới tính
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Giới tính
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div id="gender" class="btn-group" id="gender" data-toggle="buttons" value="{{ user.gender }}">
+                            <div id="gender" class="btn-group" data-toggle="buttons" data-value="{{ user.gender }}">
                                 <label class="btn btn-default" style="margin-bottom: 0px;" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
                                     <input name="gender" type="radio" value="male"> &nbsp; Nam &nbsp;
                                 </label>
                                 <label class="btn btn-primary" style="margin-bottom: 0px;" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                    <input name="gender" type="radio" value="female"> &nbsp; Nữ &nbsp;
+                                    <input name="gender" type="radio" value="female"> &nbsp; Nữ &nbsp;
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="national">Quốc tịch
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="national">Quốc tịch
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input name="national" class="form-control col-md-7 col-xs-12" id="national" required="required" type="text" placeholder="Nhập quốc tịch. Ví dụ: Việt Nam"
+                            <input name="national" class="form-control col-md-7 col-xs-12" id="national" required="required" type="text" placeholder="Nhập quốc tịch (Ví dụ: Việt Nam)"
                                 oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Vui lòng nhập quốc tịch')">
                         </div>
                     </div>

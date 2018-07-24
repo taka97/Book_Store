@@ -5,7 +5,7 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Hồ sơ cá nhân
+            <h2>Hồ sơ cá nhân
             </h2>
             <div class="clearfix"></div>
           </div>
@@ -40,9 +40,9 @@
             </div>
 
             <div class="col-md-8 col-sm-8 col-xs-12 float-right">
-              <form action="" method="POST" class="form-horizontal form-label-left" novalidate="">
+              <form {{#if isUser }} action="/user/change-profile" {{else}} action="/admin/change-profile" {{/if}} method="POST" class="form-horizontal form-label-left">
                 <div class="item form-group">
-                  <label class="control-label col-md-2 col-sm-3 col-xs-12" for="name">Họ tên
+                  <label class="control-label col-md-2 col-sm-3 col-xs-12" for="name">Họ tên
                     <span class="required">*</span>
                   </label>
                   <div class="col-md-7 col-sm-6 col-xs-12">
@@ -58,30 +58,30 @@
                   </div>
                 </div>
                 <div class="item form-group">
-                  <label class="control-label col-md-2 col-sm-3 col-xs-12" for="gender">Giới tính
+                  <label class="control-label col-md-2 col-sm-3 col-xs-12">Giới tính
                     <span class="required">*</span>
                   </label>
                   <div class="col-md-7 col-sm-6 col-xs-12">
-                    <div class="btn-group" id="gender" data-toggle="buttons" value="{{ user.gender }}">
+                    <div class="btn-group" id="gender" data-toggle="buttons" data-value="{{ user.gender }}">
                       <label class="btn btn-default" style="margin-bottom: 0px;" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
                         <input name="gender" type="radio" value="male" data-parsley-multiple="gender"> &nbsp; Nam &nbsp;
                       </label>
                       <label class="btn btn-primary" style="margin-bottom: 0px;" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                        <input name="gender" type="radio" value="female" data-parsley-multiple="gender"> &nbsp; Nữ &nbsp;
+                        <input name="gender" type="radio" value="female" data-parsley-multiple="gender"> &nbsp; Nữ &nbsp;
                       </label>
                     </div>
                   </div>
                 </div>
                 <div class="item form-group">
-                  <label class="control-label col-md-2 col-sm-3 col-xs-12">Ngày sinh
+                  <label class="control-label col-md-2 col-sm-3 col-xs-12">Ngày sinh
                     <span class="required">*</span>
                   </label>
                   <div class="col-md-7 col-sm-6 col-xs-12">
-                    <input name="birthday" class="form-control col-md-7 col-xs-12" id="birthday" required="required" type="date" value="{{user.birthDate}}">
+                    <input name="birthday" class="form-control col-md-7 col-xs-12 formatdate-stardard" id="birthday" required="required" type="date" value="{{user.birthDate}}">
                   </div>
                 </div>
                 <div class="item form-group">
-                  <label class="control-label col-md-2 col-sm-3 col-xs-12" for="textarea">Địa chỉ
+                  <label class="control-label col-md-2 col-sm-3 col-xs-12">Địa chỉ
                     <span class="required">*</span>
                   </label>
                   <div class="col-md-7 col-sm-6 col-xs-12">
@@ -91,60 +91,54 @@
                 <input type="hidden" name="_csrf" value="{{ csrfToken }}">
                 <div class="form-group">
                   <div class="col-md-7 col-md-offset-3">
-                    <button class="btn btn-success" id="send" type="submit"> Thay đổi </button>
+                    <button class="btn btn-success" type="submit"> Thay đổi </button>
                     <button type="reset" class="btn btn-primary"> Làm lại </button>
                   </div>
                 </div>
               </form>
             </div>
-
             <div class="col-md-12 ln_solid"></div>
           </div>
 
-
           <div class="x_content">
-            {{#if isUser}}
-            <form action="/user/change-password" method="POST" class="form-horizontal form-label-left" novalidate="">
-              {{else}}
-              <form action="/admin/change-password" method="POST" class="form-horizontal form-label-left" novalidate="">
-                {{/if}}
-                <span class="section">Đổi mật khẩu</span>
-                {{#if hasMessageConfig}} {{#each messageErrorConfig}}
-                <div class="alert alert-danger col-md-6 col-sm-3 col-xs-12" role="alert">
-                  {{ this }}
+            <form {{#if isUser}} action="/user/change-password" {{else}} action="/admin/change-password" {{/if}} method="POST" class="form-horizontal form-label-left">
+              <span class="section">Đổi mật khẩu</span>
+              {{#if hasMessageConfig}} {{#each messageErrorConfig}}
+              <div class="alert alert-danger col-md-6 col-sm-3 col-xs-12" role="alert">
+                {{ this }}
+              </div>
+              {{/each}} {{/if}}
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="oldPassword">Mật khẩu cũ
+                  <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input name="oldPassword" class="form-control col-md-7 col-xs-12" id="oldPassword" required="required" type="password">
                 </div>
-                {{/each}} {{/if}}
-                <div class="item form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="oldPassword">Mật khẩu cũ
-                    <span class="required">*</span>
-                  </label>
-                  <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input name="oldPassword" class="form-control col-md-7 col-xs-12" id="oldPassword" required="required" type="password">
-                  </div>
+              </div>
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="newPassword">Mật khẩu mới
+                  <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input name="newPassword" class="form-control col-md-7 col-xs-12" id="newPassword" required="required" type="password">
                 </div>
-                <div class="item form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="newPassword">Mật khẩu mới
-                    <span class="required">*</span>
-                  </label>
-                  <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input name="newPassword" class="form-control col-md-7 col-xs-12" id="newPassword" required="required" type="password">
-                  </div>
+              </div>
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Nhập lại mật khẩu mới
+                  <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input name="confPassword" class="date-picker form-control col-md-7 col-xs-12" id="confPassword" required="required" type="password">
                 </div>
-                <div class="item form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Nhập lại mật khẩu mới
-                    <span class="required">*</span>
-                  </label>
-                  <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input name="confPassword" class="date-picker form-control col-md-7 col-xs-12" id="confPassword" required="required" type="password">
-                  </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-6 col-md-offset-3">
+                  <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+                  <button class="btn btn-success" type="submit">Đổi mật khẩu</button>
                 </div>
-                <div class="form-group">
-                  <div class="col-md-6 col-md-offset-3">
-                    <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-                    <button class="btn btn-success" id="send" type="submit">Đổi mật khẩu </button>
-                  </div>
-                </div>
-              </form>
+              </div>
+            </form>
           </div>
         </div>
       </div>

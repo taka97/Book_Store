@@ -1,52 +1,50 @@
-<div>
-  <div class="login_wrapper">
-    <div class="animate form login_form">
-      <div class="login_content">
-        <form action="" method="POST">
-          <h1> Đăng nhập </h1>
+<div class="login_wrapper">
+  <div class="animate form login_form">
+    <div class="login_content">
+      <form action="/login" method="POST">
+        <h1> Đăng nhập </h1>
 
-          {{#if hasErrors }}
-          <div class="alert alert-danger">
-            {{#each messages }}
-            <p> {{ this }} </p>
-            {{/each}}
-          </div>
-          {{/if}}
+        {{#if hasErrors }}
+        <div class="alert alert-danger">
+          {{#each messages }}
+          <p> {{ this }} </p>
+          {{/each}}
+        </div>
+        {{/if}}
 
-          <div>
-            <input name="email" type="email" class="form-control" placeholder="Email" required=""
-              oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Vui lòng nhập địa chỉ email')"/>
-          </div>
-          <div>
-            <input name="password" type="password" class="form-control" placeholder="Mật khẩu" required="" 
-              oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Vui lòng nhập mật khẩu')"/>
-          </div>
-          <div>
-            <a class="reset_pass" href="#"> Quên mật khẩu? </a>
-          </div>
+        <div>
+          <input name="email" type="email" class="form-control" placeholder="Email" required="" oninput="this.setCustomValidity('')"
+            oninvalid="this.setCustomValidity('Vui lòng nhập địa chỉ email')" />
+        </div>
+        <div>
+          <input name="password" type="password" class="form-control" placeholder="Mật khẩu" required="" oninput="this.setCustomValidity('')"
+            oninvalid="this.setCustomValidity('Vui lòng nhập mật khẩu')" />
+        </div>
+        <div>
+          <a class="reset_pass" href="#"> Quên mật khẩu? </a>
+        </div>
+        <div class="clearfix"></div>
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+        <button class="btn btn-primary submit" type="submit"> Đăng nhập </button>
+
+        <div class="clearfix"></div>
+
+        <div class="separator">
+          <p class="change_link"> Bạn chưa có tài khoản?
+            <a href="/register" class="to_register"> Tạo tài khoản </a>
+          </p>
+
           <div class="clearfix"></div>
-          <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-          <button class="btn btn-primary submit" type="submit"> Đăng nhập </button>
-
-          <div class="clearfix"></div>
-
-          <div class="separator">
-            <p class="change_link"> Bạn chưa có tài khoản?
-              <a href="/register" class="to_register"> Tạo tài khoản </a>
-            </p>
-
-            <div class="clearfix"></div>
-            <br />
+          <br />
 
 
-            <div>
-              <h1>
-                <i class="fa fa-paw"></i> Gentelella Alela!</h1>
-              <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
-            </div>
+          <div>
+            <h1>
+              <i class="fa fa-paw"></i> Gentelella Alela!</h1>
+            <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>

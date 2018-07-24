@@ -4,8 +4,6 @@ const cache = require('memory-cache')
 const Author = require('../models/author')
 const Book = require('../models/book')
 
-// GET author (admin) homepage
-
 /**
  * GET author (admin) homepage
  */
@@ -14,7 +12,7 @@ exports.getHomepage = function (req, res, next) {
   var hasUpdate = cache.get('updateListAuthors')
   var message = req.flash('msg')[0]
 
-  if (!listAuthors || hasUpdate) { // listAuthors is not cached or hasNewAuthor
+  if (!listAuthors || hasUpdate) { // listAuthors is not cached or hasUpdate
     async.parallel({
       listAuthors: (callback) => {
         Author.find()
@@ -33,6 +31,7 @@ exports.getHomepage = function (req, res, next) {
         noMessage: !message
       })
     })
+    cache.del('updateListAuthors')
   } else {
     // Successful, so render.
     res.render('management/authorHomepage', {
@@ -44,7 +43,6 @@ exports.getHomepage = function (req, res, next) {
       noMessage: !message
     })
   }
-  cache.del('updateListAuthors')
 }
 
 /**
@@ -77,7 +75,6 @@ exports.getEditPage = function (req, res, next) {
       csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
       author: results.authorDetail
     })
-    console.log(cache.get('listAuthors'))
   })
 }
 
@@ -120,9 +117,11 @@ exports.postAdd = function (req, res, next) {
     gender: req.body.gender === 'male' ? 'Nam' : 'Nữ',
     nationality: req.body.national
   })
+
   newAuthor.save((err) => {
-    if (err) throw err
+    if (err) { return next(err) }
     cache.put('updateListAuthors', true)
+    cache.put('updateListBooks', true)
     req.flash('msg', 'Thêm tác giả thành công')
     res.redirect('/admin/author')
   })
@@ -138,9 +137,12 @@ exports.postEdit = function (req, res, next) {
     gender: req.body.gender === 'male' ? 'Nam' : 'Nữ',
     nationality: req.body.national
   }
+
   Author.findByIdAndUpdate(req.params.id, newData, (err) => {
     if (err) { return next(err) }
+
     cache.put('updateListAuthors', true)
+    cache.put('updateListBooks', true)
     req.flash('msg', 'Thay đổi thông tin tác giả thành công')
     res.redirect('/admin/author')
   })
@@ -152,7 +154,9 @@ exports.postEdit = function (req, res, next) {
 exports.postDelete = function (req, res, next) {
   Author.findByIdAndRemove(req.params.id, (err) => {
     if (err) { return next(err) }
+
     cache.put('updateListAuthors', true)
+    cache.put('updateListBooks', true)
     req.flash('msg', 'Xóa tác giả thành công')
     res.redirect('/admin/author')
   })

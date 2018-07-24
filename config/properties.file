@@ -1,0 +1,19 @@
+# contents of properties file
+[database]
+MongoDB-URI = mongodb://admin:123456@ds231740.mlab.com:31740/book-store
+
+[layout]
+loginLayout = layoutLogin
+adminLayout = layoutAdmin
+userLayout = layoutUser 
+
+[title]
+login = Đăng nhập
+register = Đăng ký tài khoản
+
+user.homepage = Người dùng
+user.profile.view = Hồ sơ cá nhân
+user.profile.edit = Thay đổi hồ sơ cá nhân
+
+[message]
+
