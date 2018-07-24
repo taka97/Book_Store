@@ -1010,7 +1010,8 @@ footer {
 }
 
 .avatar-view {
-    height: 150px;
+    height: 200px;
+    border-radius: 6px;
 }
 
 .degrees:after, .x_content, .x_panel {
