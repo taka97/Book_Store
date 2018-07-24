@@ -1,10 +1,11 @@
+const properties = require('properties-reader')('./config/properties.file')
 const Account = require('../models/account')
 
 // GET user homepage
 exports.getHomepage = function (req, res, next) {
   res.render('account/viewProfile', {
-    layout: 'layoutUser',
-    title: 'Người dùng'
+    layout: properties.get('layout.userLayout'),
+    title: properties.get('title.user.homepage')
   })
 }
 
@@ -12,8 +13,8 @@ exports.getHomepage = function (req, res, next) {
 exports.getViewProfile = function (req, res, next) {
   // Successful, so render.
   res.render('account/viewProfile', {
-    layout: 'layoutUser',
-    title: 'Hồ sơ cá nhân'
+    layout: properties.get('layout.userLayout'),
+    title: properties.get('title.user.profile.view')
   })
 }
 
@@ -24,8 +25,8 @@ exports.getChangeProfile = function (req, res, next) {
   var messageErrorConfig = req.flash('errorConfig')
 
   res.render('account/changeProfile', {
-    layout: 'layoutUser',
-    title: 'Thay đổi hồ sơ cá nhân',
+    layout: properties.get('layout.userLayout'),
+    title: properties.get('title.user.profile.edit'),
     csrfToken: req.csrfToken(), // send token to client, it is neccessary when send post request
     messageValidate: messageValidate,
     hasErrorMessage: messageValidate.length > 0,
@@ -35,10 +36,10 @@ exports.getChangeProfile = function (req, res, next) {
 }
 
 // GET order page
-exports.getOrderPage = function (req, res, next) {
+exports.getOrderPage = function (req, res, next) { /* Still developer */
   // Successful, so render.
   res.render('account/order', {
-    layout: 'layoutUser',
+    layout: properties.get('layout.userLayout'),
     title: 'Quản lý đơn hàng'
   })
 }
